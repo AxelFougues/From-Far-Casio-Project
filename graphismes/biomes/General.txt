@@ -1,0 +1,26 @@
+From Far
+
+Entities:
+-Tree (R. vegetales)
+-Bush (R. vegetales)
+-Rock (R. minerales)
+-Mushroom/Alien wtf plant (R. chemical)
+-Artifact (R. technology)
+-Base (Interactive)
+-Mobiles
+      \Water life
+Life  \Land life
+      \Air life
+      \?Intelligence?
+   \Ships
+
+
+Planet Variables:
+-Diameter
+-Biodiversity
+-Climat
+-Civilisation
+-Entity density per type
+-Terrain
+    \oceans
+    \formations (crater, canyon, plateau, island)

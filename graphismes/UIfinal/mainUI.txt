@@ -1,0 +1,20 @@
+TAB 1:Environment
+-air/liquid composition
+-temperature
+-compass
+-coordinates
+(-planet/base/solar sys name)
+
+TAB 2:Ship stats
+-ammo
+-integrity
+-fuel
+
+TAB 3:Inventory+Craft
+-scrolable inventory per ressource type (select to send to crafting bench)
+-crafting bench 3 slots + 3 unlockable
+
+TAB 4:Auto Pilot
+-on/off/auto
+-set speed
+-set distance/infinite

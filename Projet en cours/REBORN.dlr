@@ -1,0 +1,11 @@
+[DLSimRunSpace]
+
+[Breakpoint]
+File=A:\Dropbox\new procedure\REBORN.c
+Name=planetStorageZ1
+Flags=00002042
+
+[Breakpoint]
+File=A:\Dropbox\new procedure\REBORN.c
+Name=planetStorageY1
+Flags=00002042

@@ -1,0 +1,6 @@
+variables;
+-sommet(pointe)  triangle 0-7haut
+-feuillage(corp)    1-2cercles ou elipses r=0-10
+-branches (hauteur?cote?)      lignes horizontales 0-4 
+-tronc(largeur?hauteur?) doule ligne h=5-20 l=1-7
+-base(a voir)
