@@ -3,10 +3,10 @@
 #
 ############################
 # Directory defines
-TCDIR = C:\SDK\OS\SH
-OSDIR = C:\SDK\OS
-APPDIR = C:\Users\Az\Dropbox\From Far\UI en cours
-OUTDIR = C:\Users\Az\Dropbox\From Far\UI en cours\Debug
+TCDIR = A:\Programmes\OS\SH
+OSDIR = A:\Programmes\OS
+APPDIR = A:\Desktop\From-Far-Casio-Project\UI en cours
+OUTDIR = A:\Desktop\From-Far-Casio-Project\UI en cours\Debug
 
 ################
 # Main Defines

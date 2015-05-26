@@ -33,50 +33,67 @@ int tab3x = 121;
 int tab4y = 57;
 int AddIn_main(int isAppli, unsigned short OptionNum){
      ML_clear_vram();
-    while(!IsKeyDown(KEY_CTRL_UP)){
+    while(!IsKeyDown(KEY_CTRL_MENU)){
         ML_clear_vram();
         ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
-        ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
-        ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
-        ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
-        if(IsKeyDown(KEY_CTRL_LEFT)&&tab1x==-50){
+        ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+        ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+        ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+        ML_bmp_or_cl(pointer, 61, 29, 7, 7);
+        if(IsKeyDown(KEY_CTRL_RIGHT)&&tab1x==-50){
             for (tab1x = -50; tab1x < 0; ++tab1x){
+                ML_clear_vram();
                 ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_UP)&&tab2y==-19){
+        if(IsKeyDown(KEY_CTRL_DOWN)&&tab2y==-19){
             for (tab2y = -19; tab2y < 0; ++tab2y){
-                ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
+                ML_clear_vram();
+                ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_RIGHT)&&tab3x==121){
-            for (tab3x = 121; tab3x > 70; --tab3x){
-                ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
+        if(IsKeyDown(KEY_CTRL_LEFT)&&tab3x==121){
+            for (tab3x = 121; tab3x > 71; --tab3x){
+                ML_clear_vram();
+                ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_DOWN)&&tab4y==57){
+        if(IsKeyDown(KEY_CTRL_UP)&&tab4y==57){
             for (tab4y = 57; tab4y > 38; --tab4y){
-                ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
+                ML_clear_vram();
+                ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_LEFT)&&tab1x==0){
+        if(IsKeyDown(KEY_CTRL_RIGHT)&&tab1x==0){
             for (tab1x = 0; tab1x > -50; --tab1x){
+                ML_clear_vram();
                 ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_UP)&&tab2y==0){
+        if(IsKeyDown(KEY_CTRL_DOWN)&&tab2y==0){
             for (tab2y = 0; tab2y > -19; --tab2y){
-                ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
+                ML_clear_vram();
+                ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+                Sleep(15);
             }
         }
-        if(IsKeyDown(KEY_CTRL_RIGHT)&&tab3x==70){
-           for (tab3x = 70; tab3x < 121; ++tab3x){
-                ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
+        if(IsKeyDown(KEY_CTRL_LEFT)&&tab3x==71){
+           for (tab3x = 71; tab3x < 121; ++tab3x){
+            ML_clear_vram();
+                ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+                Sleep(15);
            } 
         }
-        if(IsKeyDown(KEY_CTRL_DOWN)&&tab4y==38){
+        if(IsKeyDown(KEY_CTRL_UP)&&tab4y==38){
             for (tab4y = 38; tab4y < 57; ++tab4y){
-                ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
+                ML_clear_vram();
+                ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+                Sleep(15);
             }
         }
         ML_display_vram();

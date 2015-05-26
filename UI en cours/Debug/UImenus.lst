@@ -1,8 +1,8 @@
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    1
 
 ************ OBJECT LISTING ************
 
-FILE NAME: C:\Users\Az\Dropbox\From Far\UI en cours\UImenus.c
+FILE NAME: A:\Desktop\From-Far-Casio-Project\UI en cours\UImenus.c
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
@@ -64,7 +64,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    2
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    2
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
@@ -109,7 +109,7 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
        UImenus.c    33    int tab4y = 57;
        UImenus.c    34    int AddIn_main(int isAppli, unsigned short OptionNum){
 P   00000000              _AddIn_main:                     ; function: AddIn_main
-                                                           ; frame size=48
+                                                           ; frame size=52
     00000000 2FE6                   MOV.L       R14,@-R15
     00000002 2FD6                   MOV.L       R13,@-R15
     00000004 2FC6                   MOV.L       R12,@-R15
@@ -119,505 +119,589 @@ P   00000000              _AddIn_main:                     ; function: AddIn_mai
     0000000C 2F86                   MOV.L       R8,@-R15
     0000000E 4F22                   STS.L       PR,@-R15
        UImenus.c    35         ML_clear_vram();
-    00000010 D336                   MOV.L       L403+8,R3  ; _ML_clear_vram
-    00000012 430B                   JSR         @R3
+    00000010 D93E                   MOV.L       L401+6,R9  ; _ML_clear_vram
+    00000012 490B                   JSR         @R9
     00000014 0009                   NOP
-    00000016 9865                   MOV.W       L403,R8    ; H'7542
-    00000018 D935                   MOV.L       L403+12,R9 ; _IsKeyDown
-    0000001A DA36                   MOV.L       L403+16,R10; _tab3x
-    0000001C DB36                   MOV.L       L403+20,R11; _tab1x
+    00000016 D83E                   MOV.L       L401+10,R8 ; _Sleep
+    00000018 DA3E                   MOV.L       L401+14,R10; _tab4y
+    0000001A DB3F                   MOV.L       L401+18,R11; _tab1x
+    0000001C DC3F                   MOV.L       L401+22,R12; _tab2y
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    3
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    3
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    0000001E DC37                   MOV.L       L403+24,R12; _tab4y
-    00000020 DD37                   MOV.L       L403+28,R13; _tab2y
-    00000022 DE38                   MOV.L       L403+32,R14; _ML_bmp_or_cl
-       UImenus.c    36        while(!IsKeyDown(KEY_CTRL_UP)){
-    00000024 A121                   BRA         L373
-    00000026 0009                   NOP
-    00000028              L374:                             
+    0000001E DD40                   MOV.L       L401+26,R13; _tab3x
+    00000020 DE40                   MOV.L       L401+30,R14; _ML_bmp_or_cl
+       UImenus.c    36        while(!IsKeyDown(KEY_CTRL_MENU)){
+    00000022 A155                   BRA         L373
+    00000024 0009                   NOP
+    00000026              L374:                             
        UImenus.c    37            ML_clear_vram();
-    00000028 D330                   MOV.L       L403+8,R3  ; _ML_clear_vram
-    0000002A 430B                   JSR         @R3
-    0000002C 0009                   NOP
+    00000026 490B                   JSR         @R9
+    00000028 0009                   NOP
        UImenus.c    38            ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
-    0000002E E23E                   MOV         #62,R2
-    00000030 D435                   MOV.L       L403+36,R4 ; _tab1
-    00000032 E73A                   MOV         #58,R7
-    00000034 2F26                   MOV.L       R2,@-R15
-    00000036 E601                   MOV         #1,R6
-    00000038 4E0B                   JSR         @R14
-    0000003A 65B2                   MOV.L       @R11,R5
-       UImenus.c    39            ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
-    0000003C D433                   MOV.L       L403+40,R4 ; _tab2
-    0000003E E31A                   MOV         #26,R3
-    00000040 2F36                   MOV.L       R3,@-R15
-    00000042 E71C                   MOV         #28,R7
-    00000044 66D2                   MOV.L       @R13,R6
-    00000046 4E0B                   JSR         @R14
-    00000048 E533                   MOV         #51,R5
-       UImenus.c    40            ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
-    0000004A E23E                   MOV         #62,R2
-    0000004C D430                   MOV.L       L403+44,R4 ; _tab3
-    0000004E E73A                   MOV         #58,R7
-    00000050 2F26                   MOV.L       R2,@-R15
-    00000052 E601                   MOV         #1,R6
-    00000054 4E0B                   JSR         @R14
-    00000056 65A2                   MOV.L       @R10,R5
-       UImenus.c    41            ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
-    00000058 D42E                   MOV.L       L403+48,R4 ; _tab4
-    0000005A E31A                   MOV         #26,R3
-    0000005C 2F36                   MOV.L       R3,@-R15
-    0000005E E71C                   MOV         #28,R7
-    00000060 66C2                   MOV.L       @R12,R6
-    00000062 4E0B                   JSR         @R14
-    00000064 E533                   MOV         #51,R5
-       UImenus.c    42            if(IsKeyDown(KEY_CTRL_LEFT)&&tab1x==-50){
-    00000066 943E                   MOV.W       L403+2,R4  ; H'7544
-    00000068 490B                   JSR         @R9
-    0000006A 7F10                   ADD         #16,R15
-    0000006C 2008                   TST         R0,R0
-    0000006E 8914                   BT          L375
-    00000070 D321                   MOV.L       L403+20,R3 ; _tab1x
-    00000072 6032                   MOV.L       @R3,R0
-    00000074 88CE                   CMP/EQ      #-50,R0
-    00000076 8B10                   BF          L375
-       UImenus.c    43                for (tab1x = -50; tab1x < 0; ++tab1x){
-    00000078 E1CE                   MOV         #-50,R1
-    0000007A A00B                   BRA         L376
-    0000007C 2B12                   MOV.L       R1,@R11
+    0000002A E23E                   MOV         #62,R2
+    0000002C D43E                   MOV.L       L401+34,R4 ; _tab1
+    0000002E E73A                   MOV         #58,R7
+    00000030 2F26                   MOV.L       R2,@-R15
+    00000032 E601                   MOV         #1,R6
+    00000034 4E0B                   JSR         @R14
+    00000036 65B2                   MOV.L       @R11,R5
+       UImenus.c    39            ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+    00000038 D43C                   MOV.L       L401+38,R4 ; _tab2
+    0000003A E31A                   MOV         #26,R3
+    0000003C 2F36                   MOV.L       R3,@-R15
+    0000003E E71C                   MOV         #28,R7
+    00000040 66C2                   MOV.L       @R12,R6
+    00000042 4E0B                   JSR         @R14
+    00000044 E532                   MOV         #50,R5
+       UImenus.c    40            ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+    00000046 E23E                   MOV         #62,R2
+    00000048 D439                   MOV.L       L401+42,R4 ; _tab3
+    0000004A E73A                   MOV         #58,R7
+    0000004C 2F26                   MOV.L       R2,@-R15
+    0000004E E600                   MOV         #0,R6
+    00000050 4E0B                   JSR         @R14
+    00000052 65D2                   MOV.L       @R13,R5
+       UImenus.c    41            ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+    00000054 D437                   MOV.L       L401+46,R4 ; _tab4
+    00000056 E31A                   MOV         #26,R3
+    00000058 2F36                   MOV.L       R3,@-R15
+    0000005A E71C                   MOV         #28,R7
+    0000005C 66A2                   MOV.L       @R10,R6
+    0000005E 4E0B                   JSR         @R14
+    00000060 E532                   MOV         #50,R5
+       UImenus.c    42            ML_bmp_or_cl(pointer, 61, 29, 7, 7);
+    00000062 E207                   MOV         #7,R2
+    00000064 D434                   MOV.L       L401+50,R4 ; _pointer
+    00000066 E61D                   MOV         #29,R6
+    00000068 2F26                   MOV.L       R2,@-R15
+    0000006A 6723                   MOV         R2,R7
+    0000006C 4E0B                   JSR         @R14
+    0000006E E53D                   MOV         #61,R5
+       UImenus.c    43            if(IsKeyDown(KEY_CTRL_RIGHT)&&tab1x==-50){
+    00000070 9449                   MOV.W       L401,R4    ; H'7545
+    00000072 D332                   MOV.L       L401+54,R3 ; _IsKeyDown
+    00000074 430B                   JSR         @R3
+    00000076 7F14                   ADD         #20,R15
+    00000078 2008                   TST         R0,R0
+    0000007A 8918                   BT          L375
+    0000007C D326                   MOV.L       L401+18,R3 ; _tab1x
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    4
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000007E              L377:                             
-       UImenus.c    44                    ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
-    0000007E E23E                   MOV         #62,R2
-    00000080 D421                   MOV.L       L403+36,R4 ; _tab1
-    00000082 E73A                   MOV         #58,R7
-    00000084 2F26                   MOV.L       R2,@-R15
-    00000086 E601                   MOV         #1,R6
-    00000088 4E0B                   JSR         @R14
-    0000008A 65B2                   MOV.L       @R11,R5
-    0000008C 7F04                   ADD         #4,R15
-    0000008E 63B2                   MOV.L       @R11,R3
-    00000090 7301                   ADD         #1,R3
-    00000092 2B32                   MOV.L       R3,@R11
-    00000094              L376:                             
-    00000094 62B2                   MOV.L       @R11,R2
-    00000096 4211                   CMP/PZ      R2
-    00000098 8BF1                   BF          L377
-    0000009A              L375:                             
-       UImenus.c    45                }
-       UImenus.c    46            }
-       UImenus.c    47            if(IsKeyDown(KEY_CTRL_UP)&&tab2y==-19){
-    0000009A 490B                   JSR         @R9
-    0000009C 6483                   MOV         R8,R4
-    0000009E 2008                   TST         R0,R0
-    000000A0 8914                   BT          L378
-    000000A2 D317                   MOV.L       L403+28,R3 ; _tab2y
-    000000A4 6032                   MOV.L       @R3,R0
-    000000A6 88ED                   CMP/EQ      #-19,R0
-    000000A8 8B10                   BF          L378
-       UImenus.c    48                for (tab2y = -19; tab2y < 0; ++tab2y){
-    000000AA E1ED                   MOV         #-19,R1
-    000000AC A00B                   BRA         L379
-    000000AE 2D12                   MOV.L       R1,@R13
-    000000B0              L380:                             
-       UImenus.c    49                    ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
-    000000B0 D416                   MOV.L       L403+40,R4 ; _tab2
-    000000B2 E21A                   MOV         #26,R2
-    000000B4 2F26                   MOV.L       R2,@-R15
-    000000B6 E71C                   MOV         #28,R7
-    000000B8 66D2                   MOV.L       @R13,R6
-    000000BA 4E0B                   JSR         @R14
-    000000BC E533                   MOV         #51,R5
-    000000BE 7F04                   ADD         #4,R15
-    000000C0 63D2                   MOV.L       @R13,R3
-    000000C2 7301                   ADD         #1,R3
-    000000C4 2D32                   MOV.L       R3,@R13
-    000000C6              L379:                             
-    000000C6 62D2                   MOV.L       @R13,R2
-    000000C8 4211                   CMP/PZ      R2
-    000000CA 8BF1                   BF          L380
-    000000CC              L378:                             
-       UImenus.c    50                }
-       UImenus.c    51            }
-       UImenus.c    52            if(IsKeyDown(KEY_CTRL_RIGHT)&&tab3x==121){
-    000000CC 940C                   MOV.W       L403+4,R4  ; H'7545
-    000000CE 490B                   JSR         @R9
-    000000D0 0009                   NOP
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    5
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    4
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000000D2 2008                   TST         R0,R0
-    000000D4 892F                   BT          L381
-    000000D6 D307                   MOV.L       L403+16,R3 ; _tab3x
-    000000D8 6032                   MOV.L       @R3,R0
-    000000DA 8879                   CMP/EQ      #121,R0
-    000000DC 8B2B                   BF          L381
-       UImenus.c    53                for (tab3x = 121; tab3x > 70; --tab3x){
-    000000DE E179                   MOV         #121,R1
-    000000E0 A025                   BRA         L382
-    000000E2 2A12                   MOV.L       R1,@R10
-    000000E4              L403:                             
-    000000E4 7542                   .DATA.W     H'7542
-    000000E6 7544                   .DATA.W     H'7544
-    000000E8 7545                   .DATA.W     H'7545
-    000000EA 0000                   .DATA.W     0
-    000000EC <00000000>             .DATA.L     _ML_clear_vram
-    000000F0 <00000000>             .DATA.L     _IsKeyDown
-    000000F4 <00000000>             .DATA.L     _tab3x
-    000000F8 <00000000>             .DATA.L     _tab1x
-    000000FC <00000000>             .DATA.L     _tab4y
-    00000100 <00000000>             .DATA.L     _tab2y
-    00000104 <00000000>             .DATA.L     _ML_bmp_or_cl
-    00000108 <00000000>             .DATA.L     _tab1
-    0000010C <00000000>             .DATA.L     _tab2
-    00000110 <00000000>             .DATA.L     _tab3
-    00000114 <00000000>             .DATA.L     _tab4
-    00000118              L383:                             
-       UImenus.c    54                    ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
-    00000118 D435                   MOV.L       L404+6,R4  ; _tab3
-    0000011A E23E                   MOV         #62,R2
-    0000011C 2F26                   MOV.L       R2,@-R15
-    0000011E E73A                   MOV         #58,R7
-    00000120 E601                   MOV         #1,R6
-    00000122 4E0B                   JSR         @R14
-    00000124 65A2                   MOV.L       @R10,R5
-    00000126 7F04                   ADD         #4,R15
-    00000128 63A2                   MOV.L       @R10,R3
-    0000012A 73FF                   ADD         #-1,R3
-    0000012C 2A32                   MOV.L       R3,@R10
-    0000012E              L382:                             
-    0000012E E246                   MOV         #70,R2
-    00000130 61A2                   MOV.L       @R10,R1
-    00000132 3127                   CMP/GT      R2,R1
-    00000134 89F0                   BT          L383
-    00000136              L381:                             
+    0000007E 6032                   MOV.L       @R3,R0
+    00000080 88CE                   CMP/EQ      #-50,R0
+    00000082 8B14                   BF          L375
+       UImenus.c    44                for (tab1x = -50; tab1x < 0; ++tab1x){
+    00000084 E1CE                   MOV         #-50,R1
+    00000086 A00F                   BRA         L376
+    00000088 2B12                   MOV.L       R1,@R11
+    0000008A              L377:                             
+       UImenus.c    45                    ML_clear_vram();
+    0000008A 490B                   JSR         @R9
+    0000008C 0009                   NOP
+       UImenus.c    46                    ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
+    0000008E E23E                   MOV         #62,R2
+    00000090 D425                   MOV.L       L401+34,R4 ; _tab1
+    00000092 E73A                   MOV         #58,R7
+    00000094 2F26                   MOV.L       R2,@-R15
+    00000096 E601                   MOV         #1,R6
+    00000098 4E0B                   JSR         @R14
+    0000009A 65B2                   MOV.L       @R11,R5
+    0000009C 7F04                   ADD         #4,R15
+       UImenus.c    47                    Sleep(15);
+    0000009E 480B                   JSR         @R8
+    000000A0 E40F                   MOV         #15,R4
+    000000A2 63B2                   MOV.L       @R11,R3
+    000000A4 7301                   ADD         #1,R3
+    000000A6 2B32                   MOV.L       R3,@R11
+    000000A8              L376:                             
+    000000A8 62B2                   MOV.L       @R11,R2
+    000000AA 4211                   CMP/PZ      R2
+    000000AC 8BED                   BF          L377
+    000000AE              L375:                             
+       UImenus.c    48                }
+       UImenus.c    49            }
+       UImenus.c    50            if(IsKeyDown(KEY_CTRL_DOWN)&&tab2y==-19){
+    000000AE 942B                   MOV.W       L401+2,R4  ; H'7547
+    000000B0 D222                   MOV.L       L401+54,R2 ; _IsKeyDown
+    000000B2 420B                   JSR         @R2
+    000000B4 0009                   NOP
+    000000B6 2008                   TST         R0,R0
+    000000B8 8918                   BT          L378
+    000000BA D218                   MOV.L       L401+22,R2 ; _tab2y
+    000000BC 6022                   MOV.L       @R2,R0
+    000000BE 88ED                   CMP/EQ      #-19,R0
+    000000C0 8B14                   BF          L378
+       UImenus.c    51                for (tab2y = -19; tab2y < 0; ++tab2y){
+    000000C2 E1ED                   MOV         #-19,R1
+    000000C4 A00F                   BRA         L379
+    000000C6 2C12                   MOV.L       R1,@R12
+    000000C8              L380:                             
+       UImenus.c    52                    ML_clear_vram();
+    000000C8 490B                   JSR         @R9
+    000000CA 0009                   NOP
+       UImenus.c    53                    ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+    000000CC D417                   MOV.L       L401+38,R4 ; _tab2
+    000000CE E21A                   MOV         #26,R2
+    000000D0 2F26                   MOV.L       R2,@-R15
+    000000D2 E71C                   MOV         #28,R7
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000D4 66C2                   MOV.L       @R12,R6
+    000000D6 4E0B                   JSR         @R14
+    000000D8 E532                   MOV         #50,R5
+    000000DA 7F04                   ADD         #4,R15
+       UImenus.c    54                    Sleep(15);
+    000000DC 480B                   JSR         @R8
+    000000DE E40F                   MOV         #15,R4
+    000000E0 63C2                   MOV.L       @R12,R3
+    000000E2 7301                   ADD         #1,R3
+    000000E4 2C32                   MOV.L       R3,@R12
+    000000E6              L379:                             
+    000000E6 62C2                   MOV.L       @R12,R2
+    000000E8 4211                   CMP/PZ      R2
+    000000EA 8BED                   BF          L380
+    000000EC              L378:                             
        UImenus.c    55                }
        UImenus.c    56            }
-       UImenus.c    57            if(IsKeyDown(KEY_CTRL_DOWN)&&tab4y==57){
-    00000136 9458                   MOV.W       L404,R4    ; H'7547
-    00000138 490B                   JSR         @R9
-    0000013A 0009                   NOP
-    0000013C 2008                   TST         R0,R0
-    0000013E 8915                   BT          L384
-    00000140 D32C                   MOV.L       L404+10,R3 ; _tab4y
-    00000142 6032                   MOV.L       @R3,R0
-    00000144 8839                   CMP/EQ      #57,R0
-    00000146 8B11                   BF          L384
+       UImenus.c    57            if(IsKeyDown(KEY_CTRL_LEFT)&&tab3x==121){
+    000000EC 940D                   MOV.W       L401+4,R4  ; H'7544
+    000000EE D213                   MOV.L       L401+54,R2 ; _IsKeyDown
+    000000F0 420B                   JSR         @R2
+    000000F2 0009                   NOP
+    000000F4 2008                   TST         R0,R0
+    000000F6 8936                   BT          L381
+    000000F8 D209                   MOV.L       L401+26,R2 ; _tab3x
+    000000FA 6022                   MOV.L       @R2,R0
+    000000FC 8879                   CMP/EQ      #121,R0
+    000000FE 8B32                   BF          L381
+       UImenus.c    58                for (tab3x = 121; tab3x > 71; --tab3x){
+    00000100 E179                   MOV         #121,R1
+    00000102 A02C                   BRA         L382
+    00000104 2D12                   MOV.L       R1,@R13
+    00000106              L401:                             
+    00000106 7545                   .DATA.W     H'7545
+    00000108 7547                   .DATA.W     H'7547
+    0000010A 7544                   .DATA.W     H'7544
+    0000010C <00000000>             .DATA.L     _ML_clear_vram
+    00000110 <00000000>             .DATA.L     _Sleep
+    00000114 <00000000>             .DATA.L     _tab4y
+    00000118 <00000000>             .DATA.L     _tab1x
+    0000011C <00000000>             .DATA.L     _tab2y
+    00000120 <00000000>             .DATA.L     _tab3x
+    00000124 <00000000>             .DATA.L     _ML_bmp_or_cl
+    00000128 <00000000>             .DATA.L     _tab1
+    0000012C <00000000>             .DATA.L     _tab2
+    00000130 <00000000>             .DATA.L     _tab3
+    00000134 <00000000>             .DATA.L     _tab4
+    00000138 <00000000>             .DATA.L     _pointer
+    0000013C <00000000>             .DATA.L     _IsKeyDown
+    00000140              L383:                             
+       UImenus.c    59                    ML_clear_vram();
+    00000140 490B                   JSR         @R9
+    00000142 0009                   NOP
+       UImenus.c    60                    ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+    00000144 D430                   MOV.L       L402+8,R4  ; _tab3
+    00000146 E23E                   MOV         #62,R2
+    00000148 2F26                   MOV.L       R2,@-R15
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    6
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-       UImenus.c    58                for (tab4y = 57; tab4y > 38; --tab4y){
-    00000148 E139                   MOV         #57,R1
-    0000014A A00B                   BRA         L385
-    0000014C 2C12                   MOV.L       R1,@R12
-    0000014E              L386:                             
-       UImenus.c    59                    ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
-    0000014E E21A                   MOV         #26,R2
-    00000150 D429                   MOV.L       L404+14,R4 ; _tab4
-    00000152 E71C                   MOV         #28,R7
-    00000154 2F26                   MOV.L       R2,@-R15
-    00000156 66C2                   MOV.L       @R12,R6
-    00000158 4E0B                   JSR         @R14
-    0000015A E533                   MOV         #51,R5
-    0000015C 7F04                   ADD         #4,R15
-    0000015E 63C2                   MOV.L       @R12,R3
-    00000160 73FF                   ADD         #-1,R3
-    00000162 2C32                   MOV.L       R3,@R12
-    00000164              L385:                             
-    00000164 61C2                   MOV.L       @R12,R1
-    00000166 E226                   MOV         #38,R2
-    00000168 3127                   CMP/GT      R2,R1
-    0000016A 89F0                   BT          L386
-    0000016C              L384:                             
-       UImenus.c    60                }
-       UImenus.c    61            }
-       UImenus.c    62            if(IsKeyDown(KEY_CTRL_LEFT)&&tab1x==0){
-    0000016C 943E                   MOV.W       L404+2,R4  ; H'7544
-    0000016E 490B                   JSR         @R9
-    00000170 0009                   NOP
-    00000172 2008                   TST         R0,R0
-    00000174 8914                   BT          L387
-    00000176 D221                   MOV.L       L404+18,R2 ; _tab1x
-    00000178 6322                   MOV.L       @R2,R3
-    0000017A 2338                   TST         R3,R3
-    0000017C 8B10                   BF          L387
-       UImenus.c    63                for (tab1x = 0; tab1x > -50; --tab1x){
-    0000017E A00A                   BRA         L401
-    00000180 E300                   MOV         #0,R3
-    00000182              L389:                             
-       UImenus.c    64                    ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
-    00000182 E13E                   MOV         #62,R1
-    00000184 D41E                   MOV.L       L404+22,R4 ; _tab1
-    00000186 E73A                   MOV         #58,R7
-    00000188 2F16                   MOV.L       R1,@-R15
-    0000018A E601                   MOV         #1,R6
-    0000018C 4E0B                   JSR         @R14
-    0000018E 65B2                   MOV.L       @R11,R5
-    00000190 7F04                   ADD         #4,R15
-    00000192 63B2                   MOV.L       @R11,R3
-    00000194 73FF                   ADD         #-1,R3
-    00000196              L401:                             
-    00000196 E2CE                   MOV         #-50,R2
-    00000198 2B32                   MOV.L       R3,@R11
-    0000019A 6133                   MOV         R3,R1
-    0000019C 3127                   CMP/GT      R2,R1
-    0000019E 89F0                   BT          L389
-    000001A0              L387:                             
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    7
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    6
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-       UImenus.c    65                }
-       UImenus.c    66            }
-       UImenus.c    67            if(IsKeyDown(KEY_CTRL_UP)&&tab2y==0){
-    000001A0 490B                   JSR         @R9
-    000001A2 6483                   MOV         R8,R4
-    000001A4 2008                   TST         R0,R0
-    000001A6 8914                   BT          L390
-    000001A8 D216                   MOV.L       L404+26,R2 ; _tab2y
-    000001AA 6322                   MOV.L       @R2,R3
-    000001AC 2338                   TST         R3,R3
-    000001AE 8B10                   BF          L390
-       UImenus.c    68                for (tab2y = 0; tab2y > -19; --tab2y){
-    000001B0 A00A                   BRA         L402
-    000001B2 E300                   MOV         #0,R3
-    000001B4              L392:                             
-       UImenus.c    69                    ML_bmp_or_cl(tab2, 51, tab2y, 28, 26);
-    000001B4 D414                   MOV.L       L404+30,R4 ; _tab2
-    000001B6 E11A                   MOV         #26,R1
-    000001B8 2F16                   MOV.L       R1,@-R15
-    000001BA E71C                   MOV         #28,R7
-    000001BC 66D2                   MOV.L       @R13,R6
-    000001BE 4E0B                   JSR         @R14
-    000001C0 E533                   MOV         #51,R5
-    000001C2 7F04                   ADD         #4,R15
-    000001C4 63D2                   MOV.L       @R13,R3
-    000001C6 73FF                   ADD         #-1,R3
-    000001C8              L402:                             
-    000001C8 2D32                   MOV.L       R3,@R13
-    000001CA E2ED                   MOV         #-19,R2
-    000001CC 6133                   MOV         R3,R1
-    000001CE 3127                   CMP/GT      R2,R1
-    000001D0 89F0                   BT          L392
-    000001D2              L390:                             
-       UImenus.c    70                }
-       UImenus.c    71            }
-       UImenus.c    72            if(IsKeyDown(KEY_CTRL_RIGHT)&&tab3x==70){
-    000001D2 940C                   MOV.W       L404+4,R4  ; H'7545
-    000001D4 490B                   JSR         @R9
-    000001D6 0009                   NOP
-    000001D8 2008                   TST         R0,R0
-    000001DA 8928                   BT          L393
-    000001DC D30B                   MOV.L       L404+34,R3 ; _tab3x
-    000001DE 6032                   MOV.L       @R3,R0
-    000001E0 8846                   CMP/EQ      #70,R0
-    000001E2 8B24                   BF          L393
-       UImenus.c    73               for (tab3x = 70; tab3x < 121; ++tab3x){
-    000001E4 E146                   MOV         #70,R1
-    000001E6 A01E                   BRA         L394
-    000001E8 2A12                   MOV.L       R1,@R10
-    000001EA              L404:                             
-    000001EA 7547                   .DATA.W     H'7547
-    000001EC 7544                   .DATA.W     H'7544
-    000001EE 7545                   .DATA.W     H'7545
-    000001F0 <00000000>             .DATA.L     _tab3
-    000001F4 <00000000>             .DATA.L     _tab4y
-    000001F8 <00000000>             .DATA.L     _tab4
-    000001FC <00000000>             .DATA.L     _tab1x
+    0000014A E73A                   MOV         #58,R7
+    0000014C E600                   MOV         #0,R6
+    0000014E 4E0B                   JSR         @R14
+    00000150 65D2                   MOV.L       @R13,R5
+    00000152 7F04                   ADD         #4,R15
+       UImenus.c    61                    Sleep(15);
+    00000154 480B                   JSR         @R8
+    00000156 E40F                   MOV         #15,R4
+    00000158 63D2                   MOV.L       @R13,R3
+    0000015A 73FF                   ADD         #-1,R3
+    0000015C 2D32                   MOV.L       R3,@R13
+    0000015E              L382:                             
+    0000015E E247                   MOV         #71,R2
+    00000160 61D2                   MOV.L       @R13,R1
+    00000162 3127                   CMP/GT      R2,R1
+    00000164 89EC                   BT          L383
+    00000166              L381:                             
+       UImenus.c    62                }
+       UImenus.c    63            }
+       UImenus.c    64            if(IsKeyDown(KEY_CTRL_UP)&&tab4y==57){
+    00000166 944B                   MOV.W       L402,R4    ; H'7542
+    00000168 D228                   MOV.L       L402+12,R2 ; _IsKeyDown
+    0000016A 420B                   JSR         @R2
+    0000016C 0009                   NOP
+    0000016E 2008                   TST         R0,R0
+    00000170 8919                   BT          L384
+    00000172 D227                   MOV.L       L402+16,R2 ; _tab4y
+    00000174 6022                   MOV.L       @R2,R0
+    00000176 8839                   CMP/EQ      #57,R0
+    00000178 8B15                   BF          L384
+       UImenus.c    65                for (tab4y = 57; tab4y > 38; --tab4y){
+    0000017A E139                   MOV         #57,R1
+    0000017C A00F                   BRA         L385
+    0000017E 2A12                   MOV.L       R1,@R10
+    00000180              L386:                             
+       UImenus.c    66                    ML_clear_vram();
+    00000180 490B                   JSR         @R9
+    00000182 0009                   NOP
+       UImenus.c    67                    ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+    00000184 D423                   MOV.L       L402+20,R4 ; _tab4
+    00000186 E21A                   MOV         #26,R2
+    00000188 2F26                   MOV.L       R2,@-R15
+    0000018A E71C                   MOV         #28,R7
+    0000018C 66A2                   MOV.L       @R10,R6
+    0000018E 4E0B                   JSR         @R14
+    00000190 E532                   MOV         #50,R5
+    00000192 7F04                   ADD         #4,R15
+       UImenus.c    68                    Sleep(15);
+    00000194 480B                   JSR         @R8
+    00000196 E40F                   MOV         #15,R4
+    00000198 63A2                   MOV.L       @R10,R3
+    0000019A 73FF                   ADD         #-1,R3
+    0000019C 2A32                   MOV.L       R3,@R10
+    0000019E              L385:                             
+    0000019E E226                   MOV         #38,R2
+    000001A0 61A2                   MOV.L       @R10,R1
+    000001A2 3127                   CMP/GT      R2,R1
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    8
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    00000200 <00000000>             .DATA.L     _tab1
-    00000204 <00000000>             .DATA.L     _tab2y
-    00000208 <00000000>             .DATA.L     _tab2
-    0000020C <00000000>             .DATA.L     _tab3x
-    00000210              L395:                             
-       UImenus.c    74                    ML_bmp_or_cl(tab3, tab3x, 1, 58, 62);
-    00000210 D41E                   MOV.L       L405+2,R4  ; _tab3
-    00000212 E23E                   MOV         #62,R2
-    00000214 2F26                   MOV.L       R2,@-R15
-    00000216 E73A                   MOV         #58,R7
-    00000218 E601                   MOV         #1,R6
-    0000021A 4E0B                   JSR         @R14
-    0000021C 65A2                   MOV.L       @R10,R5
-    0000021E 7F04                   ADD         #4,R15
-    00000220 63A2                   MOV.L       @R10,R3
-    00000222 7301                   ADD         #1,R3
-    00000224 2A32                   MOV.L       R3,@R10
-    00000226              L394:                             
-    00000226 E279                   MOV         #121,R2
-    00000228 61A2                   MOV.L       @R10,R1
-    0000022A 3123                   CMP/GE      R2,R1
-    0000022C 8BF0                   BF          L395
-    0000022E              L393:                             
-       UImenus.c    75               } 
-       UImenus.c    76            }
-       UImenus.c    77            if(IsKeyDown(KEY_CTRL_DOWN)&&tab4y==38){
-    0000022E 942C                   MOV.W       L405,R4    ; H'7547
-    00000230 490B                   JSR         @R9
-    00000232 0009                   NOP
-    00000234 2008                   TST         R0,R0
-    00000236 8915                   BT          L396
-    00000238 D315                   MOV.L       L405+6,R3  ; _tab4y
-    0000023A 6032                   MOV.L       @R3,R0
-    0000023C 8826                   CMP/EQ      #38,R0
-    0000023E 8B11                   BF          L396
-       UImenus.c    78                for (tab4y = 38; tab4y < 57; ++tab4y){
-    00000240 E126                   MOV         #38,R1
-    00000242 A00B                   BRA         L397
-    00000244 2C12                   MOV.L       R1,@R12
-    00000246              L398:                             
-       UImenus.c    79                    ML_bmp_or_cl(tab4, 51, tab4y, 28, 26);
-    00000246 E21A                   MOV         #26,R2
-    00000248 D412                   MOV.L       L405+10,R4 ; _tab4
-    0000024A E71C                   MOV         #28,R7
-    0000024C 2F26                   MOV.L       R2,@-R15
-    0000024E 66C2                   MOV.L       @R12,R6
-    00000250 4E0B                   JSR         @R14
-    00000252 E533                   MOV         #51,R5
-    00000254 7F04                   ADD         #4,R15
-    00000256 63C2                   MOV.L       @R12,R3
-    00000258 7301                   ADD         #1,R3
-    0000025A 2C32                   MOV.L       R3,@R12
-    0000025C              L397:                             
-    0000025C 61C2                   MOV.L       @R12,R1
-    0000025E E239                   MOV         #57,R2
-    00000260 3123                   CMP/GE      R2,R1
-    00000262 8BF0                   BF          L398
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    9
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    7
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000264              L396:                             
-       UImenus.c    80                }
-       UImenus.c    81            }
-       UImenus.c    82            ML_display_vram();
-    00000264 D30C                   MOV.L       L405+14,R3 ; _ML_display_vram
-    00000266 430B                   JSR         @R3
-    00000268 0009                   NOP
-    0000026A              L373:                             
-    0000026A 490B                   JSR         @R9
-    0000026C 6483                   MOV         R8,R4
-    0000026E 2008                   TST         R0,R0
-    00000270 8B01                   BF          L406
-    00000272 AED9                   BRA         L374
-    00000274 0009                   NOP
-    00000276              L406:                             
-       UImenus.c    83        }
-       UImenus.c    84        return 1;
-    00000276 E001                   MOV         #1,R0
-       UImenus.c    85    }
-    00000278 4F26                   LDS.L       @R15+,PR
-    0000027A 68F6                   MOV.L       @R15+,R8
-    0000027C 69F6                   MOV.L       @R15+,R9
-    0000027E 6AF6                   MOV.L       @R15+,R10
-    00000280 6BF6                   MOV.L       @R15+,R11
-    00000282 6CF6                   MOV.L       @R15+,R12
-    00000284 6DF6                   MOV.L       @R15+,R13
-    00000286 000B                   RTS
-    00000288 6EF6                   MOV.L       @R15+,R14
-    0000028A              L405:                             
-    0000028A 7547                   .DATA.W     H'7547
-    0000028C <00000000>             .DATA.L     _tab3
-    00000290 <00000000>             .DATA.L     _tab4y
-    00000294 <00000000>             .DATA.L     _tab4
-    00000298 <00000000>             .DATA.L     _ML_display_vram
-       UImenus.c    86    
-       UImenus.c    87    
-       UImenus.c    88    
-       UImenus.c    89    
-       UImenus.c    90    //****************************************************************************
-       UImenus.c    91    //**************                                              ****************
-       UImenus.c    92    //**************                 Notice!                      ****************
-       UImenus.c    93    //**************                                              ****************
-       UImenus.c    94    //**************  Please do not change the following source.  ****************
-       UImenus.c    95    //**************                                              ****************
-       UImenus.c    96    //****************************************************************************
-       UImenus.c    97    
-       UImenus.c    98    
-       UImenus.c    99    #pragma section _BR_Size
-       UImenus.c   100    unsigned long BR_Size;
-       UImenus.c   101    #pragma section
-       UImenus.c   102    
+    000001A4 89EC                   BT          L386
+    000001A6              L384:                             
+       UImenus.c    69                }
+       UImenus.c    70            }
+       UImenus.c    71            if(IsKeyDown(KEY_CTRL_RIGHT)&&tab1x==0){
+    000001A6 942C                   MOV.W       L402+2,R4  ; H'7545
+    000001A8 D218                   MOV.L       L402+12,R2 ; _IsKeyDown
+    000001AA 420B                   JSR         @R2
+    000001AC 0009                   NOP
+    000001AE 2008                   TST         R0,R0
+    000001B0 8919                   BT          L387
+    000001B2 D319                   MOV.L       L402+24,R3 ; _tab1x
+    000001B4 6232                   MOV.L       @R3,R2
+    000001B6 2228                   TST         R2,R2
+    000001B8 8B15                   BF          L387
+       UImenus.c    72                for (tab1x = 0; tab1x > -50; --tab1x){
+    000001BA E200                   MOV         #0,R2
+    000001BC A00F                   BRA         L388
+    000001BE 2B22                   MOV.L       R2,@R11
+    000001C0              L389:                             
+       UImenus.c    73                    ML_clear_vram();
+    000001C0 490B                   JSR         @R9
+    000001C2 0009                   NOP
+       UImenus.c    74                    ML_bmp_or_cl(tab1, tab1x, 1, 58, 62);
+    000001C4 D415                   MOV.L       L402+28,R4 ; _tab1
+    000001C6 E13E                   MOV         #62,R1
+    000001C8 2F16                   MOV.L       R1,@-R15
+    000001CA E73A                   MOV         #58,R7
+    000001CC E601                   MOV         #1,R6
+    000001CE 4E0B                   JSR         @R14
+    000001D0 65B2                   MOV.L       @R11,R5
+    000001D2 7F04                   ADD         #4,R15
+       UImenus.c    75                    Sleep(15);
+    000001D4 480B                   JSR         @R8
+    000001D6 E40F                   MOV         #15,R4
+    000001D8 63B2                   MOV.L       @R11,R3
+    000001DA 73FF                   ADD         #-1,R3
+    000001DC 2B32                   MOV.L       R3,@R11
+    000001DE              L388:                             
+    000001DE E2CE                   MOV         #-50,R2
+    000001E0 61B2                   MOV.L       @R11,R1
+    000001E2 3127                   CMP/GT      R2,R1
+    000001E4 89EC                   BT          L389
+    000001E6              L387:                             
+       UImenus.c    76                }
+       UImenus.c    77            }
+       UImenus.c    78            if(IsKeyDown(KEY_CTRL_DOWN)&&tab2y==0){
+    000001E6 940D                   MOV.W       L402+4,R4  ; H'7547
+    000001E8 D208                   MOV.L       L402+12,R2 ; _IsKeyDown
+    000001EA 420B                   JSR         @R2
+    000001EC 0009                   NOP
+    000001EE 2008                   TST         R0,R0
+    000001F0 892B                   BT          L390
+    000001F2 D30B                   MOV.L       L402+32,R3 ; _tab2y
+    000001F4 6232                   MOV.L       @R3,R2
+    000001F6 2228                   TST         R2,R2
+    000001F8 8B27                   BF          L390
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+       UImenus.c    79                for (tab2y = 0; tab2y > -19; --tab2y){
+    000001FA E200                   MOV         #0,R2
+    000001FC A021                   BRA         L391
+    000001FE 2C22                   MOV.L       R2,@R12
+    00000200              L402:                             
+    00000200 7542                   .DATA.W     H'7542
+    00000202 7545                   .DATA.W     H'7545
+    00000204 7547                   .DATA.W     H'7547
+    00000206 0000                   .DATA.W     0
+    00000208 <00000000>             .DATA.L     _tab3
+    0000020C <00000000>             .DATA.L     _IsKeyDown
+    00000210 <00000000>             .DATA.L     _tab4y
+    00000214 <00000000>             .DATA.L     _tab4
+    00000218 <00000000>             .DATA.L     _tab1x
+    0000021C <00000000>             .DATA.L     _tab1
+    00000220 <00000000>             .DATA.L     _tab2y
+    00000224              L392:                             
+       UImenus.c    80                    ML_clear_vram();
+    00000224 490B                   JSR         @R9
+    00000226 0009                   NOP
+       UImenus.c    81                    ML_bmp_or_cl(tab2, 50, tab2y, 28, 26);
+    00000228 D434                   MOV.L       L403+8,R4  ; _tab2
+    0000022A E11A                   MOV         #26,R1
+    0000022C 2F16                   MOV.L       R1,@-R15
+    0000022E E71C                   MOV         #28,R7
+    00000230 66C2                   MOV.L       @R12,R6
+    00000232 4E0B                   JSR         @R14
+    00000234 E532                   MOV         #50,R5
+    00000236 7F04                   ADD         #4,R15
+       UImenus.c    82                    Sleep(15);
+    00000238 480B                   JSR         @R8
+    0000023A E40F                   MOV         #15,R4
+    0000023C 63C2                   MOV.L       @R12,R3
+    0000023E 73FF                   ADD         #-1,R3
+    00000240 2C32                   MOV.L       R3,@R12
+    00000242              L391:                             
+    00000242 E2ED                   MOV         #-19,R2
+    00000244 61C2                   MOV.L       @R12,R1
+    00000246 3127                   CMP/GT      R2,R1
+    00000248 89EC                   BT          L392
+    0000024A              L390:                             
+       UImenus.c    83                }
+       UImenus.c    84            }
+       UImenus.c    85            if(IsKeyDown(KEY_CTRL_LEFT)&&tab3x==71){
+    0000024A 9453                   MOV.W       L403,R4    ; H'7544
+    0000024C D22C                   MOV.L       L403+12,R2 ; _IsKeyDown
+    0000024E 420B                   JSR         @R2
+    00000250 0009                   NOP
+    00000252 2008                   TST         R0,R0
+    00000254 8919                   BT          L393
+    00000256 D22B                   MOV.L       L403+16,R2 ; _tab3x
+    00000258 6022                   MOV.L       @R2,R0
+    0000025A 8847                   CMP/EQ      #71,R0
+    0000025C 8B15                   BF          L393
+       UImenus.c    86               for (tab3x = 71; tab3x < 121; ++tab3x){
+    0000025E E147                   MOV         #71,R1
+    00000260 A00F                   BRA         L394
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000262 2D12                   MOV.L       R1,@R13
+    00000264              L395:                             
+       UImenus.c    87                ML_clear_vram();
+    00000264 490B                   JSR         @R9
+    00000266 0009                   NOP
+       UImenus.c    88                    ML_bmp_or_cl(tab3, tab3x, 0, 58, 62);
+    00000268 D427                   MOV.L       L403+20,R4 ; _tab3
+    0000026A E23E                   MOV         #62,R2
+    0000026C 2F26                   MOV.L       R2,@-R15
+    0000026E E73A                   MOV         #58,R7
+    00000270 E600                   MOV         #0,R6
+    00000272 4E0B                   JSR         @R14
+    00000274 65D2                   MOV.L       @R13,R5
+    00000276 7F04                   ADD         #4,R15
+       UImenus.c    89                    Sleep(15);
+    00000278 480B                   JSR         @R8
+    0000027A E40F                   MOV         #15,R4
+    0000027C 63D2                   MOV.L       @R13,R3
+    0000027E 7301                   ADD         #1,R3
+    00000280 2D32                   MOV.L       R3,@R13
+    00000282              L394:                             
+    00000282 E279                   MOV         #121,R2
+    00000284 61D2                   MOV.L       @R13,R1
+    00000286 3123                   CMP/GE      R2,R1
+    00000288 8BEC                   BF          L395
+    0000028A              L393:                             
+       UImenus.c    90               } 
+       UImenus.c    91            }
+       UImenus.c    92            if(IsKeyDown(KEY_CTRL_UP)&&tab4y==38){
+    0000028A 9434                   MOV.W       L403+2,R4  ; H'7542
+    0000028C D21C                   MOV.L       L403+12,R2 ; _IsKeyDown
+    0000028E 420B                   JSR         @R2
+    00000290 0009                   NOP
+    00000292 2008                   TST         R0,R0
+    00000294 8919                   BT          L396
+    00000296 D21D                   MOV.L       L403+24,R2 ; _tab4y
+    00000298 6022                   MOV.L       @R2,R0
+    0000029A 8826                   CMP/EQ      #38,R0
+    0000029C 8B15                   BF          L396
+       UImenus.c    93                for (tab4y = 38; tab4y < 57; ++tab4y){
+    0000029E E126                   MOV         #38,R1
+    000002A0 A00F                   BRA         L397
+    000002A2 2A12                   MOV.L       R1,@R10
+    000002A4              L398:                             
+       UImenus.c    94                    ML_clear_vram();
+    000002A4 490B                   JSR         @R9
+    000002A6 0009                   NOP
+       UImenus.c    95                    ML_bmp_or_cl(tab4, 50, tab4y, 28, 26);
+    000002A8 D419                   MOV.L       L403+28,R4 ; _tab4
+    000002AA E21A                   MOV         #26,R2
+    000002AC 2F26                   MOV.L       R2,@-R15
+    000002AE E71C                   MOV         #28,R7
+    000002B0 66A2                   MOV.L       @R10,R6
+    000002B2 4E0B                   JSR         @R14
+    000002B4 E532                   MOV         #50,R5
+    000002B6 7F04                   ADD         #4,R15
+       UImenus.c    96                    Sleep(15);
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000002B8 480B                   JSR         @R8
+    000002BA E40F                   MOV         #15,R4
+    000002BC 63A2                   MOV.L       @R10,R3
+    000002BE 7301                   ADD         #1,R3
+    000002C0 2A32                   MOV.L       R3,@R10
+    000002C2              L397:                             
+    000002C2 E239                   MOV         #57,R2
+    000002C4 61A2                   MOV.L       @R10,R1
+    000002C6 3123                   CMP/GE      R2,R1
+    000002C8 8BEC                   BF          L398
+    000002CA              L396:                             
+       UImenus.c    97                }
+       UImenus.c    98            }
+       UImenus.c    99            ML_display_vram();
+    000002CA D312                   MOV.L       L403+32,R3 ; _ML_display_vram
+    000002CC 430B                   JSR         @R3
+    000002CE 0009                   NOP
+    000002D0              L373:                             
+    000002D0 9412                   MOV.W       L403+4,R4  ; H'7533
+    000002D2 D20B                   MOV.L       L403+12,R2 ; _IsKeyDown
+    000002D4 420B                   JSR         @R2
+    000002D6 0009                   NOP
+    000002D8 2008                   TST         R0,R0
+    000002DA 8B01                   BF          L404
+    000002DC AEA3                   BRA         L374
+    000002DE 0009                   NOP
+    000002E0              L404:                             
+       UImenus.c   100        }
+       UImenus.c   101        return 1;
+       UImenus.c   102    }
+    000002E0 4F26                   LDS.L       @R15+,PR
+    000002E2 E001                   MOV         #1,R0
+    000002E4 68F6                   MOV.L       @R15+,R8
+    000002E6 69F6                   MOV.L       @R15+,R9
+    000002E8 6AF6                   MOV.L       @R15+,R10
+    000002EA 6BF6                   MOV.L       @R15+,R11
+    000002EC 6CF6                   MOV.L       @R15+,R12
+    000002EE 6DF6                   MOV.L       @R15+,R13
+    000002F0 000B                   RTS
+    000002F2 6EF6                   MOV.L       @R15+,R14
+    000002F4              L403:                             
+    000002F4 7544                   .DATA.W     H'7544
+    000002F6 7542                   .DATA.W     H'7542
+    000002F8 7533                   .DATA.W     H'7533
+    000002FA 0000                   .DATA.W     0
+    000002FC <00000000>             .DATA.L     _tab2
+    00000300 <00000000>             .DATA.L     _IsKeyDown
+    00000304 <00000000>             .DATA.L     _tab3x
+    00000308 <00000000>             .DATA.L     _tab3
+    0000030C <00000000>             .DATA.L     _tab4y
+    00000310 <00000000>             .DATA.L     _tab4
+    00000314 <00000000>             .DATA.L     _ML_display_vram
        UImenus.c   103    
-       UImenus.c   104    #pragma section _TOP
+       UImenus.c   104    
        UImenus.c   105    
-       UImenus.c   106    //****************************************************************************
-       UImenus.c   107    //  InitializeSystem
-       UImenus.c   108    //
+       UImenus.c   106    
+       UImenus.c   107    //****************************************************************************
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE   10
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   11
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-       UImenus.c   109    //  param   :   isAppli   : 1 = Application / 0 = eActivity
-       UImenus.c   110    //              OptionNum : Option Number (only eActivity)
-       UImenus.c   111    //
-       UImenus.c   112    //  retval  :   1 = No error / 0 = Error
-       UImenus.c   113    //
-       UImenus.c   114    //****************************************************************************
-       UImenus.c   115    int InitializeSystem(int isAppli, unsigned short OptionNum)
+       UImenus.c   108    //**************                                              ****************
+       UImenus.c   109    //**************                 Notice!                      ****************
+       UImenus.c   110    //**************                                              ****************
+       UImenus.c   111    //**************  Please do not change the following source.  ****************
+       UImenus.c   112    //**************                                              ****************
+       UImenus.c   113    //****************************************************************************
+       UImenus.c   114    
+       UImenus.c   115    
+       UImenus.c   116    #pragma section _BR_Size
+       UImenus.c   117    unsigned long BR_Size;
+       UImenus.c   118    #pragma section
+       UImenus.c   119    
+       UImenus.c   120    
+       UImenus.c   121    #pragma section _TOP
+       UImenus.c   122    
+       UImenus.c   123    //****************************************************************************
+       UImenus.c   124    //  InitializeSystem
+       UImenus.c   125    //
+       UImenus.c   126    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+       UImenus.c   127    //              OptionNum : Option Number (only eActivity)
+       UImenus.c   128    //
+       UImenus.c   129    //  retval  :   1 = No error / 0 = Error
+       UImenus.c   130    //
+       UImenus.c   131    //****************************************************************************
+       UImenus.c   132    int InitializeSystem(int isAppli, unsigned short OptionNum)
 P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
                                                            ; frame size=0
-       UImenus.c   116    {
-       UImenus.c   117        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
-    00000000 D301                   MOV.L       L407+2,R3  ; _INIT_ADDIN_APPLICATION
+       UImenus.c   133    {
+       UImenus.c   134        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L405+2,R3  ; _INIT_ADDIN_APPLICATION
     00000002 432B                   JMP         @R3
     00000004 0009                   NOP
-    00000006              L407:                             
+    00000006              L405:                             
     00000006 0000                   .DATA.W     0
     00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
-       UImenus.c   118    }
-       UImenus.c   119    
-       UImenus.c   120    #pragma section
-       UImenus.c   121    
+       UImenus.c   135    }
+       UImenus.c   136    
+       UImenus.c   137    #pragma section
+       UImenus.c   138    
 C   00000000              _tab1:                           ; static: tab1
     00000000 0000000000             .DATA.B     H'00,H'00,H'00,H'00,H'00,H'03,H'80,H'3F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'80,H'3F,
              03803FFFFF +                       H'00,H'00,H'00,H'00,H'00,H'02,H'80,H'3F,H'00,H'00,H'00,H'00,H'00,H'02,H'80,H'3F,
@@ -636,33 +720,33 @@ C   00000000              _tab1:                           ; static: tab1
              803F000000   
              000002803F   
              0000000000   
-             02803F0000   
-             0000000280   
-             3F00000000   
-             0002803F00   
-             0000000002   
-             803F000000   
-             000002803F   
-             0000000000   
-             02803F0000   
-             0000000280   
-             3F00000000   
-             0002803F00   
-             0000000002   
-             803F000000   
-             000002803F   
-             0000000000   
-             02803F0000   
-             0000000280   
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE   11
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   12
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
+             02803F0000   
+             0000000280   
+             3F00000000   
+             0002803F00   
+             0000000002   
+             803F000000   
+             000002803F   
+             0000000000   
+             02803F0000   
+             0000000280   
+             3F00000000   
+             0002803F00   
+             0000000002   
+             803F000000   
+             000002803F   
+             0000000000   
+             02803F0000   
+             0000000280   
              3F00000000   
              0002803F00   
              0000000002   
@@ -702,6 +786,15 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              0000000000   
              02803F0000   
              0000000280   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
              3F00000000   
              0002803F00   
              0000000002   
@@ -720,15 +813,6 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              3F00000000 +                       H'00,H'00,H'00,H'00,H'00,H'02,H'80,H'3F,H'FF,H'FF,H'FF,H'FF,H'FF,H'FE,H'80,H'3F,
              0002803F00 +                       H'00,H'00,H'00,H'00,H'00,H'03,H'80,H'3F
              0000000002   
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE   12
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
              803F000000   
              000002803F   
              0000000000   
@@ -768,6 +852,15 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              FFFFFFFF00 +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
              A000000000 +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
              007F00A000 +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   14
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
              000000007F +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
              00A0000000 +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
              00007F00A0 +                       H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,H'00,H'A0,H'00,H'00,H'00,H'00,H'00,H'7F,
@@ -786,15 +879,6 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              007F00A000   
              000000007F   
              00A0000000   
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE   13
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
              00007F00A0   
              0000000000   
              7F00A00000   
@@ -834,33 +918,33 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              007F00A000   
              000000007F   
              00A0000000   
-             00007F00A0   
-             0000000000   
-             7F00A00000   
-             0000007F00   
-             A000000000   
-             007F00A000   
-             000000007F   
-             00A0000000   
-             00007F00A0   
-             0000000000   
-             7F00A00000   
-             0000007F00   
-             A000000000   
-             007F00A000   
-             000000007F   
-             00A0000000   
-             00007F00A0   
-             0000000000   
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE   14
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   15
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
+             00007F00A0   
+             0000000000   
+             7F00A00000   
+             0000007F00   
+             A000000000   
+             007F00A000   
+             000000007F   
+             00A0000000   
+             00007F00A0   
+             0000000000   
+             7F00A00000   
+             0000007F00   
+             A000000000   
+             007F00A000   
+             000000007F   
+             00A0000000   
+             00007F00A0   
+             0000000000   
              7F00A00000   
              0000007F00   
              A000000000   
@@ -900,6 +984,15 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
              00002F4000   
              002F400000   
              2F4000002F   
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE   16
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
              4000002F40   
              00002F4000   
              002F400000   
@@ -922,7 +1015,46 @@ B_B 00000000              _BR_Size:                        ; static: BR_Size
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 25-May-2015 23:49:20  PAGE    1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 26-May-2015 12:19:31  PAGE    1
 
 
 ******** STATISTICS INFORMATION ********
@@ -938,13 +1070,13 @@ NUMBER OF WARNINGS:         0
 
 ******* SOURCE LINE INFORMATION ********
 
-COMPILED SOURCE LINE:      121
+COMPILED SOURCE LINE:      138
 
 
 
 ******* SECTION SIZE INFORMATION *******
 
-PROGRAM  SECTION (P):                               0000029C Byte(s)
+PROGRAM  SECTION (P):                               00000318 Byte(s)
 PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
 PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
 CONSTANT SECTION (C):                               000004C7 Byte(s)
@@ -957,15 +1089,15 @@ BSS      SECTION (B):                               00000000 Byte(s)
 BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
 BSS      SECTION (B_TOP):                           00000000 Byte(s)
 
- TOTAL PROGRAM SIZE: 00000783 Byte(s)
+ TOTAL PROGRAM SIZE: 000007FF Byte(s)
 
 
 
 ********** LABEL INFORMATION ***********
 
-NUMBER OF EXTERNAL REFERENCE SYMBOLS:            5
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            6
 NUMBER OF EXTERNAL DEFINITION SYMBOLS:          12
-NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            48
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            49
 
 
 
@@ -991,5 +1123,5 @@ NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            48
 *** COMMAND PARAMETER ***
 
 
-  -subcommand=C:\Users\Az\AppData\Local\Temp\hmk4818.tmp 
+  -subcommand=C:\Users\Az\AppData\Local\Temp\hmkA0D4.tmp 
 

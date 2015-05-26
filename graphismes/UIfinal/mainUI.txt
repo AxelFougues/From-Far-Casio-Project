@@ -13,6 +13,9 @@ TAB 2:Ship stats
 TAB 3:Inventory+Craft
 -scrolable inventory per ressource type (select to send to crafting bench)
 -crafting bench 3 slots + 3 unlockable
+-process loading bar
+-crafted item name and quantity
+-selected item name and quantity
 
 TAB 4:Auto Pilot
 -on/off/auto
