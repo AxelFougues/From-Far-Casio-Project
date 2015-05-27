@@ -2,7 +2,7 @@
 rem Do not edit! This batch file is created by CASIO fx-9860G SDK.
 
 
-if exist REBORN.G1A  del REBORN.G1A
+if exist NMS.G1A  del NMS.G1A
 
 cd debug
 if exist FXADDINror.bin  del FXADDINror.bin
@@ -10,8 +10,8 @@ if exist FXADDINror.bin  del FXADDINror.bin
 cd ..
 if not exist debug\FXADDINror.bin  goto error
 
-"A:\Programmes\Tools\MakeAddinHeader363.exe" "A:\Desktop\From-Far-Casio-Project\Projet en cours"
-if not exist REBORN.G1A  goto error
+"A:\Programmes\Tools\MakeAddinHeader363.exe" "A:\Dropbox\No man's Space\generateur 0.1"
+if not exist NMS.G1A  goto error
 echo Build has completed.
 goto end
 

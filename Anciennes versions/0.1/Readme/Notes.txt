@@ -1,0 +1,5 @@
+
+LE PROJET N EST PAS A JOUR , ME CONTACTER SVP
+
+L'espace est divise en cubes de 128*128*128.
+On genere les planetes du cube ou on se trouve et des cubes voisins visibles

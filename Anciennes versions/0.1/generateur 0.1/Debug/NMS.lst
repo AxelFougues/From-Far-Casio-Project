@@ -1,0 +1,1787 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: A:\Dropbox\No man's Space\generateur 0.1\NMS.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c     1    /*****************************************************************/
+           NMS.c     2    /*                                                               */
+           NMS.c     3    /*   CASIO fx-9860G SDK Library                                  */
+           NMS.c     4    /*                                                               */
+           NMS.c     5    /*   File name : [ProjectName].c                                 */
+           NMS.c     6    /*                                                               */
+           NMS.c     7    /*   Copyright (c) 2006 CASIO COMPUTER CO., LTD.                 */
+           NMS.c     8    /*                                                               */
+           NMS.c     9    /*****************************************************************/
+           NMS.c    10    #include "fxlib.h"
+           NMS.c    11    #include "MonochromeLib.h"
+           NMS.c    12    void generateOutputs();
+           NMS.c    13    void useOutputs();
+           NMS.c    14    void userInterface();
+           NMS.c    15    void printVariable();
+           NMS.c    16    void display();
+           NMS.c    17    void displayExternal();
+           NMS.c    18    //****************************************************************************
+           NMS.c    19    //  AddIn_main (Sample program main function)
+           NMS.c    20    //
+           NMS.c    21    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
+           NMS.c    22    //                        : 0 = This application is launched by a strip in eACT application.
+           NMS.c    23    //
+           NMS.c    24    //              OptionNum : Strip number (0~3)
+           NMS.c    25    //                         (This parameter is only used when isAppli parameter is 0.)
+           NMS.c    26    //
+           NMS.c    27    //  retval  :   1 = No error / 0 = Error
+           NMS.c    28    //
+           NMS.c    29    //****************************************************************************
+           NMS.c    30    int output1, output2, output3;
+           NMS.c    31    int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-
+                         +1580160/128 donne le cube actuel(je crois)
+           NMS.c    32    int const Y0=2144640;
+           NMS.c    33    int const Z0=2745088;
+           NMS.c    34    int X=1580160;         // coordonees    X%128 donne donc x dans le cube actuel
+           NMS.c    35    int Y=2144640;
+           NMS.c    36    int Z=2745088;
+           NMS.c    37    int planetStorageX1[125];
+           NMS.c    38    int planetStorageY1[125];
+           NMS.c    39    int planetStorageZ1[125];
+           NMS.c    40    char i = 0;
+           NMS.c    41    int AddIn_main(int isAppli, unsigned short OptionNum){
+P   00000000              _AddIn_main:                     ; function: AddIn_main
+                                                           ; frame size=4
+    00000000 4F22                   STS.L       PR,@-R15
+           NMS.c    42        userInterface();
+    00000002 B029                   BSR         _userInterface
+    00000004 0009                   NOP
+           NMS.c    43        return 1;
+           NMS.c    44    }
+    00000006 4F26                   LDS.L       @R15+,PR
+    00000008 000B                   RTS
+    0000000A E001                   MOV         #1,R0
+           NMS.c    45    void PrintVariable(int x, int y, int val, int color){
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000000C              _PrintVariable:                  ; function: PrintVariable
+                                                           ; frame size=40
+                                                           ; used runtime library name:
+                                                           ; __divls
+    0000000C 2FE6                   MOV.L       R14,@-R15
+    0000000E 6E43                   MOV         R4,R14
+    00000010 4F22                   STS.L       PR,@-R15
+    00000012 7FE0                   ADD         #-32,R15
+    00000014 1F52                   MOV.L       R5,@(8,R15)
+    00000016 E50A                   MOV         #10,R5
+    00000018 2F62                   MOV.L       R6,@R15
+           NMS.c    46        int n, ret;
+           NMS.c    47        char c[20];
+           NMS.c    48        ret = 0;
+    0000001A E600                   MOV         #0,R6
+    0000001C 1F71                   MOV.L       R7,@(4,R15)
+           NMS.c    49        n = val;
+    0000001E 64F2                   MOV.L       @R15,R4
+           NMS.c    50        do{
+    00000020              L427:                             
+           NMS.c    51            n /= 10;
+    00000020 D318                   MOV.L       L479+4,R3  ; __divls
+    00000022 6053                   MOV         R5,R0
+    00000024 430B                   JSR         @R3
+    00000026 6143                   MOV         R4,R1
+    00000028 6403                   MOV         R0,R4
+           NMS.c    52            ret++;
+           NMS.c    53        } while(n > 0);
+    0000002A 4415                   CMP/PL      R4
+    0000002C 8DF8                   BT/S        L427
+    0000002E 7601                   ADD         #1,R6
+           NMS.c    54        x = x-(ret-1)*4;
+           NMS.c    55        sprintf(c, "%d", val);
+    00000030 D515                   MOV.L       L479+8,R5  ; L372
+    00000032 64F3                   MOV         R15,R4
+    00000034 D315                   MOV.L       L479+12,R3 ; _sprintf
+    00000036 76FF                   ADD         #-1,R6
+    00000038 4608                   SHLL2       R6
+    0000003A 3E68                   SUB         R6,R14
+    0000003C 66F2                   MOV.L       @R15,R6
+    0000003E 430B                   JSR         @R3
+    00000040 740C                   ADD         #12,R4
+           NMS.c    56        PrintMini(x, y, (unsigned char*)c, color);
+    00000042 66F3                   MOV         R15,R6
+    00000044 55F2                   MOV.L       @(8,R15),R5
+    00000046 760C                   ADD         #12,R6
+    00000048 D311                   MOV.L       L479+16,R3 ; _PrintMini
+    0000004A 57F1                   MOV.L       @(4,R15),R7
+    0000004C 430B                   JSR         @R3
+    0000004E 64E3                   MOV         R14,R4
+           NMS.c    57    }
+    00000050 7F20                   ADD         #32,R15
+    00000052 4F26                   LDS.L       @R15+,PR
+    00000054 000B                   RTS
+    00000056 6EF6                   MOV.L       @R15+,R14
+           NMS.c    58    void userInterface(){
+    00000058              _userInterface:                  ; function: userInterface
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+                                                           ; frame size=32
+                                                           ; used runtime library name:
+                                                           ; __modls
+    00000058 2FE6                   MOV.L       R14,@-R15
+    0000005A 2FD6                   MOV.L       R13,@-R15
+    0000005C 2FC6                   MOV.L       R12,@-R15
+    0000005E 2FB6                   MOV.L       R11,@-R15
+    00000060 2FA6                   MOV.L       R10,@-R15
+    00000062 2F96                   MOV.L       R9,@-R15
+    00000064 2F86                   MOV.L       R8,@-R15
+    00000066 4F22                   STS.L       PR,@-R15
+           NMS.c    59        int x, y, z;
+           NMS.c    60        x =X%128;
+           NMS.c    61        y =Y%128;
+           NMS.c    62        z =Z%128;
+           NMS.c    63        ML_display_vram();
+    00000068 D30A                   MOV.L       L479+20,R3 ; _ML_display_vram
+    0000006A 430B                   JSR         @R3
+    0000006C 0009                   NOP
+    0000006E 9807                   MOV.W       L479,R8    ; H'7537
+    00000070 DA09                   MOV.L       L479+24,R10; _Y
+    00000072 6983                   MOV         R8,R9
+    00000074 DB09                   MOV.L       L479+28,R11; _Z
+    00000076 9C04                   MOV.W       L479+2,R12 ; H'0080
+    00000078 DD09                   MOV.L       L479+32,R13; _X
+    0000007A DE0A                   MOV.L       L479+36,R14; _IsKeyDown
+           NMS.c    64        while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements 
+    0000007C A04E                   BRA         L428
+    0000007E 79FF                   ADD         #-1,R9
+    00000080              L479:                             
+    00000080 7537                   .DATA.W     H'7537
+    00000082 0080                   .DATA.W     H'0080
+    00000084 <00000000>             .DATA.L     __divls
+    00000088 <00000000>             .DATA.L     L372
+    0000008C <00000000>             .DATA.L     _sprintf
+    00000090 <00000000>             .DATA.L     _PrintMini
+    00000094 <00000000>             .DATA.L     _ML_display_vram
+    00000098 <00000000>             .DATA.L     _Y
+    0000009C <00000000>             .DATA.L     _Z
+    000000A0 <00000000>             .DATA.L     _X
+    000000A4 <00000000>             .DATA.L     _IsKeyDown
+    000000A8              L429:                             
+           NMS.c    65            if(IsKeyDown(KEY_CTRL_UP)){
+    000000A8 9487                   MOV.W       L480,R4    ; H'7542
+    000000AA 4E0B                   JSR         @R14
+    000000AC 0009                   NOP
+    000000AE 2008                   TST         R0,R0
+    000000B0 8904                   BT          L430
+           NMS.c    66                --Y;
+    000000B2 62A2                   MOV.L       @R10,R2
+    000000B4 72FF                   ADD         #-1,R2
+    000000B6 2A22                   MOV.L       R2,@R10
+           NMS.c    67                display(1);
+    000000B8 B04D                   BSR         _display
+    000000BA E401                   MOV         #1,R4
+    000000BC              L430:                             
+           NMS.c    68            }
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c    69            if(IsKeyDown(KEY_CTRL_DOWN)){
+    000000BC 947E                   MOV.W       L480+2,R4  ; H'7547
+    000000BE 4E0B                   JSR         @R14
+    000000C0 0009                   NOP
+    000000C2 2008                   TST         R0,R0
+    000000C4 8904                   BT          L431
+           NMS.c    70                ++Y;
+    000000C6 63A2                   MOV.L       @R10,R3
+    000000C8 7301                   ADD         #1,R3
+    000000CA 2A32                   MOV.L       R3,@R10
+           NMS.c    71                display(1);
+    000000CC B043                   BSR         _display
+    000000CE E401                   MOV         #1,R4
+    000000D0              L431:                             
+           NMS.c    72            }
+           NMS.c    73            if(IsKeyDown(KEY_CTRL_LEFT)){
+    000000D0 9475                   MOV.W       L480+4,R4  ; H'7544
+    000000D2 4E0B                   JSR         @R14
+    000000D4 0009                   NOP
+    000000D6 2008                   TST         R0,R0
+    000000D8 8904                   BT          L432
+           NMS.c    74                --X;
+    000000DA 62D2                   MOV.L       @R13,R2
+    000000DC 72FF                   ADD         #-1,R2
+    000000DE 2D22                   MOV.L       R2,@R13
+           NMS.c    75                display(1);
+    000000E0 B039                   BSR         _display
+    000000E2 E401                   MOV         #1,R4
+    000000E4              L432:                             
+           NMS.c    76            }
+           NMS.c    77            if(IsKeyDown(KEY_CTRL_RIGHT)){
+    000000E4 946C                   MOV.W       L480+6,R4  ; H'7545
+    000000E6 4E0B                   JSR         @R14
+    000000E8 0009                   NOP
+    000000EA 2008                   TST         R0,R0
+    000000EC 8904                   BT          L433
+           NMS.c    78                ++X;
+    000000EE 63D2                   MOV.L       @R13,R3
+    000000F0 7301                   ADD         #1,R3
+    000000F2 2D32                   MOV.L       R3,@R13
+           NMS.c    79                display(1);
+    000000F4 B02F                   BSR         _display
+    000000F6 E401                   MOV         #1,R4
+    000000F8              L433:                             
+           NMS.c    80            }
+           NMS.c    81            if(IsKeyDown(KEY_CTRL_SHIFT)){
+    000000F8 4E0B                   JSR         @R14
+    000000FA 6493                   MOV         R9,R4
+    000000FC 2008                   TST         R0,R0
+    000000FE 8904                   BT          L434
+           NMS.c    82                --Z;
+    00000100 62B2                   MOV.L       @R11,R2
+    00000102 72FF                   ADD         #-1,R2
+    00000104 2B22                   MOV.L       R2,@R11
+           NMS.c    83                display(1);
+    00000106 B026                   BSR         _display
+    00000108 E401                   MOV         #1,R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000010A              L434:                             
+           NMS.c    84            }
+           NMS.c    85            if(IsKeyDown(KEY_CTRL_ALPHA)){
+    0000010A 4E0B                   JSR         @R14
+    0000010C 6483                   MOV         R8,R4
+    0000010E 2008                   TST         R0,R0
+    00000110 8904                   BT          L428
+           NMS.c    86                ++Z;
+    00000112 63B2                   MOV.L       @R11,R3
+    00000114 7301                   ADD         #1,R3
+    00000116 2B32                   MOV.L       R3,@R11
+           NMS.c    87                display(1);
+    00000118 B01D                   BSR         _display
+    0000011A E401                   MOV         #1,R4
+    0000011C              L428:                             
+    0000011C 61D2                   MOV.L       @R13,R1
+    0000011E D329                   MOV.L       L480+10,R3 ; __modls
+    00000120 430B                   JSR         @R3
+    00000122 60C3                   MOV         R12,R0
+    00000124 8840                   CMP/EQ      #64,R0
+    00000126 8BBF                   BF          L429
+    00000128 D227                   MOV.L       L480+14,R2 ; _Y
+    0000012A 6122                   MOV.L       @R2,R1
+    0000012C D325                   MOV.L       L480+10,R3 ; __modls
+    0000012E 430B                   JSR         @R3
+    00000130 60C3                   MOV         R12,R0
+    00000132 8840                   CMP/EQ      #64,R0
+    00000134 8BB8                   BF          L429
+    00000136 D025                   MOV.L       L480+18,R0 ; _Z
+    00000138 D322                   MOV.L       L480+10,R3 ; __modls
+    0000013A 6102                   MOV.L       @R0,R1
+    0000013C 430B                   JSR         @R3
+    0000013E 60C3                   MOV         R12,R0
+    00000140 8840                   CMP/EQ      #64,R0
+    00000142 8BB1                   BF          L429
+           NMS.c    88            }
+           NMS.c    89        }
+           NMS.c    90        display(0);
+    00000144 4F26                   LDS.L       @R15+,PR
+    00000146 E400                   MOV         #0,R4
+    00000148 68F6                   MOV.L       @R15+,R8
+    0000014A 69F6                   MOV.L       @R15+,R9
+    0000014C 6AF6                   MOV.L       @R15+,R10
+    0000014E 6BF6                   MOV.L       @R15+,R11
+    00000150 6CF6                   MOV.L       @R15+,R12
+    00000152 6DF6                   MOV.L       @R15+,R13
+    00000154 6EF6                   MOV.L       @R15+,R14
+           NMS.c    91    }
+           NMS.c    92    void display(call){
+    00000156              _display:                        ; function: display
+                                                           ; frame size=32
+                                                           ; used runtime library name:
+                                                           ; __modls
+           NMS.c    93        if(call){
+    00000156 2448                   TST         R4,R4
+    00000158 2FE6                   MOV.L       R14,@-R15
+    0000015A 2FD6                   MOV.L       R13,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000015C 2FC6                   MOV.L       R12,@-R15
+    0000015E 2FB6                   MOV.L       R11,@-R15
+    00000160 2FA6                   MOV.L       R10,@-R15
+    00000162 2F96                   MOV.L       R9,@-R15
+    00000164 2F86                   MOV.L       R8,@-R15
+    00000166 4F22                   STS.L       PR,@-R15
+    00000168 8B01                   BF          L481
+    0000016A A110                   BRA         L436
+    0000016C 0009                   NOP
+    0000016E              L481:                             
+           NMS.c    94            generateOutputs();
+    0000016E B163                   BSR         _generateOutputs
+    00000170 0009                   NOP
+           NMS.c    95            useOutputs();
+    00000172 B1E3                   BSR         _useOutputs
+    00000174 0009                   NOP
+           NMS.c    96            displayExternal(0);
+    00000176 B113                   BSR         _displayExternal
+    00000178 E400                   MOV         #0,R4
+           NMS.c    97            Z = Z-128;
+    0000017A DA14                   MOV.L       L480+18,R10; _Z
+    0000017C 63A2                   MOV.L       @R10,R3
+    0000017E 7380                   ADD         #-128,R3
+           NMS.c    98            generateOutputs();
+    00000180 B15A                   BSR         _generateOutputs
+    00000182 2A32                   MOV.L       R3,@R10
+           NMS.c    99            useOutputs();
+    00000184 B1DA                   BSR         _useOutputs
+    00000186 0009                   NOP
+           NMS.c   100            displayExternal(-1);
+    00000188 B10A                   BSR         _displayExternal
+    0000018A E4FF                   MOV         #-1,R4
+           NMS.c   101            Z = Z+128;
+    0000018C 9B19                   MOV.W       L480+8,R11 ; H'0080
+           NMS.c   102            if(X%128<=64 && Y%128<=64){
+    0000018E E840                   MOV         #64,R8
+    00000190 DC0D                   MOV.L       L480+14,R12; _Y
+    00000192 E901                   MOV         #1,R9
+    00000194 DD0E                   MOV.L       L480+22,R13; _X
+    00000196 62A2                   MOV.L       @R10,R2
+    00000198 DE0E                   MOV.L       L480+26,R14; _i
+    0000019A 32BC                   ADD         R11,R2
+    0000019C D309                   MOV.L       L480+10,R3 ; __modls
+    0000019E 2A22                   MOV.L       R2,@R10
+    000001A0 61D2                   MOV.L       @R13,R1
+    000001A2 430B                   JSR         @R3
+    000001A4 60B3                   MOV         R11,R0
+    000001A6 3087                   CMP/GT      R8,R0
+    000001A8 8943                   BT          L437
+    000001AA D207                   MOV.L       L480+14,R2 ; _Y
+    000001AC D305                   MOV.L       L480+10,R3 ; __modls
+    000001AE 6122                   MOV.L       @R2,R1
+    000001B0 430B                   JSR         @R3
+    000001B2 60B3                   MOV         R11,R0
+    000001B4 3087                   CMP/GT      R8,R0
+    000001B6 A00F                   BRA         L477
+    000001B8 0009                   NOP
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000001BA              L480:                             
+    000001BA 7542                   .DATA.W     H'7542
+    000001BC 7547                   .DATA.W     H'7547
+    000001BE 7544                   .DATA.W     H'7544
+    000001C0 7545                   .DATA.W     H'7545
+    000001C2 0080                   .DATA.W     H'0080
+    000001C4 <00000000>             .DATA.L     __modls
+    000001C8 <00000000>             .DATA.L     _Y
+    000001CC <00000000>             .DATA.L     _Z
+    000001D0 <00000000>             .DATA.L     _X
+    000001D4 <00000000>             .DATA.L     _i
+    000001D8              L477:                             
+    000001D8 892B                   BT          L437
+           NMS.c   103                for (i = 0; i < 1; ++i){
+    000001DA A023                   BRA         L476
+    000001DC E200                   MOV         #0,R2
+    000001DE              L439:                             
+           NMS.c   104                    X = X-128;
+    000001DE 61D2                   MOV.L       @R13,R1
+    000001E0 7180                   ADD         #-128,R1
+           NMS.c   105                    generateOutputs();
+    000001E2 B129                   BSR         _generateOutputs
+    000001E4 2D12                   MOV.L       R1,@R13
+           NMS.c   106                    useOutputs();
+    000001E6 B1A9                   BSR         _useOutputs
+    000001E8 0009                   NOP
+           NMS.c   107                    displayExternal(1+i);
+    000001EA 64E0                   MOV.B       @R14,R4
+    000001EC B0D8                   BSR         _displayExternal
+    000001EE 7401                   ADD         #1,R4
+           NMS.c   108                    Y = Y-128;
+    000001F0 62C2                   MOV.L       @R12,R2
+    000001F2 7280                   ADD         #-128,R2
+           NMS.c   109                    generateOutputs();
+    000001F4 B120                   BSR         _generateOutputs
+    000001F6 2C22                   MOV.L       R2,@R12
+           NMS.c   110                    useOutputs();
+    000001F8 B1A0                   BSR         _useOutputs
+    000001FA 0009                   NOP
+           NMS.c   111                    displayExternal(3+i);
+    000001FC 64E0                   MOV.B       @R14,R4
+    000001FE B0CF                   BSR         _displayExternal
+    00000200 7403                   ADD         #3,R4
+           NMS.c   112                    X = X+128;
+    00000202 62D2                   MOV.L       @R13,R2
+    00000204 32BC                   ADD         R11,R2
+           NMS.c   113                    generateOutputs();
+    00000206 B117                   BSR         _generateOutputs
+    00000208 2D22                   MOV.L       R2,@R13
+           NMS.c   114                    useOutputs();
+    0000020A B197                   BSR         _useOutputs
+    0000020C 0009                   NOP
+           NMS.c   115                    displayExternal(5+i);
+    0000020E 64E0                   MOV.B       @R14,R4
+    00000210 B0C6                   BSR         _displayExternal
+    00000212 7405                   ADD         #5,R4
+           NMS.c   116                    Y = Y+128;
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000214 62C2                   MOV.L       @R12,R2
+    00000216 32BC                   ADD         R11,R2
+    00000218 2C22                   MOV.L       R2,@R12
+           NMS.c   117                    Z = Z-128;
+    0000021A 63A2                   MOV.L       @R10,R3
+    0000021C 7380                   ADD         #-128,R3
+    0000021E 2A32                   MOV.L       R3,@R10
+    00000220 62E0                   MOV.B       @R14,R2
+    00000222 7201                   ADD         #1,R2
+    00000224              L476:                             
+    00000224 2E20                   MOV.B       R2,@R14
+    00000226 63E0                   MOV.B       @R14,R3
+    00000228 3393                   CMP/GE      R9,R3
+    0000022A 8BD8                   BF          L439
+           NMS.c   118                }
+           NMS.c   119                Z = Z+128;
+    0000022C 63A2                   MOV.L       @R10,R3
+    0000022E 33BC                   ADD         R11,R3
+    00000230 2A32                   MOV.L       R3,@R10
+    00000232              L437:                             
+           NMS.c   120            }
+           NMS.c   121            if(X%128>=64 && Y%128<=64){
+    00000232 61D2                   MOV.L       @R13,R1
+    00000234 D277                   MOV.L       L482+2,R2  ; __modls
+    00000236 420B                   JSR         @R2
+    00000238 60B3                   MOV         R11,R0
+    0000023A 3083                   CMP/GE      R8,R0
+    0000023C 8B33                   BF          L440
+    0000023E D376                   MOV.L       L482+6,R3  ; _Y
+    00000240 D274                   MOV.L       L482+2,R2  ; __modls
+    00000242 6132                   MOV.L       @R3,R1
+    00000244 420B                   JSR         @R2
+    00000246 60B3                   MOV         R11,R0
+    00000248 3087                   CMP/GT      R8,R0
+    0000024A 892C                   BT          L440
+           NMS.c   122                for (i = 0; i < 1; ++i){
+    0000024C E300                   MOV         #0,R3
+    0000024E A024                   BRA         L441
+    00000250 2E30                   MOV.B       R3,@R14
+    00000252              L442:                             
+           NMS.c   123                    X = X+128;
+    00000252 61D2                   MOV.L       @R13,R1
+    00000254 31BC                   ADD         R11,R1
+           NMS.c   124                    generateOutputs();
+    00000256 B0EF                   BSR         _generateOutputs
+    00000258 2D12                   MOV.L       R1,@R13
+           NMS.c   125                    useOutputs();
+    0000025A B16F                   BSR         _useOutputs
+    0000025C 0009                   NOP
+           NMS.c   126                    displayExternal(1+i);
+    0000025E 64E0                   MOV.B       @R14,R4
+    00000260 B09E                   BSR         _displayExternal
+    00000262 7401                   ADD         #1,R4
+           NMS.c   127                    Y = Y-128;
+    00000264 62C2                   MOV.L       @R12,R2
+    00000266 7280                   ADD         #-128,R2
+           NMS.c   128                    generateOutputs();
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000268 B0E6                   BSR         _generateOutputs
+    0000026A 2C22                   MOV.L       R2,@R12
+           NMS.c   129                    useOutputs();
+    0000026C B166                   BSR         _useOutputs
+    0000026E 0009                   NOP
+           NMS.c   130                    displayExternal(3+i);
+    00000270 64E0                   MOV.B       @R14,R4
+    00000272 B095                   BSR         _displayExternal
+    00000274 7403                   ADD         #3,R4
+           NMS.c   131                    X = X-128;
+    00000276 62D2                   MOV.L       @R13,R2
+    00000278 7280                   ADD         #-128,R2
+           NMS.c   132                    generateOutputs();
+    0000027A B0DD                   BSR         _generateOutputs
+    0000027C 2D22                   MOV.L       R2,@R13
+           NMS.c   133                    useOutputs();
+    0000027E B15D                   BSR         _useOutputs
+    00000280 0009                   NOP
+           NMS.c   134                    displayExternal(5+i);
+    00000282 64E0                   MOV.B       @R14,R4
+    00000284 B08C                   BSR         _displayExternal
+    00000286 7405                   ADD         #5,R4
+           NMS.c   135                    Y = Y+128;
+    00000288 62C2                   MOV.L       @R12,R2
+    0000028A 32BC                   ADD         R11,R2
+    0000028C 2C22                   MOV.L       R2,@R12
+           NMS.c   136                    Z = Z-128;
+    0000028E 63A2                   MOV.L       @R10,R3
+    00000290 7380                   ADD         #-128,R3
+    00000292 2A32                   MOV.L       R3,@R10
+    00000294 62E0                   MOV.B       @R14,R2
+    00000296 7201                   ADD         #1,R2
+    00000298 2E20                   MOV.B       R2,@R14
+    0000029A              L441:                             
+    0000029A 63E0                   MOV.B       @R14,R3
+    0000029C 3393                   CMP/GE      R9,R3
+    0000029E 8BD8                   BF          L442
+           NMS.c   137                }
+           NMS.c   138                Z = Z+128;
+    000002A0 63A2                   MOV.L       @R10,R3
+    000002A2 33BC                   ADD         R11,R3
+    000002A4 2A32                   MOV.L       R3,@R10
+    000002A6              L440:                             
+           NMS.c   139            }
+           NMS.c   140            if(X%128<=64 && Y%128>=64){
+    000002A6 61D2                   MOV.L       @R13,R1
+    000002A8 D25A                   MOV.L       L482+2,R2  ; __modls
+    000002AA 420B                   JSR         @R2
+    000002AC 60B3                   MOV         R11,R0
+    000002AE 3087                   CMP/GT      R8,R0
+    000002B0 8933                   BT          L443
+    000002B2 D359                   MOV.L       L482+6,R3  ; _Y
+    000002B4 D257                   MOV.L       L482+2,R2  ; __modls
+    000002B6 6132                   MOV.L       @R3,R1
+    000002B8 420B                   JSR         @R2
+    000002BA 60B3                   MOV         R11,R0
+    000002BC 3083                   CMP/GE      R8,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000002BE 8B2C                   BF          L443
+           NMS.c   141                for (i = 0; i < 1; ++i){
+    000002C0 E300                   MOV         #0,R3
+    000002C2 A024                   BRA         L444
+    000002C4 2E30                   MOV.B       R3,@R14
+    000002C6              L445:                             
+           NMS.c   142                    X = X-128;
+    000002C6 61D2                   MOV.L       @R13,R1
+    000002C8 7180                   ADD         #-128,R1
+           NMS.c   143                    generateOutputs();
+    000002CA B0B5                   BSR         _generateOutputs
+    000002CC 2D12                   MOV.L       R1,@R13
+           NMS.c   144                    useOutputs();
+    000002CE B135                   BSR         _useOutputs
+    000002D0 0009                   NOP
+           NMS.c   145                    displayExternal(1+i);
+    000002D2 64E0                   MOV.B       @R14,R4
+    000002D4 B064                   BSR         _displayExternal
+    000002D6 7401                   ADD         #1,R4
+           NMS.c   146                    Y = Y+128;
+    000002D8 62C2                   MOV.L       @R12,R2
+    000002DA 32BC                   ADD         R11,R2
+           NMS.c   147                    generateOutputs();
+    000002DC B0AC                   BSR         _generateOutputs
+    000002DE 2C22                   MOV.L       R2,@R12
+           NMS.c   148                    useOutputs();
+    000002E0 B12C                   BSR         _useOutputs
+    000002E2 0009                   NOP
+           NMS.c   149                    displayExternal(3+i);
+    000002E4 64E0                   MOV.B       @R14,R4
+    000002E6 B05B                   BSR         _displayExternal
+    000002E8 7403                   ADD         #3,R4
+           NMS.c   150                    X = X+128;
+    000002EA 62D2                   MOV.L       @R13,R2
+    000002EC 32BC                   ADD         R11,R2
+           NMS.c   151                    generateOutputs();
+    000002EE B0A3                   BSR         _generateOutputs
+    000002F0 2D22                   MOV.L       R2,@R13
+           NMS.c   152                    useOutputs();
+    000002F2 B123                   BSR         _useOutputs
+    000002F4 0009                   NOP
+           NMS.c   153                    displayExternal(5+i);
+    000002F6 64E0                   MOV.B       @R14,R4
+    000002F8 B052                   BSR         _displayExternal
+    000002FA 7405                   ADD         #5,R4
+           NMS.c   154                    Y = Y-128;
+    000002FC 62C2                   MOV.L       @R12,R2
+    000002FE 7280                   ADD         #-128,R2
+    00000300 2C22                   MOV.L       R2,@R12
+           NMS.c   155                    Z = Z-128;
+    00000302 63A2                   MOV.L       @R10,R3
+    00000304 7380                   ADD         #-128,R3
+    00000306 2A32                   MOV.L       R3,@R10
+    00000308 62E0                   MOV.B       @R14,R2
+    0000030A 7201                   ADD         #1,R2
+    0000030C 2E20                   MOV.B       R2,@R14
+    0000030E              L444:                             
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   11
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000030E 63E0                   MOV.B       @R14,R3
+    00000310 3393                   CMP/GE      R9,R3
+    00000312 8BD8                   BF          L445
+           NMS.c   156                }
+           NMS.c   157                Z = Z+128;
+    00000314 63A2                   MOV.L       @R10,R3
+    00000316 33BC                   ADD         R11,R3
+    00000318 2A32                   MOV.L       R3,@R10
+    0000031A              L443:                             
+           NMS.c   158            }
+           NMS.c   159            if(X%128>=64 && Y%128>=64){
+    0000031A 61D2                   MOV.L       @R13,R1
+    0000031C D23D                   MOV.L       L482+2,R2  ; __modls
+    0000031E 420B                   JSR         @R2
+    00000320 60B3                   MOV         R11,R0
+    00000322 3083                   CMP/GE      R8,R0
+    00000324 8B33                   BF          L436
+    00000326 D33C                   MOV.L       L482+6,R3  ; _Y
+    00000328 D23A                   MOV.L       L482+2,R2  ; __modls
+    0000032A 6132                   MOV.L       @R3,R1
+    0000032C 420B                   JSR         @R2
+    0000032E 60B3                   MOV         R11,R0
+    00000330 3083                   CMP/GE      R8,R0
+    00000332 8B2C                   BF          L436
+           NMS.c   160                for (i = 0; i < 1; ++i){
+    00000334 E300                   MOV         #0,R3
+    00000336 A024                   BRA         L447
+    00000338 2E30                   MOV.B       R3,@R14
+    0000033A              L448:                             
+           NMS.c   161                    X = X+128;
+    0000033A 61D2                   MOV.L       @R13,R1
+    0000033C 31BC                   ADD         R11,R1
+           NMS.c   162                    generateOutputs();
+    0000033E B07B                   BSR         _generateOutputs
+    00000340 2D12                   MOV.L       R1,@R13
+           NMS.c   163                    useOutputs();
+    00000342 B0FB                   BSR         _useOutputs
+    00000344 0009                   NOP
+           NMS.c   164                    displayExternal(1+i);
+    00000346 64E0                   MOV.B       @R14,R4
+    00000348 B02A                   BSR         _displayExternal
+    0000034A 7401                   ADD         #1,R4
+           NMS.c   165                    Y = Y+128;
+    0000034C 62C2                   MOV.L       @R12,R2
+    0000034E 32BC                   ADD         R11,R2
+           NMS.c   166                    generateOutputs();
+    00000350 B072                   BSR         _generateOutputs
+    00000352 2C22                   MOV.L       R2,@R12
+           NMS.c   167                    useOutputs();
+    00000354 B0F2                   BSR         _useOutputs
+    00000356 0009                   NOP
+           NMS.c   168                    displayExternal(3+i);
+    00000358 64E0                   MOV.B       @R14,R4
+    0000035A B021                   BSR         _displayExternal
+    0000035C 7403                   ADD         #3,R4
+           NMS.c   169                    X = X-128;
+    0000035E 62D2                   MOV.L       @R13,R2
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   12
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000360 7280                   ADD         #-128,R2
+           NMS.c   170                    generateOutputs();
+    00000362 B069                   BSR         _generateOutputs
+    00000364 2D22                   MOV.L       R2,@R13
+           NMS.c   171                    useOutputs();
+    00000366 B0E9                   BSR         _useOutputs
+    00000368 0009                   NOP
+           NMS.c   172                    displayExternal(5+i);
+    0000036A 64E0                   MOV.B       @R14,R4
+    0000036C B018                   BSR         _displayExternal
+    0000036E 7405                   ADD         #5,R4
+           NMS.c   173                    Y = Y-128;
+    00000370 62C2                   MOV.L       @R12,R2
+    00000372 7280                   ADD         #-128,R2
+    00000374 2C22                   MOV.L       R2,@R12
+           NMS.c   174                    Z = Z-128;
+    00000376 63A2                   MOV.L       @R10,R3
+    00000378 7380                   ADD         #-128,R3
+    0000037A 2A32                   MOV.L       R3,@R10
+    0000037C 62E0                   MOV.B       @R14,R2
+    0000037E 7201                   ADD         #1,R2
+    00000380 2E20                   MOV.B       R2,@R14
+    00000382              L447:                             
+    00000382 63E0                   MOV.B       @R14,R3
+    00000384 3393                   CMP/GE      R9,R3
+    00000386 8BD8                   BF          L448
+           NMS.c   175                }
+           NMS.c   176                Z = Z+128;
+    00000388 63A2                   MOV.L       @R10,R3
+    0000038A 3B3C                   ADD         R3,R11
+    0000038C 2AB2                   MOV.L       R11,@R10
+    0000038E              L436:                             
+           NMS.c   177            }
+           NMS.c   178        
+           NMS.c   179        } //determine le cube a generer et apelle External 
+           NMS.c   180    }
+    0000038E 4F26                   LDS.L       @R15+,PR
+    00000390 68F6                   MOV.L       @R15+,R8
+    00000392 69F6                   MOV.L       @R15+,R9
+    00000394 6AF6                   MOV.L       @R15+,R10
+    00000396 6BF6                   MOV.L       @R15+,R11
+    00000398 6CF6                   MOV.L       @R15+,R12
+    0000039A 6DF6                   MOV.L       @R15+,R13
+    0000039C 000B                   RTS
+    0000039E 6EF6                   MOV.L       @R15+,R14
+           NMS.c   181    void displayExternal(call){
+    000003A0              _displayExternal:                ; function: displayExternal
+                                                           ; frame size=32
+                                                           ; used runtime library name:
+                                                           ; __divls
+    000003A0 2FE6                   MOV.L       R14,@-R15
+           NMS.c   182        if(call==0){
+    000003A2 2448                   TST         R4,R4
+    000003A4 2FD6                   MOV.L       R13,@-R15
+    000003A6 2FC6                   MOV.L       R12,@-R15
+    000003A8 2FB6                   MOV.L       R11,@-R15
+    000003AA 2FA6                   MOV.L       R10,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000003AC 2F96                   MOV.L       R9,@-R15
+    000003AE 2F86                   MOV.L       R8,@-R15
+    000003B0 4F22                   STS.L       PR,@-R15
+    000003B2 8B25                   BF          L449
+    000003B4 D819                   MOV.L       L482+10,R8 ; _planetStorageY1
+    000003B6 EA64                   MOV         #100,R10
+    000003B8 DC1A                   MOV.L       L482+18,R12; _planetStorageX1
+    000003BA 6DA3                   MOV         R10,R13
+    000003BC DE1A                   MOV.L       L482+22,R14; _i
+    000003BE D918                   MOV.L       L482+14,R9 ; _ML_circle
+           NMS.c   183            while(planetStorageX1[i+1] != 0){
+    000003C0 A016                   BRA         L450
+    000003C2 7D1C                   ADD         #28,R13
+    000003C4              L451:                             
+           NMS.c   184            ML_circle(128-planetStorageX1[i], 128-planetStorageY1[i], planetStorageZ1[i]/100, 1);
+    000003C4 6BE0                   MOV.B       @R14,R11
+    000003C6 E701                   MOV         #1,R7
+    000003C8 D018                   MOV.L       L482+26,R0 ; _planetStorageZ1
+    000003CA 4B08                   SHLL2       R11
+    000003CC D318                   MOV.L       L482+30,R3 ; __divls
+    000003CE 01BE                   MOV.L       @(R0,R11),R1
+    000003D0 430B                   JSR         @R3
+    000003D2 60A3                   MOV         R10,R0
+    000003D4 6603                   MOV         R0,R6
+    000003D6 60B3                   MOV         R11,R0
+    000003D8 038E                   MOV.L       @(R0,R8),R3
+    000003DA 65D3                   MOV         R13,R5
+    000003DC 3538                   SUB         R3,R5
+    000003DE 64D3                   MOV         R13,R4
+    000003E0 03CE                   MOV.L       @(R0,R12),R3
+    000003E2 490B                   JSR         @R9
+    000003E4 3438                   SUB         R3,R4
+           NMS.c   185            ++i;
+    000003E6 62E0                   MOV.B       @R14,R2
+           NMS.c   186            ML_display_vram();
+    000003E8 D312                   MOV.L       L482+34,R3 ; _ML_display_vram
+    000003EA 7201                   ADD         #1,R2
+    000003EC 430B                   JSR         @R3
+    000003EE 2E20                   MOV.B       R2,@R14
+    000003F0              L450:                             
+    000003F0 61E0                   MOV.B       @R14,R1
+    000003F2 4108                   SHLL2       R1
+    000003F4 31CC                   ADD         R12,R1
+    000003F6 5311                   MOV.L       @(4,R1),R3
+    000003F8 2338                   TST         R3,R3
+    000003FA 8BE3                   BF          L451
+           NMS.c   187            }
+           NMS.c   188            i = 0;
+    000003FC E300                   MOV         #0,R3
+    000003FE 2E30                   MOV.B       R3,@R14
+    00000400              L449:                             
+           NMS.c   189        }
+           NMS.c   190        //if(X%128<=64 && Y%128<=64){
+           NMS.c   191        //    if(call==1){
+           NMS.c   192        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   193        //            ML_circle(64-((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   14
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c   194        //            ++i;
+           NMS.c   195        //        }
+           NMS.c   196        //        i = 0;
+           NMS.c   197        //    }
+           NMS.c   198        //    if(call==3){
+           NMS.c   199        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   200        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64-(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   201        //            ++i;
+           NMS.c   202        //        }
+           NMS.c   203        //        i = 0;
+           NMS.c   204        //    }
+           NMS.c   205        //    if(call==5){
+           NMS.c   206        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   207        //            ML_circle(64-((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64-(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   208        //            ++i;
+           NMS.c   209        //        }
+           NMS.c   210        //        i = 0;
+           NMS.c   211        //    }
+           NMS.c   212        //    if(call==-1){
+           NMS.c   213        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   214        //            ML_circle(planetStorageX1[i]+(64-X%128)-(planetStorageZ1[i]/100), planetStorageY1[i]+(64
+                         +-Y%128)-(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   215        //            ++i;
+           NMS.c   216        //        }
+           NMS.c   217        //        i = 0;
+           NMS.c   218        //    }
+           NMS.c   219        //    if(call==2){
+           NMS.c   220        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   221        //            ML_circle(64-((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   222        //            ++i;
+           NMS.c   223        //        }
+           NMS.c   224        //        i = 0;
+           NMS.c   225        //    }
+           NMS.c   226        //    if(call==4){
+           NMS.c   227        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   228        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64-(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   229        //            ++i;
+           NMS.c   230        //        }
+           NMS.c   231        //        i = 0;
+           NMS.c   232        //    }
+           NMS.c   233        //    if(call==6){
+           NMS.c   234        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   235        //            ML_circle(64-((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64-(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   236        //            ++i;
+           NMS.c   237        //        }
+           NMS.c   238        //        i = 0;
+           NMS.c   239        //    }
+           NMS.c   240        //}
+           NMS.c   241        //if(X%128>=64 && Y%128<=64){
+           NMS.c   242        //    if(call==1){
+           NMS.c   243        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   244        //            ML_circle(64+((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   15
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   245        //            ++i;
+           NMS.c   246        //        }
+           NMS.c   247        //        i = 0;
+           NMS.c   248        //    }
+           NMS.c   249        //    if(call==3){
+           NMS.c   250        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   251        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64-(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   252        //            ++i;
+           NMS.c   253        //        }
+           NMS.c   254        //        i = 0;
+           NMS.c   255        //    }
+           NMS.c   256        //    if(call==5){
+           NMS.c   257        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   258        //            ML_circle(64+((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64-(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   259        //            ++i;
+           NMS.c   260        //        }
+           NMS.c   261        //        i = 0;
+           NMS.c   262        //    }
+           NMS.c   263        //    if(call==-1){
+           NMS.c   264        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   265        //            ML_circle(planetStorageX1[i]+(64-X%128)-(planetStorageZ1[i]/100), planetStorageY1[i]+(64
+                         +-Y%128)-(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   266        //            ++i;
+           NMS.c   267        //        }
+           NMS.c   268        //        i = 0;
+           NMS.c   269        //    }
+           NMS.c   270        //    if(call==2){
+           NMS.c   271        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   272        //            ML_circle(64+((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   273        //            ++i;
+           NMS.c   274        //        }
+           NMS.c   275        //        i = 0;
+           NMS.c   276        //    }
+           NMS.c   277        //    if(call==4){
+           NMS.c   278        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   279        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64-(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   280        //            ++i;
+           NMS.c   281        //        }
+           NMS.c   282        //        i = 0;
+           NMS.c   283        //    }
+           NMS.c   284        //    if(call==6){
+           NMS.c   285        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   286        //            ML_circle(64+((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64-(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   287        //            ++i;
+           NMS.c   288        //        }
+           NMS.c   289        //        i = 0;
+           NMS.c   290        //    }
+           NMS.c   291        //}
+           NMS.c   292        //if(X%128<=64 && Y%128>=64){
+           NMS.c   293        //    if(call==1){
+           NMS.c   294        //        while(planetStorageX1[i+1] != 0){
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   16
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c   295        //            ML_circle(64-((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   296        //            ++i;
+           NMS.c   297        //        }
+           NMS.c   298        //        i = 0;
+           NMS.c   299        //    }
+           NMS.c   300        //    if(call==3){
+           NMS.c   301        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   302        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64+(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   303        //            ++i;
+           NMS.c   304        //        }
+           NMS.c   305        //        i = 0;
+           NMS.c   306        //    }
+           NMS.c   307        //    if(call==5){
+           NMS.c   308        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   309        //            ML_circle(64+((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64+(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   310        //            ++i;
+           NMS.c   311        //        }
+           NMS.c   312        //        i = 0;
+           NMS.c   313        //    }
+           NMS.c   314        //    if(call==-1){
+           NMS.c   315        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   316        //            ML_circle(planetStorageX1[i]+(64-X%128)-(planetStorageZ1[i]/100), planetStorageY1[i]+(64
+                         +-Y%128)-(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   317        //            ++i;
+           NMS.c   318        //        }
+           NMS.c   319        //        i = 0;
+           NMS.c   320        //    }
+           NMS.c   321        //    if(call==2){
+           NMS.c   322        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   323        //            ML_circle(64-((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   324        //            ++i;
+           NMS.c   325        //        }
+           NMS.c   326        //        i = 0;
+           NMS.c   327        //    }
+           NMS.c   328        //    if(call==4){
+           NMS.c   329        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   330        //            ML_circle(64-(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64+(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   331        //            ++i;
+           NMS.c   332        //        }
+           NMS.c   333        //        i = 0;
+           NMS.c   334        //    }
+           NMS.c   335        //    if(call==6){
+           NMS.c   336        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   337        //            ML_circle(64+((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64+(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   338        //            ++i;
+           NMS.c   339        //        }
+           NMS.c   340        //        i = 0;
+           NMS.c   341        //    }
+           NMS.c   342        //}
+           NMS.c   343        //if(X%128>=64 && Y%128>=64){
+           NMS.c   344        //    if(call==1){
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   17
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c   345        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   346        //            ML_circle(64+((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   347        //            ++i;
+           NMS.c   348        //        }
+           NMS.c   349        //        i = 0;
+           NMS.c   350        //    }
+           NMS.c   351        //    if(call==3){
+           NMS.c   352        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   353        //            ML_circle(64+(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64+(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   354        //            ++i;
+           NMS.c   355        //        }
+           NMS.c   356        //        i = 0;
+           NMS.c   357        //    }
+           NMS.c   358        //    if(call==5){
+           NMS.c   359        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   360        //            ML_circle(64-((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64+(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   361        //            ++i;
+           NMS.c   362        //        }
+           NMS.c   363        //        i = 0;
+           NMS.c   364        //    }
+           NMS.c   365        //    if(call==-1){
+           NMS.c   366        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   367        //            ML_circle(planetStorageX1[i]+(64-X%128)-(planetStorageZ1[i]/100), planetStorageY1[i]+(64
+                         +-Y%128)-(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   368        //            ++i;
+           NMS.c   369        //        }
+           NMS.c   370        //        i = 0;
+           NMS.c   371        //    }
+           NMS.c   372        //    if(call==2){
+           NMS.c   373        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   374        //            ML_circle(64+((128-planetStorageX1[i])+(64-X%128))+(planetStorageZ1[i]/100), 64-((128-pl
+                         +anetStorageY1[i])+(128-(Y%128))), planetStorageZ1[i]/100, 1);
+           NMS.c   375        //            ++i;
+           NMS.c   376        //        }
+           NMS.c   377        //        i = 0;
+           NMS.c   378        //    }
+           NMS.c   379        //    if(call==4){
+           NMS.c   380        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   381        //            ML_circle(64+(128-planetStorageX1[i]+(X%128))+(planetStorageZ1[i]/100), 64+(128-planetSt
+                         +orageY1[i]+(Y%128))+(planetStorageZ1[i]/100), planetStorageZ1[i]/100, 1);
+           NMS.c   382        //            ++i;
+           NMS.c   383        //        }
+           NMS.c   384        //        i = 0;
+           NMS.c   385        //    }
+           NMS.c   386        //    if(call==6){
+           NMS.c   387        //        while(planetStorageX1[i+1] != 0){
+           NMS.c   388        //            ML_circle(64-((128-planetStorageX1[i]+128)-(128-(X%128)))+(planetStorageZ1[i]/100), 64+(
+                         +128-planetStorageY1[i]+128+(128-Y%128))-(planetStorageZ1[i]/100)+2, planetStorageZ1[i]/100, 1);
+           NMS.c   389        //            ++i;
+           NMS.c   390        //        }
+           NMS.c   391        //        i = 0;
+           NMS.c   392        //    }
+           NMS.c   393        //}  // genere le cube demande
+           NMS.c   394    }
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   18
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000400 4F26                   LDS.L       @R15+,PR
+    00000402 68F6                   MOV.L       @R15+,R8
+    00000404 69F6                   MOV.L       @R15+,R9
+    00000406 6AF6                   MOV.L       @R15+,R10
+    00000408 6BF6                   MOV.L       @R15+,R11
+    0000040A 6CF6                   MOV.L       @R15+,R12
+    0000040C 6DF6                   MOV.L       @R15+,R13
+    0000040E 000B                   RTS
+    00000410 6EF6                   MOV.L       @R15+,R14
+    00000412              L482:                             
+    00000412 0000                   .DATA.W     0
+    00000414 <00000000>             .DATA.L     __modls
+    00000418 <00000000>             .DATA.L     _Y
+    0000041C <00000000>             .DATA.L     _planetStorageY1
+    00000420 <00000000>             .DATA.L     _ML_circle
+    00000424 <00000000>             .DATA.L     _planetStorageX1
+    00000428 <00000000>             .DATA.L     _i
+    0000042C <00000000>             .DATA.L     _planetStorageZ1
+    00000430 <00000000>             .DATA.L     __divls
+    00000434 <00000000>             .DATA.L     _ML_display_vram
+           NMS.c   395    void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
+    00000438              _generateOutputs:                ; function: generateOutputs
+                                                           ; frame size=24
+                                                           ; used runtime library name:
+                                                           ; __divls, __modls
+    00000438 2FE6                   MOV.L       R14,@-R15
+    0000043A 2FD6                   MOV.L       R13,@-R15
+    0000043C 2FC6                   MOV.L       R12,@-R15
+    0000043E 4F22                   STS.L       PR,@-R15
+    00000440 4F12                   STS.L       MACL,@-R15
+    00000442 7FFC                   ADD         #-4,R15
+           NMS.c   396        int local, local1;
+           NMS.c   397        local = X0-(X/128);
+    00000444 9C93                   MOV.W       L483,R12   ; H'0080
+    00000446 D24B                   MOV.L       L483+6,R2  ; _X
+    00000448 D34B                   MOV.L       L483+10,R3 ; __divls
+    0000044A 6122                   MOV.L       @R2,R1
+    0000044C 430B                   JSR         @R3
+    0000044E 60C3                   MOV         R12,R0
+    00000450 D14A                   MOV.L       L483+14,R1 ; _X0
+    00000452 6612                   MOV.L       @R1,R6
+           NMS.c   398        while (local>1000){
+    00000454 958C                   MOV.W       L483+2,R5  ; H'03E8
+    00000456 3608                   SUB         R0,R6
+    00000458 3657                   CMP/GT      R5,R6
+    0000045A 8F07                   BF/S        L452
+    0000045C E40A                   MOV         #10,R4
+    0000045E              L453:                             
+           NMS.c   399            local /= 10;
+    0000045E 6043                   MOV         R4,R0
+    00000460 D245                   MOV.L       L483+10,R2 ; __divls
+    00000462 420B                   JSR         @R2
+    00000464 6163                   MOV         R6,R1
+    00000466 6603                   MOV         R0,R6
+    00000468 3657                   CMP/GT      R5,R6
+    0000046A 89F8                   BT          L453
+    0000046C              L452:                             
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   19
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c   400        }
+           NMS.c   401        output1 = local;
+    0000046C DE44                   MOV.L       L483+18,R14; _output1
+    0000046E 2E62                   MOV.L       R6,@R14
+           NMS.c   402        local = Y0-(Y/128);
+    00000470 D344                   MOV.L       L483+22,R3 ; _Y
+    00000472 6132                   MOV.L       @R3,R1
+    00000474 D240                   MOV.L       L483+10,R2 ; __divls
+    00000476 420B                   JSR         @R2
+    00000478 60C3                   MOV         R12,R0
+    0000047A D143                   MOV.L       L483+26,R1 ; _Y0
+    0000047C 6612                   MOV.L       @R1,R6
+    0000047E 3608                   SUB         R0,R6
+           NMS.c   403        while (local>1000){
+    00000480 3657                   CMP/GT      R5,R6
+    00000482 8B06                   BF          L454
+    00000484              L455:                             
+           NMS.c   404            local /= 10;
+    00000484 D33C                   MOV.L       L483+10,R3 ; __divls
+    00000486 6043                   MOV         R4,R0
+    00000488 430B                   JSR         @R3
+    0000048A 6163                   MOV         R6,R1
+    0000048C 6603                   MOV         R0,R6
+    0000048E 3657                   CMP/GT      R5,R6
+    00000490 89F8                   BT          L455
+    00000492              L454:                             
+           NMS.c   405        }
+           NMS.c   406        output2 = local;
+    00000492 D73E                   MOV.L       L483+30,R7 ; _output2
+           NMS.c   407        local = Z0-(Z/128);
+    00000494 D23E                   MOV.L       L483+34,R2 ; _Z
+    00000496 2762                   MOV.L       R6,@R7
+    00000498 6122                   MOV.L       @R2,R1
+    0000049A D337                   MOV.L       L483+10,R3 ; __divls
+    0000049C 430B                   JSR         @R3
+    0000049E 60C3                   MOV         R12,R0
+    000004A0 D13C                   MOV.L       L483+38,R1 ; _Z0
+    000004A2 6D12                   MOV.L       @R1,R13
+    000004A4 3D08                   SUB         R0,R13
+           NMS.c   408        while (local>1000){
+    000004A6 3D57                   CMP/GT      R5,R13
+    000004A8 8B06                   BF          L456
+    000004AA              L457:                             
+           NMS.c   409            local /= 10;
+    000004AA 6043                   MOV         R4,R0
+    000004AC D232                   MOV.L       L483+10,R2 ; __divls
+    000004AE 420B                   JSR         @R2
+    000004B0 61D3                   MOV         R13,R1
+    000004B2 6D03                   MOV         R0,R13
+    000004B4 3D57                   CMP/GT      R5,R13
+    000004B6 89F8                   BT          L457
+    000004B8              L456:                             
+           NMS.c   410        }
+           NMS.c   411        output3 = local;
+    000004B8 D637                   MOV.L       L483+42,R6 ; _output3
+    000004BA 26D2                   MOV.L       R13,@R6
+           NMS.c   412        local = output1;
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   20
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000004BC 6DE2                   MOV.L       @R14,R13
+           NMS.c   413        output1 = output3*output2;
+    000004BE 6362                   MOV.L       @R6,R3
+    000004C0 6272                   MOV.L       @R7,R2
+    000004C2 0237                   MUL.L       R3,R2
+    000004C4 031A                   STS         MACL,R3
+    000004C6 2E32                   MOV.L       R3,@R14
+           NMS.c   414        local1 = output2;
+    000004C8 6272                   MOV.L       @R7,R2
+    000004CA 2F22                   MOV.L       R2,@R15
+           NMS.c   415        output2= local*output3;
+    000004CC 6362                   MOV.L       @R6,R3
+    000004CE 03D7                   MUL.L       R13,R3
+    000004D0 031A                   STS         MACL,R3
+    000004D2 2732                   MOV.L       R3,@R7
+           NMS.c   416        output3= local*local1;
+    000004D4 62F2                   MOV.L       @R15,R2
+    000004D6 0D27                   MUL.L       R2,R13
+    000004D8 0D1A                   STS         MACL,R13
+    000004DA 26D2                   MOV.L       R13,@R6
+           NMS.c   417        do{                               // les outputs sont redimenssiones a un maximum de 999 
+    000004DC              L458:                             
+           NMS.c   418            local1 = output1%10;
+    000004DC 61E2                   MOV.L       @R14,R1
+    000004DE D32F                   MOV.L       L483+46,R3 ; __modls
+    000004E0 430B                   JSR         @R3
+    000004E2 6043                   MOV         R4,R0
+           NMS.c   419            output1 = (output1-local1)/10;
+    000004E4 61E2                   MOV.L       @R14,R1
+    000004E6 6D03                   MOV         R0,R13
+    000004E8 D323                   MOV.L       L483+10,R3 ; __divls
+    000004EA 31D8                   SUB         R13,R1
+    000004EC 430B                   JSR         @R3
+    000004EE 6043                   MOV         R4,R0
+           NMS.c   420        } while (output1>1000);
+    000004F0 6203                   MOV         R0,R2
+    000004F2 3257                   CMP/GT      R5,R2
+    000004F4 8DF2                   BT/S        L458
+    000004F6 2E02                   MOV.L       R0,@R14
+    000004F8              L459:                             
+           NMS.c   421        do{
+           NMS.c   422            local1 = output2%10;
+    000004F8 6172                   MOV.L       @R7,R1
+    000004FA D328                   MOV.L       L483+46,R3 ; __modls
+    000004FC 430B                   JSR         @R3
+    000004FE 6043                   MOV         R4,R0
+           NMS.c   423            output2 = (output2-local1)/10;
+    00000500 6172                   MOV.L       @R7,R1
+    00000502 6E03                   MOV         R0,R14
+    00000504 D31C                   MOV.L       L483+10,R3 ; __divls
+    00000506 31E8                   SUB         R14,R1
+    00000508 430B                   JSR         @R3
+    0000050A 6043                   MOV         R4,R0
+           NMS.c   424        } while (output2>1000);
+    0000050C 6203                   MOV         R0,R2
+    0000050E 3257                   CMP/GT      R5,R2
+    00000510 8DF2                   BT/S        L459
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   21
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000512 2702                   MOV.L       R0,@R7
+    00000514              L460:                             
+           NMS.c   425        do
+           NMS.c   426        {
+           NMS.c   427            local1 = output3%10;
+    00000514 6162                   MOV.L       @R6,R1
+    00000516 D321                   MOV.L       L483+46,R3 ; __modls
+    00000518 430B                   JSR         @R3
+    0000051A 6043                   MOV         R4,R0
+           NMS.c   428            output3 = (output3-local1)/10;
+    0000051C 6162                   MOV.L       @R6,R1
+    0000051E 6703                   MOV         R0,R7
+    00000520 D315                   MOV.L       L483+10,R3 ; __divls
+    00000522 3178                   SUB         R7,R1
+    00000524 430B                   JSR         @R3
+    00000526 6043                   MOV         R4,R0
+           NMS.c   429        } while (output3>1000);
+    00000528 6203                   MOV         R0,R2
+    0000052A 3257                   CMP/GT      R5,R2
+    0000052C 8DF2                   BT/S        L460
+    0000052E 2602                   MOV.L       R0,@R6
+           NMS.c   430        useOutputs();
+    00000530 7F04                   ADD         #4,R15
+    00000532 4F16                   LDS.L       @R15+,MACL
+    00000534 4F26                   LDS.L       @R15+,PR
+    00000536 6CF6                   MOV.L       @R15+,R12
+    00000538 6DF6                   MOV.L       @R15+,R13
+    0000053A 6EF6                   MOV.L       @R15+,R14
+           NMS.c   431    }
+           NMS.c   432    void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solai
+                         +res)
+    0000053C              _useOutputs:                     ; function: useOutputs
+                                                           ; frame size=36
+                                                           ; used runtime library name:
+                                                           ; __divls
+    0000053C 2FE6                   MOV.L       R14,@-R15
+    0000053E 2FD6                   MOV.L       R13,@-R15
+    00000540 2FC6                   MOV.L       R12,@-R15
+           NMS.c   433        int planetDensity = 16 + (output1 / 10);
+    00000542 ED0A                   MOV         #10,R13
+    00000544 D30C                   MOV.L       L483+10,R3 ; __divls
+    00000546 2FB6                   MOV.L       R11,@-R15
+    00000548 2FA6                   MOV.L       R10,@-R15
+    0000054A 2F96                   MOV.L       R9,@-R15
+    0000054C 2F86                   MOV.L       R8,@-R15
+    0000054E 4F22                   STS.L       PR,@-R15
+    00000550 DB0B                   MOV.L       L483+18,R11; _output1
+    00000552 7FFC                   ADD         #-4,R15
+    00000554 61B2                   MOV.L       @R11,R1
+    00000556 430B                   JSR         @R3
+    00000558 60D3                   MOV         R13,R0
+    0000055A 6503                   MOV         R0,R5
+           NMS.c   434        int planetX, planetY, planetZ;
+           NMS.c   435        for (i = 26; i <= planetDensity+26; ++i){  //output+i
+    0000055C DE10                   MOV.L       L483+50,R14; _i
+    0000055E E21A                   MOV         #26,R2
+    00000560 D810                   MOV.L       L483+54,R8 ; _planetStorageX1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   22
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000562 2E20                   MOV.B       R2,@R14
+    00000564 D90C                   MOV.L       L483+42,R9 ; _output3
+    00000566 DA09                   MOV.L       L483+30,R10; _output2
+    00000568 9401                   MOV.W       L483,R4    ; H'0080
+    0000056A A01D                   BRA         L478
+    0000056C 0009                   NOP
+    0000056E              L483:                             
+    0000056E 0080                   .DATA.W     H'0080
+    00000570 03E8                   .DATA.W     H'03E8
+    00000572 0000                   .DATA.W     0
+    00000574 <00000000>             .DATA.L     _X
+    00000578 <00000000>             .DATA.L     __divls
+    0000057C <00000000>             .DATA.L     _X0
+    00000580 <00000000>             .DATA.L     _output1
+    00000584 <00000000>             .DATA.L     _Y
+    00000588 <00000000>             .DATA.L     _Y0
+    0000058C <00000000>             .DATA.L     _output2
+    00000590 <00000000>             .DATA.L     _Z
+    00000594 <00000000>             .DATA.L     _Z0
+    00000598 <00000000>             .DATA.L     _output3
+    0000059C <00000000>             .DATA.L     __modls
+    000005A0 <00000000>             .DATA.L     _i
+    000005A4 <00000000>             .DATA.L     _planetStorageX1
+    000005A8              L478:                             
+    000005A8 752A                   ADD         #42,R5
+    000005AA A04E                   BRA         L461
+    000005AC 2F52                   MOV.L       R5,@R15
+    000005AE              L462:                             
+           NMS.c   436            planetX = (i-output1);
+    000005AE 6CE0                   MOV.B       @R14,R12
+    000005B0 63B2                   MOV.L       @R11,R3
+    000005B2 66C3                   MOV         R12,R6
+    000005B4 3638                   SUB         R3,R6
+           NMS.c   437            while(planetX<0){
+    000005B6 4611                   CMP/PZ      R6
+    000005B8 8905                   BT          L463
+    000005BA              L464:                             
+           NMS.c   438                planetX=planetX*10;
+    000005BA 6363                   MOV         R6,R3
+    000005BC 4608                   SHLL2       R6
+    000005BE 363C                   ADD         R3,R6
+    000005C0 4600                   SHLL        R6
+    000005C2 4611                   CMP/PZ      R6
+    000005C4 8BF9                   BF          L464
+    000005C6              L463:                             
+           NMS.c   439            }
+           NMS.c   440            while(planetX>128){
+    000005C6 3647                   CMP/GT      R4,R6
+    000005C8 8B06                   BF          L465
+    000005CA              L466:                             
+           NMS.c   441                planetX=planetX/10;
+    000005CA 6163                   MOV         R6,R1
+    000005CC D226                   MOV.L       L484+2,R2  ; __divls
+    000005CE 420B                   JSR         @R2
+    000005D0 60D3                   MOV         R13,R0
+    000005D2 6603                   MOV         R0,R6
+    000005D4 3647                   CMP/GT      R4,R6
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   23
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000005D6 89F8                   BT          L466
+    000005D8              L465:                             
+           NMS.c   442            }
+           NMS.c   443            planetY = (i-output2);
+    000005D8 63A2                   MOV.L       @R10,R3
+    000005DA 65C3                   MOV         R12,R5
+    000005DC 3538                   SUB         R3,R5
+           NMS.c   444            while(planetY<0){
+    000005DE 4511                   CMP/PZ      R5
+    000005E0 8905                   BT          L467
+    000005E2              L468:                             
+           NMS.c   445                planetY=planetY*10;
+    000005E2 6353                   MOV         R5,R3
+    000005E4 4508                   SHLL2       R5
+    000005E6 353C                   ADD         R3,R5
+    000005E8 4500                   SHLL        R5
+    000005EA 4511                   CMP/PZ      R5
+    000005EC 8BF9                   BF          L468
+    000005EE              L467:                             
+           NMS.c   446            }
+           NMS.c   447            while(planetY>128){
+    000005EE 3547                   CMP/GT      R4,R5
+    000005F0 8B06                   BF          L469
+    000005F2              L470:                             
+           NMS.c   448                planetY=planetY/10;
+    000005F2 6153                   MOV         R5,R1
+    000005F4 D21C                   MOV.L       L484+2,R2  ; __divls
+    000005F6 420B                   JSR         @R2
+    000005F8 60D3                   MOV         R13,R0
+    000005FA 6503                   MOV         R0,R5
+    000005FC 3547                   CMP/GT      R4,R5
+    000005FE 89F8                   BT          L470
+    00000600              L469:                             
+           NMS.c   449            }
+           NMS.c   450            planetZ = (i-output3);
+    00000600 6392                   MOV.L       @R9,R3
+    00000602 67C3                   MOV         R12,R7
+    00000604 3738                   SUB         R3,R7
+           NMS.c   451            while(planetZ<0){
+    00000606 4711                   CMP/PZ      R7
+    00000608 8905                   BT          L471
+    0000060A              L472:                             
+           NMS.c   452                planetZ=planetZ*10;
+    0000060A 6373                   MOV         R7,R3
+    0000060C 4708                   SHLL2       R7
+    0000060E 373C                   ADD         R3,R7
+    00000610 4700                   SHLL        R7
+    00000612 4711                   CMP/PZ      R7
+    00000614 8BF9                   BF          L472
+    00000616              L471:                             
+           NMS.c   453            }
+           NMS.c   454            while(planetZ>128){
+    00000616 3747                   CMP/GT      R4,R7
+    00000618 8B06                   BF          L473
+    0000061A              L474:                             
+           NMS.c   455                planetZ=planetZ/10;
+    0000061A 6173                   MOV         R7,R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   24
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000061C D212                   MOV.L       L484+2,R2  ; __divls
+    0000061E 420B                   JSR         @R2
+    00000620 60D3                   MOV         R13,R0
+    00000622 6703                   MOV         R0,R7
+    00000624 3747                   CMP/GT      R4,R7
+    00000626 89F8                   BT          L474
+    00000628              L473:                             
+           NMS.c   456            }
+           NMS.c   457            planetStorageX1[i-26] = planetX;
+    00000628 60C3                   MOV         R12,R0
+    0000062A 70E6                   ADD         #-26,R0
+    0000062C 4008                   SHLL2       R0
+    0000062E 0866                   MOV.L       R6,@(R0,R8)
+           NMS.c   458            planetStorageY1[i-26] = planetY;
+    00000630 63E0                   MOV.B       @R14,R3
+    00000632 73E6                   ADD         #-26,R3
+    00000634 D00D                   MOV.L       L484+6,R0  ; _planetStorageY1
+    00000636 4308                   SHLL2       R3
+    00000638 0356                   MOV.L       R5,@(R0,R3)
+           NMS.c   459            planetStorageZ1[i-26] = planetZ;
+    0000063A 62E0                   MOV.B       @R14,R2
+    0000063C D00C                   MOV.L       L484+10,R0 ; _planetStorageZ1
+    0000063E 72E6                   ADD         #-26,R2
+    00000640 4208                   SHLL2       R2
+    00000642 0276                   MOV.L       R7,@(R0,R2)
+    00000644 63E0                   MOV.B       @R14,R3
+    00000646 7301                   ADD         #1,R3
+    00000648 2E30                   MOV.B       R3,@R14
+    0000064A              L461:                             
+    0000064A 62E0                   MOV.B       @R14,R2
+    0000064C 63F2                   MOV.L       @R15,R3
+    0000064E 3237                   CMP/GT      R3,R2
+    00000650 8BAD                   BF          L462
+           NMS.c   460        }
+           NMS.c   461    }
+    00000652 7F04                   ADD         #4,R15
+    00000654 4F26                   LDS.L       @R15+,PR
+    00000656 68F6                   MOV.L       @R15+,R8
+    00000658 69F6                   MOV.L       @R15+,R9
+    0000065A 6AF6                   MOV.L       @R15+,R10
+    0000065C 6BF6                   MOV.L       @R15+,R11
+    0000065E 6CF6                   MOV.L       @R15+,R12
+    00000660 6DF6                   MOV.L       @R15+,R13
+    00000662 000B                   RTS
+    00000664 6EF6                   MOV.L       @R15+,R14
+    00000666              L484:                             
+    00000666 0000                   .DATA.W     0
+    00000668 <00000000>             .DATA.L     __divls
+    0000066C <00000000>             .DATA.L     _planetStorageY1
+    00000670 <00000000>             .DATA.L     _planetStorageZ1
+           NMS.c   462    
+           NMS.c   463    
+           NMS.c   464    //****************************************************************************
+           NMS.c   465    //**************                                              ****************
+           NMS.c   466    //**************                 Notice!                      ****************
+           NMS.c   467    //**************                                              ****************
+           NMS.c   468    //**************  Please do not change the following source.  ****************
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   25
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+           NMS.c   469    //**************                                              ****************
+           NMS.c   470    //****************************************************************************
+           NMS.c   471    
+           NMS.c   472    
+           NMS.c   473    #pragma section _BR_Size
+           NMS.c   474    unsigned long BR_Size;
+           NMS.c   475    #pragma section
+           NMS.c   476    
+           NMS.c   477    
+           NMS.c   478    #pragma section _TOP
+           NMS.c   479    
+           NMS.c   480    //****************************************************************************
+           NMS.c   481    //  InitializeSystem
+           NMS.c   482    //
+           NMS.c   483    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+           NMS.c   484    //              OptionNum : Option Number (only eActivity)
+           NMS.c   485    //
+           NMS.c   486    //  retval  :   1 = No error / 0 = Error
+           NMS.c   487    //
+           NMS.c   488    //****************************************************************************
+           NMS.c   489    int InitializeSystem(int isAppli, unsigned short OptionNum)
+P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
+                                                           ; frame size=0
+           NMS.c   490    {
+           NMS.c   491        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L485+2,R3  ; _INIT_ADDIN_APPLICATION
+    00000002 432B                   JMP         @R3
+    00000004 0009                   NOP
+    00000006              L485:                             
+    00000006 0000                   .DATA.W     0
+    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
+           NMS.c   492    }
+           NMS.c   493    
+           NMS.c   494    #pragma section
+           NMS.c   495    
+C   00000000              _X0:                             ; static: X0
+    00000000 00181C80               .DATA.L     H'00181C80
+    00000004              _Y0:                             ; static: Y0
+    00000004 0020B980               .DATA.L     H'0020B980
+    00000008              _Z0:                             ; static: Z0
+    00000008 0029E300               .DATA.L     H'0029E300
+    0000000C              L372:
+    0000000C 2564                   .SDATA      "%d"
+    0000000E 00                     .DATA.B     H'00
+D   00000000              _X:                              ; static: X
+    00000000 00181C80               .DATA.L     H'00181C80
+    00000004              _Y:                              ; static: Y
+    00000004 0020B980               .DATA.L     H'0020B980
+    00000008              _Z:                              ; static: Z
+    00000008 0029E300               .DATA.L     H'0029E300
+    0000000C              _i:                              ; static: i
+    0000000C 00                     .DATA.B     H'00
+B   00000000              _output1:                        ; static: output1
+    00000000 00000004               .RES.L      1
+    00000004              _output2:                        ; static: output2
+    00000004 00000004               .RES.L      1
+    00000008              _output3:                        ; static: output3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE   26
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000008 00000004               .RES.L      1
+    0000000C              _planetStorageX1:                ; static: planetStorageX1
+    0000000C 000001F4               .RES.L      125
+    00000200              _planetStorageY1:                ; static: planetStorageY1
+    00000200 000001F4               .RES.L      125
+    000003F4              _planetStorageZ1:                ; static: planetStorageZ1
+    000003F4 000001F4               .RES.L      125
+B_B 00000000              _BR_Size:                        ; static: BR_Size
+    00000000 00000004               .RES.L      1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 20-May-2015 18:20:04  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         0
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      495
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               00000674 Byte(s)
+PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
+PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
+CONSTANT SECTION (C):                               0000000F Byte(s)
+CONSTANT SECTION (C_BR_Size):                       00000000 Byte(s)
+CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
+DATA     SECTION (D):                               0000000D Byte(s)
+DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
+DATA     SECTION (D_TOP):                           00000000 Byte(s)
+BSS      SECTION (B):                               000005E8 Byte(s)
+BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
+BSS      SECTION (B_TOP):                           00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 00000C88 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            8
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          22
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            86
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\Az\AppData\Local\Temp\hmk8E4B.tmp 
+

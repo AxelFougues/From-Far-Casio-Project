@@ -1,0 +1,17 @@
+[DLSimProject]
+Name=NMS
+Version=0.1
+Model=:fx-9860G.dlm
+SourcePath=SRC
+MemoryPath=INIT
+MemCardPath=SDCard
+
+[Program1]
+Program=NMS.G1A
+Debug=Debug\FXADDINror.dbg
+LoadAddress=80000000:90100000
+
+[Files]
+SourceFile=:NMS.c
+SourceFile=:MonochromeLib.c
+HeaderFile=:MonochromeLib.h

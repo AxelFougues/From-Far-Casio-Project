@@ -2,19 +2,19 @@
 
 [_1]
 Type=5
-Order=0
-Top=48
-Left=2280
+Order=2
+Top=300
+Left=13452
 Height=4740
 Width=5568
 State=0
 Flags=00000020
-Setting=46:1:REBORN.c
+Setting=410:3:NMS.c
 OptionA=0
 
 [_2]
 Type=1
-Order=6
+Order=3
 Top=12
 Left=7800
 Height=4740
@@ -37,23 +37,23 @@ OptionA=0
 
 [_4]
 Type=7
-Order=3
-Top=48
-Left=13356
-Height=11496
-Width=8196
-State=0
+Order=6
+Top=396
+Left=240
+Height=7416
+Width=9264
+State=16
 Flags=00000000
 OptionA=0
 
 [_5]
 Type=8
-Order=4
+Order=5
 Top=7908
 Left=2220
 Height=3228
-Width=5580
-State=0
+Width=5520
+State=16
 Flags=00000000
 OptionA=0
 
@@ -81,10 +81,10 @@ OptionA=0
 
 [_8]
 Type=17
-Order=5
+Order=4
 Top=12
 Left=-12
-Height=11112
+Height=9480
 Width=2232
 State=0
 Flags=00000000
@@ -92,11 +92,11 @@ OptionA=0
 
 [_9]
 Type=15
-Order=2
-Top=4740
-Left=2232
+Order=0
+Top=3504
+Left=8760
 Height=6348
-Width=5592
+Width=11352
 State=0
 Flags=00000000
 OptionA=0

@@ -10,8 +10,6 @@
 #include "fxlib.h"
 #include "stdio.h"
 #include "MonochromeLib.h"
-void userInterface();
-void display();
 void generateOutputs();
 void useOutputs();
 void displayExternal();
@@ -31,9 +29,9 @@ int output1, output2, output3;
 int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-1580160/128 donne le cube actuel(je crois)
 int const Y0=2144640;
 int const Z0=2745088;
-int X=1580160;         // coordonees    X%128 donne donc x dans le cube actuel
-int Y=2144640;
-int Z=2745088;
+int X=0;         // coordonees    X%128 donne donc x dans le cube actuel
+int Y=0;
+int Z=0;
 int planetStorageX1[125];
 int planetStorageY1[125];
 int planetStorageZ1[125];
@@ -41,144 +39,20 @@ char i = 0;
 int planetDensity = 0;
 int planetX, planetY, planetZ;
 int AddIn_main(int isAppli, unsigned short OptionNum){
-    //userInterface();
-    generateOutputs();                                   //normalement on apelle juste userInterface mais ca provoque le bug: Lignes de planentes 
-    displayExternal(0,0,0,0);
+    generateOutputs();
+    displayExternal(0);
     while(!IsKeyDown(KEY_CTRL_EXE)){
         Sleep(10);
     }
 }
-void userInterface(){
-    int x, y, z;
-    x =X%128;
-    y =Y%128;
-    z =Z%128;
-    ML_display_vram();
-    while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements           //Sys error quand gauche et droite
-        if(IsKeyDown(KEY_CTRL_UP)){
-            --Y;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_DOWN)){
-            ++Y;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_LEFT)){
-            --X;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_RIGHT)){
-            ++X;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_SHIFT)){
-            --Z;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_ALPHA)){
-            ++Z;
-            display(1,x,y,z);
-        }
-    }
-    display(0,x,y,z);
-}
-void display(call,x,y,z){
-    if(call){
-        generateOutputs();
-        useOutputs();
-        displayExternal(0,x,y,z);  //cube central
-        Z = Z-128;
-        generateOutputs();
-        useOutputs();
-        displayExternal(-1,x,y,z); //cube central arriere
-        Z = Z+128;
-        //if(x<=64 && y<=64){            //VVV cubes lateraux , n'existent pas encore dans dispExternal, les integrer depuis la v 0.1
-        //    for (i = 0; i < 1; ++i){
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y+128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x>=64 && y<=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y+128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x<=64 && y>=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y-128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x>=64 && y>=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y-128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-    
-    } //determine le cube a generer et apelle External 
-}
-void displayExternal(call,x,y,z){
+void displayExternal(call){
     i = 0;
     if(call==0){
         ML_clear_vram();
         while(i <= planetDensity){
-            ML_filled_circle(x+planetStorageX1[i], y+planetStorageY1[i], z+planetStorageZ1[i], 1);
+            ML_filled_circle(128-planetStorageX1[i], 128-planetStorageY1[i], planetStorageZ1[i], 1);
             ++i;
-//            Sleep(30); //observer la generation
+//            Sleep(30);
             ML_display_vram();
         }
     }
@@ -189,21 +63,21 @@ void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0
     //while (local>1000){
     //    local /= 10;
     //}
-    srand(X);
+    rand(X);
     output1 = rand() % 999;
     //output1 = local;
     //local = Y0-(Y/128);
     //while (local>1000){
     //    local /= 10;
     //}
-    srand(Y);
+    rand(Y);
     output2 = rand() % 999;
     //output2 = local;
     //local = Z0-(Z/128);
     //while (local>1000){
     //    local /= 10;
     //}
-    srand(Z);
+    rand(Z);
     output3 = rand() % 999;
     //output3 = local;
     //output1=output1*X;
@@ -229,8 +103,7 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
     planetDensity = 16 + (output1 / 10);
     planetX, planetY, planetZ;
     for (i = 26; i <= planetDensity+26; ++i){
-        output1= output1*i;
-        srand(output1+i);
+        rand(output1+i);
         planetX = rand() % 128;
 //        while(planetX<0){
 //            planetX=planetX*10;
@@ -238,7 +111,7 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
 //        while(planetX>128){
 //            planetX=planetX/10;
 //        }
-        srand(output2+i);
+        rand(output2+i);
         planetY = rand() % 128;
 //        while(planetY<0){
 //            planetY=planetY*10;
@@ -246,7 +119,7 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
 //        while(planetY>128){
 //            planetY=planetY/10;
 //        }
-        srand(output3+i);
+        rand(output3+i);
         planetZ = (rand() % 2)+1;
 //        while(planetZ<0){
 //            planetZ=planetZ*10;

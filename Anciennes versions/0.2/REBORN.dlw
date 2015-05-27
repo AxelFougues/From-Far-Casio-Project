@@ -3,13 +3,13 @@
 [_1]
 Type=5
 Order=0
-Top=48
-Left=2280
+Top=12
+Left=2232
 Height=4740
 Width=5568
 State=0
 Flags=00000020
-Setting=46:1:REBORN.c
+Setting=44:1:REBORN.c
 OptionA=0
 
 [_2]
@@ -37,18 +37,18 @@ OptionA=0
 
 [_4]
 Type=7
-Order=3
-Top=48
-Left=13356
-Height=11496
-Width=8196
+Order=4
+Top=4740
+Left=2220
+Height=3168
+Width=5568
 State=0
 Flags=00000000
 OptionA=0
 
 [_5]
 Type=8
-Order=4
+Order=3
 Top=7908
 Left=2220
 Height=3228

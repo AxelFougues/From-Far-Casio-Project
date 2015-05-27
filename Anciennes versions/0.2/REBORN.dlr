@@ -1,0 +1,11 @@
+[DLSimRunSpace]
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Anciennes versions\0.2\REBORN.c
+Name=planetStorageZ1
+Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Anciennes versions\0.2\REBORN.c
+Name=planetStorageY1
+Flags=00002042

@@ -5,8 +5,8 @@
 # Directory defines
 TCDIR = A:\Programmes\OS\SH
 OSDIR = A:\Programmes\OS
-APPDIR = A:\Desktop\From-Far-Casio-Project\Projet en cours
-OUTDIR = A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug
+APPDIR = A:\Dropbox\No man's Space\generateur 0.1
+OUTDIR = A:\Dropbox\No man's Space\generateur 0.1\Debug
 
 ################
 # Main Defines
@@ -26,7 +26,7 @@ SHLINK04_DEP2="$(OSDIR)\FX\lib\setup.obj"
 
 #######################
 # Files to build
-FILE0=REBORN
+FILE0=NMS
 FILESRC0="$(APPDIR)\$(FILE0).c"
 FILEOBJ0="$(OUTDIR)\$(FILE0).obj"
 FILE1=MonochromeLib

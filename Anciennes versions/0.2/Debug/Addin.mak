@@ -5,8 +5,8 @@
 # Directory defines
 TCDIR = A:\Programmes\OS\SH
 OSDIR = A:\Programmes\OS
-APPDIR = A:\Desktop\From-Far-Casio-Project\Projet en cours
-OUTDIR = A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug
+APPDIR = A:\Desktop\From-Far-Casio-Project\Anciennes versions\0.2
+OUTDIR = A:\Desktop\From-Far-Casio-Project\Anciennes versions\0.2\Debug
 
 ################
 # Main Defines
