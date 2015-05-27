@@ -1,0 +1,45 @@
+MINERALS:( all to be renamed)
+-carbon
+-gold
+-silver
+-copper
+-diamond
+-zinc
+-titanium
+-steal
+-salt
+-sand
+-uranium
+
+CHEMICAL:
+-water
+-medecine
+-
+
+VEGETAL:
+-wood
+-fiber
+-oil
+-nutriments
+
+ANIMAL:
+-bone
+-leather
+-scales
+-venom
+-dna
+
+TECHNOLOGY:
+-radiation suit
+-heat suit
+-cold suit
+-repair kit
+-batteries
+-power generator
+-fuel tank
+-air tank
+-diving suit
+-container
+-laser ammo
+-explosive ammo
+-relic

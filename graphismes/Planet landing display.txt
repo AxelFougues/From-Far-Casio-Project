@@ -1,0 +1,8 @@
+-space aproach: cloud texture to be generated...
+-HIGHT FOG
+-hight orbit: cloud texture scrols on planet in opposite direction.
+-LOW FOG
+-low orbit: (zoomed cloud texture scrolling slow). entities(up veiw) and surface scrolling fast. air life
+-LANDING ANIMATION
+-ground: entities(side veiw)+surface slow scrolling
+  
