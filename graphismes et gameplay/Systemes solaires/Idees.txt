@@ -1,0 +1,25 @@
+L'orbite des planetes necessite une variable temps :( donc bof
+-pour l'instant tt les astres ont la meme taille c'est leur distance qui definit ca donc un gros 
+au milieu et des petits autour donne l'ipression qu'ils sont plus loin
+-L'option de plusieurs soleils est OBLIGATOIRE! (star wars fan)
+
+OP1  fesable, pas realiste dutout
+OP2  repetitif , moyenement moche
+OP3  joli, credible, magnifique mais j'aime pas! enfait si mais ca  pose le PB ci dessus
+OP4  realiste(ou presque ) moche et 'plat'
+Au passage les plnt de diff tailles pourquoi pas quand on est en mouvement ca se vera  non?
+Noircir celles qui sont loin, damier celles qui sont moyen et blanc celles qui sont pres
+Sauf soleils?
+de loin que les etoiles sont visibles <= PARFAIT
+
+
+GRANDE IDEE: distortion des distances quand on est "dans un sys solaire"
+Necessite qu'un perimetre (sphere) du sys soit defini, ou que 
+distance ship-soleil(s) < distance soleil(s)-planete la plus lointaine
+
+@ Des asteroides sont presents (meme que planetes mais bcp plus petits donc on ne les vois que de pres)
+     des formes polygones? pourqoi pas (difference avec les planetes)
+
+soleils=etoiles
+
+JE VAIS ATTENDRE D"AVOIR UN AVIS SUR CA AVANT DE ME LANCER
