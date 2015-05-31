@@ -11,7 +11,7 @@ MINERALS:( all to be renamed)
 -sand
 -uranium
 
-CHEMICAL:
+CONSUMABLES:
 -water
 -medecine
 -
