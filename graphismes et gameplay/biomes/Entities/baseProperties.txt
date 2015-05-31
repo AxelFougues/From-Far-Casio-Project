@@ -1,0 +1,17 @@
+variables:
+-Structure type (depends on planet's architecture type?)
+-landing platfors (type depends on structure, can be 0 )
+-Decorations (depend on structures and platforms, can be 0)
+-Landed ships (probability and size on platforms)
+-Flying (probability when no platform)
+
+Up view?
+depends on type and ?platforms? and ?ships? 
+
+
+Interactive!
+-shopping-selling system
+-energy/health slow recharge
+-possibility to map it and to ?fast travel?
+-upgrades (crafted ,can be instaled here?) ?
+-more?
