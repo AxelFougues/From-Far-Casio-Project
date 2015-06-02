@@ -9,6 +9,7 @@
 /*****************************************************************/
 #include "fxlib.h"
 #include "stdio.h"
+#include "math.h"
 #include "MonochromeLib.h"
 void userInterface();
 void display();
@@ -34,12 +35,16 @@ int const Z0=2745088;
 int X=1580160;         // coordonees    X%128 donne donc x dans le cube actuel
 int Y=2144640;
 int Z=2745088;
-int planetStorageX1[125];
-int planetStorageY1[125];
-int planetStorageZ1[125];
-char i = 0;
+int sunStorageX[10];
+int sunStorageY[10];
+int sunStorageZ[10];
+int astralStorageX1[90];
+int astralStorageY1[90];
+int astralStorageZ1[90];
+char i, o;
+int systemDensity = 0;
 int planetDensity = 0;
-int planetX, planetY, planetZ;
+int planetX, planetY, planetZ, sunX, sunY, sunZ;
 int AddIn_main(int isAppli, unsigned short OptionNum){
     //userInterface();
     generateOutputs();                                   //normalement on apelle juste userInterface mais ca provoque le bug: Lignes de planentes 
@@ -175,10 +180,10 @@ void displayExternal(call,x,y,z){
     i = 0;
     if(call==0){
         ML_clear_vram();
-        while(i <= planetDensity){
-            ML_filled_circle(x+planetStorageX1[i], y+planetStorageY1[i], z+planetStorageZ1[i], 1);
+        while(i <= systemDensity){
+            ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
             ++i;
-//            Sleep(30); //observer la generation
+            //            Sleep(30); //observer la generation
             ML_display_vram();
         }
     }
@@ -226,37 +231,54 @@ void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0
     useOutputs();
 }
 void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solaires)
-    planetDensity = 16 + (output1 / 10);
+    systemDensity = output1 / 100;
     planetX, planetY, planetZ;
-    for (i = 26; i <= planetDensity+26; ++i){
+    for (i = 0; i <= systemDensity; ++i){
+        //create suns
         output1= output1*i;
         srand(output1+i);
-        planetX = rand() % 128;
-//        while(planetX<0){
-//            planetX=planetX*10;
-//        }
-//        while(planetX>128){
-//            planetX=planetX/10;
-//        }
+        sunX = rand() % 128 +1000;
         srand(output2+i);
-        planetY = rand() % 128;
-//        while(planetY<0){
-//            planetY=planetY*10;
-//        }
-//        while(planetY>128){
-//            planetY=planetY/10;
-//        }
+        sunY = rand() % 128;
         srand(output3+i);
-        planetZ = (rand() % 2)+1;
-//        while(planetZ<0){
-//            planetZ=planetZ*10;
-//        }
-//        while(planetZ>128){
-//            planetZ=planetZ/10;
-//        }
-        planetStorageX1[i-26] = planetX;
-        planetStorageY1[i-26] = planetY;
-        planetStorageZ1[i-26] = planetZ;
+        sunZ = (rand() % 8)+1;
+        sunStorageX[i-26] = sunX;
+        sunStorageY[i-26] = sunY;
+        sunStorageZ[i-26] = sunZ;
+        planetDensity = rand() % 9;
+        for (o = 0; o < planetDensity; ++o){
+            //create planets around sun
+            ++i;
+            output1= output1*i;
+            srand(output1+i);
+            planetX = rand() % 62 -21;
+            if(planetX =< 9 && planetX >= 0){
+                planetX = planetX+9;
+            }
+            if(planetX => -9 && planetX < 0){
+                planetX = planetX-9;
+            }
+            planetX = sunX+planetX;
+            srand(output2+i);
+            planetY = rand() % 62 -21;
+            if(planetY =< 9 && planetY >= 0){
+                planetY = planetY+9;
+            }
+            if(planetY => -9 && planetY < 0){
+                planetY = planetY-9;
+            }
+            planetY = sunY+planetY;
+            while(sqrt(pow(planetX,2)+pow(planetY,2))>20){
+                ++planetX;
+                ++planetY;
+            }
+            srand(output3+i);
+            planetZ = (rand() % 2)+1;
+            astralStorageX1[i-26] = planetX;
+            astralStorageY1[i-26] = planetY;
+            astralStorageZ1[i-26] = planetZ;
+            
+        }
     }
 }
 
