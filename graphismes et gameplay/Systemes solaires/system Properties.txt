@@ -1,0 +1,3 @@
+Max sys per cube: 10?  ->systemDensity
+Max planets per sun: 9? in loop
+Max sun size: 
