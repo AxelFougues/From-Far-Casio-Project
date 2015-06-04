@@ -9,3 +9,13 @@ Flags=00002042
 File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
 Name=planetStorageY1
 Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
+Name=astralStorageZ1
+Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
+Name=sunStorageZ
+Flags=00002042

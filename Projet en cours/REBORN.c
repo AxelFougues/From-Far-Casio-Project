@@ -237,14 +237,14 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
         //create suns
         output1= output1*i;
         srand(output1+i);
-        sunX = rand() % 128 +1000;
+        sunX = rand() % 128;
         srand(output2+i);
         sunY = rand() % 128;
         srand(output3+i);
         sunZ = (rand() % 8)+1;
-        sunStorageX[i-26] = sunX;
-        sunStorageY[i-26] = sunY;
-        sunStorageZ[i-26] = sunZ;
+        sunStorageX[i] = sunX;
+        sunStorageY[i] = sunY;
+        sunStorageZ[i] = sunZ;
         planetDensity = rand() % 9;
         for (o = 0; o < planetDensity; ++o){
             //create planets around sun
@@ -252,19 +252,19 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
             output1= output1*i;
             srand(output1+i);
             planetX = rand() % 62 -21;
-            if(planetX =< 9 && planetX >= 0){
+            if(planetX <= 9 && planetX >= 0){
                 planetX = planetX+9;
             }
-            if(planetX => -9 && planetX < 0){
+            if(planetX >= -9 && planetX < 0){
                 planetX = planetX-9;
             }
             planetX = sunX+planetX;
             srand(output2+i);
             planetY = rand() % 62 -21;
-            if(planetY =< 9 && planetY >= 0){
+            if(planetY <= 9 && planetY >= 0){
                 planetY = planetY+9;
             }
-            if(planetY => -9 && planetY < 0){
+            if(planetY >= -9 && planetY < 0){
                 planetY = planetY-9;
             }
             planetY = sunY+planetY;

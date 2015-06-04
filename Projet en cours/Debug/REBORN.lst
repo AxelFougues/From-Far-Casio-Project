@@ -1,4 +1,4 @@
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    1
 
 ************ OBJECT LISTING ************
 
@@ -17,86 +17,93 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
         REBORN.c     9    /*****************************************************************/
         REBORN.c    10    #include "fxlib.h"
         REBORN.c    11    #include "stdio.h"
-        REBORN.c    12    #include "MonochromeLib.h"
-        REBORN.c    13    void userInterface();
-        REBORN.c    14    void display();
-        REBORN.c    15    void generateOutputs();
-        REBORN.c    16    void useOutputs();
-        REBORN.c    17    void displayExternal();
-        REBORN.c    18    //****************************************************************************
-        REBORN.c    19    //  AddIn_main (Sample program main function)
-        REBORN.c    20    //
-        REBORN.c    21    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
-        REBORN.c    22    //                        : 0 = This application is launched by a strip in eACT application.
-        REBORN.c    23    //
-        REBORN.c    24    //              OptionNum : Strip number (0~3)
-        REBORN.c    25    //                         (This parameter is only used when isAppli parameter is 0.)
-        REBORN.c    26    //
-        REBORN.c    27    //  retval  :   1 = No error / 0 = Error
-        REBORN.c    28    //
-        REBORN.c    29    //****************************************************************************
-        REBORN.c    30    int output1, output2, output3;
-        REBORN.c    31    int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-
+        REBORN.c    12    #include "math.h"
+        REBORN.c    13    #include "MonochromeLib.h"
+        REBORN.c    14    void userInterface();
+        REBORN.c    15    void display();
+        REBORN.c    16    void generateOutputs();
+        REBORN.c    17    void useOutputs();
+        REBORN.c    18    void displayExternal();
+        REBORN.c    19    //****************************************************************************
+        REBORN.c    20    //  AddIn_main (Sample program main function)
+        REBORN.c    21    //
+        REBORN.c    22    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
+        REBORN.c    23    //                        : 0 = This application is launched by a strip in eACT application.
+        REBORN.c    24    //
+        REBORN.c    25    //              OptionNum : Strip number (0~3)
+        REBORN.c    26    //                         (This parameter is only used when isAppli parameter is 0.)
+        REBORN.c    27    //
+        REBORN.c    28    //  retval  :   1 = No error / 0 = Error
+        REBORN.c    29    //
+        REBORN.c    30    //****************************************************************************
+        REBORN.c    31    int output1, output2, output3;
+        REBORN.c    32    int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-
                          +1580160/128 donne le cube actuel(je crois)
-        REBORN.c    32    int const Y0=2144640;
-        REBORN.c    33    int const Z0=2745088;
-        REBORN.c    34    int X=1580160;         // coordonees    X%128 donne donc x dans le cube actuel
-        REBORN.c    35    int Y=2144640;
-        REBORN.c    36    int Z=2745088;
-        REBORN.c    37    int planetStorageX1[125];
-        REBORN.c    38    int planetStorageY1[125];
-        REBORN.c    39    int planetStorageZ1[125];
-        REBORN.c    40    char i = 0;
-        REBORN.c    41    int planetDensity = 0;
-        REBORN.c    42    int planetX, planetY, planetZ;
-        REBORN.c    43    int AddIn_main(int isAppli, unsigned short OptionNum){
+        REBORN.c    33    int const Y0=2144640;
+        REBORN.c    34    int const Z0=2745088;
+        REBORN.c    35    int X=1580160;         // coordonees    X%128 donne donc x dans le cube actuel
+        REBORN.c    36    int Y=2144640;
+        REBORN.c    37    int Z=2745088;
+        REBORN.c    38    int sunStorageX[10];
+        REBORN.c    39    int sunStorageY[10];
+        REBORN.c    40    int sunStorageZ[10];
+        REBORN.c    41    int astralStorageX1[90];
+        REBORN.c    42    int astralStorageY1[90];
+        REBORN.c    43    int astralStorageZ1[90];
+        REBORN.c    44    char i, o;
+        REBORN.c    45    int systemDensity = 0;
+        REBORN.c    46    int planetDensity = 0;
+        REBORN.c    47    int planetX, planetY, planetZ, sunX, sunY, sunZ;
+        REBORN.c    48    int AddIn_main(int isAppli, unsigned short OptionNum){
 P   00000000              _AddIn_main:                     ; function: AddIn_main
                                                            ; frame size=16
     00000000 2FE6                   MOV.L       R14,@-R15
     00000002 2FD6                   MOV.L       R13,@-R15
     00000004 2FC6                   MOV.L       R12,@-R15
-    00000006 4F22                   STS.L       PR,@-R15
-        REBORN.c    44        generateOutputs();
-    00000008 B126                   BSR         _generateOutputs
-    0000000A 0009                   NOP
-        REBORN.c    45        displayExternal(0,0,0,0);
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    2
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    2
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
+    00000006 4F22                   STS.L       PR,@-R15
+        REBORN.c    49        //userInterface();
+        REBORN.c    50        generateOutputs();                                   //normalement on apelle juste userInterface mais 
+                         +ca provoque le bug: Lignes de planentes 
+    00000008 B126                   BSR         _generateOutputs
+    0000000A 0009                   NOP
+        REBORN.c    51        displayExternal(0,0,0,0);
     0000000C E700                   MOV         #0,R7
     0000000E 6673                   MOV         R7,R6
     00000010 6573                   MOV         R7,R5
     00000012 B0E5                   BSR         _displayExternal
     00000014 6473                   MOV         R7,R4
-    00000016 DC19                   MOV.L       L459+6,R12 ; _IsKeyDown
-    00000018 DD19                   MOV.L       L459+10,R13; _Sleep
-    0000001A 9E2C                   MOV.W       L459,R14   ; H'7534
-        REBORN.c    46        while(!IsKeyDown(KEY_CTRL_EXE)){
-    0000001C A002                   BRA         L439
+    00000016 DC19                   MOV.L       L511+6,R12 ; _IsKeyDown
+    00000018 DD19                   MOV.L       L511+10,R13; _Sleep
+    0000001A 9E2C                   MOV.W       L511,R14   ; H'7534
+        REBORN.c    52        while(!IsKeyDown(KEY_CTRL_EXE)){
+    0000001C A002                   BRA         L476
     0000001E 0009                   NOP
-    00000020              L440:                             
-        REBORN.c    47            Sleep(10);
+    00000020              L477:                             
+        REBORN.c    53            Sleep(10);
     00000020 4D0B                   JSR         @R13
     00000022 E40A                   MOV         #10,R4
-    00000024              L439:                             
+    00000024              L476:                             
     00000024 4C0B                   JSR         @R12
     00000026 64E3                   MOV         R14,R4
     00000028 2008                   TST         R0,R0
-    0000002A 89F9                   BT          L440
-        REBORN.c    48        }
-        REBORN.c    49    }
+    0000002A 89F9                   BT          L477
+        REBORN.c    54        }
+        REBORN.c    55    }
     0000002C 4F26                   LDS.L       @R15+,PR
     0000002E 6CF6                   MOV.L       @R15+,R12
     00000030 6DF6                   MOV.L       @R15+,R13
     00000032 000B                   RTS
     00000034 6EF6                   MOV.L       @R15+,R14
-        REBORN.c    50    void userInterface(){
+        REBORN.c    56    void userInterface(){
     00000036              _userInterface:                  ; function: userInterface
                                                            ; frame size=32
                                                            ; used runtime library name:
@@ -109,47 +116,47 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     00000040 2F96                   MOV.L       R9,@-R15
     00000042 2F86                   MOV.L       R8,@-R15
     00000044 4F22                   STS.L       PR,@-R15
-        REBORN.c    51        int x, y, z;
-        REBORN.c    52        x =X%128;
-    00000046 9C17                   MOV.W       L459+2,R12 ; H'0080
-    00000048 DD0E                   MOV.L       L459+14,R13; _X
+        REBORN.c    57        int x, y, z;
+        REBORN.c    58        x =X%128;
+    00000046 9C17                   MOV.W       L511+2,R12 ; H'0080
+    00000048 DD0E                   MOV.L       L511+14,R13; _X
     0000004A 61D2                   MOV.L       @R13,R1
-    0000004C D30E                   MOV.L       L459+18,R3 ; __modls
+    0000004C D30E                   MOV.L       L511+18,R3 ; __modls
     0000004E 430B                   JSR         @R3
     00000050 60C3                   MOV         R12,R0
     00000052 6A03                   MOV         R0,R10
-        REBORN.c    53        y =Y%128;
-    00000054 D80D                   MOV.L       L459+22,R8 ; _Y
-    00000056 6182                   MOV.L       @R8,R1
-    00000058 D20B                   MOV.L       L459+18,R2 ; __modls
-    0000005A 420B                   JSR         @R2
-    0000005C 60C3                   MOV         R12,R0
-    0000005E 6903                   MOV         R0,R9
-        REBORN.c    54        z =Z%128;
+        REBORN.c    59        y =Y%128;
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    3
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    3
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000060 D20B                   MOV.L       L459+26,R2 ; _Z
+    00000054 D80D                   MOV.L       L511+22,R8 ; _Y
+    00000056 6182                   MOV.L       @R8,R1
+    00000058 D20B                   MOV.L       L511+18,R2 ; __modls
+    0000005A 420B                   JSR         @R2
+    0000005C 60C3                   MOV         R12,R0
+    0000005E 6903                   MOV         R0,R9
+        REBORN.c    60        z =Z%128;
+    00000060 D20B                   MOV.L       L511+26,R2 ; _Z
     00000062 6122                   MOV.L       @R2,R1
-    00000064 D308                   MOV.L       L459+18,R3 ; __modls
+    00000064 D308                   MOV.L       L511+18,R3 ; __modls
     00000066 430B                   JSR         @R3
     00000068 60C3                   MOV         R12,R0
-        REBORN.c    55        ML_display_vram();
-    0000006A D30A                   MOV.L       L459+30,R3 ; _ML_display_vram
+        REBORN.c    61        ML_display_vram();
+    0000006A D30A                   MOV.L       L511+30,R3 ; _ML_display_vram
     0000006C 430B                   JSR         @R3
     0000006E 6B03                   MOV         R0,R11
-    00000070 DE02                   MOV.L       L459+6,R14 ; _IsKeyDown
-        REBORN.c    56        while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements           //Sys error quand gauc
+    00000070 DE02                   MOV.L       L511+6,R14 ; _IsKeyDown
+        REBORN.c    62        while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements           //Sys error quand gauc
                          +he et droite
-    00000072 A061                   BRA         L441
+    00000072 A061                   BRA         L478
     00000074 0009                   NOP
-    00000076              L459:                             
+    00000076              L511:                             
     00000076 7534                   .DATA.W     H'7534
     00000078 0080                   .DATA.W     H'0080
     0000007A 0000                   .DATA.W     0
@@ -160,15 +167,15 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     0000008C <00000000>             .DATA.L     _Y
     00000090 <00000000>             .DATA.L     _Z
     00000094 <00000000>             .DATA.L     _ML_display_vram
-    00000098              L442:                             
-        REBORN.c    57            if(IsKeyDown(KEY_CTRL_UP)){
-    00000098 948F                   MOV.W       L460,R4    ; H'7542
+    00000098              L479:                             
+        REBORN.c    63            if(IsKeyDown(KEY_CTRL_UP)){
+    00000098 948F                   MOV.W       L512,R4    ; H'7542
     0000009A 4E0B                   JSR         @R14
     0000009C 0009                   NOP
     0000009E 2008                   TST         R0,R0
-    000000A0 8907                   BT          L443
-        REBORN.c    58                --Y;
-        REBORN.c    59                display(1,x,y,z);
+    000000A0 8907                   BT          L480
+        REBORN.c    64                --Y;
+        REBORN.c    65                display(1,x,y,z);
     000000A2 67B3                   MOV         R11,R7
     000000A4 6282                   MOV.L       @R8,R2
     000000A6 6693                   MOV         R9,R6
@@ -177,43 +184,43 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     000000AC 2822                   MOV.L       R2,@R8
     000000AE B063                   BSR         _display
     000000B0 E401                   MOV         #1,R4
-    000000B2              L443:                             
-        REBORN.c    60            }
-        REBORN.c    61            if(IsKeyDown(KEY_CTRL_DOWN)){
-    000000B2 9483                   MOV.W       L460+2,R4  ; H'7547
+    000000B2              L480:                             
+        REBORN.c    66            }
+        REBORN.c    67            if(IsKeyDown(KEY_CTRL_DOWN)){
+    000000B2 9483                   MOV.W       L512+2,R4  ; H'7547
     000000B4 4E0B                   JSR         @R14
     000000B6 0009                   NOP
     000000B8 2008                   TST         R0,R0
-    000000BA 8907                   BT          L444
-        REBORN.c    62                ++Y;
-    000000BC 6382                   MOV.L       @R8,R3
-        REBORN.c    63                display(1,x,y,z);
-    000000BE 67B3                   MOV         R11,R7
-    000000C0 7301                   ADD         #1,R3
-    000000C2 6693                   MOV         R9,R6
-    000000C4 2832                   MOV.L       R3,@R8
+    000000BA 8907                   BT          L481
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    4
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    4
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
+        REBORN.c    68                ++Y;
+    000000BC 6382                   MOV.L       @R8,R3
+        REBORN.c    69                display(1,x,y,z);
+    000000BE 67B3                   MOV         R11,R7
+    000000C0 7301                   ADD         #1,R3
+    000000C2 6693                   MOV         R9,R6
+    000000C4 2832                   MOV.L       R3,@R8
     000000C6 65A3                   MOV         R10,R5
     000000C8 B056                   BSR         _display
     000000CA E401                   MOV         #1,R4
-    000000CC              L444:                             
-        REBORN.c    64            }
-        REBORN.c    65            if(IsKeyDown(KEY_CTRL_LEFT)){
-    000000CC 9477                   MOV.W       L460+4,R4  ; H'7544
+    000000CC              L481:                             
+        REBORN.c    70            }
+        REBORN.c    71            if(IsKeyDown(KEY_CTRL_LEFT)){
+    000000CC 9477                   MOV.W       L512+4,R4  ; H'7544
     000000CE 4E0B                   JSR         @R14
     000000D0 0009                   NOP
     000000D2 2008                   TST         R0,R0
-    000000D4 8907                   BT          L445
-        REBORN.c    66                --X;
-        REBORN.c    67                display(1,x,y,z);
+    000000D4 8907                   BT          L482
+        REBORN.c    72                --X;
+        REBORN.c    73                display(1,x,y,z);
     000000D6 67B3                   MOV         R11,R7
     000000D8 62D2                   MOV.L       @R13,R2
     000000DA 6693                   MOV         R9,R6
@@ -222,17 +229,17 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     000000E0 2D22                   MOV.L       R2,@R13
     000000E2 B049                   BSR         _display
     000000E4 E401                   MOV         #1,R4
-    000000E6              L445:                             
-        REBORN.c    68            }
-        REBORN.c    69            if(IsKeyDown(KEY_CTRL_RIGHT)){
-    000000E6 946B                   MOV.W       L460+6,R4  ; H'7545
+    000000E6              L482:                             
+        REBORN.c    74            }
+        REBORN.c    75            if(IsKeyDown(KEY_CTRL_RIGHT)){
+    000000E6 946B                   MOV.W       L512+6,R4  ; H'7545
     000000E8 4E0B                   JSR         @R14
     000000EA 0009                   NOP
     000000EC 2008                   TST         R0,R0
-    000000EE 8907                   BT          L446
-        REBORN.c    70                ++X;
+    000000EE 8907                   BT          L483
+        REBORN.c    76                ++X;
     000000F0 63D2                   MOV.L       @R13,R3
-        REBORN.c    71                display(1,x,y,z);
+        REBORN.c    77                display(1,x,y,z);
     000000F2 67B3                   MOV         R11,R7
     000000F4 7301                   ADD         #1,R3
     000000F6 6693                   MOV         R9,R6
@@ -240,46 +247,46 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     000000FA 65A3                   MOV         R10,R5
     000000FC B03C                   BSR         _display
     000000FE E401                   MOV         #1,R4
-    00000100              L446:                             
-        REBORN.c    72            }
-        REBORN.c    73            if(IsKeyDown(KEY_CTRL_SHIFT)){
-    00000100 945F                   MOV.W       L460+8,R4  ; H'7536
+    00000100              L483:                             
+        REBORN.c    78            }
+        REBORN.c    79            if(IsKeyDown(KEY_CTRL_SHIFT)){
+    00000100 945F                   MOV.W       L512+8,R4  ; H'7536
     00000102 4E0B                   JSR         @R14
     00000104 0009                   NOP
     00000106 2008                   TST         R0,R0
-    00000108 8908                   BT          L447
-        REBORN.c    74                --Z;
-        REBORN.c    75                display(1,x,y,z);
+    00000108 8908                   BT          L484
+        REBORN.c    80                --Z;
+        REBORN.c    81                display(1,x,y,z);
     0000010A 67B3                   MOV         R11,R7
-    0000010C D22E                   MOV.L       L460+14,R2 ; _Z
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000010C D22E                   MOV.L       L512+14,R2 ; _Z
     0000010E 6693                   MOV         R9,R6
     00000110 6322                   MOV.L       @R2,R3
     00000112 65A3                   MOV         R10,R5
     00000114 73FF                   ADD         #-1,R3
     00000116 2232                   MOV.L       R3,@R2
     00000118 B02E                   BSR         _display
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    5
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
     0000011A E401                   MOV         #1,R4
-    0000011C              L447:                             
-        REBORN.c    76            }
-        REBORN.c    77            if(IsKeyDown(KEY_CTRL_ALPHA)){
-    0000011C 9452                   MOV.W       L460+10,R4 ; H'7537
+    0000011C              L484:                             
+        REBORN.c    82            }
+        REBORN.c    83            if(IsKeyDown(KEY_CTRL_ALPHA)){
+    0000011C 9452                   MOV.W       L512+10,R4 ; H'7537
     0000011E 4E0B                   JSR         @R14
     00000120 0009                   NOP
     00000122 2008                   TST         R0,R0
-    00000124 8908                   BT          L441
-        REBORN.c    78                ++Z;
-        REBORN.c    79                display(1,x,y,z);
+    00000124 8908                   BT          L478
+        REBORN.c    84                ++Z;
+        REBORN.c    85                display(1,x,y,z);
     00000126 67B3                   MOV         R11,R7
-    00000128 D227                   MOV.L       L460+14,R2 ; _Z
+    00000128 D227                   MOV.L       L512+14,R2 ; _Z
     0000012A 6693                   MOV         R9,R6
     0000012C 6322                   MOV.L       @R2,R3
     0000012E 65A3                   MOV         R10,R5
@@ -287,224 +294,224 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     00000132 2232                   MOV.L       R3,@R2
     00000134 B020                   BSR         _display
     00000136 E401                   MOV         #1,R4
-    00000138              L441:                             
+    00000138              L478:                             
     00000138 61D2                   MOV.L       @R13,R1
-    0000013A D324                   MOV.L       L460+18,R3 ; __modls
+    0000013A D324                   MOV.L       L512+18,R3 ; __modls
     0000013C 430B                   JSR         @R3
     0000013E 60C3                   MOV         R12,R0
     00000140 8840                   CMP/EQ      #64,R0
-    00000142 8BA9                   BF          L442
-    00000144 D222                   MOV.L       L460+22,R2 ; _Y
+    00000142 8BA9                   BF          L479
+    00000144 D222                   MOV.L       L512+22,R2 ; _Y
     00000146 6122                   MOV.L       @R2,R1
-    00000148 D320                   MOV.L       L460+18,R3 ; __modls
+    00000148 D320                   MOV.L       L512+18,R3 ; __modls
     0000014A 430B                   JSR         @R3
     0000014C 60C3                   MOV         R12,R0
     0000014E 8840                   CMP/EQ      #64,R0
-    00000150 8BA2                   BF          L442
-    00000152 D01D                   MOV.L       L460+14,R0 ; _Z
-    00000154 D31D                   MOV.L       L460+18,R3 ; __modls
+    00000150 8BA2                   BF          L479
+    00000152 D01D                   MOV.L       L512+14,R0 ; _Z
+    00000154 D31D                   MOV.L       L512+18,R3 ; __modls
     00000156 6102                   MOV.L       @R0,R1
     00000158 430B                   JSR         @R3
     0000015A 60C3                   MOV         R12,R0
     0000015C 8840                   CMP/EQ      #64,R0
-    0000015E 8B9B                   BF          L442
-        REBORN.c    80            }
-        REBORN.c    81        }
-        REBORN.c    82        display(0,x,y,z);
+    0000015E 8B9B                   BF          L479
+        REBORN.c    86            }
+        REBORN.c    87        }
+        REBORN.c    88        display(0,x,y,z);
     00000160 4F26                   LDS.L       @R15+,PR
     00000162 67B3                   MOV         R11,R7
     00000164 68F6                   MOV.L       @R15+,R8
     00000166 6693                   MOV         R9,R6
     00000168 69F6                   MOV.L       @R15+,R9
     0000016A 65A3                   MOV         R10,R5
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
     0000016C 6AF6                   MOV.L       @R15+,R10
     0000016E E400                   MOV         #0,R4
     00000170 6BF6                   MOV.L       @R15+,R11
     00000172 6CF6                   MOV.L       @R15+,R12
     00000174 6DF6                   MOV.L       @R15+,R13
     00000176 6EF6                   MOV.L       @R15+,R14
-        REBORN.c    83    }
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    6
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-        REBORN.c    84    void display(call,x,y,z){
+        REBORN.c    89    }
+        REBORN.c    90    void display(call,x,y,z){
     00000178              _display:                        ; function: display
                                                            ; frame size=20
     00000178 2FE6                   MOV.L       R14,@-R15
-        REBORN.c    85        if(call){
+        REBORN.c    91        if(call){
     0000017A 2448                   TST         R4,R4
     0000017C 4F22                   STS.L       PR,@-R15
     0000017E 7FF4                   ADD         #-12,R15
     00000180 2F52                   MOV.L       R5,@R15
     00000182 1F61                   MOV.L       R6,@(4,R15)
-    00000184 8D28                   BT/S        L449
+    00000184 8D28                   BT/S        L486
     00000186 1F72                   MOV.L       R7,@(8,R15)
-        REBORN.c    86            generateOutputs();
+        REBORN.c    92            generateOutputs();
     00000188 B066                   BSR         _generateOutputs
     0000018A 0009                   NOP
-        REBORN.c    87            useOutputs();
+        REBORN.c    93            useOutputs();
     0000018C B090                   BSR         _useOutputs
     0000018E 0009                   NOP
-        REBORN.c    88            displayExternal(0,x,y,z);  //cube central
+        REBORN.c    94            displayExternal(0,x,y,z);  //cube central
     00000190 57F2                   MOV.L       @(8,R15),R7
     00000192 56F1                   MOV.L       @(4,R15),R6
     00000194 65F2                   MOV.L       @R15,R5
     00000196 B023                   BSR         _displayExternal
     00000198 E400                   MOV         #0,R4
-        REBORN.c    89            Z = Z-128;
-    0000019A DE0B                   MOV.L       L460+14,R14; _Z
+        REBORN.c    95            Z = Z-128;
+    0000019A DE0B                   MOV.L       L512+14,R14; _Z
     0000019C 62E2                   MOV.L       @R14,R2
     0000019E 7280                   ADD         #-128,R2
-        REBORN.c    90            generateOutputs();
+        REBORN.c    96            generateOutputs();
     000001A0 B05A                   BSR         _generateOutputs
     000001A2 2E22                   MOV.L       R2,@R14
-        REBORN.c    91            useOutputs();
+        REBORN.c    97            useOutputs();
     000001A4 B084                   BSR         _useOutputs
     000001A6 0009                   NOP
-        REBORN.c    92            displayExternal(-1,x,y,z); //cube central arriere
+        REBORN.c    98            displayExternal(-1,x,y,z); //cube central arriere
     000001A8 57F2                   MOV.L       @(8,R15),R7
     000001AA 56F1                   MOV.L       @(4,R15),R6
     000001AC 65F2                   MOV.L       @R15,R5
     000001AE B017                   BSR         _displayExternal
     000001B0 E4FF                   MOV         #-1,R4
-        REBORN.c    93            Z = Z+128;
-    000001B2 9308                   MOV.W       L460+12,R3 ; H'0080
+        REBORN.c    99            Z = Z+128;
+    000001B2 9308                   MOV.W       L512+12,R3 ; H'0080
     000001B4 62E2                   MOV.L       @R14,R2
-    000001B6 A00D                   BRA         L458
+    000001B6 A00D                   BRA         L509
     000001B8 0009                   NOP
-    000001BA              L460:                             
+    000001BA              L512:                             
     000001BA 7542                   .DATA.W     H'7542
     000001BC 7547                   .DATA.W     H'7547
     000001BE 7544                   .DATA.W     H'7544
     000001C0 7545                   .DATA.W     H'7545
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
     000001C2 7536                   .DATA.W     H'7536
     000001C4 7537                   .DATA.W     H'7537
     000001C6 0080                   .DATA.W     H'0080
     000001C8 <00000000>             .DATA.L     _Z
     000001CC <00000000>             .DATA.L     __modls
     000001D0 <00000000>             .DATA.L     _Y
-    000001D4              L458:                             
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    7
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
+    000001D4              L509:                             
     000001D4 323C                   ADD         R3,R2
     000001D6 2E22                   MOV.L       R2,@R14
-    000001D8              L449:                             
-        REBORN.c    94            //if(x<=64 && y<=64){            //VVV cubes lateraux , n'existent pas encore dans dispExternal, l
+    000001D8              L486:                             
+        REBORN.c   100            //if(x<=64 && y<=64){            //VVV cubes lateraux , n'existent pas encore dans dispExternal, l
                          +es integrer depuis la v 0.1
-        REBORN.c    95            //    for (i = 0; i < 1; ++i){
-        REBORN.c    96            //        X = X-128;
-        REBORN.c    97            //        generateOutputs();
-        REBORN.c    98            //        useOutputs();
-        REBORN.c    99            //        displayExternal(1+i);
-        REBORN.c   100            //        Y = Y-128;
-        REBORN.c   101            //        generateOutputs();
-        REBORN.c   102            //        useOutputs();
-        REBORN.c   103            //        displayExternal(3+i);
-        REBORN.c   104            //        X = X+128;
-        REBORN.c   105            //        generateOutputs();
-        REBORN.c   106            //        useOutputs();
-        REBORN.c   107            //        displayExternal(5+i);
-        REBORN.c   108            //        Y = Y+128;
-        REBORN.c   109            //        Z = Z-128;
-        REBORN.c   110            //    }
-        REBORN.c   111            //    Z = Z+128;
-        REBORN.c   112            //}
-        REBORN.c   113            //if(x>=64 && y<=64){
-        REBORN.c   114            //    for (i = 0; i < 1; ++i){
-        REBORN.c   115            //        X = X+128;
-        REBORN.c   116            //        generateOutputs();
-        REBORN.c   117            //        useOutputs();
-        REBORN.c   118            //        displayExternal(1+i);
-        REBORN.c   119            //        Y = Y-128;
-        REBORN.c   120            //        generateOutputs();
-        REBORN.c   121            //        useOutputs();
-        REBORN.c   122            //        displayExternal(3+i);
-        REBORN.c   123            //        X = X-128;
-        REBORN.c   124            //        generateOutputs();
-        REBORN.c   125            //        useOutputs();
-        REBORN.c   126            //        displayExternal(5+i);
-        REBORN.c   127            //        Y = Y+128;
-        REBORN.c   128            //        Z = Z-128;
-        REBORN.c   129            //    }
-        REBORN.c   130            //    Z = Z+128;
-        REBORN.c   131            //}
-        REBORN.c   132            //if(x<=64 && y>=64){
-        REBORN.c   133            //    for (i = 0; i < 1; ++i){
-        REBORN.c   134            //        X = X-128;
-        REBORN.c   135            //        generateOutputs();
-        REBORN.c   136            //        useOutputs();
-        REBORN.c   137            //        displayExternal(1+i);
-        REBORN.c   138            //        Y = Y+128;
-        REBORN.c   139            //        generateOutputs();
-        REBORN.c   140            //        useOutputs();
-        REBORN.c   141            //        displayExternal(3+i);
-        REBORN.c   142            //        X = X+128;
-        REBORN.c   143            //        generateOutputs();
-        REBORN.c   144            //        useOutputs();
-        REBORN.c   145            //        displayExternal(5+i);
-        REBORN.c   146            //        Y = Y-128;
+        REBORN.c   101            //    for (i = 0; i < 1; ++i){
+        REBORN.c   102            //        X = X-128;
+        REBORN.c   103            //        generateOutputs();
+        REBORN.c   104            //        useOutputs();
+        REBORN.c   105            //        displayExternal(1+i);
+        REBORN.c   106            //        Y = Y-128;
+        REBORN.c   107            //        generateOutputs();
+        REBORN.c   108            //        useOutputs();
+        REBORN.c   109            //        displayExternal(3+i);
+        REBORN.c   110            //        X = X+128;
+        REBORN.c   111            //        generateOutputs();
+        REBORN.c   112            //        useOutputs();
+        REBORN.c   113            //        displayExternal(5+i);
+        REBORN.c   114            //        Y = Y+128;
+        REBORN.c   115            //        Z = Z-128;
+        REBORN.c   116            //    }
+        REBORN.c   117            //    Z = Z+128;
+        REBORN.c   118            //}
+        REBORN.c   119            //if(x>=64 && y<=64){
+        REBORN.c   120            //    for (i = 0; i < 1; ++i){
+        REBORN.c   121            //        X = X+128;
+        REBORN.c   122            //        generateOutputs();
+        REBORN.c   123            //        useOutputs();
+        REBORN.c   124            //        displayExternal(1+i);
+        REBORN.c   125            //        Y = Y-128;
+        REBORN.c   126            //        generateOutputs();
+        REBORN.c   127            //        useOutputs();
+        REBORN.c   128            //        displayExternal(3+i);
+        REBORN.c   129            //        X = X-128;
+        REBORN.c   130            //        generateOutputs();
+        REBORN.c   131            //        useOutputs();
+        REBORN.c   132            //        displayExternal(5+i);
+        REBORN.c   133            //        Y = Y+128;
+        REBORN.c   134            //        Z = Z-128;
+        REBORN.c   135            //    }
+        REBORN.c   136            //    Z = Z+128;
+        REBORN.c   137            //}
+        REBORN.c   138            //if(x<=64 && y>=64){
+        REBORN.c   139            //    for (i = 0; i < 1; ++i){
+        REBORN.c   140            //        X = X-128;
+        REBORN.c   141            //        generateOutputs();
+        REBORN.c   142            //        useOutputs();
+        REBORN.c   143            //        displayExternal(1+i);
+        REBORN.c   144            //        Y = Y+128;
+        REBORN.c   145            //        generateOutputs();
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    8
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    8
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   147            //        Z = Z-128;
-        REBORN.c   148            //    }
-        REBORN.c   149            //    Z = Z+128;
-        REBORN.c   150            //}
-        REBORN.c   151            //if(x>=64 && y>=64){
-        REBORN.c   152            //    for (i = 0; i < 1; ++i){
-        REBORN.c   153            //        X = X+128;
-        REBORN.c   154            //        generateOutputs();
-        REBORN.c   155            //        useOutputs();
-        REBORN.c   156            //        displayExternal(1+i);
-        REBORN.c   157            //        Y = Y+128;
-        REBORN.c   158            //        generateOutputs();
-        REBORN.c   159            //        useOutputs();
-        REBORN.c   160            //        displayExternal(3+i);
-        REBORN.c   161            //        X = X-128;
-        REBORN.c   162            //        generateOutputs();
-        REBORN.c   163            //        useOutputs();
-        REBORN.c   164            //        displayExternal(5+i);
-        REBORN.c   165            //        Y = Y-128;
-        REBORN.c   166            //        Z = Z-128;
-        REBORN.c   167            //    }
-        REBORN.c   168            //    Z = Z+128;
-        REBORN.c   169            //}
-        REBORN.c   170        
-        REBORN.c   171        } //determine le cube a generer et apelle External 
-        REBORN.c   172    }
+        REBORN.c   146            //        useOutputs();
+        REBORN.c   147            //        displayExternal(3+i);
+        REBORN.c   148            //        X = X+128;
+        REBORN.c   149            //        generateOutputs();
+        REBORN.c   150            //        useOutputs();
+        REBORN.c   151            //        displayExternal(5+i);
+        REBORN.c   152            //        Y = Y-128;
+        REBORN.c   153            //        Z = Z-128;
+        REBORN.c   154            //    }
+        REBORN.c   155            //    Z = Z+128;
+        REBORN.c   156            //}
+        REBORN.c   157            //if(x>=64 && y>=64){
+        REBORN.c   158            //    for (i = 0; i < 1; ++i){
+        REBORN.c   159            //        X = X+128;
+        REBORN.c   160            //        generateOutputs();
+        REBORN.c   161            //        useOutputs();
+        REBORN.c   162            //        displayExternal(1+i);
+        REBORN.c   163            //        Y = Y+128;
+        REBORN.c   164            //        generateOutputs();
+        REBORN.c   165            //        useOutputs();
+        REBORN.c   166            //        displayExternal(3+i);
+        REBORN.c   167            //        X = X-128;
+        REBORN.c   168            //        generateOutputs();
+        REBORN.c   169            //        useOutputs();
+        REBORN.c   170            //        displayExternal(5+i);
+        REBORN.c   171            //        Y = Y-128;
+        REBORN.c   172            //        Z = Z-128;
+        REBORN.c   173            //    }
+        REBORN.c   174            //    Z = Z+128;
+        REBORN.c   175            //}
+        REBORN.c   176        
+        REBORN.c   177        } //determine le cube a generer et apelle External 
+        REBORN.c   178    }
     000001D8 7F0C                   ADD         #12,R15
     000001DA 4F26                   LDS.L       @R15+,PR
     000001DC 000B                   RTS
     000001DE 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   173    void displayExternal(call,x,y,z){
+        REBORN.c   179    void displayExternal(call,x,y,z){
     000001E0              _displayExternal:                ; function: displayExternal
                                                            ; frame size=44
     000001E0 2FE6                   MOV.L       R14,@-R15
-        REBORN.c   174        i = 0;
+        REBORN.c   180        i = 0;
     000001E2 E300                   MOV         #0,R3
     000001E4 2FD6                   MOV.L       R13,@-R15
-        REBORN.c   175        if(call==0){
+        REBORN.c   181        if(call==0){
     000001E6 2448                   TST         R4,R4
-    000001E8 DE3F                   MOV.L       L461+4,R14 ; _i
+    000001E8 DE46                   MOV.L       L513+2,R14 ; _i
     000001EA 2FC6                   MOV.L       R12,@-R15
     000001EC 2FB6                   MOV.L       R11,@-R15
     000001EE 2FA6                   MOV.L       R10,@-R15
@@ -515,31 +522,31 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     000001F8 1F51                   MOV.L       R5,@(4,R15)
     000001FA 1F62                   MOV.L       R6,@(8,R15)
     000001FC 2F72                   MOV.L       R7,@R15
-    000001FE 8F21                   BF/S        L450
-    00000200 2E30                   MOV.B       R3,@R14
-        REBORN.c   176            ML_clear_vram();
-    00000202 D13A                   MOV.L       L461+8,R1  ; _ML_clear_vram
-    00000204 410B                   JSR         @R1
-    00000206 0009                   NOP
-    00000208 D839                   MOV.L       L461+12,R8 ; _planetStorageX1
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    9
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    9
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    0000020A D93A                   MOV.L       L461+16,R9 ; _planetStorageY1
-    0000020C DA3A                   MOV.L       L461+20,R10; _planetStorageZ1
-    0000020E DB3B                   MOV.L       L461+24,R11; _ML_filled_circle
-    00000210 DC3B                   MOV.L       L461+28,R12; _planetDensity
-        REBORN.c   177            while(i <= planetDensity){
-    00000212 A013                   BRA         L451
+    000001FE 8F21                   BF/S        L487
+    00000200 2E30                   MOV.B       R3,@R14
+        REBORN.c   182            ML_clear_vram();
+    00000202 D141                   MOV.L       L513+6,R1  ; _ML_clear_vram
+    00000204 410B                   JSR         @R1
+    00000206 0009                   NOP
+    00000208 D840                   MOV.L       L513+10,R8 ; _astralStorageX1
+    0000020A D941                   MOV.L       L513+14,R9 ; _astralStorageY1
+    0000020C DA41                   MOV.L       L513+18,R10; _astralStorageZ1
+    0000020E DB42                   MOV.L       L513+22,R11; _ML_filled_circle
+    00000210 DC42                   MOV.L       L513+26,R12; _systemDensity
+        REBORN.c   183            while(i <= systemDensity){
+    00000212 A013                   BRA         L488
     00000214 0009                   NOP
-    00000216              L452:                             
-        REBORN.c   178                ML_filled_circle(x+planetStorageX1[i], y+planetStorageY1[i], z+planetStorageZ1[i], 1);
+    00000216              L489:                             
+        REBORN.c   184                ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
     00000216 E701                   MOV         #1,R7
     00000218 6DE0                   MOV.B       @R14,R13
     0000021A 4D08                   SHLL2       R13
@@ -554,23 +561,23 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     0000022C 52F1                   MOV.L       @(4,R15),R2
     0000022E 4B0B                   JSR         @R11
     00000230 342C                   ADD         R2,R4
-        REBORN.c   179                ++i;
+        REBORN.c   185                ++i;
     00000232 63E0                   MOV.B       @R14,R3
-        REBORN.c   180    //            Sleep(30); //observer la generation
-        REBORN.c   181                ML_display_vram();
-    00000234 D233                   MOV.L       L461+32,R2 ; _ML_display_vram
+        REBORN.c   186                //            Sleep(30); //observer la generation
+        REBORN.c   187                ML_display_vram();
+    00000234 D23A                   MOV.L       L513+30,R2 ; _ML_display_vram
     00000236 7301                   ADD         #1,R3
     00000238 420B                   JSR         @R2
     0000023A 2E30                   MOV.B       R3,@R14
-    0000023C              L451:                             
+    0000023C              L488:                             
     0000023C 61E0                   MOV.B       @R14,R1
     0000023E 63C2                   MOV.L       @R12,R3
     00000240 3137                   CMP/GT      R3,R1
-    00000242 8BE8                   BF          L452
-    00000244              L450:                             
-        REBORN.c   182            }
-        REBORN.c   183        }
-        REBORN.c   184    }
+    00000242 8BE8                   BF          L489
+    00000244              L487:                             
+        REBORN.c   188            }
+        REBORN.c   189        }
+        REBORN.c   190    }
     00000244 7F0C                   ADD         #12,R15
     00000246 4F26                   LDS.L       @R15+,PR
     00000248 68F6                   MOV.L       @R15+,R8
@@ -581,120 +588,120 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     00000252 6DF6                   MOV.L       @R15+,R13
     00000254 000B                   RTS
     00000256 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   185    void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+        REBORN.c   191    void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
     00000258              _generateOutputs:                ; function: generateOutputs
                                                            ; frame size=16
                                                            ; used runtime library name:
                                                            ; __modls
     00000258 2FE6                   MOV.L       R14,@-R15
     0000025A 2FD6                   MOV.L       R13,@-R15
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   10
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
     0000025C 2FC6                   MOV.L       R12,@-R15
     0000025E 4F22                   STS.L       PR,@-R15
-        REBORN.c   186        //int local, local1;
-        REBORN.c   187        //local = X0-(X/128);
-        REBORN.c   188        //while (local>1000){
-        REBORN.c   189        //    local /= 10;
-        REBORN.c   190        //}
-        REBORN.c   191        srand(X);
-    00000260 DE29                   MOV.L       L461+36,R14; _srand
-    00000262 D32A                   MOV.L       L461+40,R3 ; _X
+        REBORN.c   192        //int local, local1;
+        REBORN.c   193        //local = X0-(X/128);
+        REBORN.c   194        //while (local>1000){
+        REBORN.c   195        //    local /= 10;
+        REBORN.c   196        //}
+        REBORN.c   197        srand(X);
+    00000260 DE30                   MOV.L       L513+34,R14; _srand
+    00000262 D331                   MOV.L       L513+38,R3 ; _X
     00000264 4E0B                   JSR         @R14
     00000266 6432                   MOV.L       @R3,R4
-        REBORN.c   192        output1 = rand() % 999;
-    00000268 9C3C                   MOV.W       L461,R12   ; H'03E7
-    0000026A DD29                   MOV.L       L461+44,R13; _rand
+        REBORN.c   198        output1 = rand() % 999;
+    00000268 9C4B                   MOV.W       L513,R12   ; H'03E7
+    0000026A DD30                   MOV.L       L513+42,R13; _rand
     0000026C 4D0B                   JSR         @R13
     0000026E 0009                   NOP
-    00000270 D228                   MOV.L       L461+48,R2 ; __modls
+    00000270 D22F                   MOV.L       L513+46,R2 ; __modls
     00000272 6103                   MOV         R0,R1
     00000274 420B                   JSR         @R2
     00000276 60C3                   MOV         R12,R0
-    00000278 D327                   MOV.L       L461+52,R3 ; _output1
+    00000278 D32E                   MOV.L       L513+50,R3 ; _output1
     0000027A 2302                   MOV.L       R0,@R3
-        REBORN.c   193        //output1 = local;
-        REBORN.c   194        //local = Y0-(Y/128);
-        REBORN.c   195        //while (local>1000){
-        REBORN.c   196        //    local /= 10;
-        REBORN.c   197        //}
-        REBORN.c   198        srand(Y);
-    0000027C D227                   MOV.L       L461+56,R2 ; _Y
+        REBORN.c   199        //output1 = local;
+        REBORN.c   200        //local = Y0-(Y/128);
+        REBORN.c   201        //while (local>1000){
+        REBORN.c   202        //    local /= 10;
+        REBORN.c   203        //}
+        REBORN.c   204        srand(Y);
+    0000027C D22E                   MOV.L       L513+54,R2 ; _Y
     0000027E 4E0B                   JSR         @R14
     00000280 6422                   MOV.L       @R2,R4
-        REBORN.c   199        output2 = rand() % 999;
+        REBORN.c   205        output2 = rand() % 999;
     00000282 4D0B                   JSR         @R13
     00000284 0009                   NOP
     00000286 6103                   MOV         R0,R1
-    00000288 D322                   MOV.L       L461+48,R3 ; __modls
+    00000288 D329                   MOV.L       L513+46,R3 ; __modls
     0000028A 430B                   JSR         @R3
     0000028C 60C3                   MOV         R12,R0
-    0000028E D224                   MOV.L       L461+60,R2 ; _output2
-        REBORN.c   200        //output2 = local;
-        REBORN.c   201        //local = Z0-(Z/128);
-        REBORN.c   202        //while (local>1000){
-        REBORN.c   203        //    local /= 10;
-        REBORN.c   204        //}
-        REBORN.c   205        srand(Z);
-    00000290 D324                   MOV.L       L461+64,R3 ; _Z
+    0000028E D22B                   MOV.L       L513+58,R2 ; _output2
+        REBORN.c   206        //output2 = local;
+        REBORN.c   207        //local = Z0-(Z/128);
+        REBORN.c   208        //while (local>1000){
+        REBORN.c   209        //    local /= 10;
+        REBORN.c   210        //}
+        REBORN.c   211        srand(Z);
+    00000290 D32B                   MOV.L       L513+62,R3 ; _Z
     00000292 2202                   MOV.L       R0,@R2
     00000294 4E0B                   JSR         @R14
     00000296 6432                   MOV.L       @R3,R4
-        REBORN.c   206        output3 = rand() % 999;
-    00000298 4D0B                   JSR         @R13
-    0000029A 0009                   NOP
-    0000029C D21D                   MOV.L       L461+48,R2 ; __modls
-    0000029E 6103                   MOV         R0,R1
-    000002A0 420B                   JSR         @R2
-    000002A2 60C3                   MOV         R12,R0
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   11
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   11
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000002A4 D320                   MOV.L       L461+68,R3 ; _output3
+        REBORN.c   212        output3 = rand() % 999;
+    00000298 4D0B                   JSR         @R13
+    0000029A 0009                   NOP
+    0000029C D224                   MOV.L       L513+46,R2 ; __modls
+    0000029E 6103                   MOV         R0,R1
+    000002A0 420B                   JSR         @R2
+    000002A2 60C3                   MOV         R12,R0
+    000002A4 D327                   MOV.L       L513+66,R3 ; _output3
     000002A6 2302                   MOV.L       R0,@R3
-        REBORN.c   207        //output3 = local;
-        REBORN.c   208        //output1=output1*X;
-        REBORN.c   209        //output2=output2*Y;
-        REBORN.c   210        //output3=output3*Z;
-        REBORN.c   211        //do{                               // les outputs sont redimenssiones a un maximum de 999 
-        REBORN.c   212        //    local1 = output1%10;
-        REBORN.c   213        //    output1 = (output1-local1)/10;
-        REBORN.c   214        //} while (output1>1000);
-        REBORN.c   215        //do{
-        REBORN.c   216        //    local1 = output2%10;
-        REBORN.c   217        //    output2 = (output2-local1)/10;
-        REBORN.c   218        //} while (output2>1000);
-        REBORN.c   219        //do
-        REBORN.c   220        //{
-        REBORN.c   221        //    local1 = output3%10;
-        REBORN.c   222        //    output3 = (output3-local1)/10;
-        REBORN.c   223        //} while (output3>1000);
-        REBORN.c   224    
-        REBORN.c   225        useOutputs();
+        REBORN.c   213        //output3 = local;
+        REBORN.c   214        //output1=output1*X;
+        REBORN.c   215        //output2=output2*Y;
+        REBORN.c   216        //output3=output3*Z;
+        REBORN.c   217        //do{                               // les outputs sont redimenssiones a un maximum de 999 
+        REBORN.c   218        //    local1 = output1%10;
+        REBORN.c   219        //    output1 = (output1-local1)/10;
+        REBORN.c   220        //} while (output1>1000);
+        REBORN.c   221        //do{
+        REBORN.c   222        //    local1 = output2%10;
+        REBORN.c   223        //    output2 = (output2-local1)/10;
+        REBORN.c   224        //} while (output2>1000);
+        REBORN.c   225        //do
+        REBORN.c   226        //{
+        REBORN.c   227        //    local1 = output3%10;
+        REBORN.c   228        //    output3 = (output3-local1)/10;
+        REBORN.c   229        //} while (output3>1000);
+        REBORN.c   230    
+        REBORN.c   231        useOutputs();
     000002A8 4F26                   LDS.L       @R15+,PR
     000002AA 6CF6                   MOV.L       @R15+,R12
     000002AC 6DF6                   MOV.L       @R15+,R13
     000002AE 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   226    }
-        REBORN.c   227    void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solai
+        REBORN.c   232    }
+        REBORN.c   233    void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solai
                          +res)
     000002B0              _useOutputs:                     ; function: useOutputs
-                                                           ; frame size=36
+                                                           ; frame size=88
                                                            ; used runtime library name:
-                                                           ; __divls, __modls
+                                                           ; __divls, __modls, __addd, __itod, __gtd
     000002B0 2FE6                   MOV.L       R14,@-R15
     000002B2 2FD6                   MOV.L       R13,@-R15
     000002B4 2FC6                   MOV.L       R12,@-R15
@@ -704,257 +711,552 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
     000002BC 2F86                   MOV.L       R8,@-R15
     000002BE 4F22                   STS.L       PR,@-R15
     000002C0 4F12                   STS.L       MACL,@-R15
-        REBORN.c   228        planetDensity = 16 + (output1 / 10);
-    000002C2 DD15                   MOV.L       L461+52,R13; _output1
-    000002C4 D319                   MOV.L       L461+72,R3 ; __divls
-    000002C6 61D2                   MOV.L       @R13,R1
+        REBORN.c   234        systemDensity = output1 / 100;
+    000002C2 DA1C                   MOV.L       L513+50,R10; _output1
+    000002C4 D320                   MOV.L       L513+70,R3 ; __divls
+    000002C6 61A2                   MOV.L       @R10,R1
     000002C8 430B                   JSR         @R3
-    000002CA E00A                   MOV         #10,R0
-    000002CC D20C                   MOV.L       L461+28,R2 ; _planetDensity
-        REBORN.c   229        planetX, planetY, planetZ;
-        REBORN.c   230        for (i = 26; i <= planetDensity+26; ++i){
-    000002CE E31A                   MOV         #26,R3
-    000002D0 D817                   MOV.L       L461+76,R8 ; _planetY
-    000002D2 7010                   ADD         #16,R0
-    000002D4 D917                   MOV.L       L461+80,R9 ; _planetZ
-    000002D6 2202                   MOV.L       R0,@R2
-    000002D8 9A05                   MOV.W       L461+2,R10 ; H'0080
-    000002DA DB0B                   MOV.L       L461+36,R11; _srand
+    000002CA E064                   MOV         #100,R0
+    000002CC D213                   MOV.L       L513+26,R2 ; _systemDensity
+        REBORN.c   235        planetX, planetY, planetZ;
+        REBORN.c   236        for (i = 0; i <= systemDensity; ++i){
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   12
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   12
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000002DC DC0C                   MOV.L       L461+44,R12; _rand
-    000002DE DE02                   MOV.L       L461+4,R14 ; _i
-    000002E0 A06F                   BRA         L453
-    000002E2 2E30                   MOV.B       R3,@R14
-    000002E4              L461:                             
-    000002E4 03E7                   .DATA.W     H'03E7
-    000002E6 0080                   .DATA.W     H'0080
-    000002E8 <00000000>             .DATA.L     _i
-    000002EC <00000000>             .DATA.L     _ML_clear_vram
-    000002F0 <00000000>             .DATA.L     _planetStorageX1
-    000002F4 <00000000>             .DATA.L     _planetStorageY1
-    000002F8 <00000000>             .DATA.L     _planetStorageZ1
-    000002FC <00000000>             .DATA.L     _ML_filled_circle
-    00000300 <00000000>             .DATA.L     _planetDensity
-    00000304 <00000000>             .DATA.L     _ML_display_vram
-    00000308 <00000000>             .DATA.L     _srand
-    0000030C <00000000>             .DATA.L     _X
-    00000310 <00000000>             .DATA.L     _rand
-    00000314 <00000000>             .DATA.L     __modls
-    00000318 <00000000>             .DATA.L     _output1
-    0000031C <00000000>             .DATA.L     _Y
-    00000320 <00000000>             .DATA.L     _output2
-    00000324 <00000000>             .DATA.L     _Z
-    00000328 <00000000>             .DATA.L     _output3
-    0000032C <00000000>             .DATA.L     __divls
-    00000330 <00000000>             .DATA.L     _planetY
-    00000334 <00000000>             .DATA.L     _planetZ
-    00000338              L454:                             
-        REBORN.c   231            output1= output1*i;
-    00000338 62E0                   MOV.B       @R14,R2
-    0000033A 63D2                   MOV.L       @R13,R3
-    0000033C 0237                   MUL.L       R3,R2
-    0000033E 021A                   STS         MACL,R2
-    00000340 2D22                   MOV.L       R2,@R13
-        REBORN.c   232            srand(output1+i);
-    00000342 6323                   MOV         R2,R3
-    00000344 64E0                   MOV.B       @R14,R4
-    00000346 4B0B                   JSR         @R11
-    00000348 343C                   ADD         R3,R4
-        REBORN.c   233            planetX = rand() % 128;
-    0000034A 4C0B                   JSR         @R12
-    0000034C 0009                   NOP
-    0000034E 6103                   MOV         R0,R1
-    00000350 D224                   MOV.L       L462+2,R2  ; __modls
-    00000352 420B                   JSR         @R2
-    00000354 60A3                   MOV         R10,R0
-    00000356 D324                   MOV.L       L462+6,R3  ; _planetX
-        REBORN.c   234    //        while(planetX<0){
-        REBORN.c   235    //            planetX=planetX*10;
-        REBORN.c   236    //        }
-        REBORN.c   237    //        while(planetX>128){
-        REBORN.c   238    //            planetX=planetX/10;
-        REBORN.c   239    //        }
-        REBORN.c   240            srand(output2+i);
-    00000358 D124                   MOV.L       L462+10,R1 ; _output2
-    0000035A 2302                   MOV.L       R0,@R3
-    0000035C 64E0                   MOV.B       @R14,R4
+    000002CE E300                   MOV         #0,R3
+    000002D0 D81E                   MOV.L       L513+74,R8 ; _o
+    000002D2 2202                   MOV.L       R0,@R2
+    000002D4 D913                   MOV.L       L513+34,R9 ; _srand
+    000002D6 DB15                   MOV.L       L513+42,R11; _rand
+    000002D8 DC1D                   MOV.L       L513+78,R12; _planetY
+    000002DA DD1E                   MOV.L       L513+82,R13; _planetX
+    000002DC DE09                   MOV.L       L513+2,R14 ; _i
+    000002DE A13B                   BRA         L490
+    000002E0 2E30                   MOV.B       R3,@R14
+    000002E2              L491:                             
+        REBORN.c   237            //create suns
+        REBORN.c   238            output1= output1*i;
+    000002E2 62E0                   MOV.B       @R14,R2
+    000002E4 63A2                   MOV.L       @R10,R3
+    000002E6 0237                   MUL.L       R3,R2
+    000002E8 021A                   STS         MACL,R2
+        REBORN.c   239            srand(output1+i);
+    000002EA 6323                   MOV         R2,R3
+    000002EC 2A22                   MOV.L       R2,@R10
+    000002EE 64E0                   MOV.B       @R14,R4
+    000002F0 490B                   JSR         @R9
+    000002F2 343C                   ADD         R3,R4
+        REBORN.c   240            sunX = rand() % 128;
+    000002F4 4B0B                   JSR         @R11
+    000002F6 0009                   NOP
+    000002F8 4011                   CMP/PZ      R0
+    000002FA 8F2D                   BF/S        L492
+    000002FC E37F                   MOV         #127,R3
+    000002FE A030                   BRA         L493
+    00000300 2039                   AND         R3,R0
+    00000302              L513:                             
+    00000302 03E7                   .DATA.W     H'03E7
+    00000304 <00000000>             .DATA.L     _i
+    00000308 <00000000>             .DATA.L     _ML_clear_vram
+    0000030C <00000000>             .DATA.L     _astralStorageX1
+    00000310 <00000000>             .DATA.L     _astralStorageY1
+    00000314 <00000000>             .DATA.L     _astralStorageZ1
+    00000318 <00000000>             .DATA.L     _ML_filled_circle
+    0000031C <00000000>             .DATA.L     _systemDensity
+    00000320 <00000000>             .DATA.L     _ML_display_vram
+    00000324 <00000000>             .DATA.L     _srand
+    00000328 <00000000>             .DATA.L     _X
+    0000032C <00000000>             .DATA.L     _rand
+    00000330 <00000000>             .DATA.L     __modls
+    00000334 <00000000>             .DATA.L     _output1
+    00000338 <00000000>             .DATA.L     _Y
+    0000033C <00000000>             .DATA.L     _output2
+    00000340 <00000000>             .DATA.L     _Z
+    00000344 <00000000>             .DATA.L     _output3
+    00000348 <00000000>             .DATA.L     __divls
+    0000034C <00000000>             .DATA.L     _o
+    00000350 <00000000>             .DATA.L     _planetY
+    00000354 <00000000>             .DATA.L     _planetX
+    00000358              L492:                             
+    00000358 6007                   NOT         R0,R0
+    0000035A 7001                   ADD         #1,R0
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   13
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000035E 6212                   MOV.L       @R1,R2
-    00000360 4B0B                   JSR         @R11
-    00000362 342C                   ADD         R2,R4
-        REBORN.c   241            planetY = rand() % 128;
-    00000364 4C0B                   JSR         @R12
-    00000366 0009                   NOP
-    00000368 D31E                   MOV.L       L462+2,R3  ; __modls
-    0000036A 6103                   MOV         R0,R1
-    0000036C 430B                   JSR         @R3
-    0000036E 60A3                   MOV         R10,R0
-    00000370 2802                   MOV.L       R0,@R8
-        REBORN.c   242    //        while(planetY<0){
-        REBORN.c   243    //            planetY=planetY*10;
-        REBORN.c   244    //        }
-        REBORN.c   245    //        while(planetY>128){
-        REBORN.c   246    //            planetY=planetY/10;
-        REBORN.c   247    //        }
-        REBORN.c   248            srand(output3+i);
-    00000372 64E0                   MOV.B       @R14,R4
-    00000374 D21E                   MOV.L       L462+14,R2 ; _output3
-    00000376 6322                   MOV.L       @R2,R3
-    00000378 4B0B                   JSR         @R11
-    0000037A 343C                   ADD         R3,R4
-        REBORN.c   249            planetZ = (rand() % 2)+1;
-    0000037C 4C0B                   JSR         @R12
-    0000037E 0009                   NOP
-    00000380 4011                   CMP/PZ      R0
-    00000382 8B01                   BF          L455
-    00000384 A005                   BRA         L456
-    00000386 C901                   AND         #1,R0
-    00000388              L455:                             
-    00000388 6007                   NOT         R0,R0
-    0000038A 7001                   ADD         #1,R0
-    0000038C C901                   AND         #1,R0
-    0000038E 6007                   NOT         R0,R0
-    00000390 7001                   ADD         #1,R0
-    00000392              L456:                             
-    00000392 7001                   ADD         #1,R0
-        REBORN.c   250    //        while(planetZ<0){
-        REBORN.c   251    //            planetZ=planetZ*10;
-        REBORN.c   252    //        }
-        REBORN.c   253    //        while(planetZ>128){
-        REBORN.c   254    //            planetZ=planetZ/10;
-        REBORN.c   255    //        }
-        REBORN.c   256            planetStorageX1[i-26] = planetX;
-    00000394 D114                   MOV.L       L462+6,R1  ; _planetX
-    00000396 2902                   MOV.L       R0,@R9
-    00000398 62E0                   MOV.B       @R14,R2
-    0000039A 72E6                   ADD         #-26,R2
-    0000039C D015                   MOV.L       L462+18,R0 ; _planetStorageX1
-    0000039E 4208                   SHLL2       R2
-    000003A0 6312                   MOV.L       @R1,R3
-    000003A2 0236                   MOV.L       R3,@(R0,R2)
-        REBORN.c   257            planetStorageY1[i-26] = planetY;
-    000003A4 62E0                   MOV.B       @R14,R2
-    000003A6 72E6                   ADD         #-26,R2
-    000003A8 D013                   MOV.L       L462+22,R0 ; _planetStorageY1
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   14
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   13
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000003AA 4208                   SHLL2       R2
-    000003AC 6382                   MOV.L       @R8,R3
-    000003AE 0236                   MOV.L       R3,@(R0,R2)
-        REBORN.c   258            planetStorageZ1[i-26] = planetZ;
-    000003B0 62E0                   MOV.B       @R14,R2
-    000003B2 72E6                   ADD         #-26,R2
-    000003B4 D011                   MOV.L       L462+26,R0 ; _planetStorageZ1
-    000003B6 4208                   SHLL2       R2
-    000003B8 6392                   MOV.L       @R9,R3
-    000003BA 0236                   MOV.L       R3,@(R0,R2)
-    000003BC 62E0                   MOV.B       @R14,R2
-    000003BE 7201                   ADD         #1,R2
-    000003C0 2E20                   MOV.B       R2,@R14
-    000003C2              L453:                             
-    000003C2 63E0                   MOV.B       @R14,R3
-    000003C4 D10E                   MOV.L       L462+30,R1 ; _planetDensity
-    000003C6 6212                   MOV.L       @R1,R2
-    000003C8 721A                   ADD         #26,R2
-    000003CA 3327                   CMP/GT      R2,R3
-    000003CC 8BB4                   BF          L454
-        REBORN.c   259        }
-        REBORN.c   260    }
-    000003CE 4F16                   LDS.L       @R15+,MACL
-    000003D0 4F26                   LDS.L       @R15+,PR
-    000003D2 68F6                   MOV.L       @R15+,R8
-    000003D4 69F6                   MOV.L       @R15+,R9
-    000003D6 6AF6                   MOV.L       @R15+,R10
-    000003D8 6BF6                   MOV.L       @R15+,R11
-    000003DA 6CF6                   MOV.L       @R15+,R12
-    000003DC 6DF6                   MOV.L       @R15+,R13
-    000003DE 000B                   RTS
-    000003E0 6EF6                   MOV.L       @R15+,R14
-    000003E2              L462:                             
-    000003E2 0000                   .DATA.W     0
-    000003E4 <00000000>             .DATA.L     __modls
-    000003E8 <00000000>             .DATA.L     _planetX
-    000003EC <00000000>             .DATA.L     _output2
-    000003F0 <00000000>             .DATA.L     _output3
-    000003F4 <00000000>             .DATA.L     _planetStorageX1
-    000003F8 <00000000>             .DATA.L     _planetStorageY1
-    000003FC <00000000>             .DATA.L     _planetStorageZ1
-    00000400 <00000000>             .DATA.L     _planetDensity
-        REBORN.c   261    
-        REBORN.c   262    
-        REBORN.c   263    
-        REBORN.c   264    
-        REBORN.c   265    //****************************************************************************
-        REBORN.c   266    //**************                                              ****************
-        REBORN.c   267    //**************                 Notice!                      ****************
-        REBORN.c   268    //**************                                              ****************
-        REBORN.c   269    //**************  Please do not change the following source.  ****************
-        REBORN.c   270    //**************                                              ****************
-        REBORN.c   271    //****************************************************************************
-        REBORN.c   272    
-        REBORN.c   273    
-        REBORN.c   274    #pragma section _BR_Size
-        REBORN.c   275    unsigned long BR_Size;
+    0000035C 2039                   AND         R3,R0
+    0000035E 6007                   NOT         R0,R0
+    00000360 7001                   ADD         #1,R0
+    00000362              L493:                             
+    00000362 D186                   MOV.L       L514+2,R1  ; _sunX
+        REBORN.c   241            srand(output2+i);
+    00000364 D286                   MOV.L       L514+6,R2  ; _output2
+    00000366 2102                   MOV.L       R0,@R1
+    00000368 64E0                   MOV.B       @R14,R4
+    0000036A 6322                   MOV.L       @R2,R3
+    0000036C 490B                   JSR         @R9
+    0000036E 343C                   ADD         R3,R4
+        REBORN.c   242            sunY = rand() % 128;
+    00000370 4B0B                   JSR         @R11
+    00000372 0009                   NOP
+    00000374 4011                   CMP/PZ      R0
+    00000376 8F02                   BF/S        L494
+    00000378 E37F                   MOV         #127,R3
+    0000037A A005                   BRA         L495
+    0000037C 2039                   AND         R3,R0
+    0000037E              L494:                             
+    0000037E 6007                   NOT         R0,R0
+    00000380 7001                   ADD         #1,R0
+    00000382 2039                   AND         R3,R0
+    00000384 6007                   NOT         R0,R0
+    00000386 7001                   ADD         #1,R0
+    00000388              L495:                             
+    00000388 D17E                   MOV.L       L514+10,R1 ; _sunY
+    0000038A 2102                   MOV.L       R0,@R1
+        REBORN.c   243            srand(output3+i);
+    0000038C 64E0                   MOV.B       @R14,R4
+    0000038E D27E                   MOV.L       L514+14,R2 ; _output3
+    00000390 6322                   MOV.L       @R2,R3
+    00000392 490B                   JSR         @R9
+    00000394 343C                   ADD         R3,R4
+        REBORN.c   244            sunZ = (rand() % 8)+1;
+    00000396 4B0B                   JSR         @R11
+    00000398 0009                   NOP
+    0000039A 4011                   CMP/PZ      R0
+    0000039C 8B01                   BF          L496
+    0000039E A005                   BRA         L497
+    000003A0 C907                   AND         #7,R0
+    000003A2              L496:                             
+    000003A2 6007                   NOT         R0,R0
+    000003A4 7001                   ADD         #1,R0
+    000003A6 C907                   AND         #7,R0
+    000003A8 6007                   NOT         R0,R0
+    000003AA 7001                   ADD         #1,R0
+    000003AC              L497:                             
+    000003AC D277                   MOV.L       L514+18,R2 ; _sunZ
+    000003AE 7001                   ADD         #1,R0
+    000003B0 2202                   MOV.L       R0,@R2
+        REBORN.c   245            sunStorageX[i] = sunX;
+    000003B2 63E0                   MOV.B       @R14,R3
+    000003B4 D076                   MOV.L       L514+22,R0 ; _sunStorageX
+    000003B6 4308                   SHLL2       R3
+    000003B8 D270                   MOV.L       L514+2,R2  ; _sunX
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   15
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   14
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   276    #pragma section
-        REBORN.c   277    
-        REBORN.c   278    
-        REBORN.c   279    #pragma section _TOP
-        REBORN.c   280    
-        REBORN.c   281    //****************************************************************************
-        REBORN.c   282    //  InitializeSystem
-        REBORN.c   283    //
-        REBORN.c   284    //  param   :   isAppli   : 1 = Application / 0 = eActivity
-        REBORN.c   285    //              OptionNum : Option Number (only eActivity)
-        REBORN.c   286    //
-        REBORN.c   287    //  retval  :   1 = No error / 0 = Error
-        REBORN.c   288    //
-        REBORN.c   289    //****************************************************************************
-        REBORN.c   290    int InitializeSystem(int isAppli, unsigned short OptionNum)
+    000003BA 6122                   MOV.L       @R2,R1
+        REBORN.c   246            sunStorageY[i] = sunY;
+    000003BC D271                   MOV.L       L514+10,R2 ; _sunY
+    000003BE 0316                   MOV.L       R1,@(R0,R3)
+    000003C0 63E0                   MOV.B       @R14,R3
+    000003C2 4308                   SHLL2       R3
+    000003C4 D073                   MOV.L       L514+26,R0 ; _sunStorageY
+    000003C6 6122                   MOV.L       @R2,R1
+        REBORN.c   247            sunStorageZ[i] = sunZ;
+    000003C8 D270                   MOV.L       L514+18,R2 ; _sunZ
+    000003CA 0316                   MOV.L       R1,@(R0,R3)
+    000003CC 63E0                   MOV.B       @R14,R3
+    000003CE 4308                   SHLL2       R3
+    000003D0 D071                   MOV.L       L514+30,R0 ; _sunStorageZ
+    000003D2 6122                   MOV.L       @R2,R1
+        REBORN.c   248            planetDensity = rand() % 9;
+    000003D4 4B0B                   JSR         @R11
+    000003D6 0316                   MOV.L       R1,@(R0,R3)
+    000003D8 D370                   MOV.L       L514+34,R3 ; __modls
+    000003DA 6103                   MOV         R0,R1
+    000003DC 430B                   JSR         @R3
+    000003DE E009                   MOV         #9,R0
+    000003E0 D26F                   MOV.L       L514+38,R2 ; _planetDensity
+    000003E2 2202                   MOV.L       R0,@R2
+        REBORN.c   249            for (o = 0; o < planetDensity; ++o){
+    000003E4 A0AD                   BRA         L510
+    000003E6 E300                   MOV         #0,R3
+    000003E8              L499:                             
+        REBORN.c   250                //create planets around sun
+        REBORN.c   251                ++i;
+    000003E8 62E0                   MOV.B       @R14,R2
+    000003EA 7201                   ADD         #1,R2
+    000003EC 2E20                   MOV.B       R2,@R14
+        REBORN.c   252                output1= output1*i;
+    000003EE 63E0                   MOV.B       @R14,R3
+    000003F0 62A2                   MOV.L       @R10,R2
+    000003F2 0327                   MUL.L       R2,R3
+    000003F4 031A                   STS         MACL,R3
+    000003F6 2A32                   MOV.L       R3,@R10
+        REBORN.c   253                srand(output1+i);
+    000003F8 64E0                   MOV.B       @R14,R4
+    000003FA 490B                   JSR         @R9
+    000003FC 343C                   ADD         R3,R4
+        REBORN.c   254                planetX = rand() % 62 -21;
+    000003FE 4B0B                   JSR         @R11
+    00000400 0009                   NOP
+    00000402 6103                   MOV         R0,R1
+    00000404 D265                   MOV.L       L514+34,R2 ; __modls
+    00000406 420B                   JSR         @R2
+    00000408 E03E                   MOV         #62,R0
+    0000040A 70EB                   ADD         #-21,R0
+    0000040C 6403                   MOV         R0,R4
+    0000040E E309                   MOV         #9,R3
+    00000410 3437                   CMP/GT      R3,R4
+    00000412 8D05                   BT/S        L500
+    00000414 2D02                   MOV.L       R0,@R13
+    00000416 61D2                   MOV.L       @R13,R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   15
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000418 4111                   CMP/PZ      R1
+    0000041A 8B01                   BF          L500
+        REBORN.c   255                if(planetX <= 9 && planetX >= 0){
+        REBORN.c   256                    planetX = planetX+9;
+    0000041C 7409                   ADD         #9,R4
+    0000041E 2D42                   MOV.L       R4,@R13
+    00000420              L500:                             
+    00000420 64D2                   MOV.L       @R13,R4
+    00000422 E3F7                   MOV         #-9,R3
+    00000424 3433                   CMP/GE      R3,R4
+    00000426 8B03                   BF          L501
+    00000428 4411                   CMP/PZ      R4
+    0000042A 8901                   BT          L501
+        REBORN.c   257                }
+        REBORN.c   258                if(planetX >= -9 && planetX < 0){
+        REBORN.c   259                    planetX = planetX-9;
+    0000042C 74F7                   ADD         #-9,R4
+    0000042E 2D42                   MOV.L       R4,@R13
+    00000430              L501:                             
+        REBORN.c   260                }
+        REBORN.c   261                planetX = sunX+planetX;
+    00000430 D152                   MOV.L       L514+2,R1  ; _sunX
+    00000432 6312                   MOV.L       @R1,R3
+    00000434 62D2                   MOV.L       @R13,R2
+    00000436 323C                   ADD         R3,R2
+    00000438 2D22                   MOV.L       R2,@R13
+        REBORN.c   262                srand(output2+i);
+    0000043A 64E0                   MOV.B       @R14,R4
+    0000043C D250                   MOV.L       L514+6,R2  ; _output2
+    0000043E 6322                   MOV.L       @R2,R3
+    00000440 490B                   JSR         @R9
+    00000442 343C                   ADD         R3,R4
+        REBORN.c   263                planetY = rand() % 62 -21;
+    00000444 4B0B                   JSR         @R11
+    00000446 0009                   NOP
+    00000448 D354                   MOV.L       L514+34,R3 ; __modls
+    0000044A 6103                   MOV         R0,R1
+    0000044C 430B                   JSR         @R3
+    0000044E E03E                   MOV         #62,R0
+    00000450 70EB                   ADD         #-21,R0
+    00000452 6403                   MOV         R0,R4
+    00000454 E209                   MOV         #9,R2
+    00000456 3427                   CMP/GT      R2,R4
+    00000458 8D05                   BT/S        L502
+    0000045A 2C02                   MOV.L       R0,@R12
+    0000045C 61C2                   MOV.L       @R12,R1
+    0000045E 4111                   CMP/PZ      R1
+    00000460 8B01                   BF          L502
+        REBORN.c   264                if(planetY <= 9 && planetY >= 0){
+        REBORN.c   265                    planetY = planetY+9;
+    00000462 7409                   ADD         #9,R4
+    00000464 2C42                   MOV.L       R4,@R12
+    00000466              L502:                             
+    00000466 E2F7                   MOV         #-9,R2
+    00000468 64C2                   MOV.L       @R12,R4
+    0000046A 3423                   CMP/GE      R2,R4
+    0000046C 8B03                   BF          L503
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   16
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000046E 4411                   CMP/PZ      R4
+    00000470 8901                   BT          L503
+        REBORN.c   266                }
+        REBORN.c   267                if(planetY >= -9 && planetY < 0){
+        REBORN.c   268                    planetY = planetY-9;
+    00000472 74F7                   ADD         #-9,R4
+    00000474 2C42                   MOV.L       R4,@R12
+    00000476              L503:                             
+        REBORN.c   269                }
+        REBORN.c   270                planetY = sunY+planetY;
+    00000476 D143                   MOV.L       L514+10,R1 ; _sunY
+    00000478 62C2                   MOV.L       @R12,R2
+    0000047A 6312                   MOV.L       @R1,R3
+    0000047C 323C                   ADD         R3,R2
+        REBORN.c   271                while(sqrt(pow(planetX,2)+pow(planetY,2))>20){
+    0000047E A006                   BRA         L504
+    00000480 2C22                   MOV.L       R2,@R12
+    00000482              L505:                             
+        REBORN.c   272                    ++planetX;
+    00000482 61D2                   MOV.L       @R13,R1
+    00000484 7101                   ADD         #1,R1
+    00000486 2D12                   MOV.L       R1,@R13
+        REBORN.c   273                    ++planetY;
+    00000488 63C2                   MOV.L       @R12,R3
+    0000048A 7301                   ADD         #1,R3
+    0000048C 2C32                   MOV.L       R3,@R12
+    0000048E              L504:                             
+    0000048E 7FE8                   ADD         #-24,R15
+    00000490 D345                   MOV.L       L514+46,R3 ; __itod
+    00000492 E200                   MOV         #0,R2
+    00000494 2F26                   MOV.L       R2,@-R15
+    00000496 D243                   MOV.L       L514+42,R2 ; H'40000000
+    00000498 2F26                   MOV.L       R2,@-R15
+    0000049A 60D2                   MOV.L       @R13,R0
+    0000049C 7FF8                   ADD         #-8,R15
+    0000049E 430B                   JSR         @R3
+    000004A0 2FF6                   MOV.L       R15,@-R15
+    000004A2 E210                   MOV         #16,R2
+    000004A4 D141                   MOV.L       L514+50,R1 ; _pow
+    000004A6 32FC                   ADD         R15,R2
+    000004A8 410B                   JSR         @R1
+    000004AA 2F26                   MOV.L       R2,@-R15
+    000004AC D33E                   MOV.L       L514+46,R3 ; __itod
+    000004AE 7F0C                   ADD         #12,R15
+    000004B0 E200                   MOV         #0,R2
+    000004B2 2F26                   MOV.L       R2,@-R15
+    000004B4 D23B                   MOV.L       L514+42,R2 ; H'40000000
+    000004B6 2F26                   MOV.L       R2,@-R15
+    000004B8 60C2                   MOV.L       @R12,R0
+    000004BA 7FF8                   ADD         #-8,R15
+    000004BC 430B                   JSR         @R3
+    000004BE 2FF6                   MOV.L       R15,@-R15
+    000004C0 D13A                   MOV.L       L514+50,R1 ; _pow
+    000004C2 E210                   MOV         #16,R2
+    000004C4 32FC                   ADD         R15,R2
+    000004C6 410B                   JSR         @R1
+    000004C8 2F26                   MOV.L       R2,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   17
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000004CA 7F14                   ADD         #20,R15
+    000004CC D138                   MOV.L       L514+54,R1 ; __addd
+    000004CE 62F3                   MOV         R15,R2
+    000004D0 7210                   ADD         #16,R2
+    000004D2 410B                   JSR         @R1
+    000004D4 2F26                   MOV.L       R2,@-R15
+    000004D6 E308                   MOV         #8,R3
+    000004D8 33FC                   ADD         R15,R3
+    000004DA 2F36                   MOV.L       R3,@-R15
+    000004DC D335                   MOV.L       L514+58,R3 ; _sqrt
+    000004DE 430B                   JSR         @R3
+    000004E0 0009                   NOP
+    000004E2 7F0C                   ADD         #12,R15
+    000004E4 D335                   MOV.L       L514+66,R3 ; __gtd
+    000004E6 E000                   MOV         #0,R0
+    000004E8 2F06                   MOV.L       R0,@-R15
+    000004EA D033                   MOV.L       L514+62,R0 ; H'40340000
+    000004EC 430B                   JSR         @R3
+    000004EE 2F06                   MOV.L       R0,@-R15
+    000004F0 8800                   CMP/EQ      #0,R0
+    000004F2 8BC6                   BF          L505
+        REBORN.c   274                }
+        REBORN.c   275                srand(output3+i);
+    000004F4 64E0                   MOV.B       @R14,R4
+    000004F6 D224                   MOV.L       L514+14,R2 ; _output3
+    000004F8 6322                   MOV.L       @R2,R3
+    000004FA 490B                   JSR         @R9
+    000004FC 343C                   ADD         R3,R4
+        REBORN.c   276                planetZ = (rand() % 2)+1;
+    000004FE 4B0B                   JSR         @R11
+    00000500 0009                   NOP
+    00000502 4011                   CMP/PZ      R0
+    00000504 8B01                   BF          L506
+    00000506 A005                   BRA         L507
+    00000508 C901                   AND         #1,R0
+    0000050A              L506:                             
+    0000050A 6007                   NOT         R0,R0
+    0000050C 7001                   ADD         #1,R0
+    0000050E C901                   AND         #1,R0
+    00000510 6007                   NOT         R0,R0
+    00000512 7001                   ADD         #1,R0
+    00000514              L507:                             
+    00000514 D22A                   MOV.L       L514+70,R2 ; _planetZ
+    00000516 7001                   ADD         #1,R0
+    00000518 2202                   MOV.L       R0,@R2
+        REBORN.c   277                astralStorageX1[i-26] = planetX;
+    0000051A 63E0                   MOV.B       @R14,R3
+    0000051C D029                   MOV.L       L514+74,R0 ; _astralStorageX1
+    0000051E 73E6                   ADD         #-26,R3
+    00000520 61D2                   MOV.L       @R13,R1
+    00000522 4308                   SHLL2       R3
+    00000524 0316                   MOV.L       R1,@(R0,R3)
+        REBORN.c   278                astralStorageY1[i-26] = planetY;
+    00000526 63E0                   MOV.B       @R14,R3
+    00000528 D027                   MOV.L       L514+78,R0 ; _astralStorageY1
+    0000052A 73E6                   ADD         #-26,R3
+    0000052C 61C2                   MOV.L       @R12,R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   18
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000052E 4308                   SHLL2       R3
+    00000530 0316                   MOV.L       R1,@(R0,R3)
+        REBORN.c   279                astralStorageZ1[i-26] = planetZ;
+    00000532 63E0                   MOV.B       @R14,R3
+    00000534 D025                   MOV.L       L514+82,R0 ; _astralStorageZ1
+    00000536 73E6                   ADD         #-26,R3
+    00000538 6122                   MOV.L       @R2,R1
+    0000053A 4308                   SHLL2       R3
+    0000053C 0316                   MOV.L       R1,@(R0,R3)
+    0000053E 6380                   MOV.B       @R8,R3
+    00000540 7301                   ADD         #1,R3
+    00000542              L510:                             
+    00000542 2830                   MOV.B       R3,@R8
+    00000544 6280                   MOV.B       @R8,R2
+    00000546 D116                   MOV.L       L514+38,R1 ; _planetDensity
+    00000548 6312                   MOV.L       @R1,R3
+    0000054A 3233                   CMP/GE      R3,R2
+    0000054C 8901                   BT          L515
+    0000054E AF4B                   BRA         L499
+    00000550 0009                   NOP
+    00000552              L515:                             
+    00000552 60E0                   MOV.B       @R14,R0
+    00000554 7001                   ADD         #1,R0
+    00000556 2E00                   MOV.B       R0,@R14
+    00000558              L490:                             
+    00000558 63E0                   MOV.B       @R14,R3
+    0000055A D11D                   MOV.L       L514+86,R1 ; _systemDensity
+    0000055C 6212                   MOV.L       @R1,R2
+    0000055E 3327                   CMP/GT      R2,R3
+    00000560 8901                   BT          L516
+    00000562 AEBE                   BRA         L491
+    00000564 0009                   NOP
+    00000566              L516:                             
+        REBORN.c   280                
+        REBORN.c   281            }
+        REBORN.c   282        }
+        REBORN.c   283    }
+    00000566 4F16                   LDS.L       @R15+,MACL
+    00000568 4F26                   LDS.L       @R15+,PR
+    0000056A 68F6                   MOV.L       @R15+,R8
+    0000056C 69F6                   MOV.L       @R15+,R9
+    0000056E 6AF6                   MOV.L       @R15+,R10
+    00000570 6BF6                   MOV.L       @R15+,R11
+    00000572 6CF6                   MOV.L       @R15+,R12
+    00000574 6DF6                   MOV.L       @R15+,R13
+    00000576 000B                   RTS
+    00000578 6EF6                   MOV.L       @R15+,R14
+    0000057A              L514:                             
+    0000057A 0000                   .DATA.W     0
+    0000057C <00000000>             .DATA.L     _sunX
+    00000580 <00000000>             .DATA.L     _output2
+    00000584 <00000000>             .DATA.L     _sunY
+    00000588 <00000000>             .DATA.L     _output3
+    0000058C <00000000>             .DATA.L     _sunZ
+    00000590 <00000000>             .DATA.L     _sunStorageX
+    00000594 <00000000>             .DATA.L     _sunStorageY
+    00000598 <00000000>             .DATA.L     _sunStorageZ
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   19
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000059C <00000000>             .DATA.L     __modls
+    000005A0 <00000000>             .DATA.L     _planetDensity
+    000005A4 40000000               .DATA.L     H'40000000
+    000005A8 <00000000>             .DATA.L     __itod
+    000005AC <00000000>             .DATA.L     _pow
+    000005B0 <00000000>             .DATA.L     __addd
+    000005B4 <00000000>             .DATA.L     _sqrt
+    000005B8 40340000               .DATA.L     H'40340000
+    000005BC <00000000>             .DATA.L     __gtd
+    000005C0 <00000000>             .DATA.L     _planetZ
+    000005C4 <00000000>             .DATA.L     _astralStorageX1
+    000005C8 <00000000>             .DATA.L     _astralStorageY1
+    000005CC <00000000>             .DATA.L     _astralStorageZ1
+    000005D0 <00000000>             .DATA.L     _systemDensity
+        REBORN.c   284    
+        REBORN.c   285    
+        REBORN.c   286    
+        REBORN.c   287    
+        REBORN.c   288    //****************************************************************************
+        REBORN.c   289    //**************                                              ****************
+        REBORN.c   290    //**************                 Notice!                      ****************
+        REBORN.c   291    //**************                                              ****************
+        REBORN.c   292    //**************  Please do not change the following source.  ****************
+        REBORN.c   293    //**************                                              ****************
+        REBORN.c   294    //****************************************************************************
+        REBORN.c   295    
+        REBORN.c   296    
+        REBORN.c   297    #pragma section _BR_Size
+        REBORN.c   298    unsigned long BR_Size;
+        REBORN.c   299    #pragma section
+        REBORN.c   300    
+        REBORN.c   301    
+        REBORN.c   302    #pragma section _TOP
+        REBORN.c   303    
+        REBORN.c   304    //****************************************************************************
+        REBORN.c   305    //  InitializeSystem
+        REBORN.c   306    //
+        REBORN.c   307    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+        REBORN.c   308    //              OptionNum : Option Number (only eActivity)
+        REBORN.c   309    //
+        REBORN.c   310    //  retval  :   1 = No error / 0 = Error
+        REBORN.c   311    //
+        REBORN.c   312    //****************************************************************************
+        REBORN.c   313    int InitializeSystem(int isAppli, unsigned short OptionNum)
 P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
                                                            ; frame size=0
-        REBORN.c   291    {
-        REBORN.c   292        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
-    00000000 D301                   MOV.L       L463+2,R3  ; _INIT_ADDIN_APPLICATION
+        REBORN.c   314    {
+        REBORN.c   315        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L517+2,R3  ; _INIT_ADDIN_APPLICATION
     00000002 432B                   JMP         @R3
     00000004 0009                   NOP
-    00000006              L463:                             
+    00000006              L517:                             
     00000006 0000                   .DATA.W     0
     00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
-        REBORN.c   293    }
-        REBORN.c   294    
-        REBORN.c   295    #pragma section
+        REBORN.c   316    }
+        REBORN.c   317    
+        REBORN.c   318    #pragma section
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE   20
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
 C   00000000              _X0:                             ; static: X0
     00000000 00181C80               .DATA.L     H'00181C80
     00000004              _Y0:                             ; static: Y0
@@ -967,10 +1269,8 @@ D   00000000              _X:                              ; static: X
     00000004 0020B980               .DATA.L     H'0020B980
     00000008              _Z:                              ; static: Z
     00000008 0029E300               .DATA.L     H'0029E300
-    0000000C              _i:                              ; static: i
-    0000000C 00                     .DATA.B     H'00
-    0000000D 00000001               .RES.B      1
-    0000000E 00000002               .RES.W      1
+    0000000C              _systemDensity:                  ; static: systemDensity
+    0000000C 00000000               .DATA.L     H'00000000
     00000010              _planetDensity:                  ; static: planetDensity
     00000010 00000000               .DATA.L     H'00000000
 B   00000000              _output1:                        ; static: output1
@@ -979,27 +1279,35 @@ B   00000000              _output1:                        ; static: output1
     00000004 00000004               .RES.L      1
     00000008              _output3:                        ; static: output3
     00000008 00000004               .RES.L      1
-    0000000C              _planetStorageX1:                ; static: planetStorageX1
-    0000000C 000001F4               .RES.L      125
-    00000200              _planetStorageY1:                ; static: planetStorageY1
-    00000200 000001F4               .RES.L      125
-    000003F4              _planetStorageZ1:                ; static: planetStorageZ1
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE   16
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    000003F4 000001F4               .RES.L      125
-    000005E8              _planetX:                        ; static: planetX
-    000005E8 00000004               .RES.L      1
-    000005EC              _planetY:                        ; static: planetY
-    000005EC 00000004               .RES.L      1
-    000005F0              _planetZ:                        ; static: planetZ
-    000005F0 00000004               .RES.L      1
+    0000000C              _sunStorageX:                    ; static: sunStorageX
+    0000000C 00000028               .RES.L      10
+    00000034              _sunStorageY:                    ; static: sunStorageY
+    00000034 00000028               .RES.L      10
+    0000005C              _sunStorageZ:                    ; static: sunStorageZ
+    0000005C 00000028               .RES.L      10
+    00000084              _astralStorageX1:                ; static: astralStorageX1
+    00000084 00000168               .RES.L      90
+    000001EC              _astralStorageY1:                ; static: astralStorageY1
+    000001EC 00000168               .RES.L      90
+    00000354              _astralStorageZ1:                ; static: astralStorageZ1
+    00000354 00000168               .RES.L      90
+    000004BC              _i:                              ; static: i
+    000004BC 00000001               .RES.B      1
+    000004BD              _o:                              ; static: o
+    000004BD 00000001               .RES.B      1
+    000004BE 00000002               .RES.W      1
+    000004C0              _planetX:                        ; static: planetX
+    000004C0 00000004               .RES.L      1
+    000004C4              _planetY:                        ; static: planetY
+    000004C4 00000004               .RES.L      1
+    000004C8              _planetZ:                        ; static: planetZ
+    000004C8 00000004               .RES.L      1
+    000004CC              _sunX:                           ; static: sunX
+    000004CC 00000004               .RES.L      1
+    000004D0              _sunY:                           ; static: sunY
+    000004D0 00000004               .RES.L      1
+    000004D4              _sunZ:                           ; static: sunZ
+    000004D4 00000004               .RES.L      1
 B_B 00000000              _BR_Size:                        ; static: BR_Size
     00000000 00000004               .RES.L      1
 
@@ -1010,51 +1318,7 @@ B_B 00000000              _BR_Size:                        ; static: BR_Size
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 27-May-2015 12:48:06  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 04-Jun-2015 01:33:42  PAGE    1
 
 
 ******** STATISTICS INFORMATION ********
@@ -1070,13 +1334,13 @@ NUMBER OF WARNINGS:         0
 
 ******* SOURCE LINE INFORMATION ********
 
-COMPILED SOURCE LINE:      295
+COMPILED SOURCE LINE:      318
 
 
 
 ******* SECTION SIZE INFORMATION *******
 
-PROGRAM  SECTION (P):                               00000404 Byte(s)
+PROGRAM  SECTION (P):                               000005D4 Byte(s)
 PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
 PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
 CONSTANT SECTION (C):                               0000000C Byte(s)
@@ -1085,19 +1349,19 @@ CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
 DATA     SECTION (D):                               00000014 Byte(s)
 DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
 DATA     SECTION (D_TOP):                           00000000 Byte(s)
-BSS      SECTION (B):                               000005F4 Byte(s)
+BSS      SECTION (B):                               000004D8 Byte(s)
 BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
 BSS      SECTION (B_TOP):                           00000000 Byte(s)
 
- TOTAL PROGRAM SIZE: 00000A28 Byte(s)
+ TOTAL PROGRAM SIZE: 00000ADC Byte(s)
 
 
 
 ********** LABEL INFORMATION ***********
 
-NUMBER OF EXTERNAL REFERENCE SYMBOLS:           10
-NUMBER OF EXTERNAL DEFINITION SYMBOLS:          25
-NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            58
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:           15
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          33
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            87
 
 
 
@@ -1123,5 +1387,5 @@ NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            58
 *** COMMAND PARAMETER ***
 
 
-  -subcommand=C:\Users\Az\AppData\Local\Temp\hmk6633.tmp 
+  -subcommand=C:\Users\Az\AppData\Local\Temp\hmkB65.tmp 
 
