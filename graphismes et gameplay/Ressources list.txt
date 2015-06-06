@@ -1,4 +1,6 @@
-MINERALS:( all to be renamed)
+MINED:
+-stone
+-clay
 -carbon
 -gold
 -silver
@@ -10,36 +12,68 @@ MINERALS:( all to be renamed)
 -salt
 -sand
 -uranium
+-aluminium
+-ice
+-silicon
+-tin
+-sulfur
+-ancient tech
+-relic
 
 CONSUMABLES:
 -water
 -medecine
--
+- organic food
+-drugs
 
-VEGETAL:
--wood
--fiber
+HARVESTED:
+-wood(plaguier , differents types?)
 -oil
 -nutriments
+-seeds
+-halucinogenic plant
+-plasma
+-vine
+-fruit
+-coral
 
-ANIMAL:
+HUNTED:
 -bone
 -leather
 -scales
 -venom
--dna
+-acid
+-flesh
+-fat
+-fur
 
-TECHNOLOGY:
+CRAFTED:
+-calcium
+-plastic
+-fuel
+-plant fiber
+-stick
+-plank
+-glass
+-backpack
 -radiation suit
+-gass mask
 -heat suit
 -cold suit
 -repair kit
 -batteries
 -power generator
 -fuel tank
+(jetpack? why the f*ck not!)
 -air tank
 -diving suit
+-gun
+-blaster
+-excavator
 -container
 -laser ammo
 -explosive ammo
--relic
+-flash light
+-computer chip
+-carbon fiber
+-amulet
