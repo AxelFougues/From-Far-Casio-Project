@@ -19,3 +19,18 @@ Flags=00002042
 File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
 Name=sunStorageZ
 Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
+Name=sunStorageX
+Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
+Name=astralStorageY1
+Flags=00002042
+
+[Breakpoint]
+File=A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
+Name=astralStorageX1
+Flags=00002042

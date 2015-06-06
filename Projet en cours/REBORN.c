@@ -44,7 +44,7 @@ int astralStorageZ1[90];
 char i, o;
 int systemDensity = 0;
 int planetDensity = 0;
-int planetX, planetY, planetZ, sunX, sunY, sunZ;
+int planetX, planetY, planetZ, sunX, sunY, sunZ, planetCount;
 int AddIn_main(int isAppli, unsigned short OptionNum){
     //userInterface();
     generateOutputs();                                   //normalement on apelle juste userInterface mais ca provoque le bug: Lignes de planentes 
@@ -180,8 +180,15 @@ void displayExternal(call,x,y,z){
     i = 0;
     if(call==0){
         ML_clear_vram();
-        while(i <= systemDensity){
+        while(i <= planetCount){
             ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
+            ++i;
+            //            Sleep(30); //observer la generation
+            ML_display_vram();
+        }
+        i = 0;
+        while(i <= systemDensity){
+            ML_circle(x+sunStorageX[i], y+sunStorageY[i], z+sunStorageZ[i], 1);
             ++i;
             //            Sleep(30); //observer la generation
             ML_display_vram();
@@ -231,52 +238,60 @@ void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0
     useOutputs();
 }
 void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solaires)
-    systemDensity = output1 / 100;
+    srand(output1);
+    systemDensity = rand() % 9;
     planetX, planetY, planetZ;
+    planetCount=0;
     for (i = 0; i <= systemDensity; ++i){
         //create suns
+
         output1= output1*i;
         srand(output1+i);
-        sunX = rand() % 128;
+        sunX = (rand() % 120)+8;//X
         srand(output2+i);
-        sunY = rand() % 128;
+        sunY = (rand() % 120)+8;//Y
         srand(output3+i);
-        sunZ = (rand() % 8)+1;
-        sunStorageX[i] = sunX;
+        sunZ = (rand() % 6)+3;//Z
+        sunStorageX[i] = sunX;   //fill storage
         sunStorageY[i] = sunY;
         sunStorageZ[i] = sunZ;
-        planetDensity = rand() % 9;
+        planetDensity = (rand() % 30)+1;    // create density
         for (o = 0; o < planetDensity; ++o){
             //create planets around sun
-            ++i;
-            output1= output1*i;
-            srand(output1+i);
-            planetX = rand() % 62 -21;
+
+            //X
+            srand(output1+sunX+o);
+            planetX = (rand() % 47) -15;
             if(planetX <= 9 && planetX >= 0){
                 planetX = planetX+9;
             }
-            if(planetX >= -9 && planetX < 0){
+            if(planetX >= -9 && planetX <= 0){
                 planetX = planetX-9;
             }
             planetX = sunX+planetX;
-            srand(output2+i);
-            planetY = rand() % 62 -21;
+
+            //Y
+            srand(output2+sunY+o);
+            planetY = (rand() % 47) -15;
             if(planetY <= 9 && planetY >= 0){
                 planetY = planetY+9;
             }
-            if(planetY >= -9 && planetY < 0){
+            if(planetY >= -9 && planetY <= 0){
                 planetY = planetY-9;
             }
             planetY = sunY+planetY;
-            while(sqrt(pow(planetX,2)+pow(planetY,2))>20){
-                ++planetX;
-                ++planetY;
-            }
-            srand(output3+i);
-            planetZ = (rand() % 2)+1;
-            astralStorageX1[i-26] = planetX;
-            astralStorageY1[i-26] = planetY;
-            astralStorageZ1[i-26] = planetZ;
+            //while(sqrt(pow(planetX-sunX,2)+pow(planetY-sunY,2))>20){
+            //    --planetX;
+            //    --planetY;
+            //}
+
+            //Z
+            srand(output3+sunZ+o);
+            planetZ = (rand() % 2)+2;
+            astralStorageX1[o] = planetX;   //fill storage
+            astralStorageY1[o] = planetY;
+            astralStorageZ1[o] = planetZ;
+            ++planetCount;
             
         }
     }

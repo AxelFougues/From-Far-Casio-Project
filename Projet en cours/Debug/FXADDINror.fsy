@@ -1,4 +1,4 @@
-;HITACHI OPTIMIZING LINKAGE EDITOR GENERATED FILE 2015.06.04
+;HITACHI OPTIMIZING LINKAGE EDITOR GENERATED FILE 2015.06.06
 ;fsymbol = P
 
 ;SECTION NAME = P
@@ -7,241 +7,201 @@ _userInterface: .equ h'00300242
  .export _display
 _display: .equ h'00300384
  .export _generateOutputs
-_generateOutputs: .equ h'00300464
+_generateOutputs: .equ h'003004c0
  .export _useOutputs
-_useOutputs: .equ h'003004bc
+_useOutputs: .equ h'00300518
  .export _displayExternal
 _displayExternal: .equ h'003003ec
  .export _AddIn_main
 _AddIn_main: .equ h'0030020c
  .export _ML_vram_adress
-_ML_vram_adress: .equ h'003007e0
+_ML_vram_adress: .equ h'0030079c
  .export _ML_clear_vram
-_ML_clear_vram: .equ h'003007fc
+_ML_clear_vram: .equ h'003007b8
  .export _ML_clear_screen
-_ML_clear_screen: .equ h'00300858
+_ML_clear_screen: .equ h'00300814
  .export _ML_display_vram
-_ML_display_vram: .equ h'00300892
+_ML_display_vram: .equ h'0030084e
  .export _ML_set_contrast
-_ML_set_contrast: .equ h'003008dc
+_ML_set_contrast: .equ h'00300898
  .export _ML_get_contrast
-_ML_get_contrast: .equ h'003008e8
+_ML_get_contrast: .equ h'003008a4
  .export _ML_pixel
-_ML_pixel: .equ h'00300904
+_ML_pixel: .equ h'003008c0
  .export _ML_point
-_ML_point: .equ h'00300990
+_ML_point: .equ h'0030094c
  .export _ML_pixel_test
-_ML_pixel_test: .equ h'003009fe
+_ML_pixel_test: .equ h'003009ba
  .export _ML_line
-_ML_line: .equ h'00300a62
+_ML_line: .equ h'00300a1e
  .export _ML_horizontal_line
-_ML_horizontal_line: .equ h'00300b38
+_ML_horizontal_line: .equ h'00300af4
  .export _ML_vertical_line
-_ML_vertical_line: .equ h'00300de0
+_ML_vertical_line: .equ h'00300d9c
  .export _ML_rectangle
-_ML_rectangle: .equ h'00300f14
+_ML_rectangle: .equ h'00300ed0
  .export _ML_polygon
-_ML_polygon: .equ h'00301010
+_ML_polygon: .equ h'00300fcc
  .export _ML_filled_polygon
-_ML_filled_polygon: .equ h'00301124
+_ML_filled_polygon: .equ h'003010e0
  .export _ML_circle
-_ML_circle: .equ h'00301384
+_ML_circle: .equ h'00301340
  .export _ML_filled_circle
-_ML_filled_circle: .equ h'00301476
+_ML_filled_circle: .equ h'00301432
  .export _ML_ellipse
-_ML_ellipse: .equ h'00301528
+_ML_ellipse: .equ h'003014e4
  .export _ML_ellipse_in_rect
-_ML_ellipse_in_rect: .equ h'003017da
+_ML_ellipse_in_rect: .equ h'00301796
  .export _ML_filled_ellipse
-_ML_filled_ellipse: .equ h'00301832
+_ML_filled_ellipse: .equ h'003017ee
  .export _ML_filled_ellipse_in_rect
-_ML_filled_ellipse_in_rect: .equ h'00301aee
+_ML_filled_ellipse_in_rect: .equ h'00301aaa
  .export _ML_horizontal_scroll
-_ML_horizontal_scroll: .equ h'00301b46
+_ML_horizontal_scroll: .equ h'00301b02
  .export _ML_vertical_scroll
-_ML_vertical_scroll: .equ h'00301c7e
+_ML_vertical_scroll: .equ h'00301c3a
  .export _ML_bmp_or
-_ML_bmp_or: .equ h'00301d10
+_ML_bmp_or: .equ h'00301ccc
  .export _ML_bmp_and
-_ML_bmp_and: .equ h'00301e76
+_ML_bmp_and: .equ h'00301e32
  .export _ML_bmp_xor
-_ML_bmp_xor: .equ h'00301fec
+_ML_bmp_xor: .equ h'00301fa8
  .export _ML_bmp_or_cl
-_ML_bmp_or_cl: .equ h'00302150
+_ML_bmp_or_cl: .equ h'0030210c
  .export _ML_bmp_and_cl
-_ML_bmp_and_cl: .equ h'0030239e
+_ML_bmp_and_cl: .equ h'0030235a
  .export _ML_bmp_xor_cl
-_ML_bmp_xor_cl: .equ h'003025f8
+_ML_bmp_xor_cl: .equ h'003025b4
  .export _ML_bmp_8_or
-_ML_bmp_8_or: .equ h'00302846
+_ML_bmp_8_or: .equ h'00302802
  .export _ML_bmp_8_and
-_ML_bmp_8_and: .equ h'00302902
+_ML_bmp_8_and: .equ h'003028be
  .export _ML_bmp_8_xor
-_ML_bmp_8_xor: .equ h'003029c8
+_ML_bmp_8_xor: .equ h'00302984
  .export _ML_bmp_8_or_cl
-_ML_bmp_8_or_cl: .equ h'00302a86
+_ML_bmp_8_or_cl: .equ h'00302a42
  .export _ML_bmp_8_and_cl
-_ML_bmp_8_and_cl: .equ h'00302b74
+_ML_bmp_8_and_cl: .equ h'00302b30
  .export _ML_bmp_8_xor_cl
-_ML_bmp_8_xor_cl: .equ h'00302c62
+_ML_bmp_8_xor_cl: .equ h'00302c1e
  .export _ML_bmp_16_or
-_ML_bmp_16_or: .equ h'00302d50
+_ML_bmp_16_or: .equ h'00302d0c
  .export _ML_bmp_16_and
-_ML_bmp_16_and: .equ h'00302e1a
+_ML_bmp_16_and: .equ h'00302dd6
  .export _ML_bmp_16_xor
-_ML_bmp_16_xor: .equ h'00302ee8
+_ML_bmp_16_xor: .equ h'00302ea4
  .export _ML_bmp_16_or_cl
-_ML_bmp_16_or_cl: .equ h'00302fb8
+_ML_bmp_16_or_cl: .equ h'00302f74
  .export _ML_bmp_16_and_cl
-_ML_bmp_16_and_cl: .equ h'003030ca
+_ML_bmp_16_and_cl: .equ h'00303086
  .export _ML_bmp_16_xor_cl
-_ML_bmp_16_xor_cl: .equ h'003031e4
+_ML_bmp_16_xor_cl: .equ h'003031a0
  .export ___LINK_PROTECT
-___LINK_PROTECT: .equ h'003032fc
+___LINK_PROTECT: .equ h'003032b8
  .export _SetQuitHandler
-_SetQuitHandler: .equ h'00303300
+_SetQuitHandler: .equ h'003032bc
  .export _OnAppCloseDefault
-_OnAppCloseDefault: .equ h'00303306
+_OnAppCloseDefault: .equ h'003032c2
  .export __INITSCT_ADDIN
-__INITSCT_ADDIN: .equ h'0030335a
+__INITSCT_ADDIN: .equ h'00303316
  .export _INIT_ADDIN_APPLICATION
-_INIT_ADDIN_APPLICATION: .equ h'003033a2
+_INIT_ADDIN_APPLICATION: .equ h'0030335e
  .export __addd
-__addd: .equ h'003034e8
+__addd: .equ h'003034a4
  .export __subdr
-__subdr: .equ h'00303430
+__subdr: .equ h'003033ec
  .export __subd
-__subd: .equ h'00303418
+__subd: .equ h'003033d4
  .export __adds
-__adds: .equ h'003037ae
+__adds: .equ h'0030376a
  .export __subs
-__subs: .equ h'003037a8
+__subs: .equ h'00303764
  .export __dtoi
-__dtoi: .equ h'00303a14
+__dtoi: .equ h'003039d0
  .export __dtou
-__dtou: .equ h'00303a14
+__dtou: .equ h'003039d0
  .export __dtos
-__dtos: .equ h'00303aa0
+__dtos: .equ h'00303a5c
  .export __gtd
-__gtd: .equ h'00303b7c
+__gtd: .equ h'00303b38
  .export __itod
-__itod: .equ h'00303c24
+__itod: .equ h'00303be0
  .export __itos
-__itos: .equ h'00303c78
+__itos: .equ h'00303c34
  .export __lts
-__lts: .equ h'00303cd0
+__lts: .equ h'00303c8c
  .export __muld
-__muld: .equ h'00303dec
+__muld: .equ h'00303da8
  .export __divls
-__divls: .equ h'00303f5c
+__divls: .equ h'00303f18
  .export __modls
-__modls: .equ h'00304010
+__modls: .equ h'00303fcc
  .export _abs
-_abs: .equ h'003040d8
- .export _pow
-_pow: .equ h'003040e8
+_abs: .equ h'00304094
  .export _rand
-_rand: .equ h'0030418c
- .export _sqrt
-_sqrt: .equ h'003041b8
+_rand: .equ h'003040a4
  .export _srand
-_srand: .equ h'00304248
+_srand: .equ h'003040d0
  .export _Bdel_cychdr
-_Bdel_cychdr: .equ h'00304254
+_Bdel_cychdr: .equ h'003040dc
  .export _BfileFLS_CloseFile
-_BfileFLS_CloseFile: .equ h'00304264
+_BfileFLS_CloseFile: .equ h'003040ec
  .export _Bkey_Set_RepeatTime_Default
-_Bkey_Set_RepeatTime_Default: .equ h'00304274
+_Bkey_Set_RepeatTime_Default: .equ h'003040fc
  .export _CallbackAtQuitMainFunction
-_CallbackAtQuitMainFunction: .equ h'00304284
+_CallbackAtQuitMainFunction: .equ h'0030410c
  .export _flsFindClose
-_flsFindClose: .equ h'00304294
+_flsFindClose: .equ h'0030411c
  .export _free
-_free: .equ h'003042a4
+_free: .equ h'0030412c
  .export _GLibAddinAplExecutionCheck
-_GLibAddinAplExecutionCheck: .equ h'003042b4
+_GLibAddinAplExecutionCheck: .equ h'0030413c
  .export _Hmem_SetMMU
-_Hmem_SetMMU: .equ h'003042c4
+_Hmem_SetMMU: .equ h'0030414c
  .export _malloc
-_malloc: .equ h'003042d4
+_malloc: .equ h'0030415c
  .export _GetKeyWait
-_GetKeyWait: .equ h'003042e4
+_GetKeyWait: .equ h'0030416c
  .export _Bkey_GetKeyTableInfo
-_Bkey_GetKeyTableInfo: .equ h'00304324
+_Bkey_GetKeyTableInfo: .equ h'003041ac
  .export _KeyCodeConvert
-_KeyCodeConvert: .equ h'00304380
+_KeyCodeConvert: .equ h'00304208
  .export __Delay
-__Delay: .equ h'003043f8
+__Delay: .equ h'00304280
  .export _Hkey_Check_Key_SDK
-_Hkey_Check_Key_SDK: .equ h'00304480
+_Hkey_Check_Key_SDK: .equ h'00304308
  .export _IsKeyDown
-_IsKeyDown: .equ h'003045ac
+_IsKeyDown: .equ h'00304434
  .export _IsKeyUp
-_IsKeyUp: .equ h'003045dc
+_IsKeyUp: .equ h'00304464
  .export _GetSDKLibraryVersion
-_GetSDKLibraryVersion: .equ h'00304628
+_GetSDKLibraryVersion: .equ h'003044b0
  .export _SetTimer
-_SetTimer: .equ h'0030462e
+_SetTimer: .equ h'003044b6
  .export _KillTimer
-_KillTimer: .equ h'00304682
+_KillTimer: .equ h'0030450a
  .export _Sleep
-_Sleep: .equ h'003046c6
- .export __dtoid
-__dtoid: .equ h'00304728
- .export __idtod
-__idtod: .equ h'003047f0
- .export __in_sqrtd
-__in_sqrtd: .equ h'00304924
+_Sleep: .equ h'0030454e
  .export __slow_mvn
-__slow_mvn: .equ h'00304a58
- .export __in_powd
-__in_powd: .equ h'00304a90
+__slow_mvn: .equ h'003045b0
  .export _Bcre_cychdr
-_Bcre_cychdr: .equ h'00304c94
+_Bcre_cychdr: .equ h'003045e8
  .export _Bkey_GetKeyTableInfoJumpFunc
-_Bkey_GetKeyTableInfoJumpFunc: .equ h'00304ca4
+_Bkey_GetKeyTableInfoJumpFunc: .equ h'003045f8
  .export _Bkey_GetKeyWait
-_Bkey_GetKeyWait: .equ h'00304cb4
+_Bkey_GetKeyWait: .equ h'00304608
  .export _BSrl_DummyWAIT
-_BSrl_DummyWAIT: .equ h'00304cc4
+_BSrl_DummyWAIT: .equ h'00304618
  .export _Bsta_cychdr
-_Bsta_cychdr: .equ h'00304cd4
+_Bsta_cychdr: .equ h'00304628
  .export _Bstp_cychdr
-_Bstp_cychdr: .equ h'00304ce4
+_Bstp_cychdr: .equ h'00304638
  .export _Chattering
-_Chattering: .equ h'00304cf4
+_Chattering: .equ h'00304648
  .export _GLibGetAddinLibInfo
-_GLibGetAddinLibInfo: .equ h'00304d04
+_GLibGetAddinLibInfo: .equ h'00304658
  .export _GLibGetOSVersionInfo
-_GLibGetOSVersionInfo: .equ h'00304d14
+_GLibGetOSVersionInfo: .equ h'00304668
  .export _SetIntFlagPaturn
-_SetIntFlagPaturn: .equ h'00304d24
- .export __in_eqd
-__in_eqd: .equ h'00304d34
- .export __in_ldexpd
-__in_ldexpd: .equ h'00304d9c
- .export __in_muld
-__in_muld: .equ h'00304e5a
- .export __in_truncd
-__in_truncd: .equ h'00304f1c
- .export __istyped
-__istyped: .equ h'00304f9c
- .export __quick_odd_mvn
-__quick_odd_mvn: .equ h'00304fe4
- .export __quick_evn_mvn
-__quick_evn_mvn: .equ h'00304fd8
- .export __in_expd
-__in_expd: .equ h'0030507c
- .export __in_logd
-__in_logd: .equ h'003052ac
- .export __in_addd
-__in_addd: .equ h'00305508
- .export __in_subd
-__in_subd: .equ h'003054fc
- .export __in_divd
-__in_divd: .equ h'0030564c
- .export __itoid
-__itoid: .equ h'00305730
- .export __polinod
-__polinod: .equ h'00305774
+_SetIntFlagPaturn: .equ h'00304678
  .end
