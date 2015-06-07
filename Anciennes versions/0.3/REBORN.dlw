@@ -2,14 +2,14 @@
 
 [_1]
 Type=5
-Order=0
+Order=1
 Top=-36
 Left=2160
 Height=4740
 Width=5568
 State=0
 Flags=00000020
-Setting=124:1:MonochromeLib.c
+Setting=65:1:REBORN.c
 OptionA=0
 
 [_2]
@@ -26,7 +26,7 @@ OptionB=12
 
 [_3]
 Type=6
-Order=1
+Order=2
 Top=4740
 Left=7800
 Height=6396
@@ -38,9 +38,9 @@ OptionA=0
 [_4]
 Type=7
 Order=4
-Top=504
+Top=1644
 Left=1200
-Height=8496
+Height=7356
 Width=6420
 State=0
 Flags=00000000
@@ -92,9 +92,9 @@ OptionA=0
 
 [_9]
 Type=15
-Order=2
-Top=744
-Left=-108
+Order=0
+Top=720
+Left=-48
 Height=6252
 Width=8424
 State=0

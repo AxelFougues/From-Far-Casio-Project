@@ -74,37 +74,6 @@ int AddIn_main(int isAppli, unsigned short OptionNum){
             ++z;
             displayExternal(0,x,y,z);
         }
-        if(x>128){
-            x=0;
-            ++X;
-            generateOutputs();
-        }
-        if(x<0){
-            x=128;
-            --X;
-            generateOutputs();
-        }
-        if(y>128){
-            y=0;
-            ++Y;
-            generateOutputs();
-        }
-        if(y<0){
-            y=128;
-            --Y;
-            generateOutputs();
-        }
-        if(z>128){
-            z=0;
-            ++Z;
-            generateOutputs();
-        }
-        if(z<0){
-            z=128;
-            --Z;
-            generateOutputs();
-        }
-
     }
         Sleep(10);
 }
@@ -244,12 +213,45 @@ void displayExternal(call,x,y,z){
     ML_display_vram();
 }
 void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
+    //int local, local1;
+    //local = X0-(X/128);
+    //while (local>1000){
+    //    local /= 10;
+    //}
     srand(X);
     output1 = rand() % 999;
+    //output1 = local;
+    //local = Y0-(Y/128);
+    //while (local>1000){
+    //    local /= 10;
+    //}
     srand(Y+1);
     output2 = rand() % 999;
+    //output2 = local;
+    //local = Z0-(Z/128);
+    //while (local>1000){
+    //    local /= 10;
+    //}
     srand(Z);
     output3 = rand() % 999;
+    //output3 = local;
+    //output1=output1*X;
+    //output2=output2*Y;
+    //output3=output3*Z;
+    //do{                               // les outputs sont redimenssiones a un maximum de 999 
+    //    local1 = output1%10;
+    //    output1 = (output1-local1)/10;
+    //} while (output1>1000);
+    //do{
+    //    local1 = output2%10;
+    //    output2 = (output2-local1)/10;
+    //} while (output2>1000);
+    //do
+    //{
+    //    local1 = output3%10;
+    //    output3 = (output3-local1)/10;
+    //} while (output3>1000);
+
     useOutputs();
 }
 void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solaires)
