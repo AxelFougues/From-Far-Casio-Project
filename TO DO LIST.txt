@@ -1,0 +1,7 @@
+-La perspective au niveau sys solaires, espacements plus grands quand plus près
+-Le multicube, generation des cubes d'espace voisin et scrolling
+-Amelioration du générateur
+-Niveau planétaire a commencer
+-Niveau ecosystème a commencer
+   -construre les squelletes standars des ellements et les variations
+-Develloper l'UI selon les dessins 
