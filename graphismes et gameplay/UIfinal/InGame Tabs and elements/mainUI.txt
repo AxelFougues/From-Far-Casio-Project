@@ -1,21 +1,18 @@
 TAB 1:Environment
 -air/liquid composition
 -temperature
--compass
--coordinates
-(-planet/base/solar sys name)
+-life/no life
+-compass (direction in space and on orbit)
+-planet/base/(solar sys name)/coordinates...
 
-TAB 2:Ship stats
+TAB 2:Ship stats (only on ship)
 -ammo
 -integrity
 -fuel
 
-TAB 3:Inventory+Craft
+TAB 3:Backpack+Craft
 -scrolable inventory per ressource type (select to send to crafting bench)
--crafting bench 3 slots + 3 unlockable
--process loading bar
--crafted item name and quantity
--selected item name and quantity
+-crafting bench 3 slots
 
 TAB 4:Auto Pilot
 -on/off/auto

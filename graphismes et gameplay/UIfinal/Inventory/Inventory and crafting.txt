@@ -1,0 +1,12 @@
+Screen only available in ship
+
+Backpack is smaller carryable inv.
+has option: quick drop to Ship or one by one using ?shift?
+quick drop , drops everything exept non-ship consumables and tools
+
+
+
+Craft: 6 spots, 3ulockable
+Output name and quantity
+Start stop button
+Process progression bar
