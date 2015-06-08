@@ -1,8 +1,8 @@
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    1
 
 ************ OBJECT LISTING ************
 
-FILE NAME: C:\Users\Az\From-Far-Casio-Project\Projet en cours\REBORN.c
+FILE NAME: A:\Desktop\From-Far-Casio-Project\Projet en cours\REBORN.c
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
@@ -19,1588 +19,1467 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
         REBORN.c    11    #include "stdio.h"
         REBORN.c    12    #include "math.h"
         REBORN.c    13    #include "MonochromeLib.h"
-        REBORN.c    14    void userInterface();
-        REBORN.c    15    void display();
-        REBORN.c    16    void generateOutputs();
-        REBORN.c    17    void useOutputs();
-        REBORN.c    18    void displayExternal();
-        REBORN.c    19    //****************************************************************************
-        REBORN.c    20    //  AddIn_main (Sample program main function)
-        REBORN.c    21    //
-        REBORN.c    22    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
-        REBORN.c    23    //                        : 0 = This application is launched by a strip in eACT application.
-        REBORN.c    24    //
-        REBORN.c    25    //              OptionNum : Strip number (0~3)
-        REBORN.c    26    //                         (This parameter is only used when isAppli parameter is 0.)
-        REBORN.c    27    //
-        REBORN.c    28    //  retval  :   1 = No error / 0 = Error
-        REBORN.c    29    //
-        REBORN.c    30    //****************************************************************************
-        REBORN.c    31    int output1, output2, output3;
-        REBORN.c    32    int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-
+        REBORN.c    14    void display();
+        REBORN.c    15    void generateOutputs();
+        REBORN.c    16    void useOutputs();
+        REBORN.c    17    void displayExternal();
+        REBORN.c    18    //****************************************************************************
+        REBORN.c    19    //  AddIn_main (Sample program main function)
+        REBORN.c    20    //
+        REBORN.c    21    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
+        REBORN.c    22    //                        : 0 = This application is launched by a strip in eACT application.
+        REBORN.c    23    //
+        REBORN.c    24    //              OptionNum : Strip number (0~3)
+        REBORN.c    25    //                         (This parameter is only used when isAppli parameter is 0.)
+        REBORN.c    26    //
+        REBORN.c    27    //  retval  :   1 = No error / 0 = Error
+        REBORN.c    28    //
+        REBORN.c    29    //****************************************************************************
+        REBORN.c    30    int output1, output2, output3;
+        REBORN.c    31    int const X0=1580160; // les trois seed sont considerees comme origines de l'espace. MULTIPLES DE 128, X0-
                          +1580160/128 donne le cube actuel(je crois)
-        REBORN.c    33    int const Y0=2144640;
-        REBORN.c    34    int const Z0=2745088;
-        REBORN.c    35    int X=0;         // coordonees    X%128 donne donc x dans le cube actuel
-        REBORN.c    36    int Y=0;
-        REBORN.c    37    int Z=0;
-        REBORN.c    38    int sunStorageX[10];
-        REBORN.c    39    int sunStorageY[10];
-        REBORN.c    40    int sunStorageZ[10];
-        REBORN.c    41    int astralStorageX1[90];
-        REBORN.c    42    int astralStorageY1[90];
-        REBORN.c    43    int astralStorageZ1[90];
-        REBORN.c    44    char i, o, p, x, y, z;
-        REBORN.c    45    int systemDensity = 0;
-        REBORN.c    46    int planetDensity = 0;
-        REBORN.c    47    int planetX, planetY, planetZ, sunX, sunY, sunZ, planetCount;
-        REBORN.c    48    int AddIn_main(int isAppli, unsigned short OptionNum){
+        REBORN.c    32    int const Y0=2144640;
+        REBORN.c    33    int const Z0=2745088;
+        REBORN.c    34    int X=0;         // coordonees    X%128 donne donc x dans le cube actuel
+        REBORN.c    35    int Y=0;
+        REBORN.c    36    int Z=0;
+        REBORN.c    37    int sunStorageX[10];
+        REBORN.c    38    int sunStorageY[10];
+        REBORN.c    39    int sunStorageZ[10];
+        REBORN.c    40    int astralStorageX1[90];
+        REBORN.c    41    int astralStorageY1[90];
+        REBORN.c    42    int astralStorageZ1[90];
+        REBORN.c    43    char i, o, p, x, y, z;
+        REBORN.c    44    int systemDensity = 0;
+        REBORN.c    45    int planetDensity = 0;
+        REBORN.c    46    int planetX, planetY, planetZ, sunX, sunY, sunZ, planetCount;
+        REBORN.c    47    int AddIn_main(int isAppli, unsigned short OptionNum){
 P   00000000              _AddIn_main:                     ; function: AddIn_main
                                                            ; frame size=32
     00000000 2FE6                   MOV.L       R14,@-R15
     00000002 2FD6                   MOV.L       R13,@-R15
     00000004 2FC6                   MOV.L       R12,@-R15
+    00000006 2FB6                   MOV.L       R11,@-R15
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    2
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    2
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000006 2FB6                   MOV.L       R11,@-R15
     00000008 2FA6                   MOV.L       R10,@-R15
     0000000A 2F96                   MOV.L       R9,@-R15
     0000000C 2F86                   MOV.L       R8,@-R15
     0000000E 4F22                   STS.L       PR,@-R15
-        REBORN.c    49        //userInterface();
-        REBORN.c    50        generateOutputs();                                   //normalement on apelle juste userInterface mais 
-                         +ca provoque le bug: Lignes de planentes 
-    00000010 B1FE                   BSR         _generateOutputs
+        REBORN.c    48        //userInterface();
+        REBORN.c    49        generateOutputs(); 
+    00000010 B1E4                   BSR         _generateOutputs
     00000012 0009                   NOP
-        REBORN.c    51        displayExternal(0,0,0,0);
-    00000014 E700                   MOV         #0,R7
-    00000016 6673                   MOV         R7,R6
-    00000018 6573                   MOV         R7,R5
-    0000001A B18F                   BSR         _displayExternal
-    0000001C 6473                   MOV         R7,R4
-    0000001E E800                   MOV         #0,R8
-    00000020 9A05                   MOV.W       L542,R10   ; H'0080
-    00000022 DB03                   MOV.L       L542+2,R11 ; _IsKeyDown
-    00000024 DC03                   MOV.L       L542+6,R12 ; _z
-    00000026 DD04                   MOV.L       L542+10,R13; _x
-    00000028 DE04                   MOV.L       L542+14,R14; _y
-        REBORN.c    52        while(!IsKeyDown(KEY_CTRL_EXIT)){
-    0000002A A0A1                   BRA         L496
+        REBORN.c    50        x= 64;
+    00000014 DD06                   MOV.L       L525+2,R13 ; _x
+    00000016 E440                   MOV         #64,R4
+        REBORN.c    51        y= 64;
+    00000018 DE06                   MOV.L       L525+6,R14 ; _y
+    0000001A 2D40                   MOV.B       R4,@R13
+    0000001C 2E40                   MOV.B       R4,@R14
+        REBORN.c    52        z= 64;
+    0000001E DC06                   MOV.L       L525+10,R12; _z
+        REBORN.c    53        display();
+    00000020 B0A2                   BSR         _display
+    00000022 2C40                   MOV.B       R4,@R12
+    00000024 9A03                   MOV.W       L525,R10   ; H'0080
+    00000026 E800                   MOV         #0,R8
+    00000028 DB04                   MOV.L       L525+14,R11; _IsKeyDown
+        REBORN.c    54        while(!IsKeyDown(KEY_CTRL_EXIT)){
+    0000002A A07B                   BRA         L483
     0000002C E980                   MOV         #-128,R9
-    0000002E              L542:                             
+    0000002E              L525:                             
     0000002E 0080                   .DATA.W     H'0080
-    00000030 <00000000>             .DATA.L     _IsKeyDown
-    00000034 <00000000>             .DATA.L     _z
-    00000038 <00000000>             .DATA.L     _x
-    0000003C <00000000>             .DATA.L     _y
-    00000040              L497:                             
-        REBORN.c    53            if(IsKeyDown(KEY_CTRL_UP)){
-    00000040 9484                   MOV.W       L543,R4    ; H'7542
+    00000030 <00000000>             .DATA.L     _x
+    00000034 <00000000>             .DATA.L     _y
+    00000038 <00000000>             .DATA.L     _z
+    0000003C <00000000>             .DATA.L     _IsKeyDown
+    00000040              L484:                             
+        REBORN.c    55            if(IsKeyDown(KEY_CTRL_DOWN)){
+    00000040 947E                   MOV.W       L526,R4    ; H'7547
     00000042 4B0B                   JSR         @R11
     00000044 0009                   NOP
     00000046 2008                   TST         R0,R0
-    00000048 8907                   BT          L498
-        REBORN.c    54                --y;
+    00000048 8903                   BT          L485
+        REBORN.c    56                --y;
     0000004A 63E0                   MOV.B       @R14,R3
     0000004C 73FF                   ADD         #-1,R3
-    0000004E 2E30                   MOV.B       R3,@R14
-        REBORN.c    55                displayExternal(0,x,y,z);
-    00000050 67C0                   MOV.B       @R12,R7
-    00000052 66E0                   MOV.B       @R14,R6
-    00000054 65D0                   MOV.B       @R13,R5
-    00000056 B171                   BSR         _displayExternal
-    00000058 E400                   MOV         #0,R4
-    0000005A              L498:                             
-        REBORN.c    56            }
-        REBORN.c    57            if(IsKeyDown(KEY_CTRL_DOWN)){
-    0000005A 9478                   MOV.W       L543+2,R4  ; H'7547
-    0000005C 4B0B                   JSR         @R11
-    0000005E 0009                   NOP
-    00000060 2008                   TST         R0,R0
-    00000062 8907                   BT          L499
-        REBORN.c    58                ++y;
+        REBORN.c    57                display();
+    0000004E B08B                   BSR         _display
+    00000050 2E30                   MOV.B       R3,@R14
+    00000052              L485:                             
+        REBORN.c    58            }
+        REBORN.c    59            if(IsKeyDown(KEY_CTRL_UP)){
+    00000052 9476                   MOV.W       L526+2,R4  ; H'7542
+    00000054 4B0B                   JSR         @R11
+    00000056 0009                   NOP
+    00000058 2008                   TST         R0,R0
+    0000005A 8903                   BT          L486
+        REBORN.c    60                ++y;
+    0000005C 62E0                   MOV.B       @R14,R2
+    0000005E 7201                   ADD         #1,R2
+        REBORN.c    61                display();
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    3
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    00000064 62E0                   MOV.B       @R14,R2
-    00000066 7201                   ADD         #1,R2
-    00000068 2E20                   MOV.B       R2,@R14
-        REBORN.c    59                displayExternal(0,x,y,z);
-    0000006A 67C0                   MOV.B       @R12,R7
-    0000006C 66E0                   MOV.B       @R14,R6
-    0000006E 65D0                   MOV.B       @R13,R5
-    00000070 B164                   BSR         _displayExternal
-    00000072 E400                   MOV         #0,R4
-    00000074              L499:                             
-        REBORN.c    60            }
-        REBORN.c    61            if(IsKeyDown(KEY_CTRL_LEFT)){
-    00000074 946C                   MOV.W       L543+4,R4  ; H'7544
-    00000076 4B0B                   JSR         @R11
-    00000078 0009                   NOP
-    0000007A 2008                   TST         R0,R0
-    0000007C 8907                   BT          L500
-        REBORN.c    62                --x;
-    0000007E 63D0                   MOV.B       @R13,R3
-    00000080 73FF                   ADD         #-1,R3
-    00000082 2D30                   MOV.B       R3,@R13
-        REBORN.c    63                displayExternal(0,x,y,z);
-    00000084 67C0                   MOV.B       @R12,R7
-    00000086 66E0                   MOV.B       @R14,R6
-    00000088 65D0                   MOV.B       @R13,R5
-    0000008A B157                   BSR         _displayExternal
-    0000008C E400                   MOV         #0,R4
-    0000008E              L500:                             
-        REBORN.c    64            }
-        REBORN.c    65            if(IsKeyDown(KEY_CTRL_RIGHT)){
-    0000008E 9460                   MOV.W       L543+6,R4  ; H'7545
-    00000090 4B0B                   JSR         @R11
-    00000092 0009                   NOP
-    00000094 2008                   TST         R0,R0
-    00000096 8907                   BT          L501
-        REBORN.c    66                ++x;
-    00000098 62D0                   MOV.B       @R13,R2
-    0000009A 7201                   ADD         #1,R2
-    0000009C 2D20                   MOV.B       R2,@R13
-        REBORN.c    67                displayExternal(0,x,y,z);
-    0000009E 67C0                   MOV.B       @R12,R7
-    000000A0 66E0                   MOV.B       @R14,R6
-    000000A2 65D0                   MOV.B       @R13,R5
-    000000A4 B14A                   BSR         _displayExternal
-    000000A6 E400                   MOV         #0,R4
-    000000A8              L501:                             
-        REBORN.c    68            }
-        REBORN.c    69            if(IsKeyDown(KEY_CTRL_SHIFT)){
-    000000A8 9454                   MOV.W       L543+8,R4  ; H'7536
-    000000AA 4B0B                   JSR         @R11
-    000000AC 0009                   NOP
-    000000AE 2008                   TST         R0,R0
-    000000B0 8907                   BT          L502
-        REBORN.c    70                --z;
-    000000B2 63C0                   MOV.B       @R12,R3
-    000000B4 73FF                   ADD         #-1,R3
-    000000B6 2C30                   MOV.B       R3,@R12
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    4
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    3
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c    71                displayExternal(0,x,y,z);
-    000000B8 67C0                   MOV.B       @R12,R7
-    000000BA 66E0                   MOV.B       @R14,R6
-    000000BC 65D0                   MOV.B       @R13,R5
-    000000BE B13D                   BSR         _displayExternal
-    000000C0 E400                   MOV         #0,R4
-    000000C2              L502:                             
-        REBORN.c    72            }
-        REBORN.c    73            if(IsKeyDown(KEY_CTRL_ALPHA)){
-    000000C2 9448                   MOV.W       L543+10,R4 ; H'7537
-    000000C4 4B0B                   JSR         @R11
-    000000C6 0009                   NOP
-    000000C8 2008                   TST         R0,R0
-    000000CA 8907                   BT          L503
-        REBORN.c    74                ++z;
-    000000CC 62C0                   MOV.B       @R12,R2
-    000000CE 7201                   ADD         #1,R2
-    000000D0 2C20                   MOV.B       R2,@R12
-        REBORN.c    75                displayExternal(0,x,y,z);
-    000000D2 67C0                   MOV.B       @R12,R7
-    000000D4 66E0                   MOV.B       @R14,R6
-    000000D6 65D0                   MOV.B       @R13,R5
-    000000D8 B130                   BSR         _displayExternal
-    000000DA E400                   MOV         #0,R4
-    000000DC              L503:                             
-        REBORN.c    76            }
-        REBORN.c    77            if(x>128){
-    000000DC 62D0                   MOV.B       @R13,R2
-    000000DE 32A7                   CMP/GT      R10,R2
-    000000E0 8B06                   BF          L504
-        REBORN.c    78                x=0;
-    000000E2 2D80                   MOV.B       R8,@R13
-        REBORN.c    79                ++X;
-    000000E4 D21C                   MOV.L       L543+12,R2 ; _X
-    000000E6 6322                   MOV.L       @R2,R3
-    000000E8 7301                   ADD         #1,R3
-    000000EA 2232                   MOV.L       R3,@R2
-        REBORN.c    80                generateOutputs();
-    000000EC B190                   BSR         _generateOutputs
-    000000EE 0009                   NOP
-    000000F0              L504:                             
-        REBORN.c    81            }
-        REBORN.c    82            if(x<0){
-    000000F0 61D0                   MOV.B       @R13,R1
-    000000F2 4111                   CMP/PZ      R1
-    000000F4 8906                   BT          L505
-        REBORN.c    83                x=128;
-    000000F6 2D90                   MOV.B       R9,@R13
-        REBORN.c    84                --X;
-    000000F8 D217                   MOV.L       L543+12,R2 ; _X
-    000000FA 6322                   MOV.L       @R2,R3
-    000000FC 73FF                   ADD         #-1,R3
-    000000FE 2232                   MOV.L       R3,@R2
-        REBORN.c    85                generateOutputs();
-    00000100 B186                   BSR         _generateOutputs
-    00000102 0009                   NOP
-    00000104              L505:                             
+    00000060 B082                   BSR         _display
+    00000062 2E20                   MOV.B       R2,@R14
+    00000064              L486:                             
+        REBORN.c    62            }
+        REBORN.c    63            if(IsKeyDown(KEY_CTRL_RIGHT)){
+    00000064 946E                   MOV.W       L526+4,R4  ; H'7545
+    00000066 4B0B                   JSR         @R11
+    00000068 0009                   NOP
+    0000006A 2008                   TST         R0,R0
+    0000006C 8903                   BT          L487
+        REBORN.c    64                --x;
+    0000006E 63D0                   MOV.B       @R13,R3
+    00000070 73FF                   ADD         #-1,R3
+        REBORN.c    65                display();
+    00000072 B079                   BSR         _display
+    00000074 2D30                   MOV.B       R3,@R13
+    00000076              L487:                             
+        REBORN.c    66            }
+        REBORN.c    67            if(IsKeyDown(KEY_CTRL_LEFT)){
+    00000076 9466                   MOV.W       L526+6,R4  ; H'7544
+    00000078 4B0B                   JSR         @R11
+    0000007A 0009                   NOP
+    0000007C 2008                   TST         R0,R0
+    0000007E 8903                   BT          L488
+        REBORN.c    68                ++x;
+    00000080 62D0                   MOV.B       @R13,R2
+    00000082 7201                   ADD         #1,R2
+        REBORN.c    69                display();
+    00000084 B070                   BSR         _display
+    00000086 2D20                   MOV.B       R2,@R13
+    00000088              L488:                             
+        REBORN.c    70            }
+        REBORN.c    71            if(IsKeyDown(KEY_CTRL_ALPHA)){
+    00000088 945E                   MOV.W       L526+8,R4  ; H'7537
+    0000008A 4B0B                   JSR         @R11
+    0000008C 0009                   NOP
+    0000008E 2008                   TST         R0,R0
+    00000090 8903                   BT          L489
+        REBORN.c    72                --z;
+    00000092 63C0                   MOV.B       @R12,R3
+    00000094 73FF                   ADD         #-1,R3
+        REBORN.c    73                display();
+    00000096 B067                   BSR         _display
+    00000098 2C30                   MOV.B       R3,@R12
+    0000009A              L489:                             
+        REBORN.c    74            }
+        REBORN.c    75            if(IsKeyDown(KEY_CTRL_SHIFT)){
+    0000009A 9456                   MOV.W       L526+10,R4 ; H'7536
+    0000009C 4B0B                   JSR         @R11
+    0000009E 0009                   NOP
+    000000A0 2008                   TST         R0,R0
+    000000A2 8903                   BT          L490
+        REBORN.c    76                ++z;
+    000000A4 62C0                   MOV.B       @R12,R2
+    000000A6 7201                   ADD         #1,R2
+        REBORN.c    77                display();
+    000000A8 B05E                   BSR         _display
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    5
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    4
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c    86            }
-        REBORN.c    87            if(y>128){
-    00000104 61E0                   MOV.B       @R14,R1
-    00000106 31A7                   CMP/GT      R10,R1
-    00000108 8B06                   BF          L506
-        REBORN.c    88                y=0;
-    0000010A 2E80                   MOV.B       R8,@R14
-        REBORN.c    89                ++Y;
-    0000010C D213                   MOV.L       L543+16,R2 ; _Y
-    0000010E 6322                   MOV.L       @R2,R3
-    00000110 7301                   ADD         #1,R3
-    00000112 2232                   MOV.L       R3,@R2
-        REBORN.c    90                generateOutputs();
-    00000114 B17C                   BSR         _generateOutputs
-    00000116 0009                   NOP
-    00000118              L506:                             
-        REBORN.c    91            }
-        REBORN.c    92            if(y<0){
-    00000118 61E0                   MOV.B       @R14,R1
-    0000011A 4111                   CMP/PZ      R1
-    0000011C 8906                   BT          L507
-        REBORN.c    93                y=128;
-    0000011E 2E90                   MOV.B       R9,@R14
-        REBORN.c    94                --Y;
-    00000120 D20E                   MOV.L       L543+16,R2 ; _Y
-    00000122 6322                   MOV.L       @R2,R3
-    00000124 73FF                   ADD         #-1,R3
-    00000126 2232                   MOV.L       R3,@R2
-        REBORN.c    95                generateOutputs();
-    00000128 B172                   BSR         _generateOutputs
-    0000012A 0009                   NOP
-    0000012C              L507:                             
-        REBORN.c    96            }
-        REBORN.c    97            if(z>128){
-    0000012C 61C0                   MOV.B       @R12,R1
-    0000012E 31A7                   CMP/GT      R10,R1
-    00000130 8B06                   BF          L508
-        REBORN.c    98                z=0;
-    00000132 2C80                   MOV.B       R8,@R12
-        REBORN.c    99                ++Z;
-    00000134 D20A                   MOV.L       L543+20,R2 ; _Z
-    00000136 6322                   MOV.L       @R2,R3
-    00000138 7301                   ADD         #1,R3
-    0000013A 2232                   MOV.L       R3,@R2
-        REBORN.c   100                generateOutputs();
-    0000013C B168                   BSR         _generateOutputs
+    000000AA 2C20                   MOV.B       R2,@R12
+    000000AC              L490:                             
+        REBORN.c    78            }
+        REBORN.c    79            if(x>128){
+    000000AC 61D0                   MOV.B       @R13,R1
+    000000AE 31A7                   CMP/GT      R10,R1
+    000000B0 8B06                   BF          L491
+        REBORN.c    80                x=0;
+    000000B2 2D80                   MOV.B       R8,@R13
+        REBORN.c    81                ++X;
+    000000B4 D226                   MOV.L       L526+16,R2 ; _X
+    000000B6 6322                   MOV.L       @R2,R3
+    000000B8 7301                   ADD         #1,R3
+    000000BA 2232                   MOV.L       R3,@R2
+        REBORN.c    82                display();
+    000000BC B054                   BSR         _display
+    000000BE 0009                   NOP
+    000000C0              L491:                             
+        REBORN.c    83            }
+        REBORN.c    84            if(x<0){
+    000000C0 61D0                   MOV.B       @R13,R1
+    000000C2 4111                   CMP/PZ      R1
+    000000C4 8906                   BT          L492
+        REBORN.c    85                x=128;
+    000000C6 2D90                   MOV.B       R9,@R13
+        REBORN.c    86                --X;
+    000000C8 D221                   MOV.L       L526+16,R2 ; _X
+    000000CA 6322                   MOV.L       @R2,R3
+    000000CC 73FF                   ADD         #-1,R3
+    000000CE 2232                   MOV.L       R3,@R2
+        REBORN.c    87                display();
+    000000D0 B04A                   BSR         _display
+    000000D2 0009                   NOP
+    000000D4              L492:                             
+        REBORN.c    88            }
+        REBORN.c    89            if(y>128){
+    000000D4 61E0                   MOV.B       @R14,R1
+    000000D6 31A7                   CMP/GT      R10,R1
+    000000D8 8B06                   BF          L493
+        REBORN.c    90                y=0;
+    000000DA 2E80                   MOV.B       R8,@R14
+        REBORN.c    91                ++Y;
+    000000DC D21D                   MOV.L       L526+20,R2 ; _Y
+    000000DE 6322                   MOV.L       @R2,R3
+    000000E0 7301                   ADD         #1,R3
+    000000E2 2232                   MOV.L       R3,@R2
+        REBORN.c    92                display();
+    000000E4 B040                   BSR         _display
+    000000E6 0009                   NOP
+    000000E8              L493:                             
+        REBORN.c    93            }
+        REBORN.c    94            if(y<0){
+    000000E8 61E0                   MOV.B       @R14,R1
+    000000EA 4111                   CMP/PZ      R1
+    000000EC 8906                   BT          L494
+        REBORN.c    95                y=128;
+    000000EE 2E90                   MOV.B       R9,@R14
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+        REBORN.c    96                --Y;
+    000000F0 D218                   MOV.L       L526+20,R2 ; _Y
+    000000F2 6322                   MOV.L       @R2,R3
+    000000F4 73FF                   ADD         #-1,R3
+    000000F6 2232                   MOV.L       R3,@R2
+        REBORN.c    97                display();
+    000000F8 B036                   BSR         _display
+    000000FA 0009                   NOP
+    000000FC              L494:                             
+        REBORN.c    98            }
+        REBORN.c    99            if(z>128){
+    000000FC 61C0                   MOV.B       @R12,R1
+    000000FE 31A7                   CMP/GT      R10,R1
+    00000100 8B06                   BF          L495
+        REBORN.c   100                z=0;
+    00000102 2C80                   MOV.B       R8,@R12
+        REBORN.c   101                ++Z;
+    00000104 D214                   MOV.L       L526+24,R2 ; _Z
+    00000106 6322                   MOV.L       @R2,R3
+    00000108 7301                   ADD         #1,R3
+    0000010A 2232                   MOV.L       R3,@R2
+        REBORN.c   102                display();
+    0000010C B02C                   BSR         _display
+    0000010E 0009                   NOP
+    00000110              L495:                             
+        REBORN.c   103            }
+        REBORN.c   104            if(z<0){
+    00000110 61C0                   MOV.B       @R12,R1
+    00000112 4111                   CMP/PZ      R1
+    00000114 8906                   BT          L483
+        REBORN.c   105                z=128;
+    00000116 2C90                   MOV.B       R9,@R12
+        REBORN.c   106                --Z;
+    00000118 D20F                   MOV.L       L526+24,R2 ; _Z
+    0000011A 6322                   MOV.L       @R2,R3
+    0000011C 73FF                   ADD         #-1,R3
+    0000011E 2232                   MOV.L       R3,@R2
+        REBORN.c   107                display();
+    00000120 B022                   BSR         _display
+    00000122 0009                   NOP
+    00000124              L483:                             
+    00000124 9412                   MOV.W       L526+12,R4 ; H'7532
+    00000126 4B0B                   JSR         @R11
+    00000128 0009                   NOP
+    0000012A 2008                   TST         R0,R0
+    0000012C 8988                   BT          L484
+        REBORN.c   108            }
+        REBORN.c   109    
+        REBORN.c   110        }
+        REBORN.c   111            Sleep(10);
+    0000012E E40A                   MOV         #10,R4
+    00000130 4F26                   LDS.L       @R15+,PR
+    00000132 68F6                   MOV.L       @R15+,R8
+    00000134 69F6                   MOV.L       @R15+,R9
+    00000136 6AF6                   MOV.L       @R15+,R10
+    00000138 6BF6                   MOV.L       @R15+,R11
+    0000013A 6CF6                   MOV.L       @R15+,R12
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000013C A00E                   BRA         L521
     0000013E 0009                   NOP
-    00000140              L508:                             
-        REBORN.c   101            }
-        REBORN.c   102            if(z<0){
-    00000140 61C0                   MOV.B       @R12,R1
-    00000142 4111                   CMP/PZ      R1
-    00000144 8914                   BT          L496
-        REBORN.c   103                z=128;
-    00000146 2C90                   MOV.B       R9,@R12
-        REBORN.c   104                --Z;
-    00000148 A00C                   BRA         L539
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    6
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000014A 0009                   NOP
-    0000014C              L543:                             
-    0000014C 7542                   .DATA.W     H'7542
-    0000014E 7547                   .DATA.W     H'7547
-    00000150 7544                   .DATA.W     H'7544
-    00000152 7545                   .DATA.W     H'7545
-    00000154 7536                   .DATA.W     H'7536
-    00000156 7537                   .DATA.W     H'7537
-    00000158 <00000000>             .DATA.L     _X
-    0000015C <00000000>             .DATA.L     _Y
-    00000160 <00000000>             .DATA.L     _Z
-    00000164              L539:                             
-    00000164 D21C                   MOV.L       L544+4,R2  ; _Z
-    00000166 6322                   MOV.L       @R2,R3
-    00000168 73FF                   ADD         #-1,R3
-    0000016A 2232                   MOV.L       R3,@R2
-        REBORN.c   105                generateOutputs();
-    0000016C B150                   BSR         _generateOutputs
-    0000016E 0009                   NOP
-    00000170              L496:                             
-    00000170 9430                   MOV.W       L544,R4    ; H'7532
-    00000172 4B0B                   JSR         @R11
-    00000174 0009                   NOP
-    00000176 2008                   TST         R0,R0
-    00000178 8B01                   BF          L545
-    0000017A AF61                   BRA         L497
+    00000140              L526:                             
+    00000140 7547                   .DATA.W     H'7547
+    00000142 7542                   .DATA.W     H'7542
+    00000144 7545                   .DATA.W     H'7545
+    00000146 7544                   .DATA.W     H'7544
+    00000148 7537                   .DATA.W     H'7537
+    0000014A 7536                   .DATA.W     H'7536
+    0000014C 7532                   .DATA.W     H'7532
+    0000014E 0000                   .DATA.W     0
+    00000150 <00000000>             .DATA.L     _X
+    00000154 <00000000>             .DATA.L     _Y
+    00000158 <00000000>             .DATA.L     _Z
+    0000015C              L521:                             
+    0000015C 6DF6                   MOV.L       @R15+,R13
+    0000015E D201                   MOV.L       L527,R2    ; _Sleep
+    00000160 422B                   JMP         @R2
+    00000162 6EF6                   MOV.L       @R15+,R14
+    00000164              L527:                             
+    00000164 <00000000>             .DATA.L     _Sleep
+        REBORN.c   112    }
+        REBORN.c   113    void display(){
+    00000168              _display:                        ; function: display
+                                                           ; frame size=32
+    00000168 2FE6                   MOV.L       R14,@-R15
+    0000016A 2FD6                   MOV.L       R13,@-R15
+    0000016C 2FC6                   MOV.L       R12,@-R15
+    0000016E 2FB6                   MOV.L       R11,@-R15
+    00000170 2FA6                   MOV.L       R10,@-R15
+    00000172 2F96                   MOV.L       R9,@-R15
+    00000174 2F86                   MOV.L       R8,@-R15
+    00000176 4F22                   STS.L       PR,@-R15
+        REBORN.c   114        ML_clear_vram();
+    00000178 D34A                   MOV.L       L528+4,R3  ; _ML_clear_vram
+    0000017A 430B                   JSR         @R3
     0000017C 0009                   NOP
-    0000017E              L545:                             
-        REBORN.c   106            }
-        REBORN.c   107    
-        REBORN.c   108        }
-        REBORN.c   109            Sleep(10);
-    0000017E E40A                   MOV         #10,R4
-    00000180 4F26                   LDS.L       @R15+,PR
-    00000182 68F6                   MOV.L       @R15+,R8
-    00000184 D215                   MOV.L       L544+8,R2  ; _Sleep
-    00000186 69F6                   MOV.L       @R15+,R9
-    00000188 6AF6                   MOV.L       @R15+,R10
-    0000018A 6BF6                   MOV.L       @R15+,R11
-    0000018C 6CF6                   MOV.L       @R15+,R12
-    0000018E 6DF6                   MOV.L       @R15+,R13
-    00000190 422B                   JMP         @R2
-    00000192 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   110    }
-        REBORN.c   111    void userInterface(){
-    00000194              _userInterface:                  ; function: userInterface
-                                                           ; frame size=32
-                                                           ; used runtime library name:
-                                                           ; __modls
-    00000194 2FE6                   MOV.L       R14,@-R15
-    00000196 2FD6                   MOV.L       R13,@-R15
-    00000198 2FC6                   MOV.L       R12,@-R15
-    0000019A 2FB6                   MOV.L       R11,@-R15
-    0000019C 2FA6                   MOV.L       R10,@-R15
-    0000019E 2F96                   MOV.L       R9,@-R15
-    000001A0 2F86                   MOV.L       R8,@-R15
-    000001A2 4F22                   STS.L       PR,@-R15
+        REBORN.c   115        generateOutputs(); //cube central, on s'y trouve
+    0000017E B12D                   BSR         _generateOutputs
+    00000180 0009                   NOP
+        REBORN.c   116        displayExternal(0,x,y,z);
+    00000182 DA49                   MOV.L       L528+8,R10 ; _z
+    00000184 DB49                   MOV.L       L528+12,R11; _y
+    00000186 DE4A                   MOV.L       L528+16,R14; _x
+    00000188 67A0                   MOV.B       @R10,R7
+    0000018A 66B0                   MOV.B       @R11,R6
+    0000018C 65E0                   MOV.B       @R14,R5
+    0000018E B0C2                   BSR         _displayExternal
+    00000190 E400                   MOV         #0,R4
+        REBORN.c   117        if(x<=64 && y<=64){               // dans quart superieur gauche
+    00000192 E840                   MOV         #64,R8
+    00000194 DC47                   MOV.L       L528+20,R12; _X
+    00000196 DD48                   MOV.L       L528+24,R13; _Y
+    00000198 62E0                   MOV.B       @R14,R2
+    0000019A 3287                   CMP/GT      R8,R2
+    0000019C 8925                   BT          L497
+    0000019E D343                   MOV.L       L528+12,R3 ; _y
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    7
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    7
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   112        int x, y, z;
-        REBORN.c   113        x =X%128;
-    000001A4 9C17                   MOV.W       L544+2,R12 ; H'0080
-    000001A6 DD0E                   MOV.L       L544+12,R13; _X
-    000001A8 D30E                   MOV.L       L544+16,R3 ; __modls
-    000001AA 61D2                   MOV.L       @R13,R1
-    000001AC 430B                   JSR         @R3
-    000001AE 60C3                   MOV         R12,R0
-        REBORN.c   114        y =Y%128;
-    000001B0 D80D                   MOV.L       L544+20,R8 ; _Y
-    000001B2 6A03                   MOV         R0,R10
-    000001B4 D20B                   MOV.L       L544+16,R2 ; __modls
-    000001B6 6182                   MOV.L       @R8,R1
-    000001B8 420B                   JSR         @R2
-    000001BA 60C3                   MOV         R12,R0
-        REBORN.c   115        z =Z%128;
-    000001BC D206                   MOV.L       L544+4,R2  ; _Z
-    000001BE 6903                   MOV         R0,R9
-    000001C0 D308                   MOV.L       L544+16,R3 ; __modls
-    000001C2 6122                   MOV.L       @R2,R1
-    000001C4 430B                   JSR         @R3
-    000001C6 60C3                   MOV         R12,R0
-        REBORN.c   116        ML_display_vram();
-    000001C8 D308                   MOV.L       L544+24,R3 ; _ML_display_vram
-    000001CA 430B                   JSR         @R3
-    000001CC 6B03                   MOV         R0,R11
-    000001CE DE08                   MOV.L       L544+28,R14; _IsKeyDown
-        REBORN.c   117        while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements           //Sys error quand gauc
-                         +he et droite
-    000001D0 A060                   BRA         L510
-    000001D2 0009                   NOP
-    000001D4              L544:                             
-    000001D4 7532                   .DATA.W     H'7532
-    000001D6 0080                   .DATA.W     H'0080
-    000001D8 <00000000>             .DATA.L     _Z
-    000001DC <00000000>             .DATA.L     _Sleep
-    000001E0 <00000000>             .DATA.L     _X
-    000001E4 <00000000>             .DATA.L     __modls
-    000001E8 <00000000>             .DATA.L     _Y
-    000001EC <00000000>             .DATA.L     _ML_display_vram
-    000001F0 <00000000>             .DATA.L     _IsKeyDown
-    000001F4              L511:                             
-        REBORN.c   118            if(IsKeyDown(KEY_CTRL_UP)){
-    000001F4 948F                   MOV.W       L546,R4    ; H'7542
-    000001F6 4E0B                   JSR         @R14
-    000001F8 0009                   NOP
-    000001FA 2008                   TST         R0,R0
-    000001FC 8907                   BT          L512
-        REBORN.c   119                --Y;
-        REBORN.c   120                display(1,x,y,z);
-    000001FE 67B3                   MOV         R11,R7
-    00000200 6282                   MOV.L       @R8,R2
-    00000202 6693                   MOV         R9,R6
-    00000204 72FF                   ADD         #-1,R2
-    00000206 65A3                   MOV         R10,R5
-    00000208 2822                   MOV.L       R2,@R8
-    0000020A B063                   BSR         _display
+    000001A0 6230                   MOV.B       @R3,R2
+    000001A2 3287                   CMP/GT      R8,R2
+    000001A4 8921                   BT          L497
+        REBORN.c   118            X = X-1;
+    000001A6 63C2                   MOV.L       @R12,R3
+    000001A8 73FF                   ADD         #-1,R3
+        REBORN.c   119            generateOutputs(); //cube gauche
+    000001AA B117                   BSR         _generateOutputs
+    000001AC 2C32                   MOV.L       R3,@R12
+        REBORN.c   120            displayExternal(0,x-128,y,z);
+    000001AE 67A0                   MOV.B       @R10,R7
+    000001B0 66B0                   MOV.B       @R11,R6
+    000001B2 65E0                   MOV.B       @R14,R5
+    000001B4 7580                   ADD         #-128,R5
+    000001B6 B0AE                   BSR         _displayExternal
+    000001B8 E400                   MOV         #0,R4
+        REBORN.c   121            Y = Y-1;
+    000001BA 62D2                   MOV.L       @R13,R2
+    000001BC 72FF                   ADD         #-1,R2
+        REBORN.c   122            generateOutputs(); //cube superieur gauche
+    000001BE B10D                   BSR         _generateOutputs
+    000001C0 2D22                   MOV.L       R2,@R13
+        REBORN.c   123            displayExternal(0,x-128,y-128,z);
+    000001C2 67A0                   MOV.B       @R10,R7
+    000001C4 66B0                   MOV.B       @R11,R6
+    000001C6 7680                   ADD         #-128,R6
+    000001C8 65E0                   MOV.B       @R14,R5
+    000001CA 7580                   ADD         #-128,R5
+    000001CC B0A3                   BSR         _displayExternal
+    000001CE E400                   MOV         #0,R4
+        REBORN.c   124            X = X+1;
+    000001D0 62C2                   MOV.L       @R12,R2
+    000001D2 7201                   ADD         #1,R2
+        REBORN.c   125            generateOutputs(); // cube superieur
+    000001D4 B102                   BSR         _generateOutputs
+    000001D6 2C22                   MOV.L       R2,@R12
+        REBORN.c   126            displayExternal(0,x,y-128,z);
+    000001D8 67A0                   MOV.B       @R10,R7
+    000001DA 66B0                   MOV.B       @R11,R6
+    000001DC 65E0                   MOV.B       @R14,R5
+    000001DE 7680                   ADD         #-128,R6
+    000001E0 B099                   BSR         _displayExternal
+    000001E2 E400                   MOV         #0,R4
+        REBORN.c   127            Y = Y+1;
+    000001E4 62D2                   MOV.L       @R13,R2
+    000001E6 7201                   ADD         #1,R2
+    000001E8 2D22                   MOV.L       R2,@R13
+    000001EA              L497:                             
+        REBORN.c   128        }
+        REBORN.c   129        if(x>=64 && y<=64){               // dans quart superieur droit
+    000001EA 9959                   MOV.W       L528,R9    ; H'0080
+    000001EC 63E0                   MOV.B       @R14,R3
+    000001EE 3383                   CMP/GE      R8,R3
+    000001F0 8B25                   BF          L498
+    000001F2 D22E                   MOV.L       L528+12,R2 ; _y
+    000001F4 6320                   MOV.B       @R2,R3
+    000001F6 3387                   CMP/GT      R8,R3
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    8
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    8
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    0000020C E401                   MOV         #1,R4
-    0000020E              L512:                             
-        REBORN.c   121            }
-        REBORN.c   122            if(IsKeyDown(KEY_CTRL_DOWN)){
-    0000020E 9483                   MOV.W       L546+2,R4  ; H'7547
-    00000210 4E0B                   JSR         @R14
-    00000212 0009                   NOP
-    00000214 2008                   TST         R0,R0
-    00000216 8907                   BT          L513
-        REBORN.c   123                ++Y;
-    00000218 6382                   MOV.L       @R8,R3
-        REBORN.c   124                display(1,x,y,z);
-    0000021A 67B3                   MOV         R11,R7
-    0000021C 7301                   ADD         #1,R3
-    0000021E 6693                   MOV         R9,R6
-    00000220 2832                   MOV.L       R3,@R8
-    00000222 65A3                   MOV         R10,R5
-    00000224 B056                   BSR         _display
-    00000226 E401                   MOV         #1,R4
-    00000228              L513:                             
-        REBORN.c   125            }
-        REBORN.c   126            if(IsKeyDown(KEY_CTRL_LEFT)){
-    00000228 9477                   MOV.W       L546+4,R4  ; H'7544
-    0000022A 4E0B                   JSR         @R14
-    0000022C 0009                   NOP
-    0000022E 2008                   TST         R0,R0
-    00000230 8907                   BT          L514
-        REBORN.c   127                --X;
-        REBORN.c   128                display(1,x,y,z);
-    00000232 67B3                   MOV         R11,R7
-    00000234 62D2                   MOV.L       @R13,R2
-    00000236 6693                   MOV         R9,R6
-    00000238 72FF                   ADD         #-1,R2
-    0000023A 65A3                   MOV         R10,R5
+    000001F8 8921                   BT          L498
+        REBORN.c   130            X = X+1;
+    000001FA 62C2                   MOV.L       @R12,R2
+    000001FC 7201                   ADD         #1,R2
+        REBORN.c   131            generateOutputs(); //cube droit
+    000001FE B0ED                   BSR         _generateOutputs
+    00000200 2C22                   MOV.L       R2,@R12
+        REBORN.c   132            displayExternal(0,x+128,y,z);
+    00000202 67A0                   MOV.B       @R10,R7
+    00000204 66B0                   MOV.B       @R11,R6
+    00000206 65E0                   MOV.B       @R14,R5
+    00000208 359C                   ADD         R9,R5
+    0000020A B084                   BSR         _displayExternal
+    0000020C E400                   MOV         #0,R4
+        REBORN.c   133            Y = Y-1;
+    0000020E 62D2                   MOV.L       @R13,R2
+    00000210 72FF                   ADD         #-1,R2
+        REBORN.c   134            generateOutputs();// cube superieur droit
+    00000212 B0E3                   BSR         _generateOutputs
+    00000214 2D22                   MOV.L       R2,@R13
+        REBORN.c   135            displayExternal(0,x+128,y-128,z);
+    00000216 67A0                   MOV.B       @R10,R7
+    00000218 66B0                   MOV.B       @R11,R6
+    0000021A 7680                   ADD         #-128,R6
+    0000021C 65E0                   MOV.B       @R14,R5
+    0000021E 359C                   ADD         R9,R5
+    00000220 B079                   BSR         _displayExternal
+    00000222 E400                   MOV         #0,R4
+        REBORN.c   136            X = X-1;
+    00000224 62C2                   MOV.L       @R12,R2
+    00000226 72FF                   ADD         #-1,R2
+        REBORN.c   137            generateOutputs(); // cube superieur
+    00000228 B0D8                   BSR         _generateOutputs
+    0000022A 2C22                   MOV.L       R2,@R12
+        REBORN.c   138            displayExternal(0,x,y-128,z);
+    0000022C 67A0                   MOV.B       @R10,R7
+    0000022E 66B0                   MOV.B       @R11,R6
+    00000230 65E0                   MOV.B       @R14,R5
+    00000232 7680                   ADD         #-128,R6
+    00000234 B06F                   BSR         _displayExternal
+    00000236 E400                   MOV         #0,R4
+        REBORN.c   139            Y = Y+1;
+    00000238 62D2                   MOV.L       @R13,R2
+    0000023A 7201                   ADD         #1,R2
     0000023C 2D22                   MOV.L       R2,@R13
-    0000023E B049                   BSR         _display
-    00000240 E401                   MOV         #1,R4
-    00000242              L514:                             
-        REBORN.c   129            }
-        REBORN.c   130            if(IsKeyDown(KEY_CTRL_RIGHT)){
-    00000242 946B                   MOV.W       L546+6,R4  ; H'7545
-    00000244 4E0B                   JSR         @R14
-    00000246 0009                   NOP
-    00000248 2008                   TST         R0,R0
-    0000024A 8907                   BT          L515
-        REBORN.c   131                ++X;
-    0000024C 63D2                   MOV.L       @R13,R3
-        REBORN.c   132                display(1,x,y,z);
-    0000024E 67B3                   MOV         R11,R7
-    00000250 7301                   ADD         #1,R3
-    00000252 6693                   MOV         R9,R6
-    00000254 2D32                   MOV.L       R3,@R13
-    00000256 65A3                   MOV         R10,R5
-    00000258 B03C                   BSR         _display
-    0000025A E401                   MOV         #1,R4
-    0000025C              L515:                             
-        REBORN.c   133            }
+    0000023E              L498:                             
+        REBORN.c   140        }
+        REBORN.c   141        if(x<=64 && y>=64){               //dans quart inferieur gauche
+    0000023E 63E0                   MOV.B       @R14,R3
+    00000240 3387                   CMP/GT      R8,R3
+    00000242 8925                   BT          L499
+    00000244 D219                   MOV.L       L528+12,R2 ; _y
+    00000246 6320                   MOV.B       @R2,R3
+    00000248 3383                   CMP/GE      R8,R3
+    0000024A 8B21                   BF          L499
+        REBORN.c   142            X = X-1;
+    0000024C 62C2                   MOV.L       @R12,R2
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    9
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    9
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   134            if(IsKeyDown(KEY_CTRL_SHIFT)){
-    0000025C 945F                   MOV.W       L546+8,R4  ; H'7536
-    0000025E 4E0B                   JSR         @R14
-    00000260 0009                   NOP
-    00000262 2008                   TST         R0,R0
-    00000264 8908                   BT          L516
-        REBORN.c   135                --Z;
-        REBORN.c   136                display(1,x,y,z);
-    00000266 67B3                   MOV         R11,R7
-    00000268 D22E                   MOV.L       L546+14,R2 ; _Z
-    0000026A 6693                   MOV         R9,R6
-    0000026C 6322                   MOV.L       @R2,R3
-    0000026E 65A3                   MOV         R10,R5
-    00000270 73FF                   ADD         #-1,R3
-    00000272 2232                   MOV.L       R3,@R2
-    00000274 B02E                   BSR         _display
-    00000276 E401                   MOV         #1,R4
-    00000278              L516:                             
-        REBORN.c   137            }
-        REBORN.c   138            if(IsKeyDown(KEY_CTRL_ALPHA)){
-    00000278 9452                   MOV.W       L546+10,R4 ; H'7537
-    0000027A 4E0B                   JSR         @R14
-    0000027C 0009                   NOP
-    0000027E 2008                   TST         R0,R0
-    00000280 8908                   BT          L510
-        REBORN.c   139                ++Z;
-        REBORN.c   140                display(1,x,y,z);
-    00000282 67B3                   MOV         R11,R7
-    00000284 D227                   MOV.L       L546+14,R2 ; _Z
-    00000286 6693                   MOV         R9,R6
-    00000288 6322                   MOV.L       @R2,R3
-    0000028A 65A3                   MOV         R10,R5
-    0000028C 7301                   ADD         #1,R3
-    0000028E 2232                   MOV.L       R3,@R2
-    00000290 B020                   BSR         _display
-    00000292 E401                   MOV         #1,R4
-    00000294              L510:                             
-    00000294 61D2                   MOV.L       @R13,R1
-    00000296 D324                   MOV.L       L546+18,R3 ; __modls
-    00000298 430B                   JSR         @R3
-    0000029A 60C3                   MOV         R12,R0
-    0000029C 8840                   CMP/EQ      #64,R0
-    0000029E 8BA9                   BF          L511
-    000002A0 D222                   MOV.L       L546+22,R2 ; _Y
-    000002A2 6122                   MOV.L       @R2,R1
-    000002A4 D320                   MOV.L       L546+18,R3 ; __modls
-    000002A6 430B                   JSR         @R3
-    000002A8 60C3                   MOV         R12,R0
-    000002AA 8840                   CMP/EQ      #64,R0
-    000002AC 8BA2                   BF          L511
-    000002AE D01D                   MOV.L       L546+14,R0 ; _Z
-    000002B0 D31D                   MOV.L       L546+18,R3 ; __modls
-    000002B2 6102                   MOV.L       @R0,R1
-    000002B4 430B                   JSR         @R3
-    000002B6 60C3                   MOV         R12,R0
-    000002B8 8840                   CMP/EQ      #64,R0
-    000002BA 8B9B                   BF          L511
+    0000024E 72FF                   ADD         #-1,R2
+        REBORN.c   143            generateOutputs(); //cube gauche
+    00000250 B0C4                   BSR         _generateOutputs
+    00000252 2C22                   MOV.L       R2,@R12
+        REBORN.c   144            displayExternal(0,x-128,y,z);
+    00000254 67A0                   MOV.B       @R10,R7
+    00000256 66B0                   MOV.B       @R11,R6
+    00000258 65E0                   MOV.B       @R14,R5
+    0000025A 7580                   ADD         #-128,R5
+    0000025C B05B                   BSR         _displayExternal
+    0000025E E400                   MOV         #0,R4
+        REBORN.c   145            Y = Y+1;
+    00000260 62D2                   MOV.L       @R13,R2
+    00000262 7201                   ADD         #1,R2
+        REBORN.c   146            generateOutputs(); //cube inferieur gauche
+    00000264 B0BA                   BSR         _generateOutputs
+    00000266 2D22                   MOV.L       R2,@R13
+        REBORN.c   147            displayExternal(0,x-128,y+128,z);
+    00000268 67A0                   MOV.B       @R10,R7
+    0000026A 66B0                   MOV.B       @R11,R6
+    0000026C 65E0                   MOV.B       @R14,R5
+    0000026E 369C                   ADD         R9,R6
+    00000270 7580                   ADD         #-128,R5
+    00000272 B050                   BSR         _displayExternal
+    00000274 E400                   MOV         #0,R4
+        REBORN.c   148            X = X+1;
+    00000276 62C2                   MOV.L       @R12,R2
+    00000278 7201                   ADD         #1,R2
+        REBORN.c   149            generateOutputs(); //cube inferieur
+    0000027A B0AF                   BSR         _generateOutputs
+    0000027C 2C22                   MOV.L       R2,@R12
+        REBORN.c   150            displayExternal(0,x,y+128,z);
+    0000027E 67A0                   MOV.B       @R10,R7
+    00000280 66B0                   MOV.B       @R11,R6
+    00000282 369C                   ADD         R9,R6
+    00000284 65E0                   MOV.B       @R14,R5
+    00000286 B046                   BSR         _displayExternal
+    00000288 E400                   MOV         #0,R4
+        REBORN.c   151            Y = Y-1;
+    0000028A 62D2                   MOV.L       @R13,R2
+    0000028C 72FF                   ADD         #-1,R2
+    0000028E 2D22                   MOV.L       R2,@R13
+    00000290              L499:                             
+        REBORN.c   152        }
+        REBORN.c   153        if(x>=64 && y>=64){               //dans quart inferieur droit
+    00000290 63E0                   MOV.B       @R14,R3
+    00000292 3383                   CMP/GE      R8,R3
+    00000294 8B35                   BF          L500
+    00000296 D205                   MOV.L       L528+12,R2 ; _y
+    00000298 6320                   MOV.B       @R2,R3
+    0000029A 3383                   CMP/GE      R8,R3
+    0000029C A00E                   BRA         L522
+    0000029E 0009                   NOP
+    000002A0              L528:                             
+    000002A0 0080                   .DATA.W     H'0080
+    000002A2 0000                   .DATA.W     0
+    000002A4 <00000000>             .DATA.L     _ML_clear_vram
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   10
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-        REBORN.c   141            }
-        REBORN.c   142        }
-        REBORN.c   143        display(0,x,y,z);
-    000002BC 4F26                   LDS.L       @R15+,PR
-    000002BE 67B3                   MOV         R11,R7
-    000002C0 68F6                   MOV.L       @R15+,R8
-    000002C2 6693                   MOV         R9,R6
-    000002C4 69F6                   MOV.L       @R15+,R9
-    000002C6 65A3                   MOV         R10,R5
-    000002C8 6AF6                   MOV.L       @R15+,R10
-    000002CA E400                   MOV         #0,R4
-    000002CC 6BF6                   MOV.L       @R15+,R11
-    000002CE 6CF6                   MOV.L       @R15+,R12
-    000002D0 6DF6                   MOV.L       @R15+,R13
-    000002D2 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   144    }
-        REBORN.c   145    void display(call,x,y,z){
-    000002D4              _display:                        ; function: display
-                                                           ; frame size=20
-    000002D4 2FE6                   MOV.L       R14,@-R15
-        REBORN.c   146        if(call){
-    000002D6 2448                   TST         R4,R4
-    000002D8 4F22                   STS.L       PR,@-R15
-    000002DA 7FF4                   ADD         #-12,R15
-    000002DC 2F52                   MOV.L       R5,@R15
-    000002DE 1F61                   MOV.L       R6,@(4,R15)
-    000002E0 8D28                   BT/S        L518
-    000002E2 1F72                   MOV.L       R7,@(8,R15)
-        REBORN.c   147            generateOutputs();
-    000002E4 B094                   BSR         _generateOutputs
-    000002E6 0009                   NOP
-        REBORN.c   148            useOutputs();
-    000002E8 B0BF                   BSR         _useOutputs
-    000002EA 0009                   NOP
-        REBORN.c   149            displayExternal(0,x,y,z);  //cube central
-    000002EC 57F2                   MOV.L       @(8,R15),R7
-    000002EE 56F1                   MOV.L       @(4,R15),R6
-    000002F0 65F2                   MOV.L       @R15,R5
-    000002F2 B023                   BSR         _displayExternal
-    000002F4 E400                   MOV         #0,R4
-        REBORN.c   150            Z = Z-128;
-    000002F6 DE0B                   MOV.L       L546+14,R14; _Z
-    000002F8 62E2                   MOV.L       @R14,R2
-    000002FA 7280                   ADD         #-128,R2
-        REBORN.c   151            generateOutputs();
-    000002FC B088                   BSR         _generateOutputs
-    000002FE 2E22                   MOV.L       R2,@R14
-        REBORN.c   152            useOutputs();
-    00000300 B0B3                   BSR         _useOutputs
-    00000302 0009                   NOP
-        REBORN.c   153            displayExternal(-1,x,y,z); //cube central arriere
-    00000304 57F2                   MOV.L       @(8,R15),R7
-    00000306 56F1                   MOV.L       @(4,R15),R6
-    00000308 65F2                   MOV.L       @R15,R5
-    0000030A B017                   BSR         _displayExternal
-    0000030C E4FF                   MOV         #-1,R4
-        REBORN.c   154            Z = Z+128;
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   11
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   10
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    0000030E 9308                   MOV.W       L546+12,R3 ; H'0080
-    00000310 62E2                   MOV.L       @R14,R2
-    00000312 A00D                   BRA         L540
-    00000314 0009                   NOP
-    00000316              L546:                             
-    00000316 7542                   .DATA.W     H'7542
-    00000318 7547                   .DATA.W     H'7547
-    0000031A 7544                   .DATA.W     H'7544
-    0000031C 7545                   .DATA.W     H'7545
-    0000031E 7536                   .DATA.W     H'7536
-    00000320 7537                   .DATA.W     H'7537
-    00000322 0080                   .DATA.W     H'0080
-    00000324 <00000000>             .DATA.L     _Z
-    00000328 <00000000>             .DATA.L     __modls
-    0000032C <00000000>             .DATA.L     _Y
-    00000330              L540:                             
-    00000330 323C                   ADD         R3,R2
-    00000332 2E22                   MOV.L       R2,@R14
-    00000334              L518:                             
-        REBORN.c   155            //if(x<=64 && y<=64){            //VVV cubes lateraux , n'existent pas encore dans dispExternal, l
-                         +es integrer depuis la v 0.1
-        REBORN.c   156            //    for (i = 0; i < 1; ++i){
-        REBORN.c   157            //        X = X-128;
-        REBORN.c   158            //        generateOutputs();
-        REBORN.c   159            //        useOutputs();
-        REBORN.c   160            //        displayExternal(1+i);
-        REBORN.c   161            //        Y = Y-128;
-        REBORN.c   162            //        generateOutputs();
-        REBORN.c   163            //        useOutputs();
-        REBORN.c   164            //        displayExternal(3+i);
-        REBORN.c   165            //        X = X+128;
-        REBORN.c   166            //        generateOutputs();
-        REBORN.c   167            //        useOutputs();
-        REBORN.c   168            //        displayExternal(5+i);
-        REBORN.c   169            //        Y = Y+128;
-        REBORN.c   170            //        Z = Z-128;
-        REBORN.c   171            //    }
-        REBORN.c   172            //    Z = Z+128;
-        REBORN.c   173            //}
-        REBORN.c   174            //if(x>=64 && y<=64){
-        REBORN.c   175            //    for (i = 0; i < 1; ++i){
-        REBORN.c   176            //        X = X+128;
-        REBORN.c   177            //        generateOutputs();
-        REBORN.c   178            //        useOutputs();
-        REBORN.c   179            //        displayExternal(1+i);
-        REBORN.c   180            //        Y = Y-128;
-        REBORN.c   181            //        generateOutputs();
-        REBORN.c   182            //        useOutputs();
-        REBORN.c   183            //        displayExternal(3+i);
-        REBORN.c   184            //        X = X-128;
-        REBORN.c   185            //        generateOutputs();
-        REBORN.c   186            //        useOutputs();
-        REBORN.c   187            //        displayExternal(5+i);
-        REBORN.c   188            //        Y = Y+128;
-        REBORN.c   189            //        Z = Z-128;
-        REBORN.c   190            //    }
-        REBORN.c   191            //    Z = Z+128;
+    000002A8 <00000000>             .DATA.L     _z
+    000002AC <00000000>             .DATA.L     _y
+    000002B0 <00000000>             .DATA.L     _x
+    000002B4 <00000000>             .DATA.L     _X
+    000002B8 <00000000>             .DATA.L     _Y
+    000002BC              L522:                             
+    000002BC 8B21                   BF          L500
+        REBORN.c   154            X = X+1;
+    000002BE 62C2                   MOV.L       @R12,R2
+    000002C0 7201                   ADD         #1,R2
+        REBORN.c   155            generateOutputs(); //cube droit
+    000002C2 B08B                   BSR         _generateOutputs
+    000002C4 2C22                   MOV.L       R2,@R12
+        REBORN.c   156            displayExternal(0,x+128,y,z);
+    000002C6 67A0                   MOV.B       @R10,R7
+    000002C8 66B0                   MOV.B       @R11,R6
+    000002CA 65E0                   MOV.B       @R14,R5
+    000002CC 359C                   ADD         R9,R5
+    000002CE B022                   BSR         _displayExternal
+    000002D0 E400                   MOV         #0,R4
+        REBORN.c   157            Y = Y+1;
+    000002D2 62D2                   MOV.L       @R13,R2
+    000002D4 7201                   ADD         #1,R2
+        REBORN.c   158            generateOutputs(); //cube inferieur droit
+    000002D6 B081                   BSR         _generateOutputs
+    000002D8 2D22                   MOV.L       R2,@R13
+        REBORN.c   159            displayExternal(0,x+128,y+128,z);
+    000002DA 67A0                   MOV.B       @R10,R7
+    000002DC 66B0                   MOV.B       @R11,R6
+    000002DE 369C                   ADD         R9,R6
+    000002E0 65E0                   MOV.B       @R14,R5
+    000002E2 359C                   ADD         R9,R5
+    000002E4 B017                   BSR         _displayExternal
+    000002E6 E400                   MOV         #0,R4
+        REBORN.c   160            X = X-1;
+    000002E8 62C2                   MOV.L       @R12,R2
+    000002EA 72FF                   ADD         #-1,R2
+        REBORN.c   161            generateOutputs(); //cube inferieur
+    000002EC B076                   BSR         _generateOutputs
+    000002EE 2C22                   MOV.L       R2,@R12
+        REBORN.c   162            displayExternal(0,x,y+128,z);
+    000002F0 67A0                   MOV.B       @R10,R7
+    000002F2 66B0                   MOV.B       @R11,R6
+    000002F4 65E0                   MOV.B       @R14,R5
+    000002F6 369C                   ADD         R9,R6
+    000002F8 B00D                   BSR         _displayExternal
+    000002FA E400                   MOV         #0,R4
+        REBORN.c   163            Y = Y-1;
+    000002FC 62D2                   MOV.L       @R13,R2
+    000002FE 72FF                   ADD         #-1,R2
+    00000300 2D22                   MOV.L       R2,@R13
+    00000302              L500:                             
+        REBORN.c   164        }
+        REBORN.c   165        ML_display_vram();
+    00000302 4F26                   LDS.L       @R15+,PR
+    00000304 D329                   MOV.L       L529,R3    ; _ML_display_vram
+    00000306 68F6                   MOV.L       @R15+,R8
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   12
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   11
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   192            //}
-        REBORN.c   193            //if(x<=64 && y>=64){
-        REBORN.c   194            //    for (i = 0; i < 1; ++i){
-        REBORN.c   195            //        X = X-128;
-        REBORN.c   196            //        generateOutputs();
-        REBORN.c   197            //        useOutputs();
-        REBORN.c   198            //        displayExternal(1+i);
-        REBORN.c   199            //        Y = Y+128;
-        REBORN.c   200            //        generateOutputs();
-        REBORN.c   201            //        useOutputs();
-        REBORN.c   202            //        displayExternal(3+i);
-        REBORN.c   203            //        X = X+128;
-        REBORN.c   204            //        generateOutputs();
-        REBORN.c   205            //        useOutputs();
-        REBORN.c   206            //        displayExternal(5+i);
-        REBORN.c   207            //        Y = Y-128;
-        REBORN.c   208            //        Z = Z-128;
-        REBORN.c   209            //    }
-        REBORN.c   210            //    Z = Z+128;
-        REBORN.c   211            //}
-        REBORN.c   212            //if(x>=64 && y>=64){
-        REBORN.c   213            //    for (i = 0; i < 1; ++i){
-        REBORN.c   214            //        X = X+128;
-        REBORN.c   215            //        generateOutputs();
-        REBORN.c   216            //        useOutputs();
-        REBORN.c   217            //        displayExternal(1+i);
-        REBORN.c   218            //        Y = Y+128;
-        REBORN.c   219            //        generateOutputs();
-        REBORN.c   220            //        useOutputs();
-        REBORN.c   221            //        displayExternal(3+i);
-        REBORN.c   222            //        X = X-128;
-        REBORN.c   223            //        generateOutputs();
-        REBORN.c   224            //        useOutputs();
-        REBORN.c   225            //        displayExternal(5+i);
-        REBORN.c   226            //        Y = Y-128;
-        REBORN.c   227            //        Z = Z-128;
-        REBORN.c   228            //    }
-        REBORN.c   229            //    Z = Z+128;
-        REBORN.c   230            //}
-        REBORN.c   231        
-        REBORN.c   232        } //determine le cube a generer et apelle External 
-        REBORN.c   233    }
-    00000334 7F0C                   ADD         #12,R15
-    00000336 4F26                   LDS.L       @R15+,PR
-    00000338 000B                   RTS
-    0000033A 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   234    void displayExternal(call,x,y,z){
-    0000033C              _displayExternal:                ; function: displayExternal
+    00000308 69F6                   MOV.L       @R15+,R9
+    0000030A 6AF6                   MOV.L       @R15+,R10
+    0000030C 6BF6                   MOV.L       @R15+,R11
+    0000030E 6CF6                   MOV.L       @R15+,R12
+    00000310 6DF6                   MOV.L       @R15+,R13
+    00000312 432B                   JMP         @R3
+    00000314 6EF6                   MOV.L       @R15+,R14
+        REBORN.c   166    }
+        REBORN.c   167    void displayExternal(call,x,y,z){
+    00000316              _displayExternal:                ; function: displayExternal
                                                            ; frame size=32
-    0000033C 2FE6                   MOV.L       R14,@-R15
-        REBORN.c   235        if(call==0){
-    0000033E 2448                   TST         R4,R4
-    00000340 2FD6                   MOV.L       R13,@-R15
-    00000342 2FC6                   MOV.L       R12,@-R15
-    00000344 2FB6                   MOV.L       R11,@-R15
-    00000346 6B53                   MOV         R5,R11
-    00000348 2FA6                   MOV.L       R10,@-R15
+        REBORN.c   168        if(call==0){
+    00000316 2448                   TST         R4,R4
+    00000318 2FE6                   MOV.L       R14,@-R15
+    0000031A 2FD6                   MOV.L       R13,@-R15
+    0000031C 2FC6                   MOV.L       R12,@-R15
+    0000031E 2FB6                   MOV.L       R11,@-R15
+    00000320 2FA6                   MOV.L       R10,@-R15
+    00000322 6B53                   MOV         R5,R11
+    00000324 2F96                   MOV.L       R9,@-R15
+    00000326 6A63                   MOV         R6,R10
+    00000328 2F86                   MOV.L       R8,@-R15
+    0000032A 4F22                   STS.L       PR,@-R15
+    0000032C 8F35                   BF/S        L501
+    0000032E 6C73                   MOV         R7,R12
+        REBORN.c   169            for (i = 0; i < systemDensity-1; ++i){
+    00000330 D81F                   MOV.L       L529+4,R8  ; _sunStorageZ
+    00000332 D920                   MOV.L       L529+8,R9  ; _ML_circle
+    00000334 DE20                   MOV.L       L529+12,R14; _i
+    00000336 A00F                   BRA         L523
+    00000338 E200                   MOV         #0,R2
+    0000033A              L503:                             
+        REBORN.c   170                ML_circle(x+sunStorageX[i], y+sunStorageY[i], z+sunStorageZ[i], 1);
+    0000033A E701                   MOV         #1,R7
+    0000033C 6DE0                   MOV.B       @R14,R13
+    0000033E 4D08                   SHLL2       R13
+    00000340 D31E                   MOV.L       L529+16,R3 ; _sunStorageY
+    00000342 60D3                   MOV         R13,R0
+    00000344 068E                   MOV.L       @(R0,R8),R6
+    00000346 36CC                   ADD         R12,R6
+    00000348 053E                   MOV.L       @(R0,R3),R5
+    0000034A 35AC                   ADD         R10,R5
+    0000034C D31C                   MOV.L       L529+20,R3 ; _sunStorageX
+    0000034E 043E                   MOV.L       @(R0,R3),R4
+    00000350 490B                   JSR         @R9
+    00000352 34BC                   ADD         R11,R4
+    00000354 62E0                   MOV.B       @R14,R2
+    00000356 7201                   ADD         #1,R2
+    00000358              L523:                             
+    00000358 2E20                   MOV.B       R2,@R14
+    0000035A 63E0                   MOV.B       @R14,R3
+    0000035C D119                   MOV.L       L529+24,R1 ; _systemDensity
+    0000035E 6212                   MOV.L       @R1,R2
+    00000360 72FF                   ADD         #-1,R2
+    00000362 3323                   CMP/GE      R2,R3
+    00000364 8BE9                   BF          L503
+        REBORN.c   171            }
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   13
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000034A 6A63                   MOV         R6,R10
-    0000034C 2F96                   MOV.L       R9,@-R15
-    0000034E 2F86                   MOV.L       R8,@-R15
-    00000350 4F22                   STS.L       PR,@-R15
-    00000352 8F39                   BF/S        L519
-    00000354 6C73                   MOV         R7,R12
-        REBORN.c   236            ML_clear_vram();
-    00000356 D221                   MOV.L       L547,R2    ; _ML_clear_vram
-    00000358 420B                   JSR         @R2
-    0000035A 0009                   NOP
-        REBORN.c   237            for (i = 0; i < systemDensity-1; ++i){
-    0000035C D820                   MOV.L       L547+4,R8  ; _sunStorageZ
-    0000035E E300                   MOV         #0,R3
-    00000360 D920                   MOV.L       L547+8,R9  ; _ML_circle
-    00000362 DE21                   MOV.L       L547+12,R14; _i
-    00000364 A010                   BRA         L520
-    00000366 2E30                   MOV.B       R3,@R14
-    00000368              L521:                             
-        REBORN.c   238                ML_circle(x+sunStorageX[i], y+sunStorageY[i], z+sunStorageZ[i], 1);
-    00000368 6DE0                   MOV.B       @R14,R13
-    0000036A E701                   MOV         #1,R7
-    0000036C D31F                   MOV.L       L547+16,R3 ; _sunStorageY
-    0000036E 4D08                   SHLL2       R13
-    00000370 60D3                   MOV         R13,R0
-    00000372 068E                   MOV.L       @(R0,R8),R6
-    00000374 053E                   MOV.L       @(R0,R3),R5
-    00000376 36CC                   ADD         R12,R6
-    00000378 D31D                   MOV.L       L547+20,R3 ; _sunStorageX
-    0000037A 35AC                   ADD         R10,R5
-    0000037C 043E                   MOV.L       @(R0,R3),R4
-    0000037E 490B                   JSR         @R9
-    00000380 34BC                   ADD         R11,R4
-    00000382 62E0                   MOV.B       @R14,R2
-    00000384 7201                   ADD         #1,R2
-    00000386 2E20                   MOV.B       R2,@R14
-    00000388              L520:                             
-    00000388 63E0                   MOV.B       @R14,R3
-    0000038A D11A                   MOV.L       L547+24,R1 ; _systemDensity
-    0000038C 6212                   MOV.L       @R1,R2
-    0000038E 72FF                   ADD         #-1,R2
-    00000390 3323                   CMP/GE      R2,R3
-    00000392 8BE9                   BF          L521
-        REBORN.c   239            }
-        REBORN.c   240            for (i = 0; i < planetCount-1; ++i){
-    00000394 D818                   MOV.L       L547+28,R8 ; _ML_filled_circle
-    00000396 E200                   MOV         #0,R2
-    00000398 D918                   MOV.L       L547+32,R9 ; _planetCount
-    0000039A A010                   BRA         L522
-    0000039C 2E20                   MOV.B       R2,@R14
-    0000039E              L523:                             
-        REBORN.c   241                ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
-    0000039E E701                   MOV         #1,R7
-    000003A0 6DE0                   MOV.B       @R14,R13
-    000003A2 4D08                   SHLL2       R13
-    000003A4 D016                   MOV.L       L547+36,R0 ; _astralStorageZ1
-    000003A6 06DE                   MOV.L       @(R0,R13),R6
-    000003A8 D016                   MOV.L       L547+40,R0 ; _astralStorageY1
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   14
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   12
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000003AA 36CC                   ADD         R12,R6
-    000003AC 05DE                   MOV.L       @(R0,R13),R5
-    000003AE 35AC                   ADD         R10,R5
-    000003B0 D015                   MOV.L       L547+44,R0 ; _astralStorageX1
-    000003B2 04DE                   MOV.L       @(R0,R13),R4
-    000003B4 480B                   JSR         @R8
-    000003B6 34BC                   ADD         R11,R4
-    000003B8 63E0                   MOV.B       @R14,R3
-    000003BA 7301                   ADD         #1,R3
-    000003BC 2E30                   MOV.B       R3,@R14
-    000003BE              L522:                             
-    000003BE 62E0                   MOV.B       @R14,R2
-    000003C0 6392                   MOV.L       @R9,R3
-    000003C2 73FF                   ADD         #-1,R3
-    000003C4 3233                   CMP/GE      R3,R2
-    000003C6 8BEA                   BF          L523
-    000003C8              L519:                             
-        REBORN.c   242            }
-        REBORN.c   243        }
-        REBORN.c   244        ML_display_vram();
-    000003C8 4F26                   LDS.L       @R15+,PR
-    000003CA 68F6                   MOV.L       @R15+,R8
-    000003CC D30F                   MOV.L       L547+48,R3 ; _ML_display_vram
-    000003CE 69F6                   MOV.L       @R15+,R9
-    000003D0 6AF6                   MOV.L       @R15+,R10
-    000003D2 6BF6                   MOV.L       @R15+,R11
-    000003D4 6CF6                   MOV.L       @R15+,R12
-    000003D6 6DF6                   MOV.L       @R15+,R13
-    000003D8 432B                   JMP         @R3
-    000003DA 6EF6                   MOV.L       @R15+,R14
-    000003DC              L547:                             
-    000003DC <00000000>             .DATA.L     _ML_clear_vram
-    000003E0 <00000000>             .DATA.L     _sunStorageZ
-    000003E4 <00000000>             .DATA.L     _ML_circle
-    000003E8 <00000000>             .DATA.L     _i
-    000003EC <00000000>             .DATA.L     _sunStorageY
-    000003F0 <00000000>             .DATA.L     _sunStorageX
-    000003F4 <00000000>             .DATA.L     _systemDensity
-    000003F8 <00000000>             .DATA.L     _ML_filled_circle
-    000003FC <00000000>             .DATA.L     _planetCount
-    00000400 <00000000>             .DATA.L     _astralStorageZ1
-    00000404 <00000000>             .DATA.L     _astralStorageY1
-    00000408 <00000000>             .DATA.L     _astralStorageX1
-    0000040C <00000000>             .DATA.L     _ML_display_vram
-        REBORN.c   245    }
-        REBORN.c   246    void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
-    00000410              _generateOutputs:                ; function: generateOutputs
+        REBORN.c   172            for (i = 0; i < planetCount-1; ++i){
+    00000366 E200                   MOV         #0,R2
+    00000368 D817                   MOV.L       L529+28,R8 ; _ML_filled_circle
+    0000036A D918                   MOV.L       L529+32,R9 ; _planetCount
+    0000036C A010                   BRA         L504
+    0000036E 2E20                   MOV.B       R2,@R14
+    00000370              L505:                             
+        REBORN.c   173                ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
+    00000370 6DE0                   MOV.B       @R14,R13
+    00000372 E701                   MOV         #1,R7
+    00000374 D016                   MOV.L       L529+36,R0 ; _astralStorageZ1
+    00000376 4D08                   SHLL2       R13
+    00000378 06DE                   MOV.L       @(R0,R13),R6
+    0000037A 36CC                   ADD         R12,R6
+    0000037C D015                   MOV.L       L529+40,R0 ; _astralStorageY1
+    0000037E 05DE                   MOV.L       @(R0,R13),R5
+    00000380 D015                   MOV.L       L529+44,R0 ; _astralStorageX1
+    00000382 35AC                   ADD         R10,R5
+    00000384 04DE                   MOV.L       @(R0,R13),R4
+    00000386 480B                   JSR         @R8
+    00000388 34BC                   ADD         R11,R4
+    0000038A 63E0                   MOV.B       @R14,R3
+    0000038C 7301                   ADD         #1,R3
+    0000038E 2E30                   MOV.B       R3,@R14
+    00000390              L504:                             
+    00000390 62E0                   MOV.B       @R14,R2
+    00000392 6392                   MOV.L       @R9,R3
+    00000394 73FF                   ADD         #-1,R3
+    00000396 3233                   CMP/GE      R3,R2
+    00000398 8BEA                   BF          L505
+    0000039A              L501:                             
+        REBORN.c   174            }
+        REBORN.c   175        }
+        REBORN.c   176    }
+    0000039A 4F26                   LDS.L       @R15+,PR
+    0000039C 68F6                   MOV.L       @R15+,R8
+    0000039E 69F6                   MOV.L       @R15+,R9
+    000003A0 6AF6                   MOV.L       @R15+,R10
+    000003A2 6BF6                   MOV.L       @R15+,R11
+    000003A4 6CF6                   MOV.L       @R15+,R12
+    000003A6 6DF6                   MOV.L       @R15+,R13
+    000003A8 000B                   RTS
+    000003AA 6EF6                   MOV.L       @R15+,R14
+    000003AC              L529:                             
+    000003AC <00000000>             .DATA.L     _ML_display_vram
+    000003B0 <00000000>             .DATA.L     _sunStorageZ
+    000003B4 <00000000>             .DATA.L     _ML_circle
+    000003B8 <00000000>             .DATA.L     _i
+    000003BC <00000000>             .DATA.L     _sunStorageY
+    000003C0 <00000000>             .DATA.L     _sunStorageX
+    000003C4 <00000000>             .DATA.L     _systemDensity
+    000003C8 <00000000>             .DATA.L     _ML_filled_circle
+    000003CC <00000000>             .DATA.L     _planetCount
+    000003D0 <00000000>             .DATA.L     _astralStorageZ1
+    000003D4 <00000000>             .DATA.L     _astralStorageY1
+    000003D8 <00000000>             .DATA.L     _astralStorageX1
+        REBORN.c   177    void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000003DC              _generateOutputs:                ; function: generateOutputs
                                                            ; frame size=16
                                                            ; used runtime library name:
                                                            ; __modls
-    00000410 2FE6                   MOV.L       R14,@-R15
-    00000412 2FD6                   MOV.L       R13,@-R15
-    00000414 2FC6                   MOV.L       R12,@-R15
-    00000416 4F22                   STS.L       PR,@-R15
-        REBORN.c   247        srand(X);
-    00000418 DE4C                   MOV.L       L548+6,R14 ; _srand
-    0000041A D34D                   MOV.L       L548+10,R3 ; _X
+    000003DC 2FE6                   MOV.L       R14,@-R15
+    000003DE 2FD6                   MOV.L       R13,@-R15
+    000003E0 2FC6                   MOV.L       R12,@-R15
+    000003E2 4F22                   STS.L       PR,@-R15
+        REBORN.c   178        srand(X);
+    000003E4 DE4C                   MOV.L       L530+6,R14 ; _srand
+    000003E6 D34D                   MOV.L       L530+10,R3 ; _X
+    000003E8 4E0B                   JSR         @R14
+    000003EA 6432                   MOV.L       @R3,R4
+        REBORN.c   179        output1 = rand() % 999;
+    000003EC 9C91                   MOV.W       L530,R12   ; H'03E7
+    000003EE DD4C                   MOV.L       L530+14,R13; _rand
+    000003F0 4D0B                   JSR         @R13
+    000003F2 0009                   NOP
+    000003F4 D24B                   MOV.L       L530+18,R2 ; __modls
+    000003F6 6103                   MOV         R0,R1
+    000003F8 420B                   JSR         @R2
+    000003FA 60C3                   MOV         R12,R0
+    000003FC D34A                   MOV.L       L530+22,R3 ; _output1
+    000003FE 2302                   MOV.L       R0,@R3
+        REBORN.c   180        srand(Y+1);
+    00000400 D24A                   MOV.L       L530+26,R2 ; _Y
+    00000402 6422                   MOV.L       @R2,R4
+    00000404 4E0B                   JSR         @R14
+    00000406 7401                   ADD         #1,R4
+        REBORN.c   181        output2 = rand() % 999;
+    00000408 4D0B                   JSR         @R13
+    0000040A 0009                   NOP
+    0000040C D345                   MOV.L       L530+18,R3 ; __modls
+    0000040E 6103                   MOV         R0,R1
+    00000410 430B                   JSR         @R3
+    00000412 60C3                   MOV         R12,R0
+    00000414 D246                   MOV.L       L530+30,R2 ; _output2
+    00000416 2202                   MOV.L       R0,@R2
+        REBORN.c   182        srand(Z);
+    00000418 D346                   MOV.L       L530+34,R3 ; _Z
+    0000041A 4E0B                   JSR         @R14
+    0000041C 6432                   MOV.L       @R3,R4
+        REBORN.c   183        output3 = rand() % 999;
+    0000041E 4D0B                   JSR         @R13
+    00000420 0009                   NOP
+    00000422 6103                   MOV         R0,R1
+    00000424 D23F                   MOV.L       L530+18,R2 ; __modls
+    00000426 420B                   JSR         @R2
+    00000428 60C3                   MOV         R12,R0
+    0000042A D343                   MOV.L       L530+38,R3 ; _output3
+    0000042C 2302                   MOV.L       R0,@R3
+        REBORN.c   184        useOutputs();
+    0000042E 4F26                   LDS.L       @R15+,PR
+    00000430 6CF6                   MOV.L       @R15+,R12
+    00000432 6DF6                   MOV.L       @R15+,R13
+    00000434 6EF6                   MOV.L       @R15+,R14
+        REBORN.c   185    }
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   15
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   14
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    0000041C 4E0B                   JSR         @R14
-    0000041E 6432                   MOV.L       @R3,R4
-        REBORN.c   248        output1 = rand() % 999;
-    00000420 9C91                   MOV.W       L548,R12   ; H'03E7
-    00000422 DD4C                   MOV.L       L548+14,R13; _rand
-    00000424 4D0B                   JSR         @R13
-    00000426 0009                   NOP
-    00000428 D24B                   MOV.L       L548+18,R2 ; __modls
-    0000042A 6103                   MOV         R0,R1
-    0000042C 420B                   JSR         @R2
-    0000042E 60C3                   MOV         R12,R0
-    00000430 D34A                   MOV.L       L548+22,R3 ; _output1
-    00000432 2302                   MOV.L       R0,@R3
-        REBORN.c   249        srand(Y+1);
-    00000434 D24A                   MOV.L       L548+26,R2 ; _Y
-    00000436 6422                   MOV.L       @R2,R4
-    00000438 4E0B                   JSR         @R14
-    0000043A 7401                   ADD         #1,R4
-        REBORN.c   250        output2 = rand() % 999;
-    0000043C 4D0B                   JSR         @R13
-    0000043E 0009                   NOP
-    00000440 D345                   MOV.L       L548+18,R3 ; __modls
-    00000442 6103                   MOV         R0,R1
-    00000444 430B                   JSR         @R3
-    00000446 60C3                   MOV         R12,R0
-    00000448 D246                   MOV.L       L548+30,R2 ; _output2
-    0000044A 2202                   MOV.L       R0,@R2
-        REBORN.c   251        srand(Z);
-    0000044C D346                   MOV.L       L548+34,R3 ; _Z
-    0000044E 4E0B                   JSR         @R14
-    00000450 6432                   MOV.L       @R3,R4
-        REBORN.c   252        output3 = rand() % 999;
-    00000452 4D0B                   JSR         @R13
-    00000454 0009                   NOP
-    00000456 6103                   MOV         R0,R1
-    00000458 D23F                   MOV.L       L548+18,R2 ; __modls
-    0000045A 420B                   JSR         @R2
-    0000045C 60C3                   MOV         R12,R0
-    0000045E D343                   MOV.L       L548+38,R3 ; _output3
-    00000460 2302                   MOV.L       R0,@R3
-        REBORN.c   253        useOutputs();
-    00000462 4F26                   LDS.L       @R15+,PR
-    00000464 6CF6                   MOV.L       @R15+,R12
-    00000466 6DF6                   MOV.L       @R15+,R13
-    00000468 6EF6                   MOV.L       @R15+,R14
-        REBORN.c   254    }
-        REBORN.c   255    void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solai
+        REBORN.c   186    void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a refaire si systemes solai
                          +res)
-    0000046A              _useOutputs:                     ; function: useOutputs
+    00000436              _useOutputs:                     ; function: useOutputs
                                                            ; frame size=60
                                                            ; used runtime library name:
                                                            ; __modls, __itod, __led
-    0000046A 2FE6                   MOV.L       R14,@-R15
-    0000046C 2FD6                   MOV.L       R13,@-R15
-    0000046E 2FC6                   MOV.L       R12,@-R15
-    00000470 2FB6                   MOV.L       R11,@-R15
-    00000472 2FA6                   MOV.L       R10,@-R15
+    00000436 2FE6                   MOV.L       R14,@-R15
+    00000438 2FD6                   MOV.L       R13,@-R15
+    0000043A 2FC6                   MOV.L       R12,@-R15
+    0000043C 2FB6                   MOV.L       R11,@-R15
+    0000043E 2FA6                   MOV.L       R10,@-R15
+    00000440 2F96                   MOV.L       R9,@-R15
+    00000442 2F86                   MOV.L       R8,@-R15
+    00000444 4F22                   STS.L       PR,@-R15
+    00000446 4F12                   STS.L       MACL,@-R15
+        REBORN.c   187        srand(output1);
+    00000448 D237                   MOV.L       L530+22,R2 ; _output1
+    0000044A 7FFC                   ADD         #-4,R15
+    0000044C D332                   MOV.L       L530+6,R3  ; _srand
+    0000044E 430B                   JSR         @R3
+    00000450 6422                   MOV.L       @R2,R4
+        REBORN.c   188        systemDensity = 5;
+    00000452 E105                   MOV         #5,R1
+    00000454 D339                   MOV.L       L530+42,R3 ; _systemDensity
+        REBORN.c   189        planetX, planetY, planetZ;
+        REBORN.c   190        planetCount=0;
+    00000456 E200                   MOV         #0,R2
+    00000458 D039                   MOV.L       L530+46,R0 ; _planetCount
+    0000045A 2312                   MOV.L       R1,@R3
+    0000045C 2022                   MOV.L       R2,@R0
+        REBORN.c   191        for (i = 0; i <= systemDensity; ++i){
+    0000045E DA39                   MOV.L       L530+50,R10; _i
+    00000460 D82F                   MOV.L       L530+14,R8 ; _rand
+    00000462 2A20                   MOV.B       R2,@R10
+    00000464 D938                   MOV.L       L530+54,R9 ; _astralStorageZ1
+    00000466 DB39                   MOV.L       L530+58,R11; _planetX
+    00000468 DC39                   MOV.L       L530+62,R12; _planetY
+    0000046A DD3A                   MOV.L       L530+66,R13; _p
+    0000046C DE3A                   MOV.L       L530+70,R14; _o
+    0000046E 9151                   MOV.W       L530+2,R1  ; H'0190
+    00000470 319C                   ADD         R9,R1
+    00000472 A166                   BRA         L506
+    00000474 2F12                   MOV.L       R1,@R15
+    00000476              L507:                             
+        REBORN.c   192            //create suns
+        REBORN.c   193    
+        REBORN.c   194            output1= output1*i;
+    00000476 62A0                   MOV.B       @R10,R2
+    00000478 D12B                   MOV.L       L530+22,R1 ; _output1
+    0000047A 6312                   MOV.L       @R1,R3
+    0000047C 0237                   MUL.L       R3,R2
+    0000047E 6013                   MOV         R1,R0
+        REBORN.c   195            srand(output1+i);
+    00000480 D325                   MOV.L       L530+6,R3  ; _srand
+    00000482 021A                   STS         MACL,R2
+    00000484 2022                   MOV.L       R2,@R0
+    00000486 64A0                   MOV.B       @R10,R4
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   16
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    00000474 2F96                   MOV.L       R9,@-R15
-    00000476 2F86                   MOV.L       R8,@-R15
-    00000478 4F22                   STS.L       PR,@-R15
-    0000047A 4F12                   STS.L       MACL,@-R15
-        REBORN.c   256        srand(output1);
-    0000047C D237                   MOV.L       L548+22,R2 ; _output1
-    0000047E 7FFC                   ADD         #-4,R15
-    00000480 D332                   MOV.L       L548+6,R3  ; _srand
-    00000482 430B                   JSR         @R3
-    00000484 6422                   MOV.L       @R2,R4
-        REBORN.c   257        systemDensity = 5;
-    00000486 E105                   MOV         #5,R1
-    00000488 D339                   MOV.L       L548+42,R3 ; _systemDensity
-        REBORN.c   258        planetX, planetY, planetZ;
-        REBORN.c   259        planetCount=0;
-    0000048A E200                   MOV         #0,R2
-    0000048C D039                   MOV.L       L548+46,R0 ; _planetCount
-    0000048E 2312                   MOV.L       R1,@R3
-    00000490 2022                   MOV.L       R2,@R0
-        REBORN.c   260        for (i = 0; i <= systemDensity; ++i){
-    00000492 DA39                   MOV.L       L548+50,R10; _i
-    00000494 D82F                   MOV.L       L548+14,R8 ; _rand
-    00000496 2A20                   MOV.B       R2,@R10
-    00000498 D938                   MOV.L       L548+54,R9 ; _astralStorageZ1
-    0000049A DB39                   MOV.L       L548+58,R11; _planetX
-    0000049C DC39                   MOV.L       L548+62,R12; _planetY
-    0000049E DD3A                   MOV.L       L548+66,R13; _p
-    000004A0 DE3A                   MOV.L       L548+70,R14; _o
-    000004A2 9151                   MOV.W       L548+2,R1  ; H'0190
-    000004A4 319C                   ADD         R9,R1
-    000004A6 A166                   BRA         L524
-    000004A8 2F12                   MOV.L       R1,@R15
-    000004AA              L525:                             
-        REBORN.c   261            //create suns
-        REBORN.c   262    
-        REBORN.c   263            output1= output1*i;
-    000004AA 62A0                   MOV.B       @R10,R2
-    000004AC D12B                   MOV.L       L548+22,R1 ; _output1
-    000004AE 6312                   MOV.L       @R1,R3
-    000004B0 0237                   MUL.L       R3,R2
-    000004B2 6013                   MOV         R1,R0
-        REBORN.c   264            srand(output1+i);
-    000004B4 D325                   MOV.L       L548+6,R3  ; _srand
-    000004B6 021A                   STS         MACL,R2
-    000004B8 2022                   MOV.L       R2,@R0
-    000004BA 64A0                   MOV.B       @R10,R4
-    000004BC 430B                   JSR         @R3
-    000004BE 342C                   ADD         R2,R4
-        REBORN.c   265            sunX = (rand() % 120)+8;//X
-    000004C0 480B                   JSR         @R8
-    000004C2 0009                   NOP
-    000004C4 D224                   MOV.L       L548+18,R2 ; __modls
-    000004C6 6103                   MOV         R0,R1
-    000004C8 420B                   JSR         @R2
-    000004CA E078                   MOV         #120,R0
-    000004CC D330                   MOV.L       L548+74,R3 ; _sunX
-    000004CE 7008                   ADD         #8,R0
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   17
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   15
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   266            srand(output2+i);
-    000004D0 D124                   MOV.L       L548+30,R1 ; _output2
-    000004D2 2302                   MOV.L       R0,@R3
-    000004D4 64A0                   MOV.B       @R10,R4
-    000004D6 6212                   MOV.L       @R1,R2
-    000004D8 D31C                   MOV.L       L548+6,R3  ; _srand
-    000004DA 430B                   JSR         @R3
-    000004DC 342C                   ADD         R2,R4
-        REBORN.c   267            sunY = (rand() % 120)+8;//Y
-    000004DE 480B                   JSR         @R8
-    000004E0 0009                   NOP
-    000004E2 6103                   MOV         R0,R1
-    000004E4 D21C                   MOV.L       L548+18,R2 ; __modls
-    000004E6 420B                   JSR         @R2
-    000004E8 E078                   MOV         #120,R0
-    000004EA 7008                   ADD         #8,R0
-    000004EC D329                   MOV.L       L548+78,R3 ; _sunY
-    000004EE 2302                   MOV.L       R0,@R3
-        REBORN.c   268            srand(output3+i);
-    000004F0 64A0                   MOV.B       @R10,R4
-    000004F2 D11E                   MOV.L       L548+38,R1 ; _output3
-    000004F4 D315                   MOV.L       L548+6,R3  ; _srand
-    000004F6 6212                   MOV.L       @R1,R2
-    000004F8 430B                   JSR         @R3
-    000004FA 342C                   ADD         R2,R4
-        REBORN.c   269            sunZ = (rand() % 7)+2;//Z
+    00000488 430B                   JSR         @R3
+    0000048A 342C                   ADD         R2,R4
+        REBORN.c   196            sunX = (rand() % 120)+8;//X
+    0000048C 480B                   JSR         @R8
+    0000048E 0009                   NOP
+    00000490 D224                   MOV.L       L530+18,R2 ; __modls
+    00000492 6103                   MOV         R0,R1
+    00000494 420B                   JSR         @R2
+    00000496 E078                   MOV         #120,R0
+    00000498 D330                   MOV.L       L530+74,R3 ; _sunX
+    0000049A 7008                   ADD         #8,R0
+        REBORN.c   197            srand(output2+i);
+    0000049C D124                   MOV.L       L530+30,R1 ; _output2
+    0000049E 2302                   MOV.L       R0,@R3
+    000004A0 64A0                   MOV.B       @R10,R4
+    000004A2 6212                   MOV.L       @R1,R2
+    000004A4 D31C                   MOV.L       L530+6,R3  ; _srand
+    000004A6 430B                   JSR         @R3
+    000004A8 342C                   ADD         R2,R4
+        REBORN.c   198            sunY = (rand() % 120)+8;//Y
+    000004AA 480B                   JSR         @R8
+    000004AC 0009                   NOP
+    000004AE 6103                   MOV         R0,R1
+    000004B0 D21C                   MOV.L       L530+18,R2 ; __modls
+    000004B2 420B                   JSR         @R2
+    000004B4 E078                   MOV         #120,R0
+    000004B6 7008                   ADD         #8,R0
+    000004B8 D329                   MOV.L       L530+78,R3 ; _sunY
+    000004BA 2302                   MOV.L       R0,@R3
+        REBORN.c   199            srand(output3+i);
+    000004BC 64A0                   MOV.B       @R10,R4
+    000004BE D11E                   MOV.L       L530+38,R1 ; _output3
+    000004C0 D315                   MOV.L       L530+6,R3  ; _srand
+    000004C2 6212                   MOV.L       @R1,R2
+    000004C4 430B                   JSR         @R3
+    000004C6 342C                   ADD         R2,R4
+        REBORN.c   200            sunZ = (rand() % 7)+2;//Z
+    000004C8 480B                   JSR         @R8
+    000004CA 0009                   NOP
+    000004CC D215                   MOV.L       L530+18,R2 ; __modls
+    000004CE 6103                   MOV         R0,R1
+    000004D0 420B                   JSR         @R2
+    000004D2 E007                   MOV         #7,R0
+    000004D4 D323                   MOV.L       L530+82,R3 ; _sunZ
+    000004D6 7002                   ADD         #2,R0
+    000004D8 2302                   MOV.L       R0,@R3
+        REBORN.c   201            sunStorageX[i] = sunX;   //fill storage
+    000004DA 62A0                   MOV.B       @R10,R2
+    000004DC D022                   MOV.L       L530+86,R0 ; _sunStorageX
+    000004DE 4208                   SHLL2       R2
+    000004E0 D31E                   MOV.L       L530+74,R3 ; _sunX
+    000004E2 6132                   MOV.L       @R3,R1
+        REBORN.c   202            sunStorageY[i] = sunY;
+    000004E4 D31E                   MOV.L       L530+78,R3 ; _sunY
+    000004E6 0216                   MOV.L       R1,@(R0,R2)
+    000004E8 62A0                   MOV.B       @R10,R2
+    000004EA 4208                   SHLL2       R2
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   16
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000004EC D01F                   MOV.L       L530+90,R0 ; _sunStorageY
+    000004EE 6132                   MOV.L       @R3,R1
+        REBORN.c   203            sunStorageZ[i] = sunZ;
+    000004F0 D31C                   MOV.L       L530+82,R3 ; _sunZ
+    000004F2 0216                   MOV.L       R1,@(R0,R2)
+    000004F4 62A0                   MOV.B       @R10,R2
+    000004F6 4208                   SHLL2       R2
+    000004F8 D01D                   MOV.L       L530+94,R0 ; _sunStorageZ
+    000004FA 6132                   MOV.L       @R3,R1
+        REBORN.c   204            planetDensity = (rand() % 20)+1;    // create density
     000004FC 480B                   JSR         @R8
-    000004FE 0009                   NOP
-    00000500 D215                   MOV.L       L548+18,R2 ; __modls
+    000004FE 0216                   MOV.L       R1,@(R0,R2)
+    00000500 D208                   MOV.L       L530+18,R2 ; __modls
     00000502 6103                   MOV         R0,R1
     00000504 420B                   JSR         @R2
-    00000506 E007                   MOV         #7,R0
-    00000508 D323                   MOV.L       L548+82,R3 ; _sunZ
-    0000050A 7002                   ADD         #2,R0
+    00000506 E014                   MOV         #20,R0
+    00000508 D31A                   MOV.L       L530+98,R3 ; _planetDensity
+    0000050A 7001                   ADD         #1,R0
     0000050C 2302                   MOV.L       R0,@R3
-        REBORN.c   270            sunStorageX[i] = sunX;   //fill storage
-    0000050E 62A0                   MOV.B       @R10,R2
-    00000510 D022                   MOV.L       L548+86,R0 ; _sunStorageX
-    00000512 4208                   SHLL2       R2
-    00000514 D31E                   MOV.L       L548+74,R3 ; _sunX
-    00000516 6132                   MOV.L       @R3,R1
-        REBORN.c   271            sunStorageY[i] = sunY;
-    00000518 D31E                   MOV.L       L548+78,R3 ; _sunY
-    0000051A 0216                   MOV.L       R1,@(R0,R2)
-    0000051C 62A0                   MOV.B       @R10,R2
-    0000051E 4208                   SHLL2       R2
-    00000520 D01F                   MOV.L       L548+90,R0 ; _sunStorageY
-    00000522 6132                   MOV.L       @R3,R1
-        REBORN.c   272            sunStorageZ[i] = sunZ;
-    00000524 D31C                   MOV.L       L548+82,R3 ; _sunZ
-    00000526 0216                   MOV.L       R1,@(R0,R2)
-    00000528 62A0                   MOV.B       @R10,R2
-    0000052A 4208                   SHLL2       R2
-    0000052C D01D                   MOV.L       L548+94,R0 ; _sunStorageZ
-    0000052E 6132                   MOV.L       @R3,R1
-        REBORN.c   273            planetDensity = (rand() % 20)+1;    // create density
-    00000530 480B                   JSR         @R8
+        REBORN.c   205            for (o = 0; o < planetDensity; ++o){
+    0000050E A10D                   BRA         L524
+    00000510 E200                   MOV         #0,R2
+    00000512              L530:                             
+    00000512 03E7                   .DATA.W     H'03E7
+    00000514 0190                   .DATA.W     H'0190
+    00000516 0000                   .DATA.W     0
+    00000518 <00000000>             .DATA.L     _srand
+    0000051C <00000000>             .DATA.L     _X
+    00000520 <00000000>             .DATA.L     _rand
+    00000524 <00000000>             .DATA.L     __modls
+    00000528 <00000000>             .DATA.L     _output1
+    0000052C <00000000>             .DATA.L     _Y
+    00000530 <00000000>             .DATA.L     _output2
+    00000534 <00000000>             .DATA.L     _Z
+    00000538 <00000000>             .DATA.L     _output3
+    0000053C <00000000>             .DATA.L     _systemDensity
+    00000540 <00000000>             .DATA.L     _planetCount
+    00000544 <00000000>             .DATA.L     _i
+    00000548 <00000000>             .DATA.L     _astralStorageZ1
+    0000054C <00000000>             .DATA.L     _planetX
+    00000550 <00000000>             .DATA.L     _planetY
+    00000554 <00000000>             .DATA.L     _p
+    00000558 <00000000>             .DATA.L     _o
+    0000055C <00000000>             .DATA.L     _sunX
+    00000560 <00000000>             .DATA.L     _sunY
+    00000564 <00000000>             .DATA.L     _sunZ
+    00000568 <00000000>             .DATA.L     _sunStorageX
+    0000056C <00000000>             .DATA.L     _sunStorageY
+    00000570 <00000000>             .DATA.L     _sunStorageZ
+    00000574 <00000000>             .DATA.L     _planetDensity
+    00000578              L509:                             
+        REBORN.c   206                //create planets around sun
+        REBORN.c   207    
+        REBORN.c   208                //X
+        REBORN.c   209                srand(output1+sunX+o);
+    00000578 64E0                   MOV.B       @R14,R4
+    0000057A D27B                   MOV.L       L531+2,R2  ; _output1
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   18
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    00000532 0216                   MOV.L       R1,@(R0,R2)
-    00000534 D208                   MOV.L       L548+18,R2 ; __modls
-    00000536 6103                   MOV         R0,R1
-    00000538 420B                   JSR         @R2
-    0000053A E014                   MOV         #20,R0
-    0000053C D31A                   MOV.L       L548+98,R3 ; _planetDensity
-    0000053E 7001                   ADD         #1,R0
-    00000540 2302                   MOV.L       R0,@R3
-        REBORN.c   274            for (o = 0; o < planetDensity; ++o){
-    00000542 A10D                   BRA         L541
-    00000544 E200                   MOV         #0,R2
-    00000546              L548:                             
-    00000546 03E7                   .DATA.W     H'03E7
-    00000548 0190                   .DATA.W     H'0190
-    0000054A 0000                   .DATA.W     0
-    0000054C <00000000>             .DATA.L     _srand
-    00000550 <00000000>             .DATA.L     _X
-    00000554 <00000000>             .DATA.L     _rand
-    00000558 <00000000>             .DATA.L     __modls
-    0000055C <00000000>             .DATA.L     _output1
-    00000560 <00000000>             .DATA.L     _Y
-    00000564 <00000000>             .DATA.L     _output2
-    00000568 <00000000>             .DATA.L     _Z
-    0000056C <00000000>             .DATA.L     _output3
-    00000570 <00000000>             .DATA.L     _systemDensity
-    00000574 <00000000>             .DATA.L     _planetCount
-    00000578 <00000000>             .DATA.L     _i
-    0000057C <00000000>             .DATA.L     _astralStorageZ1
-    00000580 <00000000>             .DATA.L     _planetX
-    00000584 <00000000>             .DATA.L     _planetY
-    00000588 <00000000>             .DATA.L     _p
-    0000058C <00000000>             .DATA.L     _o
-    00000590 <00000000>             .DATA.L     _sunX
-    00000594 <00000000>             .DATA.L     _sunY
-    00000598 <00000000>             .DATA.L     _sunZ
-    0000059C <00000000>             .DATA.L     _sunStorageX
-    000005A0 <00000000>             .DATA.L     _sunStorageY
-    000005A4 <00000000>             .DATA.L     _sunStorageZ
-    000005A8 <00000000>             .DATA.L     _planetDensity
-    000005AC              L527:                             
-        REBORN.c   275                //create planets around sun
-        REBORN.c   276    
-        REBORN.c   277                //X
-        REBORN.c   278                srand(output1+sunX+o);
-    000005AC 64E0                   MOV.B       @R14,R4
-    000005AE D27B                   MOV.L       L549+2,R2  ; _output1
-    000005B0 D07B                   MOV.L       L549+6,R0  ; _sunX
-    000005B2 6322                   MOV.L       @R2,R3
-    000005B4 6102                   MOV.L       @R0,R1
-    000005B6 343C                   ADD         R3,R4
-    000005B8 D37A                   MOV.L       L549+10,R3 ; _srand
-    000005BA 430B                   JSR         @R3
-    000005BC 341C                   ADD         R1,R4
-        REBORN.c   279                planetX = (rand() % 47) -15;
-    000005BE 480B                   JSR         @R8
-    000005C0 0009                   NOP
-    000005C2 6103                   MOV         R0,R1
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   19
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   17
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000005C4 D278                   MOV.L       L549+14,R2 ; __modls
-    000005C6 420B                   JSR         @R2
-    000005C8 E02F                   MOV         #47,R0
-    000005CA 70F1                   ADD         #-15,R0
-    000005CC 6403                   MOV         R0,R4
-    000005CE E309                   MOV         #9,R3
-    000005D0 3437                   CMP/GT      R3,R4
-    000005D2 8D05                   BT/S        L528
-    000005D4 2B02                   MOV.L       R0,@R11
-    000005D6 61B2                   MOV.L       @R11,R1
-    000005D8 4111                   CMP/PZ      R1
-    000005DA 8B01                   BF          L528
-        REBORN.c   280                if(planetX <= 9 && planetX >= 0){
-        REBORN.c   281                    planetX = planetX+9;
-    000005DC 7409                   ADD         #9,R4
-    000005DE 2B42                   MOV.L       R4,@R11
-    000005E0              L528:                             
-    000005E0 64B2                   MOV.L       @R11,R4
-    000005E2 E3F7                   MOV         #-9,R3
-    000005E4 3433                   CMP/GE      R3,R4
-    000005E6 8B03                   BF          L529
-    000005E8 4415                   CMP/PL      R4
-    000005EA 8901                   BT          L529
-        REBORN.c   282                }
-        REBORN.c   283                if(planetX >= -9 && planetX <= 0){
-        REBORN.c   284                    planetX = planetX-9;
-    000005EC 74F7                   ADD         #-9,R4
-    000005EE 2B42                   MOV.L       R4,@R11
-    000005F0              L529:                             
-        REBORN.c   285                }
-        REBORN.c   286                planetX = sunX+planetX;
-    000005F0 D16B                   MOV.L       L549+6,R1  ; _sunX
-    000005F2 6312                   MOV.L       @R1,R3
-    000005F4 62B2                   MOV.L       @R11,R2
-    000005F6 323C                   ADD         R3,R2
-    000005F8 2B22                   MOV.L       R2,@R11
-        REBORN.c   287    
-        REBORN.c   288                //Y
-        REBORN.c   289                srand(output2+sunY+o);
-    000005FA 64E0                   MOV.B       @R14,R4
-    000005FC D26B                   MOV.L       L549+18,R2 ; _output2
-    000005FE 6322                   MOV.L       @R2,R3
-    00000600 D06B                   MOV.L       L549+22,R0 ; _sunY
-    00000602 343C                   ADD         R3,R4
-    00000604 6102                   MOV.L       @R0,R1
-    00000606 D367                   MOV.L       L549+10,R3 ; _srand
-    00000608 430B                   JSR         @R3
-    0000060A 341C                   ADD         R1,R4
-        REBORN.c   290                planetY = (rand() % 47) -15;
-    0000060C 480B                   JSR         @R8
-    0000060E 0009                   NOP
-    00000610 D265                   MOV.L       L549+14,R2 ; __modls
-    00000612 6103                   MOV         R0,R1
-    00000614 420B                   JSR         @R2
-    00000616 E02F                   MOV         #47,R0
-    00000618 70F1                   ADD         #-15,R0
-    0000061A 6403                   MOV         R0,R4
+    0000057C D07B                   MOV.L       L531+6,R0  ; _sunX
+    0000057E 6322                   MOV.L       @R2,R3
+    00000580 6102                   MOV.L       @R0,R1
+    00000582 343C                   ADD         R3,R4
+    00000584 D37A                   MOV.L       L531+10,R3 ; _srand
+    00000586 430B                   JSR         @R3
+    00000588 341C                   ADD         R1,R4
+        REBORN.c   210                planetX = (rand() % 47) -15;
+    0000058A 480B                   JSR         @R8
+    0000058C 0009                   NOP
+    0000058E 6103                   MOV         R0,R1
+    00000590 D278                   MOV.L       L531+14,R2 ; __modls
+    00000592 420B                   JSR         @R2
+    00000594 E02F                   MOV         #47,R0
+    00000596 70F1                   ADD         #-15,R0
+    00000598 6403                   MOV         R0,R4
+    0000059A E309                   MOV         #9,R3
+    0000059C 3437                   CMP/GT      R3,R4
+    0000059E 8D05                   BT/S        L510
+    000005A0 2B02                   MOV.L       R0,@R11
+    000005A2 61B2                   MOV.L       @R11,R1
+    000005A4 4111                   CMP/PZ      R1
+    000005A6 8B01                   BF          L510
+        REBORN.c   211                if(planetX <= 9 && planetX >= 0){
+        REBORN.c   212                    planetX = planetX+9;
+    000005A8 7409                   ADD         #9,R4
+    000005AA 2B42                   MOV.L       R4,@R11
+    000005AC              L510:                             
+    000005AC 64B2                   MOV.L       @R11,R4
+    000005AE E3F7                   MOV         #-9,R3
+    000005B0 3433                   CMP/GE      R3,R4
+    000005B2 8B03                   BF          L511
+    000005B4 4415                   CMP/PL      R4
+    000005B6 8901                   BT          L511
+        REBORN.c   213                }
+        REBORN.c   214                if(planetX >= -9 && planetX <= 0){
+        REBORN.c   215                    planetX = planetX-9;
+    000005B8 74F7                   ADD         #-9,R4
+    000005BA 2B42                   MOV.L       R4,@R11
+    000005BC              L511:                             
+        REBORN.c   216                }
+        REBORN.c   217                planetX = sunX+planetX;
+    000005BC D16B                   MOV.L       L531+6,R1  ; _sunX
+    000005BE 6312                   MOV.L       @R1,R3
+    000005C0 62B2                   MOV.L       @R11,R2
+    000005C2 323C                   ADD         R3,R2
+    000005C4 2B22                   MOV.L       R2,@R11
+        REBORN.c   218    
+        REBORN.c   219                //Y
+        REBORN.c   220                srand(output2+sunY+o);
+    000005C6 64E0                   MOV.B       @R14,R4
+    000005C8 D26B                   MOV.L       L531+18,R2 ; _output2
+    000005CA 6322                   MOV.L       @R2,R3
+    000005CC D06B                   MOV.L       L531+22,R0 ; _sunY
+    000005CE 343C                   ADD         R3,R4
+    000005D0 6102                   MOV.L       @R0,R1
+    000005D2 D367                   MOV.L       L531+10,R3 ; _srand
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   20
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000061C E309                   MOV         #9,R3
-    0000061E 3437                   CMP/GT      R3,R4
-    00000620 8D05                   BT/S        L530
-    00000622 2C02                   MOV.L       R0,@R12
-    00000624 61C2                   MOV.L       @R12,R1
-    00000626 4111                   CMP/PZ      R1
-    00000628 8B01                   BF          L530
-        REBORN.c   291                if(planetY <= 9 && planetY >= 0){
-        REBORN.c   292                    planetY = planetY+9;
-    0000062A 7409                   ADD         #9,R4
-    0000062C 2C42                   MOV.L       R4,@R12
-    0000062E              L530:                             
-    0000062E E3F7                   MOV         #-9,R3
-    00000630 64C2                   MOV.L       @R12,R4
-    00000632 3433                   CMP/GE      R3,R4
-    00000634 8B03                   BF          L531
-    00000636 4415                   CMP/PL      R4
-    00000638 8901                   BT          L531
-        REBORN.c   293                }
-        REBORN.c   294                if(planetY >= -9 && planetY <= 0){
-        REBORN.c   295                    planetY = planetY-9;
-    0000063A 74F7                   ADD         #-9,R4
-    0000063C 2C42                   MOV.L       R4,@R12
-    0000063E              L531:                             
-        REBORN.c   296                }
-        REBORN.c   297                planetY = sunY+planetY;
-    0000063E D15C                   MOV.L       L549+22,R1 ; _sunY
-    00000640 62C2                   MOV.L       @R12,R2
-    00000642 6312                   MOV.L       @R1,R3
-        REBORN.c   298                //while(sqrt(pow(planetX-sunX,2)+pow(planetY-sunY,2))>20){
-        REBORN.c   299                //    --planetX;
-        REBORN.c   300                //    --planetY;
-        REBORN.c   301                //}
-        REBORN.c   302    
-        REBORN.c   303                //Z
-        REBORN.c   304                srand(output3+sunZ+o);
-    00000644 D05C                   MOV.L       L549+30,R0 ; _sunZ
-    00000646 323C                   ADD         R3,R2
-    00000648 2C22                   MOV.L       R2,@R12
-    0000064A 64E0                   MOV.B       @R14,R4
-    0000064C D259                   MOV.L       L549+26,R2 ; _output3
-    0000064E 6322                   MOV.L       @R2,R3
-    00000650 6102                   MOV.L       @R0,R1
-    00000652 343C                   ADD         R3,R4
-    00000654 D353                   MOV.L       L549+10,R3 ; _srand
-    00000656 430B                   JSR         @R3
-    00000658 341C                   ADD         R1,R4
-        REBORN.c   305                planetZ = (rand() % 3)+1;
-    0000065A 480B                   JSR         @R8
-    0000065C 0009                   NOP
-    0000065E 6103                   MOV         R0,R1
-    00000660 D251                   MOV.L       L549+14,R2 ; __modls
-    00000662 420B                   JSR         @R2
-    00000664 E003                   MOV         #3,R0
-    00000666 7001                   ADD         #1,R0
-    00000668 D354                   MOV.L       L549+34,R3 ; _planetZ
-    0000066A 2302                   MOV.L       R0,@R3
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   21
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   18
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   306                astralStorageX1[o] = planetX;   //fill storage
-    0000066C 62E0                   MOV.B       @R14,R2
-    0000066E 4208                   SHLL2       R2
-    00000670 D053                   MOV.L       L549+38,R0 ; _astralStorageX1
-    00000672 61B2                   MOV.L       @R11,R1
-    00000674 0216                   MOV.L       R1,@(R0,R2)
-        REBORN.c   307                astralStorageY1[o] = planetY;
-    00000676 62E0                   MOV.B       @R14,R2
-    00000678 D052                   MOV.L       L549+42,R0 ; _astralStorageY1
-    0000067A 4208                   SHLL2       R2
-    0000067C 61C2                   MOV.L       @R12,R1
-    0000067E 0216                   MOV.L       R1,@(R0,R2)
-        REBORN.c   308                astralStorageZ1[o] = planetZ;
-    00000680 60E0                   MOV.B       @R14,R0
-    00000682 4008                   SHLL2       R0
-    00000684 6232                   MOV.L       @R3,R2
-    00000686 0926                   MOV.L       R2,@(R0,R9)
-        REBORN.c   309                ++planetCount;
-    00000688 D14F                   MOV.L       L549+46,R1 ; _planetCount
-    0000068A 6012                   MOV.L       @R1,R0
-    0000068C 7001                   ADD         #1,R0
-    0000068E 2102                   MOV.L       R0,@R1
-        REBORN.c   310                for (p = o-1; p > 0; --p){
-    00000690 62E0                   MOV.B       @R14,R2
-    00000692 72FF                   ADD         #-1,R2
-    00000694 A05F                   BRA         L532
-    00000696 2D20                   MOV.B       R2,@R13
-    00000698              L535:                             
-        REBORN.c   311                    while(fabs(astralStorageX1[p]-astralStorageX1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o
+    000005D4 430B                   JSR         @R3
+    000005D6 341C                   ADD         R1,R4
+        REBORN.c   221                planetY = (rand() % 47) -15;
+    000005D8 480B                   JSR         @R8
+    000005DA 0009                   NOP
+    000005DC D265                   MOV.L       L531+14,R2 ; __modls
+    000005DE 6103                   MOV         R0,R1
+    000005E0 420B                   JSR         @R2
+    000005E2 E02F                   MOV         #47,R0
+    000005E4 70F1                   ADD         #-15,R0
+    000005E6 6403                   MOV         R0,R4
+    000005E8 E309                   MOV         #9,R3
+    000005EA 3437                   CMP/GT      R3,R4
+    000005EC 8D05                   BT/S        L512
+    000005EE 2C02                   MOV.L       R0,@R12
+    000005F0 61C2                   MOV.L       @R12,R1
+    000005F2 4111                   CMP/PZ      R1
+    000005F4 8B01                   BF          L512
+        REBORN.c   222                if(planetY <= 9 && planetY >= 0){
+        REBORN.c   223                    planetY = planetY+9;
+    000005F6 7409                   ADD         #9,R4
+    000005F8 2C42                   MOV.L       R4,@R12
+    000005FA              L512:                             
+    000005FA E3F7                   MOV         #-9,R3
+    000005FC 64C2                   MOV.L       @R12,R4
+    000005FE 3433                   CMP/GE      R3,R4
+    00000600 8B03                   BF          L513
+    00000602 4415                   CMP/PL      R4
+    00000604 8901                   BT          L513
+        REBORN.c   224                }
+        REBORN.c   225                if(planetY >= -9 && planetY <= 0){
+        REBORN.c   226                    planetY = planetY-9;
+    00000606 74F7                   ADD         #-9,R4
+    00000608 2C42                   MOV.L       R4,@R12
+    0000060A              L513:                             
+        REBORN.c   227                }
+        REBORN.c   228                planetY = sunY+planetY;
+    0000060A D15C                   MOV.L       L531+22,R1 ; _sunY
+    0000060C 62C2                   MOV.L       @R12,R2
+    0000060E 6312                   MOV.L       @R1,R3
+        REBORN.c   229                //while(sqrt(pow(planetX-sunX,2)+pow(planetY-sunY,2))>20){
+        REBORN.c   230                //    --planetX;
+        REBORN.c   231                //    --planetY;
+        REBORN.c   232                //}
+        REBORN.c   233    
+        REBORN.c   234                //Z
+        REBORN.c   235                srand(output3+sunZ+o);
+    00000610 D05C                   MOV.L       L531+30,R0 ; _sunZ
+    00000612 323C                   ADD         R3,R2
+    00000614 2C22                   MOV.L       R2,@R12
+    00000616 64E0                   MOV.B       @R14,R4
+    00000618 D259                   MOV.L       L531+26,R2 ; _output3
+    0000061A 6322                   MOV.L       @R2,R3
+    0000061C 6102                   MOV.L       @R0,R1
+    0000061E 343C                   ADD         R3,R4
+    00000620 D353                   MOV.L       L531+10,R3 ; _srand
+    00000622 430B                   JSR         @R3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   19
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000624 341C                   ADD         R1,R4
+        REBORN.c   236                planetZ = (rand() % 3)+1;
+    00000626 480B                   JSR         @R8
+    00000628 0009                   NOP
+    0000062A 6103                   MOV         R0,R1
+    0000062C D251                   MOV.L       L531+14,R2 ; __modls
+    0000062E 420B                   JSR         @R2
+    00000630 E003                   MOV         #3,R0
+    00000632 7001                   ADD         #1,R0
+    00000634 D354                   MOV.L       L531+34,R3 ; _planetZ
+    00000636 2302                   MOV.L       R0,@R3
+        REBORN.c   237                astralStorageX1[o] = planetX;   //fill storage
+    00000638 62E0                   MOV.B       @R14,R2
+    0000063A 4208                   SHLL2       R2
+    0000063C D053                   MOV.L       L531+38,R0 ; _astralStorageX1
+    0000063E 61B2                   MOV.L       @R11,R1
+    00000640 0216                   MOV.L       R1,@(R0,R2)
+        REBORN.c   238                astralStorageY1[o] = planetY;
+    00000642 62E0                   MOV.B       @R14,R2
+    00000644 D052                   MOV.L       L531+42,R0 ; _astralStorageY1
+    00000646 4208                   SHLL2       R2
+    00000648 61C2                   MOV.L       @R12,R1
+    0000064A 0216                   MOV.L       R1,@(R0,R2)
+        REBORN.c   239                astralStorageZ1[o] = planetZ;
+    0000064C 60E0                   MOV.B       @R14,R0
+    0000064E 4008                   SHLL2       R0
+    00000650 6232                   MOV.L       @R3,R2
+    00000652 0926                   MOV.L       R2,@(R0,R9)
+        REBORN.c   240                ++planetCount;
+    00000654 D14F                   MOV.L       L531+46,R1 ; _planetCount
+    00000656 6012                   MOV.L       @R1,R0
+    00000658 7001                   ADD         #1,R0
+    0000065A 2102                   MOV.L       R0,@R1
+        REBORN.c   241                for (p = o-1; p > 0; --p){
+    0000065C 62E0                   MOV.B       @R14,R2
+    0000065E 72FF                   ADD         #-1,R2
+    00000660 A05F                   BRA         L514
+    00000662 2D20                   MOV.B       R2,@R13
+    00000664              L517:                             
+        REBORN.c   242                    while(fabs(astralStorageX1[p]-astralStorageX1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o
                          +]+1)){
-        REBORN.c   312                        ++astralStorageX1[p];
-    00000698 61D0                   MOV.B       @R13,R1
-    0000069A 4108                   SHLL2       R1
-    0000069C D048                   MOV.L       L549+38,R0 ; _astralStorageX1
-    0000069E 031E                   MOV.L       @(R0,R1),R3
-    000006A0 7301                   ADD         #1,R3
-    000006A2 0136                   MOV.L       R3,@(R0,R1)
-    000006A4              L534:                             
-    000006A4 63E0                   MOV.B       @R14,R3
-    000006A6 4308                   SHLL2       R3
-    000006A8 D045                   MOV.L       L549+38,R0 ; _astralStorageX1
-    000006AA 023E                   MOV.L       @(R0,R3),R2
-    000006AC 60D0                   MOV.B       @R13,R0
-    000006AE 4008                   SHLL2       R0
-    000006B0 D143                   MOV.L       L549+38,R1 ; _astralStorageX1
-    000006B2 001E                   MOV.L       @(R0,R1),R0
-    000006B4 D345                   MOV.L       L549+50,R3 ; __itod
-    000006B6 3028                   SUB         R2,R0
-    000006B8 7FF0                   ADD         #-16,R15
-    000006BA 430B                   JSR         @R3
-    000006BC 2FF6                   MOV.L       R15,@-R15
-    000006BE E208                   MOV         #8,R2
-    000006C0 D343                   MOV.L       L549+54,R3 ; _fabs
-    000006C2 32FC                   ADD         R15,R2
-    000006C4 430B                   JSR         @R3
-    000006C6 2F26                   MOV.L       R2,@-R15
-    000006C8 60D0                   MOV.B       @R13,R0
+        REBORN.c   243                        ++astralStorageX1[p];
+    00000664 61D0                   MOV.B       @R13,R1
+    00000666 4108                   SHLL2       R1
+    00000668 D048                   MOV.L       L531+38,R0 ; _astralStorageX1
+    0000066A 031E                   MOV.L       @(R0,R1),R3
+    0000066C 7301                   ADD         #1,R3
+    0000066E 0136                   MOV.L       R3,@(R0,R1)
+    00000670              L516:                             
+    00000670 63E0                   MOV.B       @R14,R3
+    00000672 4308                   SHLL2       R3
+    00000674 D045                   MOV.L       L531+38,R0 ; _astralStorageX1
+    00000676 023E                   MOV.L       @(R0,R3),R2
+    00000678 60D0                   MOV.B       @R13,R0
+    0000067A 4008                   SHLL2       R0
+    0000067C D143                   MOV.L       L531+38,R1 ; _astralStorageX1
+    0000067E 001E                   MOV.L       @(R0,R1),R0
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   22
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   20
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    000006CA 4008                   SHLL2       R0
-    000006CC 009E                   MOV.L       @(R0,R9),R0
-    000006CE 63E0                   MOV.B       @R14,R3
-    000006D0 4308                   SHLL2       R3
-    000006D2 339C                   ADD         R9,R3
-    000006D4 6232                   MOV.L       @R3,R2
-    000006D6 7F04                   ADD         #4,R15
-    000006D8 D33C                   MOV.L       L549+50,R3 ; __itod
-    000006DA 302C                   ADD         R2,R0
-    000006DC 7001                   ADD         #1,R0
-    000006DE 430B                   JSR         @R3
-    000006E0 2FF6                   MOV.L       R15,@-R15
-    000006E2 D23C                   MOV.L       L549+58,R2 ; __led
-    000006E4 420B                   JSR         @R2
-    000006E6 0009                   NOP
-    000006E8 8800                   CMP/EQ      #0,R0
-    000006EA 8BD5                   BF          L535
-        REBORN.c   313                    }
-        REBORN.c   314                    astralStorageZ1[100] = planetZ;
-    000006EC 63F2                   MOV.L       @R15,R3
-    000006EE D133                   MOV.L       L549+34,R1 ; _planetZ
-    000006F0 6212                   MOV.L       @R1,R2
-    000006F2 2322                   MOV.L       R2,@R3
-        REBORN.c   315                    while(fabs(astralStorageY1[p]-astralStorageY1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o
+    00000680 D345                   MOV.L       L531+50,R3 ; __itod
+    00000682 3028                   SUB         R2,R0
+    00000684 7FF0                   ADD         #-16,R15
+    00000686 430B                   JSR         @R3
+    00000688 2FF6                   MOV.L       R15,@-R15
+    0000068A E208                   MOV         #8,R2
+    0000068C D343                   MOV.L       L531+54,R3 ; _fabs
+    0000068E 32FC                   ADD         R15,R2
+    00000690 430B                   JSR         @R3
+    00000692 2F26                   MOV.L       R2,@-R15
+    00000694 60D0                   MOV.B       @R13,R0
+    00000696 4008                   SHLL2       R0
+    00000698 009E                   MOV.L       @(R0,R9),R0
+    0000069A 63E0                   MOV.B       @R14,R3
+    0000069C 4308                   SHLL2       R3
+    0000069E 339C                   ADD         R9,R3
+    000006A0 6232                   MOV.L       @R3,R2
+    000006A2 7F04                   ADD         #4,R15
+    000006A4 D33C                   MOV.L       L531+50,R3 ; __itod
+    000006A6 302C                   ADD         R2,R0
+    000006A8 7001                   ADD         #1,R0
+    000006AA 430B                   JSR         @R3
+    000006AC 2FF6                   MOV.L       R15,@-R15
+    000006AE D23C                   MOV.L       L531+58,R2 ; __led
+    000006B0 420B                   JSR         @R2
+    000006B2 0009                   NOP
+    000006B4 8800                   CMP/EQ      #0,R0
+    000006B6 8BD5                   BF          L517
+        REBORN.c   244                    }
+        REBORN.c   245                    astralStorageZ1[100] = planetZ;
+    000006B8 63F2                   MOV.L       @R15,R3
+    000006BA D133                   MOV.L       L531+34,R1 ; _planetZ
+    000006BC 6212                   MOV.L       @R1,R2
+    000006BE 2322                   MOV.L       R2,@R3
+        REBORN.c   246                    while(fabs(astralStorageY1[p]-astralStorageY1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o
                          +]+1)){
-    000006F4 A008                   BRA         L536
-    000006F6 0009                   NOP
-    000006F8              L537:                             
-        REBORN.c   316                        ++astralStorageY1[p];
+    000006C0 A008                   BRA         L518
+    000006C2 0009                   NOP
+    000006C4              L519:                             
+        REBORN.c   247                        ++astralStorageY1[p];
+    000006C4 60D0                   MOV.B       @R13,R0
+    000006C6 4008                   SHLL2       R0
+    000006C8 D131                   MOV.L       L531+42,R1 ; _astralStorageY1
+    000006CA 031E                   MOV.L       @(R0,R1),R3
+    000006CC 7301                   ADD         #1,R3
+    000006CE 6213                   MOV         R1,R2
+    000006D0 320C                   ADD         R0,R2
+    000006D2 2232                   MOV.L       R3,@R2
+    000006D4              L518:                             
+    000006D4 63E0                   MOV.B       @R14,R3
+    000006D6 4308                   SHLL2       R3
+    000006D8 D02D                   MOV.L       L531+42,R0 ; _astralStorageY1
+    000006DA 023E                   MOV.L       @(R0,R3),R2
+    000006DC 60D0                   MOV.B       @R13,R0
+    000006DE 4008                   SHLL2       R0
+    000006E0 D12B                   MOV.L       L531+42,R1 ; _astralStorageY1
+    000006E2 001E                   MOV.L       @(R0,R1),R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   21
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000006E4 D32C                   MOV.L       L531+50,R3 ; __itod
+    000006E6 3028                   SUB         R2,R0
+    000006E8 7FF0                   ADD         #-16,R15
+    000006EA 430B                   JSR         @R3
+    000006EC 2FF6                   MOV.L       R15,@-R15
+    000006EE E208                   MOV         #8,R2
+    000006F0 D32A                   MOV.L       L531+54,R3 ; _fabs
+    000006F2 32FC                   ADD         R15,R2
+    000006F4 430B                   JSR         @R3
+    000006F6 2F26                   MOV.L       R2,@-R15
     000006F8 60D0                   MOV.B       @R13,R0
     000006FA 4008                   SHLL2       R0
-    000006FC D131                   MOV.L       L549+42,R1 ; _astralStorageY1
-    000006FE 031E                   MOV.L       @(R0,R1),R3
-    00000700 7301                   ADD         #1,R3
-    00000702 6213                   MOV         R1,R2
-    00000704 320C                   ADD         R0,R2
-    00000706 2232                   MOV.L       R3,@R2
-    00000708              L536:                             
-    00000708 63E0                   MOV.B       @R14,R3
-    0000070A 4308                   SHLL2       R3
-    0000070C D02D                   MOV.L       L549+42,R0 ; _astralStorageY1
-    0000070E 023E                   MOV.L       @(R0,R3),R2
-    00000710 60D0                   MOV.B       @R13,R0
-    00000712 4008                   SHLL2       R0
-    00000714 D12B                   MOV.L       L549+42,R1 ; _astralStorageY1
-    00000716 001E                   MOV.L       @(R0,R1),R0
-    00000718 D32C                   MOV.L       L549+50,R3 ; __itod
-    0000071A 3028                   SUB         R2,R0
-    0000071C 7FF0                   ADD         #-16,R15
-    0000071E 430B                   JSR         @R3
-    00000720 2FF6                   MOV.L       R15,@-R15
-    00000722 E208                   MOV         #8,R2
-    00000724 D32A                   MOV.L       L549+54,R3 ; _fabs
-    00000726 32FC                   ADD         R15,R2
-    00000728 430B                   JSR         @R3
-    0000072A 2F26                   MOV.L       R2,@-R15
-    0000072C 60D0                   MOV.B       @R13,R0
+    000006FC 009E                   MOV.L       @(R0,R9),R0
+    000006FE 63E0                   MOV.B       @R14,R3
+    00000700 4308                   SHLL2       R3
+    00000702 339C                   ADD         R9,R3
+    00000704 6232                   MOV.L       @R3,R2
+    00000706 7F04                   ADD         #4,R15
+    00000708 D323                   MOV.L       L531+50,R3 ; __itod
+    0000070A 302C                   ADD         R2,R0
+    0000070C 7001                   ADD         #1,R0
+    0000070E 430B                   JSR         @R3
+    00000710 2FF6                   MOV.L       R15,@-R15
+    00000712 D223                   MOV.L       L531+58,R2 ; __led
+    00000714 420B                   JSR         @R2
+    00000716 0009                   NOP
+    00000718 8800                   CMP/EQ      #0,R0
+    0000071A 8BD3                   BF          L519
+    0000071C 63D0                   MOV.B       @R13,R3
+    0000071E 73FF                   ADD         #-1,R3
+    00000720 2D30                   MOV.B       R3,@R13
+    00000722              L514:                             
+    00000722 62D0                   MOV.B       @R13,R2
+    00000724 4215                   CMP/PL      R2
+    00000726 89A3                   BT          L516
+    00000728 62E0                   MOV.B       @R14,R2
+    0000072A 7201                   ADD         #1,R2
+    0000072C              L524:                             
+    0000072C 2E20                   MOV.B       R2,@R14
+    0000072E 63E0                   MOV.B       @R14,R3
+    00000730 D11C                   MOV.L       L531+62,R1 ; _planetDensity
+    00000732 6212                   MOV.L       @R1,R2
+    00000734 3323                   CMP/GE      R2,R3
+    00000736 8901                   BT          L532
+    00000738 AF1E                   BRA         L509
+    0000073A 0009                   NOP
+    0000073C              L532:                             
+    0000073C 60A0                   MOV.B       @R10,R0
+    0000073E 7001                   ADD         #1,R0
+    00000740 2A00                   MOV.B       R0,@R10
+    00000742              L506:                             
+    00000742 63A0                   MOV.B       @R10,R3
+    00000744 D118                   MOV.L       L531+66,R1 ; _systemDensity
+    00000746 6212                   MOV.L       @R1,R2
+    00000748 3327                   CMP/GT      R2,R3
+    0000074A 8901                   BT          L533
+    0000074C AE93                   BRA         L507
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   23
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
-    0000072E 4008                   SHLL2       R0
-    00000730 009E                   MOV.L       @(R0,R9),R0
-    00000732 63E0                   MOV.B       @R14,R3
-    00000734 4308                   SHLL2       R3
-    00000736 339C                   ADD         R9,R3
-    00000738 6232                   MOV.L       @R3,R2
-    0000073A 7F04                   ADD         #4,R15
-    0000073C D323                   MOV.L       L549+50,R3 ; __itod
-    0000073E 302C                   ADD         R2,R0
-    00000740 7001                   ADD         #1,R0
-    00000742 430B                   JSR         @R3
-    00000744 2FF6                   MOV.L       R15,@-R15
-    00000746 D223                   MOV.L       L549+58,R2 ; __led
-    00000748 420B                   JSR         @R2
-    0000074A 0009                   NOP
-    0000074C 8800                   CMP/EQ      #0,R0
-    0000074E 8BD3                   BF          L537
-    00000750 63D0                   MOV.B       @R13,R3
-    00000752 73FF                   ADD         #-1,R3
-    00000754 2D30                   MOV.B       R3,@R13
-    00000756              L532:                             
-    00000756 62D0                   MOV.B       @R13,R2
-    00000758 4215                   CMP/PL      R2
-    0000075A 89A3                   BT          L534
-    0000075C 62E0                   MOV.B       @R14,R2
-    0000075E 7201                   ADD         #1,R2
-    00000760              L541:                             
-    00000760 2E20                   MOV.B       R2,@R14
-    00000762 63E0                   MOV.B       @R14,R3
-    00000764 D11C                   MOV.L       L549+62,R1 ; _planetDensity
-    00000766 6212                   MOV.L       @R1,R2
-    00000768 3323                   CMP/GE      R2,R3
-    0000076A 8901                   BT          L550
-    0000076C AF1E                   BRA         L527
-    0000076E 0009                   NOP
-    00000770              L550:                             
-    00000770 60A0                   MOV.B       @R10,R0
-    00000772 7001                   ADD         #1,R0
-    00000774 2A00                   MOV.B       R0,@R10
-    00000776              L524:                             
-    00000776 63A0                   MOV.B       @R10,R3
-    00000778 D118                   MOV.L       L549+66,R1 ; _systemDensity
-    0000077A 6212                   MOV.L       @R1,R2
-    0000077C 3327                   CMP/GT      R2,R3
-    0000077E 8901                   BT          L551
-    00000780 AE93                   BRA         L525
-    00000782 0009                   NOP
-    00000784              L551:                             
-        REBORN.c   317                    }
-        REBORN.c   318                    
-        REBORN.c   319                }
-        REBORN.c   320                
-        REBORN.c   321            }
-        REBORN.c   322        }
-        REBORN.c   323    }
-    00000784 7F04                   ADD         #4,R15
-    00000786 4F16                   LDS.L       @R15+,MACL
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   24
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   22
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000788 4F26                   LDS.L       @R15+,PR
-    0000078A 68F6                   MOV.L       @R15+,R8
-    0000078C 69F6                   MOV.L       @R15+,R9
-    0000078E 6AF6                   MOV.L       @R15+,R10
-    00000790 6BF6                   MOV.L       @R15+,R11
-    00000792 6CF6                   MOV.L       @R15+,R12
-    00000794 6DF6                   MOV.L       @R15+,R13
-    00000796 000B                   RTS
-    00000798 6EF6                   MOV.L       @R15+,R14
-    0000079A              L549:                             
-    0000079A 0000                   .DATA.W     0
-    0000079C <00000000>             .DATA.L     _output1
-    000007A0 <00000000>             .DATA.L     _sunX
-    000007A4 <00000000>             .DATA.L     _srand
-    000007A8 <00000000>             .DATA.L     __modls
-    000007AC <00000000>             .DATA.L     _output2
-    000007B0 <00000000>             .DATA.L     _sunY
-    000007B4 <00000000>             .DATA.L     _output3
-    000007B8 <00000000>             .DATA.L     _sunZ
-    000007BC <00000000>             .DATA.L     _planetZ
-    000007C0 <00000000>             .DATA.L     _astralStorageX1
-    000007C4 <00000000>             .DATA.L     _astralStorageY1
-    000007C8 <00000000>             .DATA.L     _planetCount
-    000007CC <00000000>             .DATA.L     __itod
-    000007D0 <00000000>             .DATA.L     _fabs
-    000007D4 <00000000>             .DATA.L     __led
-    000007D8 <00000000>             .DATA.L     _planetDensity
-    000007DC <00000000>             .DATA.L     _systemDensity
-        REBORN.c   324    
-        REBORN.c   325    
-        REBORN.c   326    
-        REBORN.c   327    
-        REBORN.c   328    //****************************************************************************
-        REBORN.c   329    //**************                                              ****************
-        REBORN.c   330    //**************                 Notice!                      ****************
-        REBORN.c   331    //**************                                              ****************
-        REBORN.c   332    //**************  Please do not change the following source.  ****************
-        REBORN.c   333    //**************                                              ****************
-        REBORN.c   334    //****************************************************************************
-        REBORN.c   335    
-        REBORN.c   336    
-        REBORN.c   337    #pragma section _BR_Size
-        REBORN.c   338    unsigned long BR_Size;
-        REBORN.c   339    #pragma section
-        REBORN.c   340    
-        REBORN.c   341    
-        REBORN.c   342    #pragma section _TOP
-        REBORN.c   343    
-        REBORN.c   344    //****************************************************************************
-        REBORN.c   345    //  InitializeSystem
-        REBORN.c   346    //
-        REBORN.c   347    //  param   :   isAppli   : 1 = Application / 0 = eActivity
-        REBORN.c   348    //              OptionNum : Option Number (only eActivity)
-        REBORN.c   349    //
-        REBORN.c   350    //  retval  :   1 = No error / 0 = Error
-        REBORN.c   351    //
-        REBORN.c   352    //****************************************************************************
+    0000074E 0009                   NOP
+    00000750              L533:                             
+        REBORN.c   248                    }
+        REBORN.c   249                    
+        REBORN.c   250                }
+        REBORN.c   251                
+        REBORN.c   252            }
+        REBORN.c   253        }
+        REBORN.c   254    }
+    00000750 7F04                   ADD         #4,R15
+    00000752 4F16                   LDS.L       @R15+,MACL
+    00000754 4F26                   LDS.L       @R15+,PR
+    00000756 68F6                   MOV.L       @R15+,R8
+    00000758 69F6                   MOV.L       @R15+,R9
+    0000075A 6AF6                   MOV.L       @R15+,R10
+    0000075C 6BF6                   MOV.L       @R15+,R11
+    0000075E 6CF6                   MOV.L       @R15+,R12
+    00000760 6DF6                   MOV.L       @R15+,R13
+    00000762 000B                   RTS
+    00000764 6EF6                   MOV.L       @R15+,R14
+    00000766              L531:                             
+    00000766 0000                   .DATA.W     0
+    00000768 <00000000>             .DATA.L     _output1
+    0000076C <00000000>             .DATA.L     _sunX
+    00000770 <00000000>             .DATA.L     _srand
+    00000774 <00000000>             .DATA.L     __modls
+    00000778 <00000000>             .DATA.L     _output2
+    0000077C <00000000>             .DATA.L     _sunY
+    00000780 <00000000>             .DATA.L     _output3
+    00000784 <00000000>             .DATA.L     _sunZ
+    00000788 <00000000>             .DATA.L     _planetZ
+    0000078C <00000000>             .DATA.L     _astralStorageX1
+    00000790 <00000000>             .DATA.L     _astralStorageY1
+    00000794 <00000000>             .DATA.L     _planetCount
+    00000798 <00000000>             .DATA.L     __itod
+    0000079C <00000000>             .DATA.L     _fabs
+    000007A0 <00000000>             .DATA.L     __led
+    000007A4 <00000000>             .DATA.L     _planetDensity
+    000007A8 <00000000>             .DATA.L     _systemDensity
+        REBORN.c   255    
+        REBORN.c   256    
+        REBORN.c   257    
+        REBORN.c   258    
+        REBORN.c   259    //****************************************************************************
+        REBORN.c   260    //**************                                              ****************
+        REBORN.c   261    //**************                 Notice!                      ****************
+        REBORN.c   262    //**************                                              ****************
+        REBORN.c   263    //**************  Please do not change the following source.  ****************
+        REBORN.c   264    //**************                                              ****************
+        REBORN.c   265    //****************************************************************************
+        REBORN.c   266    
+        REBORN.c   267    
+        REBORN.c   268    #pragma section _BR_Size
+        REBORN.c   269    unsigned long BR_Size;
+        REBORN.c   270    #pragma section
+        REBORN.c   271    
+        REBORN.c   272    
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   25
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   23
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-        REBORN.c   353    int InitializeSystem(int isAppli, unsigned short OptionNum)
+        REBORN.c   273    #pragma section _TOP
+        REBORN.c   274    
+        REBORN.c   275    //****************************************************************************
+        REBORN.c   276    //  InitializeSystem
+        REBORN.c   277    //
+        REBORN.c   278    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+        REBORN.c   279    //              OptionNum : Option Number (only eActivity)
+        REBORN.c   280    //
+        REBORN.c   281    //  retval  :   1 = No error / 0 = Error
+        REBORN.c   282    //
+        REBORN.c   283    //****************************************************************************
+        REBORN.c   284    int InitializeSystem(int isAppli, unsigned short OptionNum)
 P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
                                                            ; frame size=0
-        REBORN.c   354    {
-        REBORN.c   355        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
-    00000000 D301                   MOV.L       L552+2,R3  ; _INIT_ADDIN_APPLICATION
+        REBORN.c   285    {
+        REBORN.c   286        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L534+2,R3  ; _INIT_ADDIN_APPLICATION
     00000002 432B                   JMP         @R3
     00000004 0009                   NOP
-    00000006              L552:                             
+    00000006              L534:                             
     00000006 0000                   .DATA.W     0
     00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
-        REBORN.c   356    }
-        REBORN.c   357    
-        REBORN.c   358    #pragma section
+        REBORN.c   287    }
+        REBORN.c   288    
+        REBORN.c   289    #pragma section
 C   00000000              _X0:                             ; static: X0
     00000000 00181C80               .DATA.L     H'00181C80
     00000004              _Y0:                             ; static: Y0
@@ -1633,6 +1512,15 @@ B   00000000              _output1:                        ; static: output1
     00000084 00000168               .RES.L      90
     000001EC              _astralStorageY1:                ; static: astralStorageY1
     000001EC 00000168               .RES.L      90
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE   24
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
     00000354              _astralStorageZ1:                ; static: astralStorageZ1
     00000354 00000168               .RES.L      90
     000004BC              _i:                              ; static: i
@@ -1644,15 +1532,6 @@ B   00000000              _output1:                        ; static: output1
     000004BF              _x:                              ; static: x
     000004BF 00000001               .RES.B      1
     000004C0              _y:                              ; static: y
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE   26
-
-
-SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
-
     000004C0 00000001               .RES.B      1
     000004C1              _z:                              ; static: z
     000004C1 00000001               .RES.B      1
@@ -1703,18 +1582,7 @@ B_B 00000000              _BR_Size:                        ; static: BR_Size
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 06-Jun-2015 23:36:47  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 07-Jun-2015 18:55:33  PAGE    1
 
 
 ******** STATISTICS INFORMATION ********
@@ -1730,13 +1598,13 @@ NUMBER OF WARNINGS:         0
 
 ******* SOURCE LINE INFORMATION ********
 
-COMPILED SOURCE LINE:      358
+COMPILED SOURCE LINE:      289
 
 
 
 ******* SECTION SIZE INFORMATION *******
 
-PROGRAM  SECTION (P):                               000007E0 Byte(s)
+PROGRAM  SECTION (P):                               000007AC Byte(s)
 PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
 PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
 CONSTANT SECTION (C):                               0000000C Byte(s)
@@ -1749,15 +1617,15 @@ BSS      SECTION (B):                               000004E0 Byte(s)
 BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
 BSS      SECTION (B_TOP):                           00000000 Byte(s)
 
- TOTAL PROGRAM SIZE: 00000CF0 Byte(s)
+ TOTAL PROGRAM SIZE: 00000CBC Byte(s)
 
 
 
 ********** LABEL INFORMATION ***********
 
 NUMBER OF EXTERNAL REFERENCE SYMBOLS:           13
-NUMBER OF EXTERNAL DEFINITION SYMBOLS:          38
-NUMBER OF INTERNAL/EXTERNAL SYMBOLS:           103
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          37
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            97
 
 
 
@@ -1783,5 +1651,5 @@ NUMBER OF INTERNAL/EXTERNAL SYMBOLS:           103
 *** COMMAND PARAMETER ***
 
 
-  -subcommand=C:\Users\Az\AppData\Local\Temp\hmkD08B.tmp 
+  -subcommand=C:\Users\Az\AppData\Local\Temp\hmk2E13.tmp 
 

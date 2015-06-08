@@ -6,11 +6,11 @@ if exist SYSGNRTR.G1A  del SYSGNRTR.G1A
 
 cd debug
 if exist FXADDINror.bin  del FXADDINror.bin
-"C:\SDK\OS\SH\Bin\Hmake.exe" Addin.mak
+"A:\Programmes\OS\SH\Bin\Hmake.exe" Addin.mak
 cd ..
 if not exist debug\FXADDINror.bin  goto error
 
-"C:\SDK\Tools\MakeAddinHeader363.exe" "C:\Users\Az\From-Far-Casio-Project\Projet en cours"
+"A:\Programmes\Tools\MakeAddinHeader363.exe" "A:\Desktop\From-Far-Casio-Project\Projet en cours"
 if not exist SYSGNRTR.G1A  goto error
 echo Build has completed.
 goto end

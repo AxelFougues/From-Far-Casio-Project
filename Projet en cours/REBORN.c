@@ -11,7 +11,6 @@
 #include "stdio.h"
 #include "math.h"
 #include "MonochromeLib.h"
-void userInterface();
 void display();
 void generateOutputs();
 void useOutputs();
@@ -47,193 +46,126 @@ int planetDensity = 0;
 int planetX, planetY, planetZ, sunX, sunY, sunZ, planetCount;
 int AddIn_main(int isAppli, unsigned short OptionNum){
     //userInterface();
-    generateOutputs();                                   //normalement on apelle juste userInterface mais ca provoque le bug: Lignes de planentes 
-    displayExternal(0,0,0,0);
+    generateOutputs(); 
+    x= 64;
+    y= 64;
+    z= 64;
+    display();
     while(!IsKeyDown(KEY_CTRL_EXIT)){
-        if(IsKeyDown(KEY_CTRL_UP)){
-            --y;
-            displayExternal(0,x,y,z);
-        }
         if(IsKeyDown(KEY_CTRL_DOWN)){
-            ++y;
-            displayExternal(0,x,y,z);
+            --y;
+            display();
         }
-        if(IsKeyDown(KEY_CTRL_LEFT)){
-            --x;
-            displayExternal(0,x,y,z);
+        if(IsKeyDown(KEY_CTRL_UP)){
+            ++y;
+            display();
         }
         if(IsKeyDown(KEY_CTRL_RIGHT)){
-            ++x;
-            displayExternal(0,x,y,z);
+            --x;
+            display();
         }
-        if(IsKeyDown(KEY_CTRL_SHIFT)){
-            --z;
-            displayExternal(0,x,y,z);
+        if(IsKeyDown(KEY_CTRL_LEFT)){
+            ++x;
+            display();
         }
         if(IsKeyDown(KEY_CTRL_ALPHA)){
+            --z;
+            display();
+        }
+        if(IsKeyDown(KEY_CTRL_SHIFT)){
             ++z;
-            displayExternal(0,x,y,z);
+            display();
         }
         if(x>128){
             x=0;
             ++X;
-            generateOutputs();
+            display();
         }
         if(x<0){
             x=128;
             --X;
-            generateOutputs();
+            display();
         }
         if(y>128){
             y=0;
             ++Y;
-            generateOutputs();
+            display();
         }
         if(y<0){
             y=128;
             --Y;
-            generateOutputs();
+            display();
         }
         if(z>128){
             z=0;
             ++Z;
-            generateOutputs();
+            display();
         }
         if(z<0){
             z=128;
             --Z;
-            generateOutputs();
+            display();
         }
 
     }
         Sleep(10);
 }
-void userInterface(){
-    int x, y, z;
-    x =X%128;
-    y =Y%128;
-    z =Z%128;
-    ML_display_vram();
-    while(!(X%128 == 64 && Y%128 == 64 && Z%128 == 64)){   //deplacements           //Sys error quand gauche et droite
-        if(IsKeyDown(KEY_CTRL_UP)){
-            --Y;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_DOWN)){
-            ++Y;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_LEFT)){
-            --X;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_RIGHT)){
-            ++X;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_SHIFT)){
-            --Z;
-            display(1,x,y,z);
-        }
-        if(IsKeyDown(KEY_CTRL_ALPHA)){
-            ++Z;
-            display(1,x,y,z);
-        }
+void display(){
+    ML_clear_vram();
+    generateOutputs(); //cube central, on s'y trouve
+    displayExternal(0,x,y,z);
+    if(x<=64 && y<=64){               // dans quart superieur gauche
+        X = X-1;
+        generateOutputs(); //cube gauche
+        displayExternal(0,x-128,y,z);
+        Y = Y-1;
+        generateOutputs(); //cube superieur gauche
+        displayExternal(0,x-128,y-128,z);
+        X = X+1;
+        generateOutputs(); // cube superieur
+        displayExternal(0,x,y-128,z);
+        Y = Y+1;
     }
-    display(0,x,y,z);
-}
-void display(call,x,y,z){
-    if(call){
-        generateOutputs();
-        useOutputs();
-        displayExternal(0,x,y,z);  //cube central
-        Z = Z-128;
-        generateOutputs();
-        useOutputs();
-        displayExternal(-1,x,y,z); //cube central arriere
-        Z = Z+128;
-        //if(x<=64 && y<=64){            //VVV cubes lateraux , n'existent pas encore dans dispExternal, les integrer depuis la v 0.1
-        //    for (i = 0; i < 1; ++i){
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y+128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x>=64 && y<=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y+128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x<=64 && y>=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y-128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-        //if(x>=64 && y>=64){
-        //    for (i = 0; i < 1; ++i){
-        //        X = X+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(1+i);
-        //        Y = Y+128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(3+i);
-        //        X = X-128;
-        //        generateOutputs();
-        //        useOutputs();
-        //        displayExternal(5+i);
-        //        Y = Y-128;
-        //        Z = Z-128;
-        //    }
-        //    Z = Z+128;
-        //}
-    
-    } //determine le cube a generer et apelle External 
+    if(x>=64 && y<=64){               // dans quart superieur droit
+        X = X+1;
+        generateOutputs(); //cube droit
+        displayExternal(0,x+128,y,z);
+        Y = Y-1;
+        generateOutputs();// cube superieur droit
+        displayExternal(0,x+128,y-128,z);
+        X = X-1;
+        generateOutputs(); // cube superieur
+        displayExternal(0,x,y-128,z);
+        Y = Y+1;
+    }
+    if(x<=64 && y>=64){               //dans quart inferieur gauche
+        X = X-1;
+        generateOutputs(); //cube gauche
+        displayExternal(0,x-128,y,z);
+        Y = Y+1;
+        generateOutputs(); //cube inferieur gauche
+        displayExternal(0,x-128,y+128,z);
+        X = X+1;
+        generateOutputs(); //cube inferieur
+        displayExternal(0,x,y+128,z);
+        Y = Y-1;
+    }
+    if(x>=64 && y>=64){               //dans quart inferieur droit
+        X = X+1;
+        generateOutputs(); //cube droit
+        displayExternal(0,x+128,y,z);
+        Y = Y+1;
+        generateOutputs(); //cube inferieur droit
+        displayExternal(0,x+128,y+128,z);
+        X = X-1;
+        generateOutputs(); //cube inferieur
+        displayExternal(0,x,y+128,z);
+        Y = Y-1;
+    }
+    ML_display_vram();
 }
 void displayExternal(call,x,y,z){
     if(call==0){
-        ML_clear_vram();
         for (i = 0; i < systemDensity-1; ++i){
             ML_circle(x+sunStorageX[i], y+sunStorageY[i], z+sunStorageZ[i], 1);
         }
@@ -241,7 +173,6 @@ void displayExternal(call,x,y,z){
             ML_filled_circle(x+astralStorageX1[i], y+astralStorageY1[i], z+astralStorageZ1[i], 1);
         }
     }
-    ML_display_vram();
 }
 void generateOutputs(){// genere 3 constantes en fonc de X Y Z et des seed X0 Y0 Z0
     srand(X);
