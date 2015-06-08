@@ -8,13 +8,11 @@ MINED:
 -diamond
 -zinc
 -titanium
--steal
 -salt
 -sand
 -uranium
 -aluminium
 -ice
--silicon
 -tin
 -sulfur
 -ancient tech
@@ -48,6 +46,7 @@ HUNTED:
 -fur
 
 CRAFTED:
+-steal
 -calcium
 -plastic
 -fuel
@@ -63,7 +62,6 @@ CRAFTED:
 -repair kit
 -batteries
 -power generator
--fuel tank
 (jetpack? why the f*ck not!)
 -air tank
 -diving suit
@@ -77,3 +75,4 @@ CRAFTED:
 -computer chip
 -carbon fiber
 -amulet
+-silicon
