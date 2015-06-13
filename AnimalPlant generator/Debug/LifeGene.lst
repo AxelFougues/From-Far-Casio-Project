@@ -1,4 +1,4 @@
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 08-Jun-2015 22:40:34  PAGE    1
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    1
 
 ************ OBJECT LISTING ************
 
@@ -16,146 +16,655 @@ SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
       LifeGene.c     8    /*                                                               */
       LifeGene.c     9    /*****************************************************************/
       LifeGene.c    10    #include "fxlib.h"
-      LifeGene.c    11    
-      LifeGene.c    12    
-      LifeGene.c    13    //****************************************************************************
-      LifeGene.c    14    //  AddIn_main (Sample program main function)
-      LifeGene.c    15    //
-      LifeGene.c    16    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
-      LifeGene.c    17    //                        : 0 = This application is launched by a strip in eACT application.
-      LifeGene.c    18    //
-      LifeGene.c    19    //              OptionNum : Strip number (0~3)
-      LifeGene.c    20    //                         (This parameter is only used when isAppli parameter is 0.)
-      LifeGene.c    21    //
-      LifeGene.c    22    //  retval  :   1 = No error / 0 = Error
+      LifeGene.c    11    #include "stdio.h"
+      LifeGene.c    12    #include "math.h"
+      LifeGene.c    13    #include "MonochromeLib.h"
+      LifeGene.c    14    void display();
+      LifeGene.c    15    //****************************************************************************
+      LifeGene.c    16    //  AddIn_main (Sample program main function)
+      LifeGene.c    17    //
+      LifeGene.c    18    //  param   :   isAppli   : 1 = This application is launched by MAIN MENU.
+      LifeGene.c    19    //                        : 0 = This application is launched by a strip in eACT application.
+      LifeGene.c    20    //
+      LifeGene.c    21    //              OptionNum : Strip number (0~3)
+      LifeGene.c    22    //                         (This parameter is only used when isAppli parameter is 0.)
       LifeGene.c    23    //
-      LifeGene.c    24    //****************************************************************************
-      LifeGene.c    25    int AddIn_main(int isAppli, unsigned short OptionNum)
+      LifeGene.c    24    //  retval  :   1 = No error / 0 = Error
+      LifeGene.c    25    //
+      LifeGene.c    26    //****************************************************************************
+      LifeGene.c    27    int x = 64;
+      LifeGene.c    28    int y = 32;
+      LifeGene.c    29    int mainBody[2];
+      LifeGene.c    30    int head[2];
+      LifeGene.c    31    int tail[2];
+      LifeGene.c    32    int feet[2];
+      LifeGene.c    33    int neck[2];
+      LifeGene.c    34    int horns[1];
+      LifeGene.c    35    int eye[1];
+      LifeGene.c    36    int i;
+      LifeGene.c    37    int AddIn_main(int isAppli, unsigned short OptionNum){
 P   00000000              _AddIn_main:                     ; function: AddIn_main
-                                                           ; frame size=4
-      LifeGene.c    26    {
-      LifeGene.c    27        unsigned int key;
-      LifeGene.c    28    
-      LifeGene.c    29        Bdisp_AllClr_DDVRAM();
-    00000000 D30C                   MOV.L       L316+2,R3  ; _Bdisp_AllClr_DDVRAM
-    00000002 7FFC                   ADD         #-4,R15
-    00000004 430B                   JSR         @R3
-    00000006 0009                   NOP
-      LifeGene.c    30    
-      LifeGene.c    31        locate(1,4);
-    00000008 D20B                   MOV.L       L316+6,R2  ; _locate
-    0000000A E504                   MOV         #4,R5
-    0000000C 420B                   JSR         @R2
-    0000000E E401                   MOV         #1,R4
-      LifeGene.c    32        Print((unsigned char*)"This application is");
-    00000010 D40A                   MOV.L       L316+10,R4 ; L302
-    00000012 D30B                   MOV.L       L316+14,R3 ; _Print
-    00000014 430B                   JSR         @R3
-    00000016 0009                   NOP
-      LifeGene.c    33        locate(1,5);
-    00000018 D207                   MOV.L       L316+6,R2  ; _locate
-    0000001A E505                   MOV         #5,R5
-    0000001C 420B                   JSR         @R2
-    0000001E E401                   MOV         #1,R4
-      LifeGene.c    34        Print((unsigned char*)" sample Add-In.");
-    00000020 D408                   MOV.L       L316+18,R4 ; L303
-    00000022 D307                   MOV.L       L316+14,R3 ; _Print
+                                                           ; frame size=100
+                                                           ; used runtime library name:
+                                                           ; __divls, __modls
+    00000000 2FE6                   MOV.L       R14,@-R15
+    00000002 2FD6                   MOV.L       R13,@-R15
+    00000004 2FC6                   MOV.L       R12,@-R15
+    00000006 2FB6                   MOV.L       R11,@-R15
+    00000008 2FA6                   MOV.L       R10,@-R15
+    0000000A 2F96                   MOV.L       R9,@-R15
+    0000000C 2F86                   MOV.L       R8,@-R15
+    0000000E 4F22                   STS.L       PR,@-R15
+    00000010 D48A                   MOV.L       L456+2,R4  ; _mainBody
+    00000012 7FC0                   ADD         #-64,R15
+    00000014 6343                   MOV         R4,R3
+    00000016 6D33                   MOV         R3,R13
+    00000018 1F37                   MOV.L       R3,@(28,R15)
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 08-Jun-2015 22:40:34  PAGE    2
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    2
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000024 430B                   JSR         @R3
-    00000026 0009                   NOP
-    00000028 DE07                   MOV.L       L316+22,R14; _GetKey
-      LifeGene.c    35    
-      LifeGene.c    36        while(1){
-    0000002A              L313:                             
-      LifeGene.c    37            GetKey(&key);
-    0000002A 4E0B                   JSR         @R14
-    0000002C 64F3                   MOV         R15,R4
-    0000002E AFFC                   BRA         L313
-    00000030 0009                   NOP
-    00000032              L316:                             
-    00000032 0000                   .DATA.W     0
-    00000034 <00000000>             .DATA.L     _Bdisp_AllClr_DDVRAM
-    00000038 <00000000>             .DATA.L     _locate
-    0000003C <00000000>             .DATA.L     L302
-    00000040 <00000000>             .DATA.L     _Print
-    00000044 <00000000>             .DATA.L     L303
-    00000048 <00000000>             .DATA.L     _GetKey
-      LifeGene.c    38        }
-      LifeGene.c    39    
-      LifeGene.c    40        return 1;
-      LifeGene.c    41    }
-      LifeGene.c    42    
-      LifeGene.c    43    
-      LifeGene.c    44    
-      LifeGene.c    45    
-      LifeGene.c    46    //****************************************************************************
-      LifeGene.c    47    //**************                                              ****************
-      LifeGene.c    48    //**************                 Notice!                      ****************
-      LifeGene.c    49    //**************                                              ****************
-      LifeGene.c    50    //**************  Please do not change the following source.  ****************
-      LifeGene.c    51    //**************                                              ****************
-      LifeGene.c    52    //****************************************************************************
-      LifeGene.c    53    
-      LifeGene.c    54    
-      LifeGene.c    55    #pragma section _BR_Size
-      LifeGene.c    56    unsigned long BR_Size;
-      LifeGene.c    57    #pragma section
-      LifeGene.c    58    
-      LifeGene.c    59    
-      LifeGene.c    60    #pragma section _TOP
-      LifeGene.c    61    
-      LifeGene.c    62    //****************************************************************************
-      LifeGene.c    63    //  InitializeSystem
-      LifeGene.c    64    //
-      LifeGene.c    65    //  param   :   isAppli   : 1 = Application / 0 = eActivity
-      LifeGene.c    66    //              OptionNum : Option Number (only eActivity)
-      LifeGene.c    67    //
-      LifeGene.c    68    //  retval  :   1 = No error / 0 = Error
-      LifeGene.c    69    //
-      LifeGene.c    70    //****************************************************************************
-      LifeGene.c    71    int InitializeSystem(int isAppli, unsigned short OptionNum)
+    0000001A 7408                   ADD         #8,R4
+    0000001C 1F48                   MOV.L       R4,@(32,R15)
+    0000001E 7D04                   ADD         #4,R13
+    00000020 D487                   MOV.L       L456+6,R4  ; _head
+    00000022 6843                   MOV         R4,R8
+    00000024 6243                   MOV         R4,R2
+    00000026 7204                   ADD         #4,R2
+    00000028 1F29                   MOV.L       R2,@(36,R15)
+    0000002A 7408                   ADD         #8,R4
+    0000002C 1F4F                   MOV.L       R4,@(60,R15)
+    0000002E D485                   MOV.L       L456+10,R4 ; _tail
+    00000030 6143                   MOV         R4,R1
+    00000032 6313                   MOV         R1,R3
+    00000034 2F12                   MOV.L       R1,@R15
+    00000036 7408                   ADD         #8,R4
+    00000038 7304                   ADD         #4,R3
+    0000003A 1F31                   MOV.L       R3,@(4,R15)
+    0000003C 1F42                   MOV.L       R4,@(8,R15)
+    0000003E EB00                   MOV         #0,R11
+    00000040 DE86                   MOV.L       L456+34,R14; _rand
+    00000042 EC03                   MOV         #3,R12
+    00000044 D480                   MOV.L       L456+14,R4 ; _feet
+    00000046 6243                   MOV         R4,R2
+    00000048 1F23                   MOV.L       R2,@(12,R15)
+    0000004A 6123                   MOV         R2,R1
+    0000004C D981                   MOV.L       L456+26,R9 ; _IsKeyDown
+    0000004E 7408                   ADD         #8,R4
+    00000050 DA81                   MOV.L       L456+30,R10; _Sleep
+    00000052 7104                   ADD         #4,R1
+    00000054 1F14                   MOV.L       R1,@(16,R15)
+    00000056 1F45                   MOV.L       R4,@(20,R15)
+    00000058 D47C                   MOV.L       L456+18,R4 ; _neck
+    0000005A 6343                   MOV         R4,R3
+    0000005C 1F36                   MOV.L       R3,@(24,R15)
+    0000005E 6233                   MOV         R3,R2
+    00000060 D37F                   MOV.L       L456+38,R3 ; _eye
+    00000062 7204                   ADD         #4,R2
+    00000064 1F2E                   MOV.L       R2,@(56,R15)
+    00000066 7408                   ADD         #8,R4
+    00000068 1F4D                   MOV.L       R4,@(52,R15)
+    0000006A D479                   MOV.L       L456+22,R4 ; _horns
+    0000006C 6143                   MOV         R4,R1
+    0000006E 7404                   ADD         #4,R4
+    00000070 1F1C                   MOV.L       R1,@(48,R15)
+    00000072 1F4B                   MOV.L       R4,@(44,R15)
+      LifeGene.c    38        while(!IsKeyDown(KEY_CTRL_EXIT)){
+    00000074 A10F                   BRA         L425
+    00000076 1F3A                   MOV.L       R3,@(40,R15)
+    00000078              L426:                             
+      LifeGene.c    39            mainBody[0] = (rand() % 23)-3;
+    00000078 51F7                   MOV.L       @(28,R15),R1
+    0000007A 4E0B                   JSR         @R14
+    0000007C 2F16                   MOV.L       R1,@-R15
+    0000007E 6103                   MOV         R0,R1
+    00000080 D378                   MOV.L       L456+42,R3 ; __modls
+    00000082 430B                   JSR         @R3
+    00000084 E017                   MOV         #23,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000086 70FD                   ADD         #-3,R0
+    00000088 62F6                   MOV.L       @R15+,R2
+      LifeGene.c    40            mainBody[1] = (rand() % 7)-2;
+    0000008A 4E0B                   JSR         @R14
+    0000008C 2202                   MOV.L       R0,@R2
+    0000008E 6103                   MOV         R0,R1
+    00000090 D374                   MOV.L       L456+42,R3 ; __modls
+    00000092 430B                   JSR         @R3
+    00000094 E007                   MOV         #7,R0
+    00000096 70FE                   ADD         #-2,R0
+    00000098 2D02                   MOV.L       R0,@R13
+      LifeGene.c    41            mainBody[2] = (rand() % 1);
+    0000009A 52F8                   MOV.L       @(32,R15),R2
+    0000009C 4E0B                   JSR         @R14
+    0000009E 2F26                   MOV.L       R2,@-R15
+    000000A0 63F6                   MOV.L       @R15+,R3
+      LifeGene.c    42            head[0] = (rand() % 2)+(mainBody[1]/5);
+    000000A2 4E0B                   JSR         @R14
+    000000A4 23B2                   MOV.L       R11,@R3
+    000000A6 4011                   CMP/PZ      R0
+    000000A8 8B01                   BF          L427
+    000000AA A005                   BRA         L428
+    000000AC C901                   AND         #1,R0
+    000000AE              L427:                             
+    000000AE 6007                   NOT         R0,R0
+    000000B0 7001                   ADD         #1,R0
+    000000B2 C901                   AND         #1,R0
+    000000B4 6007                   NOT         R0,R0
+    000000B6 7001                   ADD         #1,R0
+    000000B8              L428:                             
+    000000B8 61D2                   MOV.L       @R13,R1
+    000000BA 6203                   MOV         R0,R2
+    000000BC D36A                   MOV.L       L456+46,R3 ; __divls
+    000000BE 430B                   JSR         @R3
+    000000C0 E005                   MOV         #5,R0
+    000000C2 320C                   ADD         R0,R2
+    000000C4 2822                   MOV.L       R2,@R8
+      LifeGene.c    43            head[1] = (rand() % 2)+(head[0]/2);
+    000000C6 53F9                   MOV.L       @(36,R15),R3
+    000000C8 4E0B                   JSR         @R14
+    000000CA 2F36                   MOV.L       R3,@-R15
+    000000CC 4011                   CMP/PZ      R0
+    000000CE 8F02                   BF/S        L429
+    000000D0 6182                   MOV.L       @R8,R1
+    000000D2 A005                   BRA         L430
+    000000D4 C901                   AND         #1,R0
+    000000D6              L429:                             
+    000000D6 6007                   NOT         R0,R0
+    000000D8 7001                   ADD         #1,R0
+    000000DA C901                   AND         #1,R0
+    000000DC 6007                   NOT         R0,R0
+    000000DE 7001                   ADD         #1,R0
+    000000E0              L430:                             
+    000000E0 E200                   MOV         #0,R2
+    000000E2 3217                   CMP/GT      R1,R2
+    000000E4 312E                   ADDC        R2,R1
+    000000E6 4121                   SHAR        R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000E8 301C                   ADD         R1,R0
+    000000EA 61F6                   MOV.L       @R15+,R1
+    000000EC 2102                   MOV.L       R0,@R1
+      LifeGene.c    44            head[2] = (rand() % 3);
+    000000EE 53FF                   MOV.L       @(60,R15),R3
+    000000F0 4E0B                   JSR         @R14
+    000000F2 2F36                   MOV.L       R3,@-R15
+    000000F4 D25B                   MOV.L       L456+42,R2 ; __modls
+    000000F6 6103                   MOV         R0,R1
+    000000F8 420B                   JSR         @R2
+    000000FA 60C3                   MOV         R12,R0
+    000000FC 61F6                   MOV.L       @R15+,R1
+    000000FE 2102                   MOV.L       R0,@R1
+      LifeGene.c    45            tail[0] = (rand() % 4);
+    00000100 63F2                   MOV.L       @R15,R3
+    00000102 4E0B                   JSR         @R14
+    00000104 2F36                   MOV.L       R3,@-R15
+    00000106 4011                   CMP/PZ      R0
+    00000108 8F02                   BF/S        L431
+    0000010A 61F6                   MOV.L       @R15+,R1
+    0000010C A005                   BRA         L432
+    0000010E C903                   AND         #3,R0
+    00000110              L431:                             
+    00000110 6007                   NOT         R0,R0
+    00000112 7001                   ADD         #1,R0
+    00000114 C903                   AND         #3,R0
+    00000116 6007                   NOT         R0,R0
+    00000118 7001                   ADD         #1,R0
+    0000011A              L432:                             
+    0000011A 2102                   MOV.L       R0,@R1
+      LifeGene.c    46            tail[1] = mainBody[1]-2 -(rand() % 2);
+    0000011C 53F1                   MOV.L       @(4,R15),R3
+    0000011E 4E0B                   JSR         @R14
+    00000120 2F36                   MOV.L       R3,@-R15
+    00000122 4011                   CMP/PZ      R0
+    00000124 8F02                   BF/S        L433
+    00000126 63D2                   MOV.L       @R13,R3
+    00000128 A005                   BRA         L434
+    0000012A C901                   AND         #1,R0
+    0000012C              L433:                             
+    0000012C 6007                   NOT         R0,R0
+    0000012E 7001                   ADD         #1,R0
+    00000130 C901                   AND         #1,R0
+    00000132 6007                   NOT         R0,R0
+    00000134 7001                   ADD         #1,R0
+    00000136              L434:                             
+    00000136 3308                   SUB         R0,R3
+    00000138 62F6                   MOV.L       @R15+,R2
+    0000013A 73FE                   ADD         #-2,R3
+    0000013C 2232                   MOV.L       R3,@R2
+      LifeGene.c    47            tail[2] = (rand() % 2);
+    0000013E 51F2                   MOV.L       @(8,R15),R1
+    00000140 4E0B                   JSR         @R14
+    00000142 2F16                   MOV.L       R1,@-R15
+    00000144 4011                   CMP/PZ      R0
+    00000146 8F02                   BF/S        L435
+    00000148 62F6                   MOV.L       @R15+,R2
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000014A A005                   BRA         L436
+    0000014C C901                   AND         #1,R0
+    0000014E              L435:                             
+    0000014E 6007                   NOT         R0,R0
+    00000150 7001                   ADD         #1,R0
+    00000152 C901                   AND         #1,R0
+    00000154 6007                   NOT         R0,R0
+    00000156 7001                   ADD         #1,R0
+    00000158              L436:                             
+    00000158 2202                   MOV.L       R0,@R2
+      LifeGene.c    48            feet[0] = (rand() % 2);
+    0000015A 53F3                   MOV.L       @(12,R15),R3
+    0000015C 4E0B                   JSR         @R14
+    0000015E 2F36                   MOV.L       R3,@-R15
+    00000160 4011                   CMP/PZ      R0
+    00000162 8F02                   BF/S        L437
+    00000164 61F6                   MOV.L       @R15+,R1
+    00000166 A005                   BRA         L438
+    00000168 C901                   AND         #1,R0
+    0000016A              L437:                             
+    0000016A 6007                   NOT         R0,R0
+    0000016C 7001                   ADD         #1,R0
+    0000016E C901                   AND         #1,R0
+    00000170 6007                   NOT         R0,R0
+    00000172 7001                   ADD         #1,R0
+    00000174              L438:                             
+    00000174 2102                   MOV.L       R0,@R1
+      LifeGene.c    49            feet[1] = (rand() % 2)+1;
+    00000176 53F4                   MOV.L       @(16,R15),R3
+    00000178 4E0B                   JSR         @R14
+    0000017A 2F36                   MOV.L       R3,@-R15
+    0000017C 4011                   CMP/PZ      R0
+    0000017E 8B01                   BF          L439
+    00000180 A005                   BRA         L440
+    00000182 C901                   AND         #1,R0
+    00000184              L439:                             
+    00000184 6007                   NOT         R0,R0
+    00000186 7001                   ADD         #1,R0
+    00000188 C901                   AND         #1,R0
+    0000018A 6007                   NOT         R0,R0
+    0000018C 7001                   ADD         #1,R0
+    0000018E              L440:                             
+    0000018E 7001                   ADD         #1,R0
+    00000190 61F6                   MOV.L       @R15+,R1
+    00000192 2102                   MOV.L       R0,@R1
+      LifeGene.c    50            feet[2] = (rand() % 1)+1;
+    00000194 53F5                   MOV.L       @(20,R15),R3
+    00000196 4E0B                   JSR         @R14
+    00000198 2F36                   MOV.L       R3,@-R15
+    0000019A 62B3                   MOV         R11,R2
+    0000019C 61F6                   MOV.L       @R15+,R1
+    0000019E 7201                   ADD         #1,R2
+    000001A0 2122                   MOV.L       R2,@R1
+      LifeGene.c    51            neck[0] = (rand() % 4);
+    000001A2 53F6                   MOV.L       @(24,R15),R3
+    000001A4 4E0B                   JSR         @R14
+    000001A6 2F36                   MOV.L       R3,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000001A8 4011                   CMP/PZ      R0
+    000001AA 8F02                   BF/S        L441
+    000001AC 61F6                   MOV.L       @R15+,R1
+    000001AE A005                   BRA         L442
+    000001B0 C903                   AND         #3,R0
+    000001B2              L441:                             
+    000001B2 6007                   NOT         R0,R0
+    000001B4 7001                   ADD         #1,R0
+    000001B6 C903                   AND         #3,R0
+    000001B8 6007                   NOT         R0,R0
+    000001BA 7001                   ADD         #1,R0
+    000001BC              L442:                             
+    000001BC 2102                   MOV.L       R0,@R1
+      LifeGene.c    52            neck[1] = mainBody[1]-2 -(rand() % 2);
+    000001BE 53FE                   MOV.L       @(56,R15),R3
+    000001C0 4E0B                   JSR         @R14
+    000001C2 2F36                   MOV.L       R3,@-R15
+    000001C4 4011                   CMP/PZ      R0
+    000001C6 8F02                   BF/S        L443
+    000001C8 63D2                   MOV.L       @R13,R3
+    000001CA A005                   BRA         L444
+    000001CC C901                   AND         #1,R0
+    000001CE              L443:                             
+    000001CE 6007                   NOT         R0,R0
+    000001D0 7001                   ADD         #1,R0
+    000001D2 C901                   AND         #1,R0
+    000001D4 6007                   NOT         R0,R0
+    000001D6 7001                   ADD         #1,R0
+    000001D8              L444:                             
+    000001D8 62F6                   MOV.L       @R15+,R2
+    000001DA 3308                   SUB         R0,R3
+    000001DC 73FE                   ADD         #-2,R3
+    000001DE 2232                   MOV.L       R3,@R2
+      LifeGene.c    53            neck[2] = (rand() % 2);
+    000001E0 51FD                   MOV.L       @(52,R15),R1
+    000001E2 4E0B                   JSR         @R14
+    000001E4 2F16                   MOV.L       R1,@-R15
+    000001E6 4011                   CMP/PZ      R0
+    000001E8 8F02                   BF/S        L445
+    000001EA 62F6                   MOV.L       @R15+,R2
+    000001EC A005                   BRA         L446
+    000001EE C901                   AND         #1,R0
+    000001F0              L445:                             
+    000001F0 6007                   NOT         R0,R0
+    000001F2 7001                   ADD         #1,R0
+    000001F4 C901                   AND         #1,R0
+    000001F6 6007                   NOT         R0,R0
+    000001F8 7001                   ADD         #1,R0
+    000001FA              L446:                             
+    000001FA 2202                   MOV.L       R0,@R2
+      LifeGene.c    54            horns[0] = (rand() % 4);
+    000001FC 53FC                   MOV.L       @(48,R15),R3
+    000001FE 4E0B                   JSR         @R14
+    00000200 2F36                   MOV.L       R3,@-R15
+    00000202 4011                   CMP/PZ      R0
+    00000204 8F02                   BF/S        L447
+    00000206 61F6                   MOV.L       @R15+,R1
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000208 A005                   BRA         L448
+    0000020A C903                   AND         #3,R0
+    0000020C              L447:                             
+    0000020C 6007                   NOT         R0,R0
+    0000020E 7001                   ADD         #1,R0
+    00000210 C903                   AND         #3,R0
+    00000212 6007                   NOT         R0,R0
+    00000214 7001                   ADD         #1,R0
+    00000216              L448:                             
+    00000216 2102                   MOV.L       R0,@R1
+      LifeGene.c    55            horns[1] = (rand() % 3);
+    00000218 53FB                   MOV.L       @(44,R15),R3
+    0000021A 4E0B                   JSR         @R14
+    0000021C 2F36                   MOV.L       R3,@-R15
+    0000021E 6103                   MOV         R0,R1
+    00000220 D210                   MOV.L       L456+42,R2 ; __modls
+    00000222 420B                   JSR         @R2
+    00000224 60C3                   MOV         R12,R0
+    00000226 61F6                   MOV.L       @R15+,R1
+    00000228 2102                   MOV.L       R0,@R1
+      LifeGene.c    56            eye[0] = (rand() % 2);
+    0000022A 53FA                   MOV.L       @(40,R15),R3
+    0000022C 4E0B                   JSR         @R14
+    0000022E 2F36                   MOV.L       R3,@-R15
+    00000230 4011                   CMP/PZ      R0
+    00000232 8F1B                   BF/S        L449
+    00000234 61F6                   MOV.L       @R15+,R1
+    00000236 A01E                   BRA         L450
+    00000238 C901                   AND         #1,R0
+    0000023A              L456:                             
+    0000023A 0000                   .DATA.W     0
+    0000023C <00000000>             .DATA.L     _mainBody
+    00000240 <00000000>             .DATA.L     _head
+    00000244 <00000000>             .DATA.L     _tail
+    00000248 <00000000>             .DATA.L     _feet
+    0000024C <00000000>             .DATA.L     _neck
+    00000250 <00000000>             .DATA.L     _horns
+    00000254 <00000000>             .DATA.L     _IsKeyDown
+    00000258 <00000000>             .DATA.L     _Sleep
+    0000025C <00000000>             .DATA.L     _rand
+    00000260 <00000000>             .DATA.L     _eye
+    00000264 <00000000>             .DATA.L     __modls
+    00000268 <00000000>             .DATA.L     __divls
+    0000026C              L449:                             
+    0000026C 6007                   NOT         R0,R0
+    0000026E 7001                   ADD         #1,R0
+    00000270 C901                   AND         #1,R0
+    00000272 6007                   NOT         R0,R0
+    00000274 7001                   ADD         #1,R0
+    00000276              L450:                             
+      LifeGene.c    57            display();
+    00000276 B020                   BSR         _display
+    00000278 2102                   MOV.L       R0,@R1
+      LifeGene.c    58            Sleep(500);
+    0000027A 9435                   MOV.W       L457,R4    ; H'01F4
+      LifeGene.c    59            while(!IsKeyDown(KEY_CTRL_SHIFT)){
+    0000027C A001                   BRA         L455
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000027E 0009                   NOP
+    00000280              L452:                             
+      LifeGene.c    60                Sleep(4);
+    00000280 E404                   MOV         #4,R4
+    00000282              L455:                             
+    00000282 4A0B                   JSR         @R10
+    00000284 0009                   NOP
+    00000286 9430                   MOV.W       L457+2,R4  ; H'7536
+    00000288 490B                   JSR         @R9
+    0000028A 0009                   NOP
+    0000028C 2008                   TST         R0,R0
+    0000028E 89F7                   BT          L452
+      LifeGene.c    61            }
+      LifeGene.c    62            ML_clear_vram();
+    00000290 D217                   MOV.L       L457+8,R2  ; _ML_clear_vram
+    00000292 420B                   JSR         @R2
+    00000294 0009                   NOP
+    00000296              L425:                             
+    00000296 9429                   MOV.W       L457+4,R4  ; H'7532
+    00000298 490B                   JSR         @R9
+    0000029A 0009                   NOP
+    0000029C 2008                   TST         R0,R0
+    0000029E 8B01                   BF          L458
+    000002A0 AEEA                   BRA         L426
+    000002A2 0009                   NOP
+    000002A4              L458:                             
+      LifeGene.c    63        }
+      LifeGene.c    64        return 1;
+    000002A4 E001                   MOV         #1,R0
+      LifeGene.c    65    }
+    000002A6 7F40                   ADD         #64,R15
+    000002A8 4F26                   LDS.L       @R15+,PR
+    000002AA 68F6                   MOV.L       @R15+,R8
+    000002AC 69F6                   MOV.L       @R15+,R9
+    000002AE 6AF6                   MOV.L       @R15+,R10
+    000002B0 6BF6                   MOV.L       @R15+,R11
+    000002B2 6CF6                   MOV.L       @R15+,R12
+    000002B4 6DF6                   MOV.L       @R15+,R13
+    000002B6 000B                   RTS
+    000002B8 6EF6                   MOV.L       @R15+,R14
+      LifeGene.c    66    void display(){
+    000002BA              _display:                        ; function: display
+                                                           ; frame size=12
+    000002BA 2FE6                   MOV.L       R14,@-R15
+    000002BC 4F22                   STS.L       PR,@-R15
+      LifeGene.c    67        ML_filled_ellipse_in_rect(x, y, x+mainBody[0], y+mainBody[1], mainBody[2]);
+    000002BE DE0D                   MOV.L       L457+12,R14; _mainBody
+    000002C0 D20D                   MOV.L       L457+16,R2 ; _y
+    000002C2 53E2                   MOV.L       @(8,R14),R3
+    000002C4 D00D                   MOV.L       L457+20,R0 ; _x
+    000002C6 2F36                   MOV.L       R3,@-R15
+    000002C8 6322                   MOV.L       @R2,R3
+    000002CA 57E1                   MOV.L       @(4,R14),R7
+    000002CC 6102                   MOV.L       @R0,R1
+    000002CE 373C                   ADD         R3,R7
+    000002D0 66E2                   MOV.L       @R14,R6
+    000002D2 6323                   MOV         R2,R3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000002D4 6532                   MOV.L       @R3,R5
+    000002D6 361C                   ADD         R1,R6
+    000002D8 D209                   MOV.L       L457+24,R2 ; _ML_filled_ellipse_in_rect
+    000002DA 420B                   JSR         @R2
+    000002DC 6413                   MOV         R1,R4
+    000002DE 7F04                   ADD         #4,R15
+      LifeGene.c    68        //if(neck[0]){
+      LifeGene.c    69        //    ML_line(x, y, x+3, y+neck[2], 1);
+      LifeGene.c    70        //    if(neck[1]){
+      LifeGene.c    71        //        for (i = 1; i < (neck[1]/2); ++i){
+      LifeGene.c    72        //            ML_line(x, y+i, x+3, y+neck[2]+i, 1);
+      LifeGene.c    73        //        }
+      LifeGene.c    74        //        for (i = 1; i < (neck[1]/2); ++i){
+      LifeGene.c    75        //            ML_line(x, y-i, x+3, y+neck[2]-i, 1);
+      LifeGene.c    76        //        }
+      LifeGene.c    77        //        if(neck[0]>=2){
+      LifeGene.c    78        //            for (i = 0; i < (neck[1]/2-1); ++i){
+      LifeGene.c    79        //                ML_line(x+3, y+neck[2], x+3+x+3, y+neck[2]+y+neck[2]+i, 1);
+      LifeGene.c    80        //            }
+      LifeGene.c    81        //            for (i = 0; i < (neck[1]/2-1); ++i){
+      LifeGene.c    82        //                ML_line(x+3, y+neck[2], x+3+x+3, y+neck[2]+y+neck[2]-i, 1);
+      LifeGene.c    83        //            }
+      LifeGene.c    84        //        }
+      LifeGene.c    85        //        if(neck[0]>=3){
+      LifeGene.c    86        //                ML_line(2*x+6, 2*y+neck[2], 3*x+9, 3*y+2*neck[2], 1);
+      LifeGene.c    87        //        }
+      LifeGene.c    88        //        if(neck[0]>=4){
+      LifeGene.c    89        //                ML_line(3*x+9, 3*y+2*neck[2], 4*x+12, 4*y+2*neck[2], 1);
+      LifeGene.c    90        //        }
+      LifeGene.c    91        //    }
+      LifeGene.c    92        //    for (i = 0; i < head[2]; ++i){
+      LifeGene.c    93        //        ML_line(4*x+12, 4*y+2*neck[2]+i, 4*x+12+head[0], 4*y+2*neck[2]+i, 1);
+      LifeGene.c    94        //    }
+      LifeGene.c    95        //}else{
+      LifeGene.c    96        //    ML_line(x+mainBody[0], y+mainBody[1]+i, x+mainBody[0]+head[0], y+mainBody[1]+i, 1);
+      LifeGene.c    97        //}
+      LifeGene.c    98        ML_display_vram();
+    000002E0 D308                   MOV.L       L457+28,R3 ; _ML_display_vram
+    000002E2 4F26                   LDS.L       @R15+,PR
+    000002E4 432B                   JMP         @R3
+    000002E6 6EF6                   MOV.L       @R15+,R14
+    000002E8              L457:                             
+    000002E8 01F4                   .DATA.W     H'01F4
+    000002EA 7536                   .DATA.W     H'7536
+    000002EC 7532                   .DATA.W     H'7532
+    000002EE 0000                   .DATA.W     0
+    000002F0 <00000000>             .DATA.L     _ML_clear_vram
+    000002F4 <00000000>             .DATA.L     _mainBody
+    000002F8 <00000000>             .DATA.L     _y
+    000002FC <00000000>             .DATA.L     _x
+    00000300 <00000000>             .DATA.L     _ML_filled_ellipse_in_rect
+    00000304 <00000000>             .DATA.L     _ML_display_vram
+      LifeGene.c    99    }
+      LifeGene.c   100    
+      LifeGene.c   101    
+      LifeGene.c   102    
+      LifeGene.c   103    //****************************************************************************
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+      LifeGene.c   104    //**************                                              ****************
+      LifeGene.c   105    //**************                 Notice!                      ****************
+      LifeGene.c   106    //**************                                              ****************
+      LifeGene.c   107    //**************  Please do not change the following source.  ****************
+      LifeGene.c   108    //**************                                              ****************
+      LifeGene.c   109    //****************************************************************************
+      LifeGene.c   110    
+      LifeGene.c   111    
+      LifeGene.c   112    #pragma section _BR_Size
+      LifeGene.c   113    unsigned long BR_Size;
+      LifeGene.c   114    #pragma section
+      LifeGene.c   115    
+      LifeGene.c   116    
+      LifeGene.c   117    #pragma section _TOP
+      LifeGene.c   118    
+      LifeGene.c   119    //****************************************************************************
+      LifeGene.c   120    //  InitializeSystem
+      LifeGene.c   121    //
+      LifeGene.c   122    //  param   :   isAppli   : 1 = Application / 0 = eActivity
+      LifeGene.c   123    //              OptionNum : Option Number (only eActivity)
+      LifeGene.c   124    //
+      LifeGene.c   125    //  retval  :   1 = No error / 0 = Error
+      LifeGene.c   126    //
+      LifeGene.c   127    //****************************************************************************
+      LifeGene.c   128    int InitializeSystem(int isAppli, unsigned short OptionNum)
 P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
                                                            ; frame size=0
-      LifeGene.c    72    {
-      LifeGene.c    73        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+      LifeGene.c   129    {
+      LifeGene.c   130        return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L459+2,R3  ; _INIT_ADDIN_APPLICATION
+    00000002 432B                   JMP         @R3
+    00000004 0009                   NOP
+    00000006              L459:                             
+    00000006 0000                   .DATA.W     0
+    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
+      LifeGene.c   131    }
+      LifeGene.c   132    
+      LifeGene.c   133    #pragma section
+      LifeGene.c   134    
+D   00000000              _x:                              ; static: x
+    00000000 00000040               .DATA.L     H'00000040
+    00000004              _y:                              ; static: y
+    00000004 00000020               .DATA.L     H'00000020
+B   00000000              _mainBody:                       ; static: mainBody
+    00000000 00000008               .RES.L      2
+    00000008              _head:                           ; static: head
+    00000008 00000008               .RES.L      2
+    00000010              _tail:                           ; static: tail
+    00000010 00000008               .RES.L      2
+    00000018              _feet:                           ; static: feet
+    00000018 00000008               .RES.L      2
+    00000020              _neck:                           ; static: neck
+    00000020 00000008               .RES.L      2
+    00000028              _horns:                          ; static: horns
+    00000028 00000004               .RES.L      1
+    0000002C              _eye:                            ; static: eye
+    0000002C 00000004               .RES.L      1
 
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 08-Jun-2015 22:40:34  PAGE    3
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE   11
 
 
 SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
 
-    00000000 D301                   MOV.L       L317+2,R3  ; _INIT_ADDIN_APPLICATION
-    00000002 432B                   JMP         @R3
-    00000004 0009                   NOP
-    00000006              L317:                             
-    00000006 0000                   .DATA.W     0
-    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
-      LifeGene.c    74    }
-      LifeGene.c    75    
-      LifeGene.c    76    #pragma section
-      LifeGene.c    77    
-C   00000000              L302:
-    00000000 5468697320             .SDATA      "This application is"
-             6170706C69   
-             636174696F   
-             6E206973     
-    00000013 00                     .DATA.B     H'00
-    00000014              L303:
-    00000014 2073616D70             .SDATA      " sample Add-In."
-             6C65204164   
-             642D496E2E   
-    00000023 00                     .DATA.B     H'00
+    00000030              _i:                              ; static: i
+    00000030 00000004               .RES.L      1
 B_B 00000000              _BR_Size:                        ; static: BR_Size
     00000000 00000004               .RES.L      1
 
@@ -196,7 +705,26 @@ B_B 00000000              _BR_Size:                        ; static: BR_Size
 
 
 
-SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 08-Jun-2015 22:40:34  PAGE    1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 12-Jun-2015 22:54:37  PAGE    1
 
 
 ******** STATISTICS INFORMATION ********
@@ -212,34 +740,34 @@ NUMBER OF WARNINGS:         0
 
 ******* SOURCE LINE INFORMATION ********
 
-COMPILED SOURCE LINE:       77
+COMPILED SOURCE LINE:      134
 
 
 
 ******* SECTION SIZE INFORMATION *******
 
-PROGRAM  SECTION (P):                               0000004C Byte(s)
+PROGRAM  SECTION (P):                               00000308 Byte(s)
 PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
 PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
-CONSTANT SECTION (C):                               00000024 Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
 CONSTANT SECTION (C_BR_Size):                       00000000 Byte(s)
 CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
-DATA     SECTION (D):                               00000000 Byte(s)
+DATA     SECTION (D):                               00000008 Byte(s)
 DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
 DATA     SECTION (D_TOP):                           00000000 Byte(s)
-BSS      SECTION (B):                               00000000 Byte(s)
+BSS      SECTION (B):                               00000034 Byte(s)
 BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
 BSS      SECTION (B_TOP):                           00000000 Byte(s)
 
- TOTAL PROGRAM SIZE: 00000080 Byte(s)
+ TOTAL PROGRAM SIZE: 00000354 Byte(s)
 
 
 
 ********** LABEL INFORMATION ***********
 
-NUMBER OF EXTERNAL REFERENCE SYMBOLS:            5
-NUMBER OF EXTERNAL DEFINITION SYMBOLS:           3
-NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            13
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            9
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          14
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            55
 
 
 
@@ -265,5 +793,5 @@ NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            13
 *** COMMAND PARAMETER ***
 
 
-  -subcommand=C:\Users\Az\AppData\Local\Temp\hmkB4B8.tmp 
+  -subcommand=C:\Users\Az\AppData\Local\Temp\hmkF6CD.tmp 
 
