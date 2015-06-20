@@ -1,0 +1,5 @@
+Fast travel == light speed animation for time==distance from actual pos to destination
+Eventual time tweak if time exists (going back? acomplishements affected?
+posibility to know the effect, makes fast travel more interesting
+necessity to store acomplishements.
+
