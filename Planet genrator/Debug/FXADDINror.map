@@ -1,22 +1,22 @@
-Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)07-Jun-2015 18:55:33
+Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)26-Jun-2015 16:34:10
 
 *** Options ***
 
--subcommand=C:\Users\Az\AppData\Local\Temp\hmk2F0E.tmp
+-subcommand=C:\Users\Az\AppData\Local\Temp\hmkAEB.tmp
 noprelink
 sdebug
 rom D=R
 nomessage
-list "A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\FXADDINror.map"
+list "A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\FXADDINror.map"
 show symbol
 nooptimize
 start P_TOP,P,C,D,C$VTBL,C$INIT/0300200,B_BR_Size,B,R/08100000
 fsymbol P
 nologo
-input "A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj" "A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\MonochromeLib.obj"
+input "A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj" "A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\MonochromeLib.obj"
 input "A:\Programmes\OS\FX\lib\setup.obj"
 library "A:\Programmes\OS\FX\lib\fx9860G_library.lib"
-output "A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\FXADDINror.abs"
+output "A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\FXADDINror.abs"
 -nomessage=1100
 end
 
@@ -48,13 +48,13 @@ FILE=                               START        END    SIZE
   SYMBOL                            ADDR        SIZE    INFO      COUNTS  OPT
 
 SECTION=P_TOP
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   00300200  0030020b         c
   _InitializeSystem
                                   00300200         c   func ,g         * 
 
 SECTION=P
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   0030020c  003009b7       7ac
   _AddIn_main
                                   0030020c       168   func ,g         * 
@@ -66,7 +66,7 @@ FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
                                   003005e8        5a   func ,g         * 
   _useOutputs
                                   00300642       376   func ,g         * 
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\MonochromeLib.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\MonochromeLib.obj
                                   003009b8  003034d3      2b1c
   _ML_vram_adress
                                   003009b8        1c   func ,g         * 
@@ -842,7 +842,7 @@ FILE=_SetIntFlagPaturn
                                   00304994         0   none ,g         * 
 
 SECTION=C
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   003049a4  003049af         c
   _X0
                                   003049a4         4   data ,g         * 
@@ -870,13 +870,13 @@ FILE=keybios
                                   00304b14        18   data ,l         * 
 
 SECTION=B_BR_Size
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   08100000  08100003         4
   _BR_Size
                                   08100000         4   data ,g         * 
 
 SECTION=B
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   08100004  081004e3       4e0
   _output1
                                   08100004         4   data ,g         * 
@@ -928,7 +928,7 @@ FILE=_errno
                                   081004e4         4   data ,g         * 
 
 SECTION=R
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\REBORN.obj
                                   081004e8  081004fb        14
   _X
                                   081004e8         4   data ,g         * 
@@ -940,7 +940,7 @@ FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\REBORN.obj
                                   081004f4         4   data ,g         * 
   _planetDensity
                                   081004f8         4   data ,g         * 
-FILE=A:\Desktop\From-Far-Casio-Project\Projet en cours\Debug\MonochromeLib.obj
+FILE=A:\Desktop\From-Far-Casio-Project\Planet genrator\Debug\MonochromeLib.obj
                                   081004fc  0810050b        10
   _SysCallCode
                                   081004fc         c   data ,l         * 
