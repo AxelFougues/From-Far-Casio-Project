@@ -1,5 +1,4 @@
--La perspective au niveau sys solaires, espacements plus grands quand plus près
--grossisement des planetes a ajuster
+-Appliquer les idées sur les systemes solaires
 -Le multicube, generation des cubes d'espace voisin et scrolling a terminer
 -Amelioration du générateur
 -Niveau planétaire a commencer

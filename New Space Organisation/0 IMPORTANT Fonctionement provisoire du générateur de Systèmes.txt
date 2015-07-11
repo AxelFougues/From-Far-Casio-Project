@@ -1,0 +1,20 @@
+L'espace est divisé en cubes de 128*128 (pixels).
+Le générateur crée le contenu d'un cube a la fois.
+
+-On demande un cube en envoyant les coordonées X,Y,Z de celui ci,
+ces coordonées sont les coordonées x,y,z du joueur dans l'espace divisées (partie entière) par 128 
+(pour le cube dans lequel il se trouve).
+
+-En sortie: Les listes astralStorageX1,Y1,Z1 sont stockées les coordonés du (des) soleil(s) et des planètes de la facon suivante:
+
+case nulle (debut de système), coordoné du soleil, coordoné planete 1, coordoné planete n , ... , case nule etc...
+
+(Idée dans le cas de soleils multiples -> 0, soleil1, 0.5, soleil2, 0.5, soleil 3, planètes....)
+
+
+-Bien sur il est nécessaire de générer et afficher plusieur cubes (ceux visibles a l'écran,
+ voir un suplementaire en profondeur, cad: maxi 8cubes)
+
+
+      Des changements sont possibles, notament je compte ceer un génerateur indépendant pour les planétes dans le cas ou celles ci
+      ne sont visibles que in-sys.

@@ -1,0 +1,12 @@
+Fonctionement a l'approche d'un objet (planete surtout).
+
+A partir de 2*(taille de l'objet) en distance joueur-objet on se concente sur l'objet (les autres n'aparaissent plus).
+
+-L'objet est pourvu de textures detaillées. (générées procédurallement, oui ca va etre dur mais possible )
+
+POUR PLANETES SEULEMENT:
+
+-Si l'on continu a approcher on finit par atteindre l'atmosphere, a ce momment petit effet visuel de nuages/brouillard et on passe en mode surface.
+
+-L'idéal serait que plus on approche plus la texture est detaillée,  cad: terrain + nuages  et que le terrain soit une representation réelle du terrain que l'on explorera en surface.
+ Ca veut dire que l'on pourrait generer la surface en fonction de la texture (OUI) ou la texture en fonction de la surface (quasi impossible).

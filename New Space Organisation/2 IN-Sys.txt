@@ -1,0 +1,12 @@
+Fonctionement Dans un système solaire.
+Les systèmes sont delimités par la distance joueur-soleil, si celle-ci est inferieure a 1.5*(distance soleil-planete externe).
+/!\ Ca implique que une planete devient a peine visible a une distance moyenne de 0.5*(rayon moyen d'un sys), a partir de ca
+on devrais pouvoir calculer l'intervale optimal de tailles des planetes/soleils/objets. (je parle en pixels tout le long ;) )
+
+-Vitesse réduite (partie du pilotage ou auto?)
+
+-Soleils, planètes et autres élements affichés.
+
+-Les planetes suivent une orbite TRES LENTE autour du (des) soleil(s). -> nécessite un refresh constant ou pas? a voir.
+
+-
