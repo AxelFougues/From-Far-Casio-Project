@@ -1,0 +1,269 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: C:\Casio Projets\Etoile\Main.cpp
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+        Main.cpp     1    /****************************************************************************/
+        Main.cpp     2    /*                                                                          */
+        Main.cpp     3    /*   CASIO fx-9860G SDK Library                                             */
+        Main.cpp     4    /*                                                                          */
+        Main.cpp     5    /*   File name : [ProjectName].c                                            */
+        Main.cpp     6    /*                                                                          */
+        Main.cpp     7    /*   Copyright (c) 2006 CASIO COMPUTER CO., LTD.                            */
+        Main.cpp     8    /*                                                                          */
+        Main.cpp     9    /****************************************************************************/
+        Main.cpp    10    
+        Main.cpp    11    int main();
+        Main.cpp    12    
+        Main.cpp    13    extern "C"
+        Main.cpp    14    {
+        Main.cpp    15        #include <fxlib.h>
+        Main.cpp    16        #include "MonochromeLib.h"
+        Main.cpp    17    }
+        Main.cpp    18    #include "Commun.hpp"
+        Main.cpp    19    #include "Game.hpp"
+        Main.cpp    20    
+        Main.cpp    21    // scenes //
+        Main.cpp    22    #include "Scene_Space.hpp"
+        Main.cpp    23    
+        Main.cpp    24    
+        Main.cpp    25    // variables globales //
+        Main.cpp    26    Game game;
+        Main.cpp    27    int scene = SCENE_SPACE;
+        Main.cpp    28    
+        Main.cpp    29    int main()
+P   00000000              _main:                           ; function: main
+                                                           ; frame size=3220
+    00000000 902B                   MOV.W       L272,R0    ; H'F378
+    00000002 3F0C                   ADD         R0,R15
+        Main.cpp    30    {
+        Main.cpp    31        game.Game();
+    00000004 D415                   MOV.L       L272+2,R4  ; _game
+    00000006 D316                   MOV.L       L272+6,R3  ; ___ct__4GameFv
+    00000008 430B                   JSR         @R3
+    0000000A 0009                   NOP
+    0000000C D815                   MOV.L       L272+10,R8 ; _Sleep
+    0000000E EA00                   MOV         #0,R10
+    00000010 DE16                   MOV.L       L272+18,R14; _scene
+    00000012 EB01                   MOV         #1,R11
+    00000014 D914                   MOV.L       L272+14,R9 ; _ML_rectangle
+    00000016 EC03                   MOV         #3,R12
+    00000018 6DB3                   MOV         R11,R13
+        Main.cpp    32        while(scene != STOP)
+    0000001A A014                   BRA         L263
+    0000001C 7D7F                   ADD         #127,R13
+    0000001E              L264:                             
+        Main.cpp    33        {
+        Main.cpp    34            // transition de changement de scene
+        Main.cpp    35            ML_rectangle(0, 0, 128, 64, 0, ML_BLACK, ML_CHECKER);
+    0000001E E740                   MOV         #64,R7
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000020 2FC6                   MOV.L       R12,@-R15
+    00000022 66D3                   MOV         R13,R6
+    00000024 2FB6                   MOV.L       R11,@-R15
+    00000026 E500                   MOV         #0,R5
+    00000028 2FA6                   MOV.L       R10,@-R15
+    0000002A 490B                   JSR         @R9
+    0000002C 6453                   MOV         R5,R4
+        Main.cpp    36            ML_display_vram();
+    0000002E D310                   MOV.L       L272+22,R3 ; _ML_display_vram
+    00000030 430B                   JSR         @R3
+    00000032 7F0C                   ADD         #12,R15
+        Main.cpp    37            Sleep(80);
+    00000034 480B                   JSR         @R8
+    00000036 E450                   MOV         #80,R4
+        Main.cpp    38    
+        Main.cpp    39            switch (scene)
+    00000038 60E2                   MOV.L       @R14,R0
+    0000003A 8801                   CMP/EQ      #1,R0
+    0000003C 8B03                   BF          L263
+    0000003E              L262:                            ; case label 
+        Main.cpp    40            {
+        Main.cpp    41                case SCENE_SPACE:
+        Main.cpp    42                    Scene_Space scene_space;
+    0000003E 64F3                   MOV         R15,R4
+    00000040 D20C                   MOV.L       L272+26,R2 ; ___ct__11Scene_SpaceFv
+    00000042 420B                   JSR         @R2
+    00000044 7404                   ADD         #4,R4
+        Main.cpp    43                    break;
+    00000046              L263:                             
+    00000046 62E2                   MOV.L       @R14,R2
+    00000048 2228                   TST         R2,R2
+    0000004A 8BE8                   BF          L264
+    0000004C DE0A                   MOV.L       L272+30,R14; _GetKey
+        Main.cpp    44            }
+        Main.cpp    45        }
+        Main.cpp    46    
+        Main.cpp    47        unsigned int key;
+        Main.cpp    48        while(1) GetKey(&key);
+    0000004E              L267:                             
+    0000004E 4E0B                   JSR         @R14
+    00000050 64F3                   MOV         R15,R4
+    00000052 AFFC                   BRA         L267
+    00000054 0009                   NOP
+        Main.cpp    49        return 1;
+        Main.cpp    50    }
+        Main.cpp    51    
+        Main.cpp    52    
+        Main.cpp    53    
+        Main.cpp    54    
+        Main.cpp    55    extern "C"
+        Main.cpp    56    {
+        Main.cpp    57        int AddIn_main(int isAppli, unsigned short OptionNum)
+    00000056              _AddIn_main:                     ; function: AddIn_main
+                                                           ; frame size=0
+        Main.cpp    58        {
+        Main.cpp    59            return main();
+    00000056 AFD3                   BRA         _main
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000058 0009                   NOP
+    0000005A              L272:                             
+    0000005A F378                   .DATA.W     H'F378
+    0000005C <00000000>             .DATA.L     _game
+    00000060 <00000000>             .DATA.L     ___ct__4GameFv
+    00000064 <00000000>             .DATA.L     _Sleep
+    00000068 <00000000>             .DATA.L     _ML_rectangle
+    0000006C <00000000>             .DATA.L     _scene
+    00000070 <00000000>             .DATA.L     _ML_display_vram
+    00000074 <00000000>             .DATA.L     ___ct__11Scene_SpaceFv
+    00000078 <00000000>             .DATA.L     _GetKey
+        Main.cpp    60        }
+        Main.cpp    61    
+        Main.cpp    62        #pragma section _BR_Size
+        Main.cpp    63        unsigned long BR_Size;
+        Main.cpp    64        #pragma section
+        Main.cpp    65        #pragma section _TOP
+        Main.cpp    66        int InitializeSystem(int isAppli, unsigned short OptionNum)
+P_T 00000000              _InitializeSystem:               ; function: InitializeSystem
+                                                           ; frame size=0
+        Main.cpp    67        {
+        Main.cpp    68            return INIT_ADDIN_APPLICATION(isAppli, OptionNum);
+    00000000 D301                   MOV.L       L273+2,R3  ; _INIT_ADDIN_APPLICATION
+    00000002 432B                   JMP         @R3
+    00000004 0009                   NOP
+    00000006              L273:                             
+    00000006 0000                   .DATA.W     0
+    00000008 <00000000>             .DATA.L     _INIT_ADDIN_APPLICATION
+        Main.cpp    69        }
+        Main.cpp    70        #pragma section
+        Main.cpp    71        /* AddIn_main(isAppli(1=MAIN,0=eAct), OptionNum(isAppli==0?0~3)) :: int(Done?1:0) */
+P   0000007C              ___sti__Main_cpp_game:           ; function: __sti__Main_cpp_game
+                                                           ; frame size=0
+    0000007C D401                   MOV.L       L274,R4    ; _game
+    0000007E D302                   MOV.L       L274+4,R3  ; ___ct__4GameFv
+    00000080 432B                   JMP         @R3
+    00000082 0009                   NOP
+    00000084              L274:                             
+    00000084 <00000000>             .DATA.L     _game
+    00000088 <00000000>             .DATA.L     ___ct__4GameFv
+        Main.cpp    72    }
+D   00000000              _scene:                          ; static: scene
+    00000000 00000001               .DATA.L     H'00000001
+C$I 00000000              __$__link:                       ; static: __link
+    00000000 00000000               .DATA.L     H'00000000
+    00000004 <00000000>             .DATA.L     ___sti__Main_cpp_game
+    00000008 00000000               .DATA.L     H'00000000
+B   00000000              _game:                           ; static: game
+    00000000 00000028               .RES.L      10
+B_B 00000000              _BR_Size:                        ; static: BR_Size
+    00000000 00000004               .RES.L      1
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         0
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:       72
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               0000008C Byte(s)
+PROGRAM  SECTION (P_BR_Size):                       00000000 Byte(s)
+PROGRAM  SECTION (P$INIT):                          00000000 Byte(s)
+PROGRAM  SECTION (P_TOP):                           0000000C Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
+CONSTANT SECTION (C_BR_Size):                       00000000 Byte(s)
+CONSTANT SECTION (C$INIT):                          0000000C Byte(s)
+CONSTANT SECTION (C_TOP):                           00000000 Byte(s)
+DATA     SECTION (D):                               00000004 Byte(s)
+DATA     SECTION (D_BR_Size):                       00000000 Byte(s)
+DATA     SECTION (D$INIT):                          00000000 Byte(s)
+DATA     SECTION (D_TOP):                           00000000 Byte(s)
+BSS      SECTION (B):                               00000028 Byte(s)
+BSS      SECTION (B_BR_Size):                       00000004 Byte(s)
+BSS      SECTION (B$INIT):                          00000000 Byte(s)
+BSS      SECTION (B_TOP):                           00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 000000D4 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            7
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           7
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            21
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\OLIVIE~1\AppData\Local\Temp\hmk992F.tmp 
+

@@ -1,0 +1,335 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:58:11  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: C:\Casio Projets\Etoile\Debug.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Debug.c     1    /****************************************************************************/
+         Debug.c     2    /*                                                                          */
+         Debug.c     3    /*                                 DEBUG                                    */
+         Debug.c     4    /*                                                                          */
+         Debug.c     5    /* Par NineStars                                                            */
+         Debug.c     6    /****************************************************************************/
+         Debug.c     7    
+         Debug.c     8    #include "Debug.h"
+         Debug.c     9    
+         Debug.c    10    
+         Debug.c    11    void debug_int(int variable)
+P   00000000              _debug_int:                      ; function: debug_int
+                                                           ; frame size=8
+    00000000 4F22                   STS.L       PR,@-R15
+    00000002 2F46                   MOV.L       R4,@-R15
+         Debug.c    12    {
+         Debug.c    13        SaveDisp(SAVEDISP_PAGE1);
+    00000004 D33F                   MOV.L       L323+2,R3  ; _SaveDisp
+    00000006 430B                   JSR         @R3
+    00000008 E401                   MOV         #1,R4
+         Debug.c    14        PopUpWin(3);
+    0000000A D23F                   MOV.L       L323+6,R2  ; _PopUpWin
+    0000000C 420B                   JSR         @R2
+    0000000E E403                   MOV         #3,R4
+         Debug.c    15            locate(10,4);
+    00000010 D33E                   MOV.L       L323+10,R3 ; _locate
+    00000012 E504                   MOV         #4,R5
+    00000014 430B                   JSR         @R3
+    00000016 E40A                   MOV         #10,R4
+         Debug.c    16            print_v(variable);
+    00000018 B03A                   BSR         _print_v
+    0000001A 64F2                   MOV.L       @R15,R4
+         Debug.c    17            Bdisp_PutDisp_DD();
+    0000001C D23C                   MOV.L       L323+14,R2 ; _Bdisp_PutDisp_DD
+    0000001E 420B                   JSR         @R2
+    00000020 0009                   NOP
+         Debug.c    18            Sleep(50);
+    00000022 D33C                   MOV.L       L323+18,R3 ; _Sleep
+    00000024 430B                   JSR         @R3
+    00000026 E432                   MOV         #50,R4
+         Debug.c    19            Sleep(700);
+    00000028 946B                   MOV.W       L323,R4    ; H'02BC
+    0000002A D23A                   MOV.L       L323+18,R2 ; _Sleep
+    0000002C 420B                   JSR         @R2
+    0000002E 0009                   NOP
+         Debug.c    20            RestoreDisp(SAVEDISP_PAGE1);
+    00000030 D339                   MOV.L       L323+22,R3 ; _RestoreDisp
+    00000032 430B                   JSR         @R3
+    00000034 E401                   MOV         #1,R4
+         Debug.c    21            Bdisp_PutDisp_DD();
+    00000036 7F04                   ADD         #4,R15
+    00000038 D235                   MOV.L       L323+14,R2 ; _Bdisp_PutDisp_DD
+    0000003A 422B                   JMP         @R2
+    0000003C 4F26                   LDS.L       @R15+,PR
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:58:11  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Debug.c    22    }
+         Debug.c    23    
+         Debug.c    24    void debug_str(const unsigned char *chaine)
+    0000003E              _debug_str:                      ; function: debug_str
+                                                           ; frame size=8
+    0000003E 4F22                   STS.L       PR,@-R15
+    00000040 2F46                   MOV.L       R4,@-R15
+         Debug.c    25    {
+         Debug.c    26        SaveDisp(SAVEDISP_PAGE1);
+    00000042 D330                   MOV.L       L323+2,R3  ; _SaveDisp
+    00000044 430B                   JSR         @R3
+    00000046 E401                   MOV         #1,R4
+         Debug.c    27        PopUpWin(3);
+    00000048 D22F                   MOV.L       L323+6,R2  ; _PopUpWin
+    0000004A 420B                   JSR         @R2
+    0000004C E403                   MOV         #3,R4
+         Debug.c    28            locate(8,4);
+    0000004E E504                   MOV         #4,R5
+    00000050 D32E                   MOV.L       L323+10,R3 ; _locate
+    00000052 430B                   JSR         @R3
+    00000054 E408                   MOV         #8,R4
+         Debug.c    29            Print(chaine);
+    00000056 D331                   MOV.L       L323+26,R3 ; _Print
+    00000058 430B                   JSR         @R3
+    0000005A 64F2                   MOV.L       @R15,R4
+         Debug.c    30            Bdisp_PutDisp_DD();
+    0000005C D22C                   MOV.L       L323+14,R2 ; _Bdisp_PutDisp_DD
+    0000005E 420B                   JSR         @R2
+    00000060 0009                   NOP
+         Debug.c    31            Sleep(50);
+    00000062 D32C                   MOV.L       L323+18,R3 ; _Sleep
+    00000064 430B                   JSR         @R3
+    00000066 E432                   MOV         #50,R4
+         Debug.c    32            Sleep(700);
+    00000068 944B                   MOV.W       L323,R4    ; H'02BC
+    0000006A D22A                   MOV.L       L323+18,R2 ; _Sleep
+    0000006C 420B                   JSR         @R2
+    0000006E 0009                   NOP
+         Debug.c    33            RestoreDisp(SAVEDISP_PAGE1);
+    00000070 D329                   MOV.L       L323+22,R3 ; _RestoreDisp
+    00000072 430B                   JSR         @R3
+    00000074 E401                   MOV         #1,R4
+         Debug.c    34            Bdisp_PutDisp_DD();
+    00000076 7F04                   ADD         #4,R15
+    00000078 D225                   MOV.L       L323+14,R2 ; _Bdisp_PutDisp_DD
+    0000007A 422B                   JMP         @R2
+    0000007C 4F26                   LDS.L       @R15+,PR
+         Debug.c    35    }
+         Debug.c    36    
+         Debug.c    37    void display_fps(int fps)
+    0000007E              _display_fps:                    ; function: display_fps
+                                                           ; frame size=8
+         Debug.c    38    {
+         Debug.c    39        locate(0,0);
+    0000007E E500                   MOV         #0,R5
+    00000080 D322                   MOV.L       L323+10,R3 ; _locate
+    00000082 4F22                   STS.L       PR,@-R15
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:58:11  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000084 2F46                   MOV.L       R4,@-R15
+    00000086 430B                   JSR         @R3
+    00000088 6453                   MOV         R5,R4
+         Debug.c    40        print_v(fps);
+    0000008A 64F2                   MOV.L       @R15,R4
+    0000008C 7F04                   ADD         #4,R15
+    0000008E 4F26                   LDS.L       @R15+,PR
+         Debug.c    41    }
+         Debug.c    42    
+         Debug.c    43    void print_v(int variable)
+    00000090              _print_v:                        ; function: print_v
+                                                           ; frame size=20
+                                                           ; used runtime library name:
+                                                           ; __divls, __modls, __slow_mvn
+    00000090 2FE6                   MOV.L       R14,@-R15
+         Debug.c    44    {
+         Debug.c    45    
+         Debug.c    46        int i, length=0;
+    00000092 E600                   MOV         #0,R6
+         Debug.c    47        char str[12] = "0";
+    00000094 D222                   MOV.L       L323+30,R2 ; L313
+    00000096 4F22                   STS.L       PR,@-R15
+    00000098 D322                   MOV.L       L323+34,R3 ; __slow_mvn
+    0000009A 7FF4                   ADD         #-12,R15
+    0000009C 6EF3                   MOV         R15,R14
+    0000009E 61F3                   MOV         R15,R1
+    000000A0 430B                   JSR         @R3
+    000000A2 E00C                   MOV         #12,R0
+         Debug.c    48        if(variable)
+    000000A4 2448                   TST         R4,R4
+    000000A6 8925                   BT          L317
+         Debug.c    49        {
+         Debug.c    50            if(variable<0)
+    000000A8 4411                   CMP/PZ      R4
+    000000AA 8D04                   BT/S        L318
+         Debug.c    51            {
+         Debug.c    52                length++;
+         Debug.c    53                str[0] = '-';
+         Debug.c    54                variable = -variable;
+         Debug.c    55            }
+         Debug.c    56            for(i=variable ; i ; i/=10) length++;
+    000000AC E50A                   MOV         #10,R5
+    000000AE 7601                   ADD         #1,R6
+    000000B0 E12D                   MOV         #45,R1
+    000000B2 644B                   NEG         R4,R4
+    000000B4 2E10                   MOV.B       R1,@R14
+    000000B6              L318:                             
+    000000B6 A006                   BRA         L319
+    000000B8 6743                   MOV         R4,R7
+    000000BA              L320:                             
+    000000BA 7601                   ADD         #1,R6
+    000000BC D21A                   MOV.L       L323+38,R2 ; __divls
+    000000BE 6053                   MOV         R5,R0
+    000000C0 420B                   JSR         @R2
+    000000C2 6173                   MOV         R7,R1
+    000000C4 6703                   MOV         R0,R7
+    000000C6              L319:                             
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:58:11  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000C6 2778                   TST         R7,R7
+    000000C8 8BF7                   BF          L320
+         Debug.c    57            str[length] = 0;
+    000000CA 6063                   MOV         R6,R0
+    000000CC E300                   MOV         #0,R3
+    000000CE 0E34                   MOV.B       R3,@(R0,R14)
+         Debug.c    58            for( ; variable ; variable/=10) str[--length] = variable%10+'0';
+    000000D0 A00E                   BRA         L321
+    000000D2 0009                   NOP
+    000000D4              L322:                             
+    000000D4 D315                   MOV.L       L323+42,R3 ; __modls
+    000000D6 76FF                   ADD         #-1,R6
+    000000D8 62E3                   MOV         R14,R2
+    000000DA 326C                   ADD         R6,R2
+    000000DC 6143                   MOV         R4,R1
+    000000DE 430B                   JSR         @R3
+    000000E0 6053                   MOV         R5,R0
+    000000E2 7030                   ADD         #48,R0
+    000000E4 2200                   MOV.B       R0,@R2
+    000000E6 6053                   MOV         R5,R0
+    000000E8 D20F                   MOV.L       L323+38,R2 ; __divls
+    000000EA 420B                   JSR         @R2
+    000000EC 6143                   MOV         R4,R1
+    000000EE 6403                   MOV         R0,R4
+    000000F0              L321:                             
+    000000F0 2448                   TST         R4,R4
+    000000F2 8BEF                   BF          L322
+    000000F4              L317:                             
+         Debug.c    59        }
+         Debug.c    60        Print(str);
+    000000F4 D209                   MOV.L       L323+26,R2 ; _Print
+    000000F6 420B                   JSR         @R2
+    000000F8 64E3                   MOV         R14,R4
+         Debug.c    61    }
+    000000FA 7F0C                   ADD         #12,R15
+    000000FC 4F26                   LDS.L       @R15+,PR
+    000000FE 000B                   RTS
+    00000100 6EF6                   MOV.L       @R15+,R14
+    00000102              L323:                             
+    00000102 02BC                   .DATA.W     H'02BC
+    00000104 <00000000>             .DATA.L     _SaveDisp
+    00000108 <00000000>             .DATA.L     _PopUpWin
+    0000010C <00000000>             .DATA.L     _locate
+    00000110 <00000000>             .DATA.L     _Bdisp_PutDisp_DD
+    00000114 <00000000>             .DATA.L     _Sleep
+    00000118 <00000000>             .DATA.L     _RestoreDisp
+    0000011C <00000000>             .DATA.L     _Print
+    00000120 <00000000>             .DATA.L     L313
+    00000124 <00000000>             .DATA.L     __slow_mvn
+    00000128 <00000000>             .DATA.L     __divls
+    0000012C <00000000>             .DATA.L     __modls
+C   00000000              L313:
+    00000000 30                     .SDATA      "0"
+    00000001 00                     .DATA.B     H'00
+    00000002 0000000A01             .DATAB.B    10,0
+             00           
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:58:11  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         1
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:       61
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               00000130 Byte(s)
+CONSTANT SECTION (C):                               0000000C Byte(s)
+DATA     SECTION (D):                               00000000 Byte(s)
+BSS      SECTION (B):                               00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 0000013C Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:           10
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           4
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\OLIVIE~1\AppData\Local\Temp\hmkF070.tmp 
+

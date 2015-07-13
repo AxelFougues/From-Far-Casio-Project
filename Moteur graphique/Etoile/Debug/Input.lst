@@ -1,0 +1,1061 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: C:\Casio Projets\Etoile\Input.c
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c     1    /****************************************************************************/
+         Input.c     2    /*                                                                          */
+         Input.c     3    /*                                  Input                                   */
+         Input.c     4    /*                                                                          */
+         Input.c     5    /* Par NineStars                                                         V2 */
+         Input.c     6    /****************************************************************************/
+         Input.c     7    
+         Input.c     8    #include "input.h"
+         Input.c     9    
+         Input.c    10    static int SysCallCode[] = {0xD201422B,0x60F20000,0x80010070};
+         Input.c    11    static int (*SysCall)( int R4, int R5, int R6, int R7, int FNo ) = (void*)&SysCallCode;
+         Input.c    12    
+         Input.c    13    unsigned char last_key[55] = {0};
+         Input.c    14    unsigned char current_key[55] = {0};
+         Input.c    15    
+         Input.c    16    
+         Input.c    17    void input_update()
+P   00000000              _input_update:                   ; function: input_update
+                                                           ; frame size=28
+    00000000 2FE6                   MOV.L       R14,@-R15
+    00000002 2FD6                   MOV.L       R13,@-R15
+    00000004 2FC6                   MOV.L       R12,@-R15
+         Input.c    18    {
+         Input.c    19        int i;
+         Input.c    20        for (i=0; i<55; i++)
+    00000006 EC00                   MOV         #0,R12
+    00000008 DD41                   MOV.L       L373+8,R13 ; _current_key
+    0000000A 6EC3                   MOV         R12,R14
+    0000000C 2FB6                   MOV.L       R11,@-R15
+    0000000E 2FA6                   MOV.L       R10,@-R15
+    00000010 2F96                   MOV.L       R9,@-R15
+    00000012 EA37                   MOV         #55,R10
+    00000014 9B78                   MOV.W       L373,R11   ; H'00FF
+    00000016 4F22                   STS.L       PR,@-R15
+    00000018 D93C                   MOV.L       L373+4,R9  ; _last_key
+    0000001A              L327:                             
+         Input.c    21        {
+         Input.c    22            last_key[i] = current_key[i];
+    0000001A 60E3                   MOV         R14,R0
+    0000001C 03DC                   MOV.B       @(R0,R13),R3
+         Input.c    23            if (key_down(i+25))
+    0000001E 6403                   MOV         R0,R4
+    00000020 0934                   MOV.B       R3,@(R0,R9)
+    00000022 B19D                   BSR         _key_down
+    00000024 7419                   ADD         #25,R4
+    00000026 600C                   EXTU.B      R0,R0
+    00000028 2008                   TST         R0,R0
+    0000002A 890A                   BT          L328
+         Input.c    24            {
+         Input.c    25                if (current_key[i] < 255)
+    0000002C 60E3                   MOV         R14,R0
+    0000002E 03DC                   MOV.B       @(R0,R13),R3
+    00000030 633C                   EXTU.B      R3,R3
+    00000032 33B3                   CMP/GE      R11,R3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000034 8907                   BT          L330
+         Input.c    26                {
+         Input.c    27                    current_key[i] ++;
+    00000036 60E3                   MOV         R14,R0
+    00000038 03DC                   MOV.B       @(R0,R13),R3
+    0000003A 7301                   ADD         #1,R3
+    0000003C 0D34                   MOV.B       R3,@(R0,R13)
+    0000003E A002                   BRA         L330
+    00000040 0009                   NOP
+    00000042              L328:                             
+         Input.c    28                }
+         Input.c    29            } else {
+         Input.c    30                current_key[i] = 0;
+    00000042 60E3                   MOV         R14,R0
+    00000044 0DC4                   MOV.B       R12,@(R0,R13)
+    00000046              L330:                             
+    00000046 7E01                   ADD         #1,R14
+    00000048 3EA3                   CMP/GE      R10,R14
+    0000004A 8BE6                   BF          L327
+         Input.c    31            }
+         Input.c    32    
+         Input.c    33        }
+         Input.c    34    }
+    0000004C 4F26                   LDS.L       @R15+,PR
+    0000004E 69F6                   MOV.L       @R15+,R9
+    00000050 6AF6                   MOV.L       @R15+,R10
+    00000052 6BF6                   MOV.L       @R15+,R11
+    00000054 6CF6                   MOV.L       @R15+,R12
+    00000056 6DF6                   MOV.L       @R15+,R13
+    00000058 000B                   RTS
+    0000005A 6EF6                   MOV.L       @R15+,R14
+         Input.c    35    
+         Input.c    36    int input_press(char key)
+    0000005C              _input_press:                    ; function: input_press
+                                                           ; frame size=0
+         Input.c    37    {
+         Input.c    38        key -= 25;
+         Input.c    39        return current_key[key];
+    0000005C D02C                   MOV.L       L373+8,R0  ; _current_key
+    0000005E 74E7                   ADD         #-25,R4
+    00000060 644E                   EXTS.B      R4,R4
+    00000062 034C                   MOV.B       @(R0,R4),R3
+         Input.c    40    }
+    00000064 000B                   RTS
+    00000066 603C                   EXTU.B      R3,R0
+         Input.c    41    
+         Input.c    42    int input_trigger(char key)
+    00000068              _input_trigger:                  ; function: input_trigger
+                                                           ; frame size=0
+         Input.c    43    {
+         Input.c    44        key -= 25;
+         Input.c    45        return (current_key[key] == 1);
+    00000068 D029                   MOV.L       L373+8,R0  ; _current_key
+    0000006A 74E7                   ADD         #-25,R4
+    0000006C 644E                   EXTS.B      R4,R4
+    0000006E 034C                   MOV.B       @(R0,R4),R3
+    00000070 603C                   EXTU.B      R3,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000072 8801                   CMP/EQ      #1,R0
+         Input.c    46    }
+    00000074 000B                   RTS
+    00000076 0029                   MOVT        R0
+         Input.c    47    
+         Input.c    48    int input_release(char key)
+    00000078              _input_release:                  ; function: input_release
+                                                           ; frame size=0
+         Input.c    49    {
+         Input.c    50        key -= 25;
+         Input.c    51        return (last_key[key] && !current_key[key]);
+    00000078 D024                   MOV.L       L373+4,R0  ; _last_key
+    0000007A 74E7                   ADD         #-25,R4
+    0000007C 644E                   EXTS.B      R4,R4
+    0000007E 034C                   MOV.B       @(R0,R4),R3
+    00000080 633C                   EXTU.B      R3,R3
+    00000082 2338                   TST         R3,R3
+    00000084 8D07                   BT/S        L333
+    00000086 6543                   MOV         R4,R5
+    00000088 D021                   MOV.L       L373+8,R0  ; _current_key
+    0000008A 035C                   MOV.B       @(R0,R5),R3
+    0000008C 633C                   EXTU.B      R3,R3
+    0000008E 2338                   TST         R3,R3
+    00000090 8B01                   BF          L333
+    00000092 000B                   RTS
+    00000094 E001                   MOV         #1,R0
+    00000096              L333:                             
+    00000096 E000                   MOV         #0,R0
+         Input.c    52    }
+    00000098              L335:                             
+    00000098 000B                   RTS
+    0000009A 0009                   NOP
+         Input.c    53    
+         Input.c    54    int input_hold_short(char key)
+    0000009C              _input_hold_short:               ; function: input_hold_short
+                                                           ; frame size=0
+         Input.c    55    {
+         Input.c    56        key -= 25;
+         Input.c    57        return current_key[key] == 7;
+    0000009C D01C                   MOV.L       L373+8,R0  ; _current_key
+    0000009E 74E7                   ADD         #-25,R4
+    000000A0 644E                   EXTS.B      R4,R4
+    000000A2 034C                   MOV.B       @(R0,R4),R3
+    000000A4 603C                   EXTU.B      R3,R0
+    000000A6 8807                   CMP/EQ      #7,R0
+         Input.c    58    }
+    000000A8 000B                   RTS
+    000000AA 0029                   MOVT        R0
+         Input.c    59    
+         Input.c    60    int input_hold_long(char key)
+    000000AC              _input_hold_long:                ; function: input_hold_long
+                                                           ; frame size=0
+         Input.c    61    {
+         Input.c    62        key -= 25;
+         Input.c    63        return current_key[key] == 14;
+    000000AC D018                   MOV.L       L373+8,R0  ; _current_key
+    000000AE 74E7                   ADD         #-25,R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000B0 644E                   EXTS.B      R4,R4
+    000000B2 034C                   MOV.B       @(R0,R4),R3
+    000000B4 603C                   EXTU.B      R3,R0
+    000000B6 880E                   CMP/EQ      #14,R0
+         Input.c    64    }
+    000000B8 000B                   RTS
+    000000BA 0029                   MOVT        R0
+         Input.c    65    
+         Input.c    66    int input_repeat(char key)
+    000000BC              _input_repeat:                   ; function: input_repeat
+                                                           ; frame size=0
+    000000BC D314                   MOV.L       L373+8,R3  ; _current_key
+         Input.c    67    {
+         Input.c    68        key -= 25;
+    000000BE 74E7                   ADD         #-25,R4
+    000000C0 654E                   EXTS.B      R4,R5
+    000000C2 353C                   ADD         R3,R5
+    000000C4 6050                   MOV.B       @R5,R0
+    000000C6 600C                   EXTU.B      R0,R0
+    000000C8 8801                   CMP/EQ      #1,R0
+    000000CA 8905                   BT          L320
+         Input.c    69        if (current_key[key] == 1)
+         Input.c    70        {
+         Input.c    71            return 1;
+         Input.c    72        }
+         Input.c    73        if (current_key[key] == 8)
+    000000CC 6050                   MOV.B       @R5,R0
+    000000CE 600C                   EXTU.B      R0,R0
+    000000D0 8808                   CMP/EQ      #8,R0
+    000000D2 8B03                   BF          L340
+         Input.c    74        {
+         Input.c    75            current_key[key] = 6;
+    000000D4 E206                   MOV         #6,R2
+    000000D6 2520                   MOV.B       R2,@R5
+    000000D8              L320:
+         Input.c    76            return 1;
+    000000D8 000B                   RTS
+    000000DA E001                   MOV         #1,R0
+    000000DC              L340:                             
+         Input.c    77        }
+         Input.c    78        return 0;
+    000000DC E000                   MOV         #0,R0
+         Input.c    79    }
+    000000DE              L339:                             
+    000000DE 000B                   RTS
+    000000E0 0009                   NOP
+         Input.c    80    
+         Input.c    81    int input_repeat_short(char key)
+    000000E2              _input_repeat_short:             ; function: input_repeat_short
+                                                           ; frame size=0
+         Input.c    82    {
+         Input.c    83        key -= 25;
+    000000E2 74E7                   ADD         #-25,R4
+    000000E4 D30A                   MOV.L       L373+8,R3  ; _current_key
+    000000E6 654E                   EXTS.B      R4,R5
+    000000E8 353C                   ADD         R3,R5
+    000000EA 6050                   MOV.B       @R5,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000EC 600C                   EXTU.B      R0,R0
+    000000EE 8801                   CMP/EQ      #1,R0
+    000000F0 8905                   BT          L321
+         Input.c    84        if (current_key[key] == 1)
+         Input.c    85        {
+         Input.c    86            return 1;
+         Input.c    87        }
+         Input.c    88        if (current_key[key] == 6)
+    000000F2 6050                   MOV.B       @R5,R0
+    000000F4 600C                   EXTU.B      R0,R0
+    000000F6 8806                   CMP/EQ      #6,R0
+    000000F8 8B03                   BF          L343
+         Input.c    89        {
+         Input.c    90            current_key[key] = 4;
+    000000FA E204                   MOV         #4,R2
+    000000FC 2520                   MOV.B       R2,@R5
+    000000FE              L321:
+         Input.c    91            return 1;
+    000000FE 000B                   RTS
+    00000100 E001                   MOV         #1,R0
+    00000102              L343:                             
+         Input.c    92        }
+         Input.c    93        return 0;
+    00000102 E000                   MOV         #0,R0
+         Input.c    94    }
+    00000104              L342:                             
+    00000104 000B                   RTS
+    00000106 0009                   NOP
+    00000108              L373:                             
+    00000108 00FF                   .DATA.W     H'00FF
+    0000010A 0000                   .DATA.W     0
+    0000010C <00000000>             .DATA.L     _last_key
+    00000110 <00000000>             .DATA.L     _current_key
+         Input.c    95    
+         Input.c    96    int input_trigger_or_hold(char key)
+    00000114              _input_trigger_or_hold:          ; function: input_trigger_or_hold
+                                                           ; frame size=0
+    00000114 D048                   MOV.L       L374,R0    ; _last_key
+         Input.c    97    {
+         Input.c    98        key -= 25;
+    00000116 74E7                   ADD         #-25,R4
+    00000118 644E                   EXTS.B      R4,R4
+    0000011A 6143                   MOV         R4,R1
+    0000011C 051C                   MOV.B       @(R0,R1),R5
+    0000011E 655C                   EXTU.B      R5,R5
+    00000120 4515                   CMP/PL      R5
+    00000122 8B09                   BF          L344
+    00000124 E30E                   MOV         #14,R3
+    00000126 3533                   CMP/GE      R3,R5
+    00000128 8906                   BT          L344
+    0000012A D044                   MOV.L       L374+4,R0  ; _current_key
+    0000012C 021C                   MOV.B       @(R0,R1),R2
+    0000012E 622C                   EXTU.B      R2,R2
+    00000130 2228                   TST         R2,R2
+    00000132 8B01                   BF          L344
+         Input.c    99        if (last_key[key] > 0 && last_key[key] < 14 && current_key[key] == 0)
+         Input.c   100        {
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   101            return 1;
+    00000134 000B                   RTS
+    00000136 E001                   MOV         #1,R0
+    00000138              L344:                             
+         Input.c   102        }
+         Input.c   103        if (current_key[key] == 14)
+    00000138 D040                   MOV.L       L374+4,R0  ; _current_key
+    0000013A 031C                   MOV.B       @(R0,R1),R3
+    0000013C 603C                   EXTU.B      R3,R0
+    0000013E 880E                   CMP/EQ      #14,R0
+    00000140 8B01                   BF          L346
+         Input.c   104        {
+         Input.c   105            return 2;
+    00000142 000B                   RTS
+    00000144 E002                   MOV         #2,R0
+    00000146              L346:                             
+         Input.c   106        }
+         Input.c   107        return 0;
+    00000146 E000                   MOV         #0,R0
+         Input.c   108    }
+    00000148              L345:                             
+    00000148 000B                   RTS
+    0000014A 0009                   NOP
+         Input.c   109    
+         Input.c   110    int input_dir4()
+    0000014C              _input_dir4:                     ; function: input_dir4
+                                                           ; frame size=0
+    0000014C D43B                   MOV.L       L374+4,R4  ; _current_key
+    0000014E 844C                   MOV.B       @(12,R4),R0
+    00000150 2008                   TST         R0,R0
+    00000152 8901                   BT          L347
+         Input.c   111    {
+         Input.c   112        if (current_key[K_DOWN-25])  return 2;
+    00000154 000B                   RTS
+    00000156 E002                   MOV         #2,R0
+    00000158              L347:                             
+         Input.c   113        if (current_key[K_LEFT-25])  return 4;
+    00000158 844D                   MOV.B       @(13,R4),R0
+    0000015A 2008                   TST         R0,R0
+    0000015C 8901                   BT          L349
+    0000015E 000B                   RTS
+    00000160 E004                   MOV         #4,R0
+    00000162              L349:                             
+         Input.c   114        if (current_key[K_RIGHT-25]) return 6;
+    00000162 8442                   MOV.B       @(2,R4),R0
+    00000164 2008                   TST         R0,R0
+    00000166 8901                   BT          L350
+    00000168 000B                   RTS
+    0000016A E006                   MOV         #6,R0
+    0000016C              L350:                             
+         Input.c   115        if (current_key[K_UP-25])    return 8;
+    0000016C 8443                   MOV.B       @(3,R4),R0
+    0000016E 2008                   TST         R0,R0
+    00000170 8901                   BT          L351
+    00000172 000B                   RTS
+    00000174 E008                   MOV         #8,R0
+    00000176              L351:                             
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   116        return 0;
+    00000176 E000                   MOV         #0,R0
+         Input.c   117    }
+    00000178              L348:                             
+    00000178 000B                   RTS
+    0000017A 0009                   NOP
+         Input.c   118    
+         Input.c   119    int input_dir8()
+    0000017C              _input_dir8:                     ; function: input_dir8
+                                                           ; frame size=0
+    0000017C D42F                   MOV.L       L374+4,R4  ; _current_key
+    0000017E 844D                   MOV.B       @(13,R4),R0
+    00000180 2008                   TST         R0,R0
+    00000182 8904                   BT          L352
+    00000184 844C                   MOV.B       @(12,R4),R0
+    00000186 2008                   TST         R0,R0
+    00000188 8909                   BT          L354
+         Input.c   120    {
+         Input.c   121        if (current_key[K_LEFT-25]  && current_key[K_DOWN-25])  return 1;
+    0000018A 000B                   RTS
+    0000018C E001                   MOV         #1,R0
+    0000018E              L352:                             
+         Input.c   122        if (current_key[K_DOWN-25]  && current_key[K_RIGHT-25]) return 3;
+    0000018E 844C                   MOV.B       @(12,R4),R0
+    00000190 2008                   TST         R0,R0
+    00000192 8904                   BT          L354
+    00000194 8442                   MOV.B       @(2,R4),R0
+    00000196 2008                   TST         R0,R0
+    00000198 8901                   BT          L354
+    0000019A 000B                   RTS
+    0000019C E003                   MOV         #3,R0
+    0000019E              L354:                             
+         Input.c   123        if (current_key[K_LEFT-25]  && current_key[K_UP-25])    return 7;
+    0000019E 844D                   MOV.B       @(13,R4),R0
+    000001A0 2008                   TST         R0,R0
+    000001A2 8904                   BT          L355
+    000001A4 8443                   MOV.B       @(3,R4),R0
+    000001A6 2008                   TST         R0,R0
+    000001A8 8901                   BT          L355
+    000001AA 000B                   RTS
+    000001AC E007                   MOV         #7,R0
+    000001AE              L355:                             
+         Input.c   124        if (current_key[K_RIGHT-25] && current_key[K_UP-25])    return 9;
+    000001AE 8442                   MOV.B       @(2,R4),R0
+    000001B0 2008                   TST         R0,R0
+    000001B2 8904                   BT          L356
+    000001B4 8443                   MOV.B       @(3,R4),R0
+    000001B6 2008                   TST         R0,R0
+    000001B8 8901                   BT          L356
+    000001BA 000B                   RTS
+    000001BC E009                   MOV         #9,R0
+    000001BE              L356:                             
+         Input.c   125        if (current_key[K_DOWN-25])                             return 2;
+    000001BE 844C                   MOV.B       @(12,R4),R0
+    000001C0 2008                   TST         R0,R0
+    000001C2 8901                   BT          L357
+    000001C4 000B                   RTS
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000001C6 E002                   MOV         #2,R0
+    000001C8              L357:                             
+         Input.c   126        if (current_key[K_LEFT-25])                             return 4;
+    000001C8 844D                   MOV.B       @(13,R4),R0
+    000001CA 2008                   TST         R0,R0
+    000001CC 8901                   BT          L358
+    000001CE 000B                   RTS
+    000001D0 E004                   MOV         #4,R0
+    000001D2              L358:                             
+         Input.c   127        if (current_key[K_RIGHT-25])                            return 6;
+    000001D2 8442                   MOV.B       @(2,R4),R0
+    000001D4 2008                   TST         R0,R0
+    000001D6 8901                   BT          L359
+    000001D8 000B                   RTS
+    000001DA E006                   MOV         #6,R0
+    000001DC              L359:                             
+         Input.c   128        if (current_key[K_UP-25])                               return 8;
+    000001DC 8443                   MOV.B       @(3,R4),R0
+    000001DE 2008                   TST         R0,R0
+    000001E0 8901                   BT          L360
+    000001E2 000B                   RTS
+    000001E4 E008                   MOV         #8,R0
+    000001E6              L360:                             
+         Input.c   129        return 0;
+    000001E6 E000                   MOV         #0,R0
+         Input.c   130    }
+    000001E8              L353:                             
+    000001E8 000B                   RTS
+    000001EA 0009                   NOP
+         Input.c   131    
+         Input.c   132    void input_manual(char key)
+    000001EC              _input_manual:                   ; function: input_manual
+                                                           ; frame size=0
+         Input.c   133    {
+         Input.c   134        key -= 25;
+         Input.c   135        current_key[key] += 1;
+    000001EC D013                   MOV.L       L374+4,R0  ; _current_key
+    000001EE 74E7                   ADD         #-25,R4
+    000001F0 644E                   EXTS.B      R4,R4
+    000001F2 034C                   MOV.B       @(R0,R4),R3
+    000001F4 7301                   ADD         #1,R3
+         Input.c   136    }
+    000001F6 000B                   RTS
+    000001F8 0434                   MOV.B       R3,@(R0,R4)
+         Input.c   137    
+         Input.c   138    
+         Input.c   139    
+         Input.c   140    #define SCA 0xD201D002
+         Input.c   141    #define SCB 0x422B0009
+         Input.c   142    #define SCE 0x80010070
+         Input.c   143    
+         Input.c   144    typedef int(*sc_i2cp2sip) (char*, char*, short int*, short int*);
+         Input.c   145    typedef int(*sc_iv) (void);
+         Input.c   146    typedef int(*sc_4i) (int, int, int);
+         Input.c   147    
+         Input.c   148    const unsigned int sc003b[] = {SCA, SCB, SCE, 0x3B};
+         Input.c   149    const unsigned int sc0015[] = {SCA, SCB, SCE, 0x15};
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   150    const unsigned int sc0248[] = {SCA, SCB, SCE, 0x248};
+         Input.c   151    
+         Input.c   152    #define RTC_GetTicks (*(sc_iv)sc003b)
+         Input.c   153    #define PutKey (*(sc_4i)sc0248)
+         Input.c   154    #define GlibGetOSVersionInfo (*(sc_i2cp2sip)sc0015)
+         Input.c   155    
+         Input.c   156    int OSVersionAsInt(void)
+    000001FA              _OSVersionAsInt:                 ; function: OSVersionAsInt
+                                                           ; frame size=20
+    000001FA 4F22                   STS.L       PR,@-R15
+         Input.c   157    {
+         Input.c   158            unsigned char mainversion;
+         Input.c   159            unsigned char minorversion;
+         Input.c   160            unsigned short release;
+         Input.c   161            unsigned short build;
+         Input.c   162            GlibGetOSVersionInfo( &mainversion, &minorversion, &release, &build );
+    000001FC D210                   MOV.L       L374+8,R2  ; _sc0015
+    000001FE 7FF0                   ADD         #-16,R15
+    00000200 67F3                   MOV         R15,R7
+    00000202 770C                   ADD         #12,R7
+    00000204 66F3                   MOV         R15,R6
+    00000206 7608                   ADD         #8,R6
+    00000208 65F3                   MOV         R15,R5
+    0000020A 7504                   ADD         #4,R5
+    0000020C 420B                   JSR         @R2
+    0000020E 64F3                   MOV         R15,R4
+         Input.c   163            return ( ( mainversion << 24 ) & 0xFF000000 ) | ( ( minorversion << 16 ) & 0x00FF0000 ) | ( releas
+                         +e & 0x0000FFFF );
+    00000210 60F0                   MOV.B       @R15,R0
+    00000212 600C                   EXTU.B      R0,R0
+    00000214 D30B                   MOV.L       L374+12,R3 ; H'FF000000
+    00000216 4028                   SHLL16      R0
+    00000218 D20B                   MOV.L       L374+16,R2 ; H'00FF0000
+    0000021A 4018                   SHLL8       R0
+    0000021C 2039                   AND         R3,R0
+    0000021E 6103                   MOV         R0,R1
+    00000220 84F4                   MOV.B       @(4,R15),R0
+    00000222 600C                   EXTU.B      R0,R0
+    00000224 4028                   SHLL16      R0
+    00000226 2029                   AND         R2,R0
+    00000228 201B                   OR          R1,R0
+    0000022A 6103                   MOV         R0,R1
+    0000022C 85F4                   MOV.W       @(8,R15),R0
+         Input.c   164    }
+    0000022E 7F10                   ADD         #16,R15
+    00000230 4F26                   LDS.L       @R15+,PR
+    00000232 600D                   EXTU.W      R0,R0
+    00000234 000B                   RTS
+    00000236 201B                   OR          R1,R0
+    00000238              L374:                             
+    00000238 <00000000>             .DATA.L     _last_key
+    0000023C <00000000>             .DATA.L     _current_key
+    00000240 <00000000>             .DATA.L     _sc0015
+    00000244 FF000000               .DATA.L     H'FF000000
+    00000248 00FF0000               .DATA.L     H'00FF0000
+         Input.c   165    #define isOS2 (OSVersionAsInt() >= 0x02020000)
+         Input.c   166    #define OS2(x,y) ((OSVersionAsInt() >= 0x02020000)?y:x)
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   10
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   167    
+         Input.c   168    void key_inject(int keycode)
+    0000024C              _key_inject:                     ; function: key_inject
+                                                           ; frame size=8
+    0000024C 4F22                   STS.L       PR,@-R15
+         Input.c   169    {
+         Input.c   170            (*SysCall)(keycode, 0, 0, 0, 0x248);
+    0000024E E700                   MOV         #0,R7
+    00000250 D23E                   MOV.L       L375+10,R2 ; __$SysCall
+    00000252 6673                   MOV         R7,R6
+    00000254 9175                   MOV.W       L375,R1    ; H'0248
+    00000256 6322                   MOV.L       @R2,R3
+    00000258 2F16                   MOV.L       R1,@-R15
+    0000025A 430B                   JSR         @R3
+    0000025C 6573                   MOV         R7,R5
+         Input.c   171    }
+    0000025E 7F04                   ADD         #4,R15
+    00000260 4F26                   LDS.L       @R15+,PR
+    00000262 000B                   RTS
+    00000264 0009                   NOP
+         Input.c   172    
+         Input.c   173    static void delay()
+    00000266              __$delay:                        ; function: delay
+                                                           ; frame size=0
+         Input.c   174    {
+         Input.c   175            unsigned char i;
+         Input.c   176            for(i=0 ; i<5 ; i++);
+    00000266 E505                   MOV         #5,R5
+    00000268 E400                   MOV         #0,R4
+    0000026A              L362:                             
+    0000026A 7401                   ADD         #1,R4
+    0000026C 634C                   EXTU.B      R4,R3
+    0000026E 3353                   CMP/GE      R5,R3
+    00000270 8BFB                   BF          L362
+         Input.c   177    }
+    00000272 000B                   RTS
+    00000274 0009                   NOP
+         Input.c   178    
+         Input.c   179    unsigned char CheckKeyRow(unsigned char code)
+    00000276              _CheckKeyRow:                    ; function: CheckKeyRow
+                                                           ; frame size=32
+         Input.c   180    {
+         Input.c   181            unsigned char result=0;
+         Input.c   182            short*PORTB_CTRL=(void*)0xA4000102;
+         Input.c   183            short*PORTM_CTRL=(void*)0xA4000118;
+         Input.c   184            char*PORTB=(void*)0xA4000122;
+         Input.c   185            char*PORTM=(void*)0xA4000138;
+         Input.c   186            char*PORTA=(void*)0xA4000120;
+         Input.c   187            short smask;
+         Input.c   188            char cmask;
+         Input.c   189            unsigned char column, row;
+         Input.c   190    
+         Input.c   191            column = code>>4;
+    00000276 634C                   EXTU.B      R4,R3
+    00000278 2FE6                   MOV.L       R14,@-R15
+         Input.c   192            row = code &0x0F;
+    0000027A E50F                   MOV         #15,R5
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   11
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000027C 2FD6                   MOV.L       R13,@-R15
+    0000027E 4309                   SHLR2       R3
+    00000280 2FC6                   MOV.L       R12,@-R15
+    00000282 2549                   AND         R4,R5
+    00000284 2FB6                   MOV.L       R11,@-R15
+    00000286 4309                   SHLR2       R3
+    00000288 2FA6                   MOV.L       R10,@-R15
+         Input.c   193    
+         Input.c   194            smask = 0x0003 << (( row %8)*2);
+    0000028A 665C                   EXTU.B      R5,R6
+    0000028C 2F96                   MOV.L       R9,@-R15
+    0000028E 6063                   MOV         R6,R0
+    00000290 4F22                   STS.L       PR,@-R15
+    00000292 4011                   CMP/PZ      R0
+    00000294 7FFC                   ADD         #-4,R15
+    00000296 2F30                   MOV.B       R3,@R15
+    00000298 8B01                   BF          L363
+    0000029A A005                   BRA         L364
+    0000029C C907                   AND         #7,R0
+    0000029E              L363:                             
+    0000029E 6007                   NOT         R0,R0
+    000002A0 7001                   ADD         #1,R0
+    000002A2 C907                   AND         #7,R0
+    000002A4 6007                   NOT         R0,R0
+    000002A6 7001                   ADD         #1,R0
+    000002A8              L364:                             
+         Input.c   195            cmask = ~( 1 << ( row %8) );
+         Input.c   196            if(row <8)
+    000002A8 994C                   MOV.W       L375+2,R9  ; H'AAAA
+    000002AA E208                   MOV         #8,R2
+    000002AC DB28                   MOV.L       L375+14,R11; H'A4000102
+    000002AE 6403                   MOV         R0,R4
+    000002B0 9D49                   MOV.W       L375+4,R13 ; H'FF00
+    000002B2 E503                   MOV         #3,R5
+    000002B4 DE27                   MOV.L       L375+18,R14; H'A4000118
+    000002B6 EA01                   MOV         #1,R10
+    000002B8 4000                   SHLL        R0
+    000002BA 450C                   SHAD        R0,R5
+    000002BC 4A4C                   SHAD        R4,R10
+    000002BE 6AA7                   NOT         R10,R10
+    000002C0 6CB3                   MOV         R11,R12
+    000002C2 3623                   CMP/GE      R2,R6
+    000002C4 8D0D                   BT/S        L365
+    000002C6 7C36                   ADD         #54,R12
+         Input.c   197            {
+         Input.c   198                    *PORTB_CTRL = 0xAAAA ^ smask;
+    000002C8 259A                   XOR         R9,R5
+    000002CA 2B51                   MOV.W       R5,@R11
+         Input.c   199                    *PORTM_CTRL = (*PORTM_CTRL & 0xFF00 ) | 0x00AA;
+    000002CC 60E1                   MOV.W       @R14,R0
+    000002CE 20D9                   AND         R13,R0
+    000002D0 CBAA                   OR          #170,R0
+         Input.c   200                    delay();
+    000002D2 BFC8                   BSR         __$delay
+    000002D4 2E01                   MOV.W       R0,@R14
+         Input.c   201                    *PORTB = cmask;
+    000002D6 D220                   MOV.L       L375+22,R2 ; H'A4000122
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   12
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000002D8 22A0                   MOV.B       R10,@R2
+         Input.c   202                    *PORTM = (*PORTM & 0xF0 ) | 0x0F;
+    000002DA 60C0                   MOV.B       @R12,R0
+    000002DC C9F0                   AND         #240,R0
+    000002DE A00D                   BRA         L372
+    000002E0 CB0F                   OR          #15,R0
+    000002E2              L365:                             
+         Input.c   203            }
+         Input.c   204            else
+         Input.c   205            {
+         Input.c   206                    *PORTB_CTRL = 0xAAAA;
+    000002E2 2B91                   MOV.W       R9,@R11
+         Input.c   207                    *PORTM_CTRL = ((*PORTM_CTRL & 0xFF00 ) | 0x00AA)  ^ smask;
+    000002E4 60E1                   MOV.W       @R14,R0
+    000002E6 20D9                   AND         R13,R0
+    000002E8 CBAA                   OR          #170,R0
+    000002EA 205A                   XOR         R5,R0
+         Input.c   208                    delay();
+    000002EC BFBB                   BSR         __$delay
+    000002EE 2E01                   MOV.W       R0,@R14
+         Input.c   209                    *PORTB = 0xFF;
+    000002F0 D319                   MOV.L       L375+22,R3 ; H'A4000122
+    000002F2 E2FF                   MOV         #-1,R2
+    000002F4 2320                   MOV.B       R2,@R3
+         Input.c   210                    *PORTM = (*PORTM & 0xF0 ) | cmask;
+    000002F6 60C0                   MOV.B       @R12,R0
+    000002F8 C9F0                   AND         #240,R0
+    000002FA 20AB                   OR          R10,R0
+    000002FC              L372:                             
+         Input.c   211            }
+         Input.c   212            delay();
+    000002FC BFB3                   BSR         __$delay
+    000002FE 2C00                   MOV.B       R0,@R12
+         Input.c   213            result = (~(*PORTA))>>column & 1;
+    00000300 D316                   MOV.L       L375+26,R3 ; H'A4000120
+    00000302 6030                   MOV.B       @R3,R0
+    00000304 62F0                   MOV.B       @R15,R2
+    00000306 6007                   NOT         R0,R0
+    00000308 622C                   EXTU.B      R2,R2
+    0000030A 622B                   NEG         R2,R2
+    0000030C 402C                   SHAD        R2,R0
+    0000030E C901                   AND         #1,R0
+         Input.c   214            delay();
+    00000310 BFA9                   BSR         __$delay
+    00000312 2F00                   MOV.B       R0,@R15
+         Input.c   215            *PORTB_CTRL = 0xAAAA;
+    00000314 2B91                   MOV.W       R9,@R11
+         Input.c   216            *PORTM_CTRL = (*PORTM_CTRL & 0xFF00 ) | 0x00AA;
+    00000316 60E1                   MOV.W       @R14,R0
+    00000318 20D9                   AND         R13,R0
+    0000031A CBAA                   OR          #170,R0
+         Input.c   217            delay();
+    0000031C BFA3                   BSR         __$delay
+    0000031E 2E01                   MOV.W       R0,@R14
+         Input.c   218            *PORTB_CTRL = 0x5555;
+    00000320 9212                   MOV.W       L375+6,R2  ; H'5555
+    00000322 2B21                   MOV.W       R2,@R11
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   13
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   219            *PORTM_CTRL = (*PORTM_CTRL & 0xFF00 ) | 0x0055;
+    00000324 60E1                   MOV.W       @R14,R0
+    00000326 20D9                   AND         R13,R0
+    00000328 CB55                   OR          #85,R0
+         Input.c   220            delay();
+    0000032A BF9C                   BSR         __$delay
+    0000032C 2E01                   MOV.W       R0,@R14
+         Input.c   221    
+         Input.c   222            return result;
+    0000032E 60F0                   MOV.B       @R15,R0
+         Input.c   223    }
+    00000330 7F04                   ADD         #4,R15
+    00000332 4F26                   LDS.L       @R15+,PR
+    00000334 69F6                   MOV.L       @R15+,R9
+    00000336 6AF6                   MOV.L       @R15+,R10
+    00000338 6BF6                   MOV.L       @R15+,R11
+    0000033A 6CF6                   MOV.L       @R15+,R12
+    0000033C 6DF6                   MOV.L       @R15+,R13
+    0000033E 000B                   RTS
+    00000340 6EF6                   MOV.L       @R15+,R14
+    00000342              L375:                             
+    00000342 0248                   .DATA.W     H'0248
+    00000344 AAAA                   .DATA.W     H'AAAA
+    00000346 FF00                   .DATA.W     H'FF00
+    00000348 5555                   .DATA.W     H'5555
+    0000034A 0000                   .DATA.W     0
+    0000034C <00000000>             .DATA.L     __$SysCall
+    00000350 A4000102               .DATA.L     H'A4000102
+    00000354 A4000118               .DATA.L     H'A4000118
+    00000358 A4000122               .DATA.L     H'A4000122
+    0000035C A4000120               .DATA.L     H'A4000120
+         Input.c   224    
+         Input.c   225    unsigned char key_down(unsigned char code)
+    00000360              _key_down:                       ; function: key_down
+                                                           ; frame size=36
+                                                           ; used runtime library name:
+                                                           ; __divls, __modls
+    00000360 2FE6                   MOV.L       R14,@-R15
+    00000362 EE0A                   MOV         #10,R14
+    00000364 2FD6                   MOV.L       R13,@-R15
+    00000366 4F22                   STS.L       PR,@-R15
+         Input.c   226    {
+         Input.c   227            unsigned short key[8];
+         Input.c   228            const unsigned short* keyboardregister = (unsigned short*)0xA44B0000;
+    00000368 D321                   MOV.L       L376,R3    ; H'A44B0000
+    0000036A 7FE8                   ADD         #-24,R15
+    0000036C 2F40                   MOV.B       R4,@R15
+    0000036E 1F31                   MOV.L       R3,@(4,R15)
+    00000370 6DF0                   MOV.B       @R15,R13
+    00000372 BF42                   BSR         _OSVersionAsInt
+    00000374 6DDC                   EXTU.B      R13,R13
+    00000376 D21F                   MOV.L       L376+4,R2  ; H'02020000
+    00000378 3023                   CMP/GE      R2,R0
+    0000037A 8B26                   BF          L368
+         Input.c   229    
+         Input.c   230            if(isOS2)
+         Input.c   231            {
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   14
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+         Input.c   232                    unsigned char row = code%10;
+    0000037C D31E                   MOV.L       L376+8,R3  ; __modls
+    0000037E 61D3                   MOV         R13,R1
+    00000380 430B                   JSR         @R3
+    00000382 60E3                   MOV         R14,R0
+    00000384 2F00                   MOV.B       R0,@R15
+         Input.c   233                    memcpy(&key, keyboardregister, sizeof(unsigned short) << 3);
+    00000386 E610                   MOV         #16,R6
+    00000388 D31C                   MOV.L       L376+12,R3 ; _memcpy
+    0000038A 64F3                   MOV         R15,R4
+    0000038C 55F1                   MOV.L       @(4,R15),R5
+    0000038E 430B                   JSR         @R3
+    00000390 7408                   ADD         #8,R4
+         Input.c   234    
+         Input.c   235                    return (0 != (key[row >> 1] & 1 << code / 10 - 1 + ((row & 1) << 3)));
+    00000392 E501                   MOV         #1,R5
+    00000394 64F0                   MOV.B       @R15,R4
+    00000396 61D3                   MOV         R13,R1
+    00000398 D219                   MOV.L       L376+16,R2 ; __divls
+    0000039A 644C                   EXTU.B      R4,R4
+    0000039C 6343                   MOV         R4,R3
+    0000039E 2359                   AND         R5,R3
+    000003A0 4308                   SHLL2       R3
+    000003A2 4300                   SHLL        R3
+    000003A4 420B                   JSR         @R2
+    000003A6 60E3                   MOV         R14,R0
+    000003A8 330C                   ADD         R0,R3
+    000003AA 73FF                   ADD         #-1,R3
+    000003AC 6053                   MOV         R5,R0
+    000003AE 403C                   SHAD        R3,R0
+    000003B0 6343                   MOV         R4,R3
+    000003B2 4321                   SHAR        R3
+    000003B4 4300                   SHLL        R3
+    000003B6 61F3                   MOV         R15,R1
+    000003B8 7108                   ADD         #8,R1
+    000003BA 331C                   ADD         R1,R3
+    000003BC 6231                   MOV.W       @R3,R2
+    000003BE 622D                   EXTU.W      R2,R2
+    000003C0 2029                   AND         R2,R0
+    000003C2 2008                   TST         R0,R0
+    000003C4 0029                   MOVT        R0
+    000003C6 A00E                   BRA         L370
+    000003C8 CA01                   XOR         #1,R0
+    000003CA              L368:                             
+         Input.c   236            }
+         Input.c   237            else
+         Input.c   238            {
+         Input.c   239                    return CheckKeyRow((code % 10) + ((code / 10 - 1) << 4));
+    000003CA 61D3                   MOV         R13,R1
+    000003CC D30C                   MOV.L       L376+16,R3 ; __divls
+    000003CE 430B                   JSR         @R3
+    000003D0 60E3                   MOV         R14,R0
+    000003D2 6403                   MOV         R0,R4
+    000003D4 D308                   MOV.L       L376+8,R3  ; __modls
+    000003D6 61D3                   MOV         R13,R1
+    000003D8 74FF                   ADD         #-1,R4
+    000003DA 4408                   SHLL2       R4
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE   15
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000003DC 4408                   SHLL2       R4
+    000003DE 430B                   JSR         @R3
+    000003E0 60E3                   MOV         R14,R0
+    000003E2 BF48                   BSR         _CheckKeyRow
+    000003E4 340C                   ADD         R0,R4
+         Input.c   240            }
+         Input.c   241    }
+    000003E6              L370:                             
+    000003E6 7F18                   ADD         #24,R15
+    000003E8 4F26                   LDS.L       @R15+,PR
+    000003EA 6DF6                   MOV.L       @R15+,R13
+    000003EC 000B                   RTS
+    000003EE 6EF6                   MOV.L       @R15+,R14
+    000003F0              L376:                             
+    000003F0 A44B0000               .DATA.L     H'A44B0000
+    000003F4 02020000               .DATA.L     H'02020000
+    000003F8 <00000000>             .DATA.L     __modls
+    000003FC <00000000>             .DATA.L     _memcpy
+    00000400 <00000000>             .DATA.L     __divls
+D   00000000              __$SysCallCode:                  ; static: SysCallCode
+    00000000 D201422B60             .DATA.L     H'D201422B,H'60F20000,H'80010070
+             F200008001   
+             0070         
+    0000000C              __$SysCall:                      ; static: SysCall
+    0000000C <00000000>             .DATA.L     __$SysCallCode
+    00000010              _last_key:                       ; static: last_key
+    00000010 00                     .DATA.B     H'00
+    00000011 0000003601             .DATAB.B    54,0
+             00           
+    00000047              _current_key:                    ; static: current_key
+    00000047 00                     .DATA.B     H'00
+    00000048 0000003601             .DATAB.B    54,0
+             00           
+C   00000000              _sc003b:                         ; static: sc003b
+    00000000 D201D00242             .DATA.L     H'D201D002,H'422B0009,H'80010070,H'0000003B
+             2B00098001   
+             0070000000   
+             3B           
+    00000010              _sc0015:                         ; static: sc0015
+    00000010 D201D00242             .DATA.L     H'D201D002,H'422B0009,H'80010070,H'00000015
+             2B00098001   
+             0070000000   
+             15           
+    00000020              _sc0248:                         ; static: sc0248
+    00000020 D201D00242             .DATA.L     H'D201D002,H'422B0009,H'80010070,H'00000248
+             2B00098001   
+             0070000002   
+             48           
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 16:57:49  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         4
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      241
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               00000404 Byte(s)
+CONSTANT SECTION (C):                               00000030 Byte(s)
+DATA     SECTION (D):                               0000007E Byte(s)
+BSS      SECTION (B):                               00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 000004B2 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:            3
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:          21
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            63
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\OLIVIE~1\AppData\Local\Temp\hmk97E6.tmp 
+

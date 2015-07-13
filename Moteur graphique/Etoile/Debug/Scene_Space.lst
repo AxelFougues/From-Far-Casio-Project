@@ -1,0 +1,665 @@
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    1
+
+************ OBJECT LISTING ************
+
+FILE NAME: C:\Casio Projets\Etoile\Scene_Space.cpp
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+      Scene_Spac     1    /****************************************************************************/
+      Scene_Spac     2    /*                                                                          */
+      Scene_Spac     3    /*                              SCENE SPACE                                 */
+      Scene_Spac     4    /*                                                                          */
+      Scene_Spac     5    /****************************************************************************/
+      Scene_Spac     6    
+      Scene_Spac     7    
+      Scene_Spac     8    #include "Scene_Space.hpp"
+      Scene_Spac     9    extern Game game;
+      Scene_Spac    10    extern int scene;
+      Scene_Spac    11    
+      Scene_Spac    12    
+      Scene_Spac    13    /****************************************************************************/
+      Scene_Spac    14    /*                            INITIALSATION                                 */
+      Scene_Spac    15    /****************************************************************************/
+      Scene_Spac    16    Scene_Space::Scene_Space()
+P   00000000              ___ct__11Scene_SpaceFv:          ; function: Scene_Space::Scene_Space()
+                                                           ; frame size=16
+    00000000 2FE6                   MOV.L       R14,@-R15
+      Scene_Spac    17    {
+    00000002 6343                   MOV         R4,R3
+    00000004 2FD6                   MOV.L       R13,@-R15
+    00000006 2338                   TST         R3,R3
+    00000008 4F22                   STS.L       PR,@-R15
+    0000000A 7FFC                   ADD         #-4,R15
+    0000000C 8F07                   BF/S        L288
+    0000000E 2F42                   MOV.L       R4,@R15
+    00000010 943A                   MOV.W       L304,R4    ; H'0C84
+    00000012 D31E                   MOV.L       L304+4,R3  ; ___nw__FUl
+    00000014 430B                   JSR         @R3
+    00000016 0009                   NOP
+    00000018 2008                   TST         R0,R0
+    0000001A 8D2F                   BT/S        L287
+    0000001C 2F02                   MOV.L       R0,@R15
+    0000001E              L288:                             
+      Scene_Spac    18        camera = &game.camera;
+      Scene_Spac    19    
+      Scene_Spac    20        for (int i=0; i<MAX_STARS; i++)
+    0000001E E500                   MOV         #0,R5
+    00000020 9D33                   MOV.W       L304+2,R13 ; H'00C8
+    00000022 EE14                   MOV         #20,R14
+    00000024 62F2                   MOV.L       @R15,R2
+    00000026 6753                   MOV         R5,R7
+    00000028 D319                   MOV.L       L304+8,R3  ; _game
+    0000002A 6653                   MOV         R5,R6
+    0000002C 2232                   MOV.L       R3,@R2
+    0000002E 6453                   MOV         R5,R4
+    00000030              L289:                             
+      Scene_Spac    21        {
+      Scene_Spac    22            stars[i].x = 50*i;
+    00000030 62F2                   MOV.L       @R15,R2
+    00000032 7701                   ADD         #1,R7
+    00000034 6323                   MOV         R2,R3
+    00000036 7304                   ADD         #4,R3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    2
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000038 334C                   ADD         R4,R3
+    0000003A 37D3                   CMP/GE      R13,R7
+    0000003C 2362                   MOV.L       R6,@R3
+    0000003E 7632                   ADD         #50,R6
+      Scene_Spac    23            stars[i].y = 0;
+    00000040 62F2                   MOV.L       @R15,R2
+    00000042 6323                   MOV         R2,R3
+    00000044 7304                   ADD         #4,R3
+    00000046 334C                   ADD         R4,R3
+    00000048 1351                   MOV.L       R5,@(4,R3)
+      Scene_Spac    24            stars[i].z = 0;
+    0000004A 63F2                   MOV.L       @R15,R3
+    0000004C 7304                   ADD         #4,R3
+    0000004E 334C                   ADD         R4,R3
+    00000050 1352                   MOV.L       R5,@(8,R3)
+      Scene_Spac    25            stars[i].radius = 20;
+    00000052 63F2                   MOV.L       @R15,R3
+    00000054 7304                   ADD         #4,R3
+    00000056 334C                   ADD         R4,R3
+    00000058 13E3                   MOV.L       R14,@(12,R3)
+    0000005A 8FE9                   BF/S        L289
+    0000005C 7410                   ADD         #16,R4
+    0000005E DD0D                   MOV.L       L304+12,R13; _input_update
+    00000060 DE0D                   MOV.L       L304+16,R14; _scene
+      Scene_Spac    26        }
+      Scene_Spac    27    
+      Scene_Spac    28       //stars[0].x = -50;      stars[0].y = -50;     stars[0].z = 500;   stars[0].radius = 20;
+      Scene_Spac    29       //stars[1].x = 0;    stars[1].y =  -50;     stars[1].z = 500;   stars[1].radius = 20;
+      Scene_Spac    30       //stars[2].x = 50;   stars[2].y = -50;     stars[2].z = 500;   stars[2].radius = 20;
+      Scene_Spac    31       //stars[3].x = -50;    stars[3].y = 0;  stars[3].z = 500;   stars[3].radius = 20;
+      Scene_Spac    32       //stars[4].x = 0;    stars[4].y = 0;     stars[4].z = 500;   stars[4].radius = 20;
+      Scene_Spac    33       //stars[5].x = 50;      stars[5].y = 0; stars[5].z = 500;   stars[5].radius = 20;
+      Scene_Spac    34       //stars[6].x = -50;    stars[6].y = 50; stars[6].z = 500;   stars[6].radius = 20;
+      Scene_Spac    35       //stars[7].x = 0;   stars[7].y = 50;  stars[7].z = 500;   stars[7].radius = 20;
+      Scene_Spac    36       //stars[8].x = 50;   stars[8].y = 50;  stars[8].z = 500;   stars[8].radius = 20;
+      Scene_Spac    37    
+      Scene_Spac    38        //int t1 = time_get_ticks();
+      Scene_Spac    39        //for (int i=0; i<1000; i++)
+      Scene_Spac    40    
+      Scene_Spac    41        while(scene == SCENE_SPACE)
+    00000062 A008                   BRA         L290
+    00000064 0009                   NOP
+    00000066              L291:                             
+      Scene_Spac    42        {
+      Scene_Spac    43            // mise à jour des graphismes
+      Scene_Spac    44            screen_update();
+    00000066 D20D                   MOV.L       L304+20,R2 ; _screen_update__11Scene_SpaceFv
+    00000068 420B                   JSR         @R2
+    0000006A 64F2                   MOV.L       @R15,R4
+      Scene_Spac    45            // mise à jour du clavier
+      Scene_Spac    46            input_update();
+    0000006C 4D0B                   JSR         @R13
+    0000006E 0009                   NOP
+      Scene_Spac    47            // gestion du jeu
+      Scene_Spac    48            engine_update();
+    00000070 D30B                   MOV.L       L304+24,R3 ; _engine_update__11Scene_SpaceFv
+    00000072 430B                   JSR         @R3
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    3
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000074 64F2                   MOV.L       @R15,R4
+    00000076              L290:                             
+    00000076 60E2                   MOV.L       @R14,R0
+    00000078 8801                   CMP/EQ      #1,R0
+    0000007A 89F4                   BT          L291
+    0000007C              L287:                             
+      Scene_Spac    49            // régulation des fps
+      Scene_Spac    50            //time_set_fps(FPS);
+      Scene_Spac    51        }
+    0000007C 60F2                   MOV.L       @R15,R0
+      Scene_Spac    52    }
+    0000007E 7F04                   ADD         #4,R15
+    00000080 4F26                   LDS.L       @R15+,PR
+    00000082 6DF6                   MOV.L       @R15+,R13
+    00000084 000B                   RTS
+    00000086 6EF6                   MOV.L       @R15+,R14
+    00000088              L304:                             
+    00000088 0C84                   .DATA.W     H'0C84
+    0000008A 00C8                   .DATA.W     H'00C8
+    0000008C <00000000>             .DATA.L     ___nw__FUl
+    00000090 <00000000>             .DATA.L     _game
+    00000094 <00000000>             .DATA.L     _input_update
+    00000098 <00000000>             .DATA.L     _scene
+    0000009C <00000000>             .DATA.L     _screen_update__11Scene_SpaceFv
+    000000A0 <00000000>             .DATA.L     _engine_update__11Scene_SpaceFv
+      Scene_Spac    53    
+      Scene_Spac    54    
+      Scene_Spac    55    /****************************************************************************/
+      Scene_Spac    56    /*                             screen_update                                */
+      Scene_Spac    57    /****************************************************************************/
+      Scene_Spac    58    void Scene_Space::screen_update()
+    000000A4              _screen_update__11Scene_SpaceFv: ; function: Scene_Space::screen_update()
+                                                           ; frame size=68
+                                                           ; used runtime library name:
+                                                           ; __divls
+    000000A4 2FE6                   MOV.L       R14,@-R15
+    000000A6 2FD6                   MOV.L       R13,@-R15
+    000000A8 2FC6                   MOV.L       R12,@-R15
+    000000AA 2FB6                   MOV.L       R11,@-R15
+    000000AC 2FA6                   MOV.L       R10,@-R15
+    000000AE 2F96                   MOV.L       R9,@-R15
+    000000B0 2F86                   MOV.L       R8,@-R15
+    000000B2 4F22                   STS.L       PR,@-R15
+    000000B4 4F12                   STS.L       MACL,@-R15
+    000000B6 7FEC                   ADD         #-20,R15
+      Scene_Spac    59    {
+      Scene_Spac    60        ML_clear_vram();
+    000000B8 D35A                   MOV.L       L305+6,R3  ; _ML_clear_vram
+    000000BA 430B                   JSR         @R3
+    000000BC 2F42                   MOV.L       R4,@R15
+      Scene_Spac    61        ML_rectangle(0, 0, 127, 63, 0, ML_TRANSPARENT, ML_BLACK);
+    000000BE E201                   MOV         #1,R2
+    000000C0 2F26                   MOV.L       R2,@-R15
+    000000C2 E3FF                   MOV         #-1,R3
+    000000C4 2F36                   MOV.L       R3,@-R15
+    000000C6 E100                   MOV         #0,R1
+    000000C8 D357                   MOV.L       L305+10,R3 ; _ML_rectangle
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    4
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000000CA E73F                   MOV         #63,R7
+    000000CC 2F16                   MOV.L       R1,@-R15
+    000000CE E67F                   MOV         #127,R6
+    000000D0 6513                   MOV         R1,R5
+    000000D2 430B                   JSR         @R3
+    000000D4 6413                   MOV         R1,R4
+    000000D6 7F0C                   ADD         #12,R15
+    000000D8 9DA1                   MOV.W       L305,R13   ; H'012C
+      Scene_Spac    62        int cos_phi = camera->cos_phi;
+      Scene_Spac    63        int sin_phi = camera->sin_phi;
+      Scene_Spac    64        int cos_theta = camera->cos_theta;
+      Scene_Spac    65        int sin_theta = camera->sin_theta;
+      Scene_Spac    66        //float cos_az = cosf(camera->roll);
+      Scene_Spac    67        //float sin_az = sinf(camera->roll);
+      Scene_Spac    68    
+      Scene_Spac    69    
+      Scene_Spac    70        for (int i=0; i<MAX_STARS; i++)
+    000000DA E300                   MOV         #0,R3
+    000000DC 9EA0                   MOV.W       L305+2,R14 ; H'0400
+    000000DE 64F2                   MOV.L       @R15,R4
+    000000E0 6442                   MOV.L       @R4,R4
+    000000E2 5947                   MOV.L       @(28,R4),R9
+    000000E4 5A48                   MOV.L       @(32,R4),R10
+    000000E6 5C45                   MOV.L       @(20,R4),R12
+    000000E8 5B46                   MOV.L       @(24,R4),R11
+    000000EA 1F33                   MOV.L       R3,@(12,R15)
+    000000EC 68F2                   MOV.L       @R15,R8
+    000000EE 7804                   ADD         #4,R8
+    000000F0              L293:                             
+      Scene_Spac    71        {
+      Scene_Spac    72            Star* star = &stars[i];
+      Scene_Spac    73            int x_delta = cos_theta * (star->x - camera->x) - sin_theta * (star->z - camera->z);
+    000000F0 67F2                   MOV.L       @R15,R7
+    000000F2 6583                   MOV         R8,R5
+    000000F4 6772                   MOV.L       @R7,R7
+    000000F6 6372                   MOV.L       @R7,R3
+    000000F8 6452                   MOV.L       @R5,R4
+    000000FA 3438                   SUB         R3,R4
+    000000FC 0C47                   MUL.L       R4,R12
+    000000FE 021A                   STS         MACL,R2
+    00000100 5372                   MOV.L       @(8,R7),R3
+    00000102 5652                   MOV.L       @(8,R5),R6
+    00000104 3638                   SUB         R3,R6
+    00000106 0B67                   MUL.L       R6,R11
+      Scene_Spac    74            int y_delta = - sin_phi * sin_theta * (star->x - camera->x) / SHIFT_V + cos_phi * (star->y - camer
+                         +a->y) / SHIFT_V - sin_phi * cos_theta * (star->z - camera->z) / SHIFT_V;
+    00000108 D348                   MOV.L       L305+14,R3 ; __divls
+    0000010A 011A                   STS         MACL,R1
+    0000010C 04A7                   MUL.L       R10,R4
+    0000010E 3218                   SUB         R1,R2
+    00000110 1F21                   MOV.L       R2,@(4,R15)
+    00000112 011A                   STS         MACL,R1
+    00000114 01B7                   MUL.L       R11,R1
+    00000116 011A                   STS         MACL,R1
+    00000118 611B                   NEG         R1,R1
+    0000011A 430B                   JSR         @R3
+    0000011C 60E3                   MOV         R14,R0
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    5
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000011E 6203                   MOV         R0,R2
+    00000120 5371                   MOV.L       @(4,R7),R3
+    00000122 5151                   MOV.L       @(4,R5),R1
+    00000124 3138                   SUB         R3,R1
+    00000126 1F12                   MOV.L       R1,@(8,R15)
+    00000128 0917                   MUL.L       R1,R9
+    0000012A 011A                   STS         MACL,R1
+    0000012C D33F                   MOV.L       L305+14,R3 ; __divls
+    0000012E 430B                   JSR         @R3
+    00000130 60E3                   MOV         R14,R0
+    00000132 320C                   ADD         R0,R2
+    00000134 06A7                   MUL.L       R10,R6
+    00000136 011A                   STS         MACL,R1
+    00000138 01C7                   MUL.L       R12,R1
+    0000013A 011A                   STS         MACL,R1
+    0000013C D33B                   MOV.L       L305+14,R3 ; __divls
+    0000013E 430B                   JSR         @R3
+    00000140 60E3                   MOV         R14,R0
+    00000142 6723                   MOV         R2,R7
+      Scene_Spac    75            int z_delta = cos_phi * sin_theta * (star->x - camera->x) / SHIFT_V + sin_phi * (star->y - camera-
+                         +>y) + cos_phi * cos_theta * (star->z - camera->z) / SHIFT_V;
+    00000144 0497                   MUL.L       R9,R4
+    00000146 3708                   SUB         R0,R7
+    00000148 D338                   MOV.L       L305+14,R3 ; __divls
+    0000014A 011A                   STS         MACL,R1
+    0000014C 01B7                   MUL.L       R11,R1
+    0000014E 011A                   STS         MACL,R1
+    00000150 430B                   JSR         @R3
+    00000152 60E3                   MOV         R14,R0
+    00000154 0697                   MUL.L       R9,R6
+    00000156 6203                   MOV         R0,R2
+    00000158 D334                   MOV.L       L305+14,R3 ; __divls
+    0000015A 011A                   STS         MACL,R1
+    0000015C 01C7                   MUL.L       R12,R1
+    0000015E 011A                   STS         MACL,R1
+    00000160 430B                   JSR         @R3
+    00000162 60E3                   MOV         R14,R0
+    00000164 53F2                   MOV.L       @(8,R15),R3
+    00000166 320C                   ADD         R0,R2
+    00000168 03A7                   MUL.L       R10,R3
+    0000016A 6423                   MOV         R2,R4
+    0000016C 031A                   STS         MACL,R3
+    0000016E 343C                   ADD         R3,R4
+      Scene_Spac    76    
+      Scene_Spac    77            //int x_delta = cos_theta * (star->x - camera->x) / SHIFT_V - sin_theta * (star->z - camera->z) / 
+                         +SHIFT_V;
+      Scene_Spac    78            //int y_delta = - sin_phi * sin_theta * (star->x - camera->x) / (SHIFT_V * SHIFT_V) + cos_phi * (s
+                         +tar->y - camera->y) / SHIFT_V - sin_phi * cos_theta * (star->z - camera->z) / (SHIFT_V * SHIFT_V);
+      Scene_Spac    79            //int z_delta = cos_phi * sin_theta * (star->x - camera->x) / (SHIFT_V * SHIFT_V) + sin_phi * (sta
+                         +r->y - camera->y) / SHIFT_V + cos_phi * cos_theta * (star->z - camera->z) / (SHIFT_V * SHIFT_V);
+      Scene_Spac    80    
+      Scene_Spac    81    
+      Scene_Spac    82            if (z_delta > 0)
+    00000170 4415                   CMP/PL      R4
+    00000172 8B23                   BF          L294
+      Scene_Spac    83            {
+      Scene_Spac    84                int x_screen = x_delta * camera->focal / z_delta;
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    6
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000174 66F2                   MOV.L       @R15,R6
+    00000176 6662                   MOV.L       @R6,R6
+    00000178 D32C                   MOV.L       L305+14,R3 ; __divls
+    0000017A 1F64                   MOV.L       R6,@(16,R15)
+    0000017C 5669                   MOV.L       @(36,R6),R6
+    0000017E 51F1                   MOV.L       @(4,R15),R1
+    00000180 0167                   MUL.L       R6,R1
+    00000182 011A                   STS         MACL,R1
+    00000184 430B                   JSR         @R3
+    00000186 6043                   MOV         R4,R0
+    00000188 1F02                   MOV.L       R0,@(8,R15)
+      Scene_Spac    85                int y_screen = y_delta * camera->focal / z_delta;
+    0000018A 0767                   MUL.L       R6,R7
+    0000018C D327                   MOV.L       L305+14,R3 ; __divls
+    0000018E 011A                   STS         MACL,R1
+    00000190 430B                   JSR         @R3
+    00000192 6043                   MOV         R4,R0
+    00000194 1F01                   MOV.L       R0,@(4,R15)
+      Scene_Spac    86                int radius_screen = star->radius * camera->focal * SHIFT_V / z_delta;
+    00000196 5153                   MOV.L       @(12,R5),R1
+    00000198 D324                   MOV.L       L305+14,R3 ; __divls
+    0000019A 0167                   MUL.L       R6,R1
+    0000019C 011A                   STS         MACL,R1
+    0000019E 4118                   SHLL8       R1
+    000001A0 4108                   SHLL2       R1
+    000001A2 430B                   JSR         @R3
+    000001A4 6043                   MOV         R4,R0
+    000001A6 6603                   MOV         R0,R6
+      Scene_Spac    87                if (radius_screen > 300) radius_screen = 300;
+    000001A8 36D7                   CMP/GT      R13,R6
+    000001AA 8F01                   BF/S        L295
+      Scene_Spac    88    
+      Scene_Spac    89                ML_filled_circle(x_screen + 64, y_screen + 32, radius_screen, ML_WHITE);
+    000001AC E700                   MOV         #0,R7
+    000001AE 66D3                   MOV         R13,R6
+    000001B0              L295:                             
+    000001B0 55F1                   MOV.L       @(4,R15),R5
+    000001B2 7520                   ADD         #32,R5
+    000001B4 54F2                   MOV.L       @(8,R15),R4
+    000001B6 D31E                   MOV.L       L305+18,R3 ; _ML_filled_circle
+    000001B8 430B                   JSR         @R3
+    000001BA 7440                   ADD         #64,R4
+    000001BC              L294:                             
+    000001BC 52F3                   MOV.L       @(12,R15),R2
+    000001BE 7201                   ADD         #1,R2
+    000001C0 1F23                   MOV.L       R2,@(12,R15)
+    000001C2 932E                   MOV.W       L305+4,R3  ; H'00C8
+    000001C4 3233                   CMP/GE      R3,R2
+    000001C6 8F93                   BF/S        L293
+    000001C8 7810                   ADD         #16,R8
+      Scene_Spac    90            }
+      Scene_Spac    91    
+      Scene_Spac    92        }
+      Scene_Spac    93    
+      Scene_Spac    94    
+      Scene_Spac    95    
+      Scene_Spac    96        ML_vertical_line(64, 0, 3, ML_XOR);
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    7
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    000001CA E702                   MOV         #2,R7
+    000001CC D319                   MOV.L       L305+22,R3 ; _ML_vertical_line
+    000001CE E603                   MOV         #3,R6
+    000001D0 E500                   MOV         #0,R5
+    000001D2 430B                   JSR         @R3
+    000001D4 E440                   MOV         #64,R4
+      Scene_Spac    97        ML_vertical_line(64, 60, 63, ML_XOR);
+    000001D6 E702                   MOV         #2,R7
+    000001D8 D216                   MOV.L       L305+22,R2 ; _ML_vertical_line
+    000001DA E63F                   MOV         #63,R6
+    000001DC E53C                   MOV         #60,R5
+    000001DE 420B                   JSR         @R2
+    000001E0 E440                   MOV         #64,R4
+      Scene_Spac    98        ML_horizontal_line(32, 0, 5, ML_XOR);
+    000001E2 E702                   MOV         #2,R7
+    000001E4 D314                   MOV.L       L305+26,R3 ; _ML_horizontal_line
+    000001E6 E605                   MOV         #5,R6
+    000001E8 E500                   MOV         #0,R5
+    000001EA 430B                   JSR         @R3
+    000001EC E420                   MOV         #32,R4
+      Scene_Spac    99        ML_horizontal_line(32, 122, 127, ML_XOR);
+    000001EE E702                   MOV         #2,R7
+    000001F0 D211                   MOV.L       L305+26,R2 ; _ML_horizontal_line
+    000001F2 E67F                   MOV         #127,R6
+    000001F4 E57A                   MOV         #122,R5
+    000001F6 420B                   JSR         @R2
+    000001F8 E420                   MOV         #32,R4
+      Scene_Spac   100    
+      Scene_Spac   101        display_fps(time_get_fps());
+    000001FA D310                   MOV.L       L305+30,R3 ; _time_get_fps
+    000001FC 430B                   JSR         @R3
+    000001FE 0009                   NOP
+    00000200 D20F                   MOV.L       L305+34,R2 ; _display_fps
+    00000202 420B                   JSR         @R2
+    00000204 6403                   MOV         R0,R4
+      Scene_Spac   102    
+      Scene_Spac   103        ML_display_vram();
+    00000206 7F14                   ADD         #20,R15
+    00000208 D30E                   MOV.L       L305+38,R3 ; _ML_display_vram
+    0000020A 4F16                   LDS.L       @R15+,MACL
+    0000020C 4F26                   LDS.L       @R15+,PR
+    0000020E 68F6                   MOV.L       @R15+,R8
+    00000210 69F6                   MOV.L       @R15+,R9
+    00000212 6AF6                   MOV.L       @R15+,R10
+    00000214 6BF6                   MOV.L       @R15+,R11
+    00000216 6CF6                   MOV.L       @R15+,R12
+    00000218 6DF6                   MOV.L       @R15+,R13
+    0000021A 432B                   JMP         @R3
+    0000021C 6EF6                   MOV.L       @R15+,R14
+    0000021E              L305:                             
+    0000021E 012C                   .DATA.W     H'012C
+    00000220 0400                   .DATA.W     H'0400
+    00000222 00C8                   .DATA.W     H'00C8
+    00000224 <00000000>             .DATA.L     _ML_clear_vram
+    00000228 <00000000>             .DATA.L     _ML_rectangle
+    0000022C <00000000>             .DATA.L     __divls
+    00000230 <00000000>             .DATA.L     _ML_filled_circle
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    8
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    00000234 <00000000>             .DATA.L     _ML_vertical_line
+    00000238 <00000000>             .DATA.L     _ML_horizontal_line
+    0000023C <00000000>             .DATA.L     _time_get_fps
+    00000240 <00000000>             .DATA.L     _display_fps
+    00000244 <00000000>             .DATA.L     _ML_display_vram
+      Scene_Spac   104    }
+      Scene_Spac   105    
+      Scene_Spac   106    
+      Scene_Spac   107    /****************************************************************************/
+      Scene_Spac   108    /*                             engine_update                                */
+      Scene_Spac   109    /****************************************************************************/
+      Scene_Spac   110    void Scene_Space::engine_update()
+    00000248              _engine_update__11Scene_SpaceFv: ; function: Scene_Space::engine_update()
+                                                           ; frame size=12
+    00000248 2FE6                   MOV.L       R14,@-R15
+    0000024A 6E43                   MOV         R4,R14
+    0000024C 2FD6                   MOV.L       R13,@-R15
+    0000024E 4F22                   STS.L       PR,@-R15
+      Scene_Spac   111    {
+      Scene_Spac   112        if (input_press(K_COMMA))   camera->move_forward(-VITESSE);
+    00000250 DD1B                   MOV.L       L306,R13   ; _input_press
+    00000252 4D0B                   JSR         @R13
+    00000254 E423                   MOV         #35,R4
+    00000256 2008                   TST         R0,R0
+    00000258 8903                   BT          L297
+    0000025A E5F6                   MOV         #-10,R5
+    0000025C D219                   MOV.L       L306+4,R2  ; _move_forward__6CameraFi
+    0000025E 420B                   JSR         @R2
+    00000260 64E2                   MOV.L       @R14,R4
+    00000262              L297:                             
+      Scene_Spac   113        if (input_press(K_STORE))   camera->move_forward(VITESSE);
+    00000262 4D0B                   JSR         @R13
+    00000264 E419                   MOV         #25,R4
+    00000266 2008                   TST         R0,R0
+    00000268 8903                   BT          L298
+    0000026A E50A                   MOV         #10,R5
+    0000026C D215                   MOV.L       L306+4,R2  ; _move_forward__6CameraFi
+    0000026E 420B                   JSR         @R2
+    00000270 64E2                   MOV.L       @R14,R4
+    00000272              L298:                             
+      Scene_Spac   114        if (input_press(K_LEFT))    camera->move_theta(-ROTATION_H);
+    00000272 4D0B                   JSR         @R13
+    00000274 E426                   MOV         #38,R4
+    00000276 2008                   TST         R0,R0
+    00000278 8903                   BT          L299
+    0000027A D513                   MOV.L       L306+8,R5  ; H'BD23D70A
+    0000027C D213                   MOV.L       L306+12,R2 ; _move_theta__6CameraFf
+    0000027E 420B                   JSR         @R2
+    00000280 64E2                   MOV.L       @R14,R4
+    00000282              L299:                             
+      Scene_Spac   115        if (input_press(K_RIGHT))   camera->move_theta(ROTATION_H);
+    00000282 4D0B                   JSR         @R13
+    00000284 E41B                   MOV         #27,R4
+    00000286 2008                   TST         R0,R0
+    00000288 8903                   BT          L300
+    0000028A D511                   MOV.L       L306+16,R5 ; H'3D23D70A
+    0000028C D20F                   MOV.L       L306+12,R2 ; _move_theta__6CameraFf
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    9
+
+
+SCT OFFSET   CODE       C LABEL     INSTRUCTION OPERAND    COMMENT
+
+    0000028E 420B                   JSR         @R2
+    00000290 64E2                   MOV.L       @R14,R4
+    00000292              L300:                             
+      Scene_Spac   116        if (input_press(K_UP))      camera->move_phi(-ROTATION_V);
+    00000292 4D0B                   JSR         @R13
+    00000294 E41C                   MOV         #28,R4
+    00000296 2008                   TST         R0,R0
+    00000298 8903                   BT          L301
+    0000029A D50E                   MOV.L       L306+20,R5 ; H'BCCCCCCD
+    0000029C D20E                   MOV.L       L306+24,R2 ; _move_phi__6CameraFf
+    0000029E 420B                   JSR         @R2
+    000002A0 64E2                   MOV.L       @R14,R4
+    000002A2              L301:                             
+      Scene_Spac   117        if (input_press(K_DOWN))    camera->move_phi(ROTATION_V);
+    000002A2 4D0B                   JSR         @R13
+    000002A4 E425                   MOV         #37,R4
+    000002A6 2008                   TST         R0,R0
+    000002A8 8906                   BT          L303
+    000002AA D50C                   MOV.L       L306+28,R5 ; H'3CCCCCCD
+    000002AC 64E2                   MOV.L       @R14,R4
+    000002AE 4F26                   LDS.L       @R15+,PR
+    000002B0 D209                   MOV.L       L306+24,R2 ; _move_phi__6CameraFf
+    000002B2 6DF6                   MOV.L       @R15+,R13
+    000002B4 422B                   JMP         @R2
+    000002B6 6EF6                   MOV.L       @R15+,R14
+    000002B8              L303:                             
+      Scene_Spac   118    }
+    000002B8 4F26                   LDS.L       @R15+,PR
+    000002BA 6DF6                   MOV.L       @R15+,R13
+    000002BC 000B                   RTS
+    000002BE 6EF6                   MOV.L       @R15+,R14
+    000002C0              L306:                             
+    000002C0 <00000000>             .DATA.L     _input_press
+    000002C4 <00000000>             .DATA.L     _move_forward__6CameraFi
+    000002C8 BD23D70A               .DATA.L     H'BD23D70A
+    000002CC <00000000>             .DATA.L     _move_theta__6CameraFf
+    000002D0 3D23D70A               .DATA.L     H'3D23D70A
+    000002D4 BCCCCCCD               .DATA.L     H'BCCCCCCD
+    000002D8 <00000000>             .DATA.L     _move_phi__6CameraFf
+    000002DC 3CCCCCCD               .DATA.L     H'3CCCCCCD
+      Scene_Spac   119    
+      Scene_Spac   120    
+      Scene_Spac   121    
+      Scene_Spac   122    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SH SERIES C/C++ Compiler (Ver. 6.0C)                                                                 13-Jul-2015 17:22:10  PAGE    1
+
+
+******** STATISTICS INFORMATION ********
+
+
+********** ERROR INFORMATION ***********
+
+NUMBER OF ERRORS:           0
+NUMBER OF WARNINGS:         0
+
+
+
+
+******* SOURCE LINE INFORMATION ********
+
+COMPILED SOURCE LINE:      122
+
+
+
+******* SECTION SIZE INFORMATION *******
+
+PROGRAM  SECTION (P):                               000002E0 Byte(s)
+CONSTANT SECTION (C):                               00000000 Byte(s)
+DATA     SECTION (D):                               00000000 Byte(s)
+BSS      SECTION (B):                               00000000 Byte(s)
+
+ TOTAL PROGRAM SIZE: 000002E0 Byte(s)
+
+
+
+********** LABEL INFORMATION ***********
+
+NUMBER OF EXTERNAL REFERENCE SYMBOLS:           17
+NUMBER OF EXTERNAL DEFINITION SYMBOLS:           3
+NUMBER OF INTERNAL/EXTERNAL SYMBOLS:            37
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*** COMMAND PARAMETER ***
+
+
+  -subcommand=C:\Users\OLIVIE~1\AppData\Local\Temp\hmkE569.tmp 
+
