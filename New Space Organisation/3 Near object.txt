@@ -10,3 +10,13 @@ POUR PLANETES SEULEMENT:
 
 -L'idéal serait que plus on approche plus la texture est detaillée,  cad: terrain + nuages  et que le terrain soit une representation réelle du terrain que l'on explorera en surface.
  Ca veut dire que l'on pourrait generer la surface en fonction de la texture (OUI) ou la texture en fonction de la surface (quasi impossible).
+
+Détail de l'aproche et des textures:
+-space aproach: cloud texture to be generated...
+-HIGHT FOG
+-hight orbit: cloud texture scrols on planet in opposite direction.
+-LOW FOG
+-low orbit: (zoomed cloud texture scrolling slow). entities(up veiw) and surface scrolling fast. air life
+-LANDING ANIMATION
+-ground: entities(side veiw)+surface slow scrolling
+  

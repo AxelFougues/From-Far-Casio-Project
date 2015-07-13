@@ -1,8 +1,0 @@
-Max sys per cube: 10?  ->systemDensity
-Max planets per sun: 9? in loop
-Max sun size: 9?
-Max sun-planet distance: 20
-Max planet size: 3
-
-astralStorage:   10*9= 90
-sunStorage : 10

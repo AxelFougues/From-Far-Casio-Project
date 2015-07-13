@@ -1,0 +1,8 @@
+Il sera probable ment possible de marquer/sauver un certain nombre de possitions, par exemple des bases comerciales,
+lieux intéressants et autres.
+Cela permet de faire des voyages rapides dont la duré depend de la distance, probablement une animation sera affichée...
+
+Il est prevu que le joueur puisse choisir une ou plusieures planétes qu'il aura découvert et exploré et les sauvegarder en temps
+que "mes planètes découvertes" ou un truc du genre. Il serait interessant de pouvoir nomer les créatures et plantes de cette/ces planète(s)
+Il est très intéressant de developper le teraforming et construction... On se limite a un certain nombre de planètes car tout ca nécessite des sauvegardes importantes.
+Au niveau gameplay ca permeterais au joueur de s'identifier a un endroit, d'y établir sa base et de ne pas etre qu'un voyageur flotant dans l'espace sans but...
