@@ -3,10 +3,10 @@
 #
 ############################
 # Directory defines
-TCDIR = C:\Casio\OS\SH
-OSDIR = C:\Casio\OS
-APPDIR = C:\Casio Projets\Etoile
-OUTDIR = C:\Casio Projets\Etoile\Debug
+TCDIR = C:\SDK\OS\SH
+OSDIR = C:\SDK\OS
+APPDIR = C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile
+OUTDIR = C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug
 
 ################
 # Main Defines

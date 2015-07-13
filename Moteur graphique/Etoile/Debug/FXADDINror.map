@@ -1,22 +1,22 @@
-Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)13-Jul-2015 17:22:11
+Hitachi Optimizing Linkage Editor (Ver. 7.1.03.000)13-Jul-2015 17:26:10
 
 *** Options ***
 
--subcommand=C:\Users\OLIVIE~1\AppData\Local\Temp\hmkE645.tmp
+-subcommand=C:\Users\Az\AppData\Local\Temp\hmkDADD.tmp
 noprelink
 sdebug
 rom D=R
 nomessage
-list "C:\Casio Projets\Etoile\Debug\FXADDINror.map"
+list "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\FXADDINror.map"
 show symbol
 nooptimize
 start P_TOP,P,C,D,C$VTBL,C$INIT/0300200,B_BR_Size,B,R/08100000
 fsymbol P
 nologo
-input "C:\Casio Projets\Etoile\Debug\Debug.obj" "C:\Casio Projets\Etoile\Debug\Input.obj" "C:\Casio Projets\Etoile\Debug\MonochromeLib.obj" "C:\Casio Projets\Etoile\Debug\Main.obj" "C:\Casio Projets\Etoile\Debug\Time.obj" "C:\Casio Projets\Etoile\Debug\Game.obj" "C:\Casio Projets\Etoile\Debug\Scene_Space.obj" "C:\Casio Projets\Etoile\Debug\Camera.obj"
-input "C:\Casio\OS\FX\lib\setup.obj"
-library "C:\Casio\OS\FX\lib\fx9860G_library.lib"
-output "C:\Casio Projets\Etoile\Debug\FXADDINror.abs"
+input "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Debug.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Input.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\MonochromeLib.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Time.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Game.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Scene_Space.obj" "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Camera.obj"
+input "C:\SDK\OS\FX\lib\setup.obj"
+library "C:\SDK\OS\FX\lib\fx9860G_library.lib"
+output "C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\FXADDINror.abs"
 -nomessage=1100
 end
 
@@ -50,13 +50,13 @@ FILE=                               START        END    SIZE
   SYMBOL                            ADDR        SIZE    INFO      COUNTS  OPT
 
 SECTION=P_TOP
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   00300200  0030020b         c
   _InitializeSystem
                                   00300200         c   func ,g         * 
 
 SECTION=P
-FILE=C:\Casio Projets\Etoile\Debug\Debug.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Debug.obj
                                   0030020c  0030033b       130
   _debug_int
                                   0030020c        3e   func ,g         * 
@@ -66,7 +66,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Debug.obj
                                   0030028a        12   func ,g         * 
   _print_v
                                   0030029c        a0   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Input.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Input.obj
                                   0030033c  0030073f       404
   _input_update
                                   0030033c        5c   func ,g         * 
@@ -102,7 +102,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Input.obj
                                   003005b2        ea   func ,g         * 
   _key_down
                                   0030069c        a4   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\MonochromeLib.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\MonochromeLib.obj
                                   00300740  00303e1f      36e0
   _ML_vram_adress
                                   00300740        1c   func ,g         * 
@@ -202,7 +202,7 @@ FILE=C:\Casio Projets\Etoile\Debug\MonochromeLib.obj
                                   003039ac       23a   func ,g         * 
   _ML_bmp_xor_rotate
                                   00303be6       23a   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   00303e20  00303eab        8c
   _main
                                   00303e20        7c   func ,g         * 
@@ -210,7 +210,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Main.obj
                                   00303e76        26   func ,g         * 
   ___sti__Main_cpp_game
                                   00303e9c        10   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Time.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Time.obj
                                   00303eac  00303f37        8c
   _time_get_ticks
                                   00303eac         6   func ,g         * 
@@ -218,11 +218,11 @@ FILE=C:\Casio Projets\Etoile\Debug\Time.obj
                                   00303eb2        3a   func ,g         * 
   _time_set_fps
                                   00303eec        4c   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Game.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Game.obj
                                   00303f38  00303f67        30
   Game::Game()
                                   00303f38        30   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Scene_Space.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Scene_Space.obj
                                   00303f68  00304247       2e0
   Scene_Space::Scene_Space()
                                   00303f68        a4   func ,g         * 
@@ -230,7 +230,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Scene_Space.obj
                                   0030400c       1a4   func ,g         * 
   Scene_Space::engine_update()
                                   003041b0        98   func ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Camera.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Camera.obj
                                   00304248  00304417       1d0
   Camera::Camera()
                                   00304248        52   func ,g         * 
@@ -240,7 +240,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Camera.obj
                                   003042f0        74   func ,g         * 
   Camera::move_phi(float)
                                   00304364        b4   func ,g         * 
-FILE=C:\Casio\OS\FX\lib\setup.obj
+FILE=C:\SDK\OS\FX\lib\setup.obj
                                   00304418  00304533       11c
   ___LINK_PROTECT
                                   00304418         4   func ,g         * 
@@ -1444,7 +1444,7 @@ FILE=__polins
                                   003066a0         0   none ,l         * 
 
 SECTION=C
-FILE=C:\Casio Projets\Etoile\Debug\Input.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Input.obj
                                   003066b0  003066df        30
   _sc003b
                                   003066b0        10   data ,g         * 
@@ -1452,7 +1452,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Input.obj
                                   003066c0        10   data ,g         * 
   _sc0248
                                   003066d0        10   data ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Time.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Time.obj
                                   003066e0  003066ef        10
   _sc003ba
                                   003066e0        10   data ,g         * 
@@ -1530,19 +1530,19 @@ FILE=_a_sins
                                   00306804        38   data ,l         * 
 
 SECTION=C$INIT
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   003068f4  003068ff         c
   ___link
                                   003068f4         c   data ,l         * 
 
 SECTION=B_BR_Size
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   08100000  08100003         4
   _BR_Size
                                   08100000         4   data ,g         * 
 
 SECTION=B
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   08100004  0810002b        28
   _game
                                   08100004        28   data ,g         * 
@@ -1552,7 +1552,7 @@ FILE=_errno
                                   0810002c         4   data ,g         * 
 
 SECTION=R
-FILE=C:\Casio Projets\Etoile\Debug\Input.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Input.obj
                                   08100030  081000ad        7e
   _SysCallCode
                                   08100030         c   data ,l         * 
@@ -1562,17 +1562,17 @@ FILE=C:\Casio Projets\Etoile\Debug\Input.obj
                                   08100040        37   data ,g         * 
   _current_key
                                   08100077        37   data ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\MonochromeLib.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\MonochromeLib.obj
                                   081000b0  081000bf        10
   _SysCallCode
                                   081000b0         c   data ,l         * 
   _SysCall
                                   081000bc         4   data ,l         * 
-FILE=C:\Casio Projets\Etoile\Debug\Main.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Main.obj
                                   081000c0  081000c3         4
   _scene
                                   081000c0         4   data ,g         * 
-FILE=C:\Casio Projets\Etoile\Debug\Time.obj
+FILE=C:\Users\Az\From-Far-Casio-Project\Moteur graphique\Etoile\Debug\Time.obj
                                   081000c4  081000d7        14
   _fps$239
                                   081000c4         4   data ,l         * 
@@ -1584,7 +1584,7 @@ FILE=C:\Casio Projets\Etoile\Debug\Time.obj
                                   081000d0         4   data ,l         * 
   _fps_count$246
                                   081000d4         4   data ,l         * 
-FILE=C:\Casio\OS\FX\lib\setup.obj
+FILE=C:\SDK\OS\FX\lib\setup.obj
                                   081000d8  081000db         4
   _gb_OnAppClose
                                   081000d8         4   data ,g         * 
