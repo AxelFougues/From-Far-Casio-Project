@@ -72,11 +72,58 @@ void useOutputs(){// rempli les listes d'infos des planetes grace aux outputs (a
         sunZ = (rand() % 7)+2;//Z
         sunStorageX[i] = sunX;   //fill storage
         sunStorageY[i] = sunY;
-        sunStorageZ[i] = sunZ;
-        planetDensity = (rand() % 20)+1;    // create density
+        sunStorageZ[i] = sunZ;    
     }
 }
 
+void planets(){
+planetDensity = (rand() % 20)+1;    // create density
+for (o = 0; o < planetDensity; ++o){
+    //create planets around sun
+    //X
+    srand(output1+sunX+o);
+    planetX = (rand() % 47) -15;
+    if(planetX <= 9 && planetX >= 0){
+        planetX = planetX+9;
+    }
+    if(planetX >= -9 && planetX <= 0){
+        planetX = planetX-9;
+    }
+    planetX = sunX+planetX;
+
+    //Y
+    srand(output2+sunY+o);
+    planetY = (rand() % 47) -15;
+    if(planetY <= 9 && planetY >= 0){
+        planetY = planetY+9;
+    }
+    if(planetY >= -9 && planetY <= 0){
+        planetY = planetY-9;
+    }
+    planetY = sunY+planetY;
+    //while(sqrt(pow(planetX-sunX,2)+pow(planetY-sunY,2))>20){
+    //    --planetX;
+    //    --planetY;
+    //}
+
+    //Z
+    srand(output3+sunZ+o);
+    planetZ = (rand() % 3)+1;
+    astralStorageX1[o] = planetX;   //fill storage
+    astralStorageY1[o] = planetY;
+    astralStorageZ1[o] = planetZ;
+    ++planetCount;
+    for (p = o-1; p > 0; --p){
+        while(fabs(astralStorageX1[p]-astralStorageX1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o]+1)){
+            ++astralStorageX1[p];
+        }
+        astralStorageZ1[100] = planetZ;
+        while(fabs(astralStorageY1[p]-astralStorageY1[o]) <= (astralStorageZ1[p]+astralStorageZ1[o]+1)){
+            ++astralStorageY1[p];
+        }
+                
+    }
+}
 
 
 
