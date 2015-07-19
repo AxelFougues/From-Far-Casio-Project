@@ -1,0 +1,3 @@
+variables;
+-Corp   (Branches(epaisseur/nombre/forme)/Feuiles(taille/forme/position))
+-Décors (Feuiles(taille/forme/position)/objets(spheres/tiges/tentacules/surfaces/particules))

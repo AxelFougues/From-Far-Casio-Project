@@ -1,0 +1,5 @@
+variables;
+-Base   (racines aparentes(nombre/epaisseur) /hauteur/largeur)
+-Corp   (Tronc(unique/multiple/epaisseur/longeur/distortions) /Branches(epaisseur/nombre/forme)/Feuiles(taille/forme/position))
+-Décors (Feuiles(taille/forme/position)/objets(spheres/tiges/tentacules/surfaces/particules))
+-

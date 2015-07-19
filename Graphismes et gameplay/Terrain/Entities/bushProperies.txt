@@ -1,4 +1,0 @@
-variables;
--nombre de cercles
--tailles des cercles 
--positions de cercles

@@ -1,0 +1,3 @@
+variables,;
+-forme (polygone/multiples/taille)
+-décor (particules/gravures/minerais/(levitation))

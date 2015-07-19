@@ -1,0 +1,5 @@
+-nombe de sprites/taille/détail?
+-animations?
+-render distance?
+-hitboxes? Colisions?
+-
