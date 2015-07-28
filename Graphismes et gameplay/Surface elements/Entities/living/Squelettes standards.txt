@@ -1,0 +1,20 @@
+Sol:
+-Bipède
+-Quadrupède
+-Rampant
+-Flottant
+-Type insecte
+-Autres?
+Liquide:
+-Corp poisson (structuré,tete et queue)
+-Poulpe (corp simplifié, allongé, souple)
+-Crustacé (corp raide, structuré, pates et mandibules)
+-Flottant (disforme, original)
+-Corp semi-terrestre quadrupède (amphibien)
+-Banc de petits
+Atmosphère:
+-Type insecte volant
+-Corp type poulpe/flottant
+-Corps oiseau/bipède + ailes
+-Banc de petits
+-Corp type XXL
