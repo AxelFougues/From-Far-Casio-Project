@@ -1,0 +1,10 @@
+Sur les planètes on peut croiser des monuments/ruines, certains pourait éventuellement proposer une intéraction 
+(Téléportation,loot,autres) mais la majorité sont décoratifs.
+
+La seule intéraction directe avec une/des éspece/s evoluée/s se fait dans les bases (spaciales ou au sol). Possibilité de vente
+d'achat et de troc. La monnaie commune etant les reliques, que l'on peut trouver dans la nature. Il reste a definir si ces base sont
+explorables avec le perso. ou s'il s'agit d'un simple ui.
+Les bases sont de grands batiments/vaisseaux acceuillant de nombreux voyageurs, on peut y trouver un marché, du carburrant, consulter ces stats,
+gérer ses marqueurs (voir 111°) et y voyager. 
+Les bases peuvent dans de rares cas proposer des vaisseaux a la vente. Cependant il est généralement possible de trouver des vaisseaux abandonnés
+a la surface des planétes.
