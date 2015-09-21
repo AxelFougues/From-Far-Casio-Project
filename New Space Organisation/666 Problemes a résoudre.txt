@@ -1,14 +1,17 @@
--Que se passe-t il quand on aproche trop un soleil?
-
 -Peut on entrer a reculon/involontairement dans un sys? Que se passe-t il dans ce cas?
+ ON PEUT TOURNER DONC PAS D4OPTION DE RECUL.
 
 -Le soleil sera énorme quand on est dans le sys, non?
+ LES PROPORTIONS SERONT AJUSTEES QUE L4ON ENTRE DANS UN SYS.
 
 -Il faut trouver et eliminer les valeur pour les quelles les générateurs bugent, envisager toutes les possibilitées.
 
 -Autres objets , type asteroides, bases, lunes (importants niveau gameplay)?/quelles interactions avec ces objets?
+ VOIR: 3 Near object et completer.
 
 -Orbites de planetes et autres objets ne doivent pas se reinitialiser, elles doivent donc dependre d'une variable temps univeresselle.
+ CETTE VARIABLE SERA PRESENTE.
 
 -Les autres soleils sont ils visibles quand on est dans un sys?
+ A TESTER MAIS PLUTOT NON.
 

@@ -19,4 +19,12 @@ Détail de l'aproche et des textures:
 -low orbit: (zoomed cloud texture scrolling slow). entities(up veiw) and surface scrolling fast. air life
 -LANDING ANIMATION
 -ground: entities(side veiw)+surface slow scrolling
-  
+ 
+POUR LES SOLEILS ET ASTRES CHAUDS
+
+-Le jouer doit consulter la temperature exterieure dans le infos sur l'environement, si celle-ci est superieure a la temperature
+ maximale que peut suporter le vaisseau alors cela peut causer de gros dégats.
+ Les dégats doivent étre tels que le vaisseau soit détruit avant de toucher la surface, peu importe sa resistance.
+
+-Les soleils ont une attraction forte, cela se traduit par une lenteur de déplacement pour s'en éloigner et une accélération 
+ en s'en approchant. Ce phénomen augmente quand on s'approche d'une astre, rendant la fuite difficile.
